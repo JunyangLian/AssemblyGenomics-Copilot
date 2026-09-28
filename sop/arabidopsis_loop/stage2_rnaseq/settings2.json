@@ -1,0 +1,26 @@
+{
+  "run_id": "arab_batch01",
+  "thread_budget": 32,
+  "softmasked_genome": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/genome.softmasked.fa",
+  "expected_softmasked_sha256": "aaf046110ee3e91294d1388e3546587a20bd5e82b09ac0cae2d670fa76524d67",
+  "tools": {
+    "hisat2": "/home/user/.conda/envs/TEflow/bin/hisat2",
+    "hisat2_build": "/home/user/.conda/envs/TEflow/bin/hisat2-build",
+    "samtools": "/home/user/.conda/envs/braker3/bin/samtools"
+  },
+  "hisat2_threads": 16,
+  "sort_threads": 4,
+  "hisat2_extra": [
+    "--dta",
+    "--no-unal"
+  ],
+  "index_prefix": "Athaliana_TAIR10",
+  "samples": [
+    {
+      "id": "Col0_ERR15942845",
+      "srr": "ERR15942845",
+      "r1": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/ERR15942845_1.fastq.gz",
+      "r2": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/ERR15942845_2.fastq.gz"
+    }
+  ]
+}

@@ -5,7 +5,7 @@
   metric: protein_coding_gene_count
   taxon_scope: actinopterygii
   unit: genes
-  expected_range: [15000, 45000]
+  expected_range: [15000, 85000]  # T3 校准：群体实测 20,894-82,318（Salmo salar WGD 偏高），来源 5 种 RefSeq
   source_type: case_reference
   enforce: false
   references:

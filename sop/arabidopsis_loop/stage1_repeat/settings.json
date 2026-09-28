@@ -1,0 +1,21 @@
+{
+  "run_id": "arab_batch01",
+  "thread_budget": 32,
+  "genome_gz": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/GCF_000001735.4_TAIR10.1_genomic.fna.gz",
+  "repeat": {
+    "env_bin": "/home/user/.conda/envs/repeat_annotation/bin",
+    "env_python": "/home/user/.conda/envs/repeat_annotation/bin/python",
+    "repeatmodeler": "/home/user/.conda/envs/repeat_annotation/bin/RepeatModeler",
+    "builddatabase": "/home/user/.conda/envs/repeat_annotation/bin/BuildDatabase",
+    "repeatmasker": "/home/user/.conda/envs/repeat_annotation/bin/RepeatMasker",
+    "famdb": "/home/user/.conda/envs/repeat_annotation/share/RepeatMasker/famdb.py",
+    "db_prefix": "Athaliana_TAIR10",
+    "repeatmodeler_threads": 16,
+    "repeatmasker_pa": 16,
+    "repeatmasker_engine": "rmblast"
+  },
+  "anchor": {
+    "name": "GCF_000001735.4_TAIR10.1",
+    "note": "拟南芥锚点（D-016）；本阶段对照：repeat_masked_pct 项目带 [1, 10]（advisory）"
+  }
+}

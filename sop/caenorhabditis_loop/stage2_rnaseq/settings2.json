@@ -1,0 +1,26 @@
+{
+  "run_id": "celegans_batch01",
+  "thread_budget": 32,
+  "softmasked_genome": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/runs/celegans_batch01/1.Repeat_Annotation/genome.softmasked.fa",
+  "expected_softmasked_sha256": "8d1d66abdfa9b25a4ae006ea3c02a87aa2d48aaba017f45b800f5035de48acec",
+  "tools": {
+    "hisat2": "/home/user/.conda/envs/TEflow/bin/hisat2",
+    "hisat2_build": "/home/user/.conda/envs/TEflow/bin/hisat2-build",
+    "samtools": "/home/user/.conda/envs/braker3/bin/samtools"
+  },
+  "hisat2_threads": 16,
+  "sort_threads": 4,
+  "hisat2_extra": [
+    "--dta",
+    "--no-unal"
+  ],
+  "index_prefix": "Celegans_WBcel235",
+  "samples": [
+    {
+      "id": "N2_ERR10809426",
+      "srr": "ERR10809426",
+      "r1": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/ERR10809426_1.fastq.gz",
+      "r2": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/ERR10809426_2.fastq.gz"
+    }
+  ]
+}
