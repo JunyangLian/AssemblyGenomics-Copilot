@@ -1,0 +1,34 @@
+{
+  "run_id": "arab_batch01",
+  "thread_budget": 32,
+  "braker_threads": 16,
+  "species": "Athaliana_TAIR10",
+  "intron_support": 0.8,
+  "filter_single_exon_genes": true,
+  "busco_min_complete_pct": 95,
+  "softmasked_genome": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/genome.softmasked.fa",
+  "busco": {
+    "python": "/home/user/.conda/envs/busco5/bin/python",
+    "busco": "/home/user/.conda/envs/busco5/bin/busco",
+    "lineage": "/home/Lianjunyang/busco_downloads/lineages/eudicotyledons_odb12.2",
+    "cpu": 16
+  },
+  "braker_env": "/opt/biosoft/BRAKER-3.0.3/scripts",
+  "gffread": "/opt/biosoft/cufflinks-2.2.1.Linux_x86_64/gffread",
+  "genemark_bin": "/opt/biosoft/BRAKER-3.0.3/scripts",
+  "busco_lineage": "/home/Lianjunyang/busco_downloads/lineages/eudicotyledons_odb12.2",
+  "agat_env": "/home/user/.conda/envs/agat",
+  "samples_bams": [
+    {
+      "id": "sample1",
+      "bam": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage2_rnaseq/runs/arab_batch01/2.RNAseq/bam/Col0_ERR15942845.sorted.bam"
+    }
+  ],
+  "expected_protein_gz_sha256": "",
+  "samtools": "${SHARED}/.conda/envs/braker3/bin/samtools",
+  "expected_softmasked_sha256": "aaf046110ee3e91294d1388e3546587a20bd5e82b09ac0cae2d670fa76524d67",
+  "prothint_dir": "${HOME}/env/ProtHint",
+  "protein_evidence_gz": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/GCF_000001735.4_TAIR10.1_protein.faa.gz",
+  "use_protein_evidence": false,
+  "export_prefix": "Athaliana_longest"
+}
