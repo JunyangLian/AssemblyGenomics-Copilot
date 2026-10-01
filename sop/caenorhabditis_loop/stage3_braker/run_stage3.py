@@ -386,17 +386,18 @@ def main() -> int:
             log("[D] AGAT 最长转录本 + gffread 提取（清 PERL5LIB，Siganus 同款）")
             cand = workdir / "5.Longest"
             cand.mkdir(parents=True, exist_ok=True)
+            prefix = s["export_prefix"]
             agat_env_clean = {k: v for k, v in env.items()
                               if k not in ("PERL5LIB", "PERLLIB", "PERL5OPT")}
             agat_env_clean["PATH"] = str(agat_bin) + os.pathsep + agat_env_clean.get("PATH", "")
             run_env([str(agat_bin / "perl"), str(agat_bin / "agat_sp_keep_longest_isoform.pl"),
                      "--gff", str(workdir / "5.TSEBRA_intron08/models.gtf"),
-                     "-o", str(cand / "SC288C.longest.gff3")],
+                     "-o", str(cand / f"{prefix}.gff3")],
                     log, agat_env_clean, cwd=cand)
-            run_env([s["gffread"], str(cand / "SC288C.longest.gff3"),
+            run_env([s["gffread"], str(cand / f"{prefix}.gff3"),
                      "-g", str(genome_b),
-                     "-y", str(cand / "SC288C.longest.pep.fa"),
-                     "-x", str(cand / "SC288C.longest.cds.fa")],
+                     "-y", str(cand / f"{prefix}.pep.fa"),
+                     "-x", str(cand / f"{prefix}.cds.fa")],
                     log, env, cwd=cand)
             mark("longest", {})
 
@@ -423,7 +424,7 @@ def main() -> int:
             outdir = workdir / "5.BUSCO"
             outdir.mkdir(parents=True, exist_ok=True)
             run_env([str(bco_cfg["python"]), str(bco_cfg["busco"]),
-                     "-i", str(cand / "SC288C.longest.pep.fa"),
+                     "-i", str(cand / f"{prefix}.pep.fa"),
                      "-l", str(lineage), "-m", "proteins", "--offline",
                      "-c", str(bco_cfg["cpu"]), "-o", "BUSCO_longest",
                      "--out_path", str(outdir)],
@@ -470,9 +471,9 @@ def main() -> int:
                 "tools": {"braker": version_of([str(braker_bin / "braker.pl"), "--version"]),
                           "busco": version_of([str(bco_cfg["python"]), str(bco_cfg["busco"]), "--version"])},
                 "outputs": {"models_gtf": str(workdir / "5.TSEBRA_intron08/models.gtf"),
-                            "longest_gff3": str(cand / "SC288C.longest.gff3"),
-                            "longest_pep": str(cand / "SC288C.longest.pep.fa"),
-                            "longest_cds": str(cand / "SC288C.longest.cds.fa"),
+                            "longest_gff3": str(cand / f"{prefix}.gff3"),
+                            "longest_pep": str(cand / f"{prefix}.pep.fa"),
+                            "longest_cds": str(cand / f"{prefix}.cds.fa"),
                             "pep_sha256": sha256_file(cand / "SC288C.longest.pep.fa"),
                             "cds_sha256": sha256_file(cand / "SC288C.longest.cds.fa")},
                 "script_sha256": sha256_file(SCRIPT_PATH), "ts": now(),
