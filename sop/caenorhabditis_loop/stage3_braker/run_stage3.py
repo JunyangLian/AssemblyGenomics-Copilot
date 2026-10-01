@@ -474,8 +474,8 @@ def main() -> int:
                             "longest_gff3": str(cand / f"{prefix}.gff3"),
                             "longest_pep": str(cand / f"{prefix}.pep.fa"),
                             "longest_cds": str(cand / f"{prefix}.cds.fa"),
-                            "pep_sha256": sha256_file(cand / "SC288C.longest.pep.fa"),
-                            "cds_sha256": sha256_file(cand / "SC288C.longest.cds.fa")},
+                            "pep_sha256": sha256_file(cand / f"{prefix}.pep.fa"),
+                            "cds_sha256": sha256_file(cand / f"{prefix}.cds.fa")},
                 "script_sha256": sha256_file(SCRIPT_PATH), "ts": now(),
             }
             (workdir / "provenance.json").write_text(
