@@ -54,7 +54,7 @@ def log_maker(workdir: Path):
 
 
 def run_cmd(cmd: list[str], log, env: dict | None = None, cwd: Path | None = None,
-            timeout: int = 7200) -> str:
+            timeout: int | None = None) -> str:
     log(f"[cmd] {' '.join(cmd)}")
     try:
         proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
@@ -291,7 +291,7 @@ def main() -> int:
                      "--outfile", str(d / "interproscan.tsv"),
                      "--cpu", str(ic), "--goterms", "--iprlookup",
                      "--tempdir", str(d / "tmp"), "--disable-precalc"],
-                    log, env=ipr_env, cwd=d, timeout=10800)
+                    log, env=ipr_env, cwd=d, timeout=None)
             mark("interpro", {})
 
         # D. GO 组装（只取 IPR --goterms；正则内容识别，不依赖脆列号——PIT-003 教训）
