@@ -1,0 +1,29 @@
+# 昆虫（insecta）注释指标基线。
+# 来源：T3 群体校准 2026-10-05（population_reference，仅 advisory；
+# 升级 enforce 须按 README 流程补 ≥2 条 published doi）。
+- id: INS-001
+  metric: protein_coding_gene_count
+  taxon_scope: insecta
+  unit: genes
+  expected_range: [9000, 20000]
+  source_type: population_reference
+  enforce: false
+  references:
+    - text: "T3 群体实测（2026-10-05，~/临时 27 物种 RefSeq GFF+FAA，t3_batch_report.tsv）"
+      doi: null
+  notes: >
+    群体实测 protein-coding gene（gene loci 中含 CDS 者）：2 种 12,519-13,986（n=2，证据薄）。
+    双翅目参考；其他目可能越带，越带即校准信号
+
+- id: INS-002
+  metric: median_protein_length
+  taxon_scope: insecta
+  unit: aa
+  expected_range: [420, 620]
+  source_type: population_reference
+  enforce: false
+  references:
+    - text: "T3 群体实测（2026-10-05，~/临时 27 物种 RefSeq GFF+FAA，t3_batch_report.tsv）"
+      doi: null
+  notes: >
+    群体实测蛋白中位长度：469-576。

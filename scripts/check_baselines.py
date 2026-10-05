@@ -63,8 +63,8 @@ def validate_registry(entries: list[dict]) -> list[str]:
         if not (isinstance(rng, list) and len(rng) == 2
                 and all(isinstance(x, (int, float)) for x in rng) and rng[0] < rng[1]):
             errs.append(f"{src}[{e.get('id')}]: expected_range 须为 [min, max] 且 min < max")
-        if e.get("source_type") not in ("case_reference", "published"):
-            errs.append(f"{src}[{e.get('id')}]: source_type 须为 case_reference|published")
+        if e.get("source_type") not in ("case_reference", "published", "population_reference"):
+            errs.append(f"{src}[{e.get('id')}]: source_type 须为 case_reference|published|population_reference")
         # enforce 门槛：published + ≥2 条带 doi/url 的引用
         if e.get("enforce") is True:
             refs = e.get("references") or []

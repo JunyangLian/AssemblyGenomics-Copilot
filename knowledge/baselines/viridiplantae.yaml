@@ -1,0 +1,29 @@
+# 植物（viridiplantae）注释指标基线。
+# 来源：T3 群体校准 2026-10-05（population_reference，仅 advisory；
+# 升级 enforce 须按 README 流程补 ≥2 条 published doi）。
+- id: PLT-001
+  metric: protein_coding_gene_count
+  taxon_scope: viridiplantae
+  unit: genes
+  expected_range: [15000, 55000]
+  source_type: population_reference
+  enforce: false
+  references:
+    - text: "T3 群体实测（2026-10-05，~/临时 27 物种 RefSeq GFF+FAA，t3_batch_report.tsv）"
+      doi: null
+  notes: >
+    群体实测 protein-coding gene（gene loci 中含 CDS 者）：6 种 17,732-41,403（B. rapa 41,403 为 WGD 谱系）。
+    WGD 物种合法偏高，先核对倍性证据
+
+- id: PLT-002
+  metric: median_protein_length
+  taxon_scope: viridiplantae
+  unit: aa
+  expected_range: [320, 450]
+  source_type: population_reference
+  enforce: false
+  references:
+    - text: "T3 群体实测（2026-10-05，~/临时 27 物种 RefSeq GFF+FAA，t3_batch_report.tsv）"
+      doi: null
+  notes: >
+    群体实测蛋白中位长度：361-415。
