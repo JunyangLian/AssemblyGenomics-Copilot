@@ -69,6 +69,26 @@ SPECIES_MAP = {
 
 AMBIGUOUS = set("XBZJUO")
 
+# 内置群体带快照（2026-10-05 T3 校准，27 物种）。canonical 注册表在仓库
+# knowledge/baselines/*.yaml；注册表不可用时（如独立部署）退回本快照，
+# 运行输出会标注实际来源。
+BUILTIN_BANDS = {
+    ("actinopterygii", "protein_coding_gene_count"): [15000, 85000],
+    ("actinopterygii", "median_protein_length"): [420, 580],
+    ("fungi", "protein_coding_gene_count"): [4000, 8000],
+    ("fungi", "median_protein_length"): [350, 500],
+    ("nematoda", "protein_coding_gene_count"): [8000, 35000],
+    ("nematoda", "median_protein_length"): [150, 420],
+    ("viridiplantae", "protein_coding_gene_count"): [15000, 55000],
+    ("viridiplantae", "median_protein_length"): [320, 450],
+    ("insecta", "protein_coding_gene_count"): [9000, 20000],
+    ("insecta", "median_protein_length"): [420, 620],
+    ("aves", "protein_coding_gene_count"): [12000, 25000],
+    ("aves", "median_protein_length"): [450, 600],
+    ("mammalia", "protein_coding_gene_count"): [13000, 30000],
+    ("mammalia", "median_protein_length"): [440, 600],
+}
+
 
 def _attrs(field: str) -> dict:
     out = {}
@@ -212,7 +232,7 @@ REPORT_COLS = ["species", "clade", "accession", "gff_gene_loci", "coding_genes",
 
 
 def main() -> int:
-    global BANDS
+    global BANDS, BANDS_SOURCE
     ap = argparse.ArgumentParser(description="T3 批量：RefSeq 参考 GFF+FAA 统计与基线带核验")
     ap.add_argument("--root", required=True)
     ap.add_argument("--out", default=None, help="报告输出目录（默认 root）")
@@ -221,9 +241,15 @@ def main() -> int:
 
     try:
         BANDS = load_registry() if load_registry else None
+        BANDS_SOURCE = "knowledge/baselines 注册表" if BANDS else None
     except Exception as exc:
-        print(f"[警告] 基线注册表加载失败（{exc}）——全部判 no_band")
+        print(f"[警告] 注册表加载失败（{exc}）——退回内置群体带快照")
         BANDS = None
+    if BANDS is None:
+        BANDS = [{"metric": m, "taxon_scope": c, "expected_range": r}
+                 for (c, m), r in sorted(BUILTIN_BANDS.items())]
+        BANDS_SOURCE = "内置群体带快照（2026-10-05 T3 校准；canonical 见仓库 knowledge/baselines/）"
+    print(f"[基线] 来源：{BANDS_SOURCE}")
     if _IMPORT_WARN:
         print(f"[警告] {_IMPORT_WARN}")
     root = Path(args.root)
@@ -270,7 +296,7 @@ def main() -> int:
     clades: dict[str, list[dict]] = {}
     for r in rows:
         clades.setdefault(r["clade"], []).append(r)
-    summary = {"n_species": len(rows), "clades": {}}
+    summary = {"n_species": len(rows), "bands_source": BANDS_SOURCE, "clades": {}}
     for clade, rs in sorted(clades.items()):
         vals = [r["coding_genes"] for r in rs if r.get("coding_genes")]
         mids = [r["protein_median_len"] for r in rs if r.get("protein_median_len")]
@@ -296,6 +322,7 @@ def main() -> int:
 
 
 BANDS = None
+BANDS_SOURCE = None
 
 if __name__ == "__main__":
     sys.exit(main())
