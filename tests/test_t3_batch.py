@@ -96,6 +96,6 @@ def test_main_end_to_end(tmp_path, capsys):
 
 def test_builtin_bands_cover_all_clades():
     """独立部署（无 yaml 注册表）时，内置快照必须覆盖所有物种类群。"""
-    for clade in set(tb.SPECIES_MAP.values()):
+    for clade in {c for _, c in tb.SPECIES_MAP.values()}:
         for metric in ("protein_coding_gene_count", "median_protein_length"):
             assert (clade, metric) in tb.BUILTIN_BANDS, (clade, metric)
