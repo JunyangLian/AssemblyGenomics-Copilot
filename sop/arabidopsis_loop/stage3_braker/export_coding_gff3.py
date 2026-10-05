@@ -15,6 +15,7 @@ from urllib.parse import unquote
 
 TRANSCRIPTS = {"mRNA", "transcript"}
 LEAVES = {"exon", "CDS", "intron", "start_codon", "stop_codon"}
+UTRS = {"five_prime_UTR", "three_prime_UTR", "5UTR", "3UTR", "UTR"}  # 只计数不索引：coding_only 交付不含 UTR
 PREFIX = "Siganus.intron08.longest"
 
 
@@ -77,7 +78,7 @@ def index_coding(features):
     counts = Counter()
     for feature in features:
         counts[feature.kind] += 1
-        if feature.kind not in {"gene"} | TRANSCRIPTS | LEAVES:
+        if feature.kind not in {"gene"} | TRANSCRIPTS | LEAVES | UTRS:
             raise ValueError(f"Unexpected feature type: {feature.kind}; inspect before filtering")
         if feature.kind == "gene" or feature.kind in TRANSCRIPTS:
             identifier = feature.identifier
