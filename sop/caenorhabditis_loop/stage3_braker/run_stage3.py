@@ -336,8 +336,15 @@ def main() -> int:
             mark("braker", {})
 
         # C. TSEBRA intron08 重合并（Siganus 实证：默认 1.0 过严 → 0.8）
-        if not done("tsebra"):
-            log(f"[C] TSEBRA intron08 重合并（intron_support 1.0→{s['intron_support']}，PIT-002）")
+        if not done("tsebra") and not s.get("tsebra_rerun", True):
+            tse_dir = workdir / "5.TSEBRA_intron08"
+            tse_dir.mkdir(parents=True, exist_ok=True)
+            log("[C] 跳过 TSEBRA 重合并（tsebra_rerun=false）：直接采用 BRAKER3 内部合并 braker.gtf"
+                "（PIT-002/009 实证：ET 模式重跑会丢数千真基因）")
+            shutil.copyfile(workdir / "run_ETP/braker.gtf", tse_dir / "models.gtf")
+            mark("tsebra", {"rerun": False, "source": "run_ETP/braker.gtf"})
+        elif not done("tsebra"):
+            log(f"[C] TSEBRA 重合并（intron_support→{s['intron_support']}，PIT-002）")
             etp = workdir / "run_ETP"
             tse_dir = workdir / "5.TSEBRA_intron08"
             tse_dir.mkdir(parents=True, exist_ok=True)
@@ -394,6 +401,25 @@ def main() -> int:
                      "--gff", str(workdir / "5.TSEBRA_intron08/models.gtf"),
                      "-o", str(cand / f"{prefix}.gff3")],
                     log, agat_env_clean, cwd=cand)
+
+            def _gene_count(p):
+                n = 0
+                with open(p, encoding="utf-8") as fh:
+                    for line in fh:
+                        if line.startswith("#") or not line.strip():
+                            continue
+                        parts = line.rstrip("\n").split("\t")
+                        if len(parts) >= 3 and parts[2] == "gene":
+                            n += 1
+                return n
+
+            src_genes = _gene_count(workdir / "5.TSEBRA_intron08/models.gtf")
+            out_genes = _gene_count(cand / f"{prefix}.gff3")
+            if out_genes != src_genes:
+                raise RuntimeError(
+                    f"AGAT longest 基因数不保持：models.gtf {src_genes} → longest {out_genes}"
+                    "（导出校验只验序列一致、不验基因数——这是 PIT-005 类盲区；保留现场查 AGAT 日志）")
+            log(f"  基因数保持校验：models.gtf {src_genes} → longest {out_genes} ✓")
             run_env([s["gffread"], str(cand / f"{prefix}.gff3"),
                      "-g", str(genome_b),
                      "-y", str(cand / f"{prefix}.pep.fa"),

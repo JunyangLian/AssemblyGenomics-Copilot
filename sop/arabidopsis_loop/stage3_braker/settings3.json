@@ -4,7 +4,8 @@
   "braker_threads": 16,
   "species": "Athaliana_TAIR10",
   "intron_support": 0.8,
-  "filter_single_exon_genes": true,
+  "filter_single_exon_genes": false,
+  "tsebra_rerun": false,
   "busco_min_complete_pct": 95,
   "softmasked_genome": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/genome.softmasked.fa",
   "busco": {
