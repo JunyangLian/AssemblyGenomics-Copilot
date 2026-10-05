@@ -1,8 +1,8 @@
 {
   "run_id": "celegans_batch01",
-  "thread_budget": 32,
-  "diamond_threads": 16,
-  "interpro_cpu": 16,
+  "thread_budget": 24,
+  "diamond_threads": 24,
+  "interpro_cpu": 24,
   "input_proteins": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.Longest/Celegans_longest.pep.fa",
   "expected_input_sha256": "e60ef0732aa11d962fc45011a47391bd8e2265cffda2895fa00a38962de2fb32",
   "expected_protein_count": 19156,

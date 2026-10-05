@@ -1,8 +1,8 @@
 {
   "run_id": "arab_batch01",
-  "thread_budget": 32,
-  "diamond_threads": 16,
-  "interpro_cpu": 16,
+  "thread_budget": 24,
+  "diamond_threads": 24,
+  "interpro_cpu": 24,
   "input_proteins": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/5.Longest/Athaliana_longest.pep.fa",
   "expected_input_sha256": "4a9a2a936a5cd5911c5db09d5c38bbb5567213a8c64cc8c26f447b007174bf21",
   "expected_protein_count": 27645,
