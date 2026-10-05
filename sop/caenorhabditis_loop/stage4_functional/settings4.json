@@ -1,0 +1,54 @@
+{
+  "run_id": "celegans_batch01",
+  "thread_budget": 32,
+  "diamond_threads": 16,
+  "interpro_cpu": 16,
+  "input_proteins": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.Longest/Celegans_longest.pep.fa",
+  "expected_input_sha256": "e60ef0732aa11d962fc45011a47391bd8e2265cffda2895fa00a38962de2fb32",
+  "expected_protein_count": 19156,
+  "tools": {
+    "diamond": "/home/user/.conda/envs/braker3/bin/diamond",
+    "interproscan": "/home/user/ann/interproscan-5.76-107.0/interproscan.sh",
+    "java11": "/home/Lianjunyang/env/java11"
+  },
+  "diamond": {
+    "evalue": "1e-5",
+    "max_target_seqs": 25,
+    "max_hsps": 1,
+    "very_sensitive": true,
+    "qcov_filter_pct": 50,
+    "ambiguity_bitscore_frac": 0.05,
+    "outfmt_cols": [
+      "qseqid", "sseqid", "pident", "length", "mismatch", "gapopen",
+      "qstart", "qend", "sstart", "send", "evalue", "bitscore",
+      "qlen", "slen", "qcovhsp", "scovhsp", "stitle"
+    ]
+  },
+  "databases": {
+    "NR": {
+      "db": "/mnt/Database/DNA_Database/nr_20240416_diamond_v2.1.9.163/animal.fa.dmnd",
+      "annot": null,
+      "note": "动物子集（线虫适配）；描述取 DIAMOND stitle，无配对 annot 表"
+    },
+    "Swissprot": {
+      "db": "/mnt/Database/DNA_Database/swissport/diamond/uniprot_sprot.Eukaryota.fasta.simple.dmnd",
+      "annot": "/mnt/Database/DNA_Database/swissport/uniprot_sprot.Eukaryota.id.annot.xls",
+      "note": "真核（含动物）"
+    },
+    "KEGG": {
+      "db": "/mnt/Database/DNA_Database/kegg/101.0/animal.fa.dmnd",
+      "annot": "/mnt/Database/DNA_Database/kegg/101.0/animal.id.annot.xls",
+      "note": "动物子集（带配对 id→KO 注释表，服务器实测存在）"
+    },
+    "KOG": {
+      "db": "/mnt/Database/DNA_Database/kog/20090331/kog_clean.fa.dmnd",
+      "annot": "/mnt/Database/DNA_Database/kog/20090331/kog_clean.fa.id",
+      "note": "KOG 全集"
+    },
+    "TrEMBL": {
+      "db": "/mnt/Database/DNA_Database/trembl/uniprot_trembl.Eukaryota.fasta.simple.dmnd",
+      "annot": "/mnt/Database/DNA_Database/trembl/uniprot_trembl.Eukaryota.fasta.simple.ann.tsv",
+      "note": "真核（含动物）"
+    }
+  }
+}
