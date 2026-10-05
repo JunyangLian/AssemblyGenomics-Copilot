@@ -1,4 +1,4 @@
-# 拟南芥 T1 intake（2026-09-24，待确认后开跑）
+# 拟南芥 T1（2026-09-24 intake；2026-10-05 段 3 收官：BUSCO 97.9%）
 
 ## 用例定位
 
@@ -60,6 +60,22 @@ T1 端到端案例 #2：**植物 + 单倍体 + 中等基因组（135 Mb）+ eudi
 
 ## 待办
 
-- [ ] 下载数据（RNA-seq FASTQ 是大头，~13 GB）
-- [ ] 下载后跑锚点 GFF 统计（确认基因数 → 写入基线）
-- [ ] 落盘 project.yaml + 段 1 SOP → 执行
+- [x] 下载数据（实际只用了 ERR15942845（67M reads）单样本；79.88% 比对率）
+- [x] 段 1/2/3 已执行（服务器迁移后：Lianjunyang@user，/home/Lianjunyang/env/…）
+- [x] 段 3 收官（2026-10-05）
+- [ ] 段 4 功能注释
+
+## 段 3 结果（2026-10-05，BRAKER 3.0.8 ET 模式 + BUSCO 6.1.0 eudicots_odb10）
+
+实际 lineage：`eudicots_odb10`（intake 时预估的 eudicotyledons_odb12.2 随服务器迁移作废）。
+
+| 配置 | 基因数 | BUSCO_longest | 判定 |
+|---|---|---|---|
+| TSEBRA 重跑 intron0.8 + filter（原方案） | 12,637 | 76.7% | fail-fast 拦截 |
+| 重跑 intron0.8、filter off | 19,572 | 89.5% | PIT-009 主因 |
+| 重跑 intron1.0、filter off | 18,376 | 80.5% | PIT-010：重跑≠内部合并 |
+| **内部合并 braker.gtf 直连（定稿）** | **27,645** | **97.9% [S:96.9, D:1.1], M:1.4%** | **过 95 线** |
+
+- 参照：raw braker.gtf 全异构体 BUSCO 98.1%（S:83.1, D:15.0——proteins 模式不折叠异构体，D 虚高；M 1.2% 是真信号）；TAIR10 真值 27,655 编码基因，预测 27,645（Δ=10，0.04%）。
+- 交付物：`Athaliana_longest.{gff3,pep.fa,cds.fa}`（27,645 基因/转录本/蛋白，导出校验 0 排除、序列逐一不变，pep sha256 `4a9a2a93…`）。
+- 复用教训：PIT-009（单外显子过滤在 ET 模式下连内含子丰富物种都杀）、PIT-010（TSEBRA 重跑≠内部合并，已加 `tsebra_rerun=false` + AGAT 基因数保持校验）、导出器 UTR 白名单。
