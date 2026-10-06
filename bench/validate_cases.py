@@ -80,6 +80,11 @@ def validate(cases, bundle=DEFAULT_BUNDLE, receipt=DEFAULT_RECEIPT, context=None
         raise ValueError('root enum schemas differ')
     reference = json.loads(inputs.read_text(encoding='utf-8'))
     errors, metas, maximum = [], {}, 0
+    frozen=(BENCH/'FROZEN.md').exists() or (BENCH/'FROZEN.json').exists()
+    if frozen:
+        from freeze import verify as verify_freeze
+        try: verify_freeze(BENCH)
+        except (OSError, ValueError, KeyError, TypeError) as error: errors.append('freeze verification: '+str(error))
     if reference['source_manifest_sha256'] != digest((src.root/'MANIFEST.json').read_bytes()):
         errors.append('input reference has a different source manifest')
     if reference['context_sha256'] != digest(context.read_bytes()): errors.append('shared context changed')
@@ -154,7 +159,7 @@ def validate(cases, bundle=DEFAULT_BUNDLE, receipt=DEFAULT_RECEIPT, context=None
     return {'status': 'pass' if not errors else 'fail', 'case_count': len(roster),
             'reproduction_checked': reproduce and not errors, 'max_visible_token_upper_bound': maximum,
             'source_manifest_sha256': reference['source_manifest_sha256'], 'context_sha256': reference['context_sha256'],
-            'errors': errors, 'model_calls': 0, 'answers_frozen': False}
+            'errors': errors, 'model_calls': 0, 'answers_frozen': frozen}
 
 
 def main():

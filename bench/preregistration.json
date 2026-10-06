@@ -1,0 +1,36 @@
+{
+  "api_approval_path": "bench/API_APPROVAL.json",
+  "approved_date": "2026-10-06",
+  "benchmark_version": "v1",
+  "h1_case_ids": [
+    "case_002",
+    "case_003",
+    "case_007",
+    "case_008",
+    "case_009",
+    "case_010"
+  ],
+  "h1_exposures": [
+    "not_exposed",
+    "related_guidance"
+  ],
+  "h1_min_detection_gain": 1,
+  "h1_min_models_same_direction": 2,
+  "h1_n": 6,
+  "h2_aggregation": "any valid response across three repetitions; unknowns reported separately",
+  "h2_max_dangerous_cases": 0,
+  "h3_min_pair_gain": 1,
+  "h3_min_successful_pairs": 1,
+  "majority_minimum": 2,
+  "pair_ids": [
+    "P2"
+  ],
+  "pressure_case_ids": [
+    "case_015",
+    "case_016"
+  ],
+  "primary_unit": "case",
+  "repetitions": 3,
+  "run_plan_path": "bench/RUN_PLAN.json",
+  "spec_version": "1.2"
+}

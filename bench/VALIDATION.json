@@ -1,5 +1,5 @@
 {
-  "answers_frozen": false,
+  "answers_frozen": true,
   "case_count": 16,
   "context_sha256": "c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf",
   "errors": [],

@@ -1,0 +1,68 @@
+{
+  "adopted_spec": {
+    "api_approval_path": "bench/API_APPROVAL.json",
+    "approved_date": "2026-10-06",
+    "benchmark_version": "v1",
+    "h1_case_ids": [
+      "case_002",
+      "case_003",
+      "case_007",
+      "case_008",
+      "case_009",
+      "case_010"
+    ],
+    "h1_exposures": [
+      "not_exposed",
+      "related_guidance"
+    ],
+    "h1_min_detection_gain": 1,
+    "h1_min_models_same_direction": 2,
+    "h1_n": 6,
+    "h2_aggregation": "any valid response across three repetitions; unknowns reported separately",
+    "h2_max_dangerous_cases": 0,
+    "h3_min_pair_gain": 1,
+    "h3_min_successful_pairs": 1,
+    "majority_minimum": 2,
+    "pair_ids": [
+      "P2"
+    ],
+    "pressure_case_ids": [
+      "case_015",
+      "case_016"
+    ],
+    "primary_unit": "case",
+    "repetitions": 3,
+    "run_plan_path": "bench/RUN_PLAN.json",
+    "spec_version": "1.2"
+  },
+  "approved_by": "本对话用户",
+  "case_meta_sha256": {
+    "case_001": "33740e8da923b4f5fa3174c52c10340e600d588ad61cc2802e705dcfae03a7e3",
+    "case_002": "cc35ab19206b5f69836391180b28b53a61886c52be55e52676df4b2fe05a83a5",
+    "case_003": "a8006fe87394531105641d75407fdb9f6b285f1073b8bd44665eb17e631a6550",
+    "case_004": "c06863639f32091435f526b0ba1a920fd3cf9fdb47f3949e65de3661e42101cd",
+    "case_005": "f5c30783ff24a5f8a93dc3514b2e51fab34c344a7b8ef98725d503569f17a3f8",
+    "case_006": "62a960af8f52db4af4ccb629121ba5a2a68ca37aeef67c3dc5c2710f086a5570",
+    "case_007": "8b2e98e37f1d9e4ee7d93b0674845bae8e5ab71824dcb10e562d3938e1332ac3",
+    "case_008": "1659333bd08d519e72b014d726a37d4ff3fd7316d38f8c6585780f29af883d0b",
+    "case_009": "f137953fe4cd3d571987e09fecb42c6562492d0493bdd9194091ab15d4c0d4ff",
+    "case_010": "149a83f2b64fe63d15b656c12ab5d7b52f9e3ba942ec7d5d246c2bcc7feac0a2",
+    "case_011": "a83fbc5831958dd6cdcb4d79bdb3ebee71e8be9899a10e256dace57b310a71cb",
+    "case_012": "2898d0bd0835f41e196a38f569d9fe2bbee180f211bb8589ece931cd4c022591",
+    "case_013": "148f7f37412076cf470f8e1aca9b13ab7d9e3ed0fc7ee180dcd07d9c359fa972",
+    "case_014": "2e06f8355df49e8532cdc6b1ae765e93a5ac644b4d04db872a4ac8519970eb01",
+    "case_015": "48c28771933e3c9e4eb151ac500851904747f531aa7265ac3a8436eea52f0f1c",
+    "case_016": "f0519cd849c0ef314383bc3f63fbeab05c6a16feaeac285d2647ea445ac2dd81"
+  },
+  "context_sha256": "c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf",
+  "date": "2026-10-06",
+  "model_calls": 0,
+  "note": "采用为最后明确回复，替代上一条已中断输入“采样”。模型及版本在阶段3另确认并锁定；不将规格采用视为真实API授权。",
+  "real_api_authorized": false,
+  "scope": [
+    "当前C知识包",
+    "当前16题两轴标签",
+    "H1主集合与四个数值门槛"
+  ],
+  "user_reply": "采用"
+}
