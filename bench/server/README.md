@@ -9,12 +9,12 @@
 - source_scope 固定 T1_T3；cohort 仅四个值：T1_arabidopsis、T1_celegans、T1_yeast、T3。每个原文件必须位于对应 scope_roots，指向其他项目即报缺口。
 - 移动后的 MANIFEST.txt 应继续使用快照内相对路径；越界记录仍报告缺口，不自动重写历史清单。同一路径出现不同哈希时，保留原清单，把该路径排除出匹配并记入 snapshot_record.json.excluded_conflicts；无关历史条目不阻断 v1。按用户确认的源文件稳定性，直接从已定位的 T1/T3 原文件截取，完整来源 SHA 只记录一次；清单匹配的副本路径仅作私有记录，不反复哈希副本或原文件。旧 snapshot_required 字段不阻断原文件已存在的 T1 来源。摘要 glob 必须恰好匹配一个文件，多份结果不猜身份。
 - T1 原读段可能未进入 480MB 快照：仅从用户已确认的 {project}/yeast_test/0.Raw_Data/rnaseq/ 查 WT_Rep1/2 各 R1/R2 和 rnaseq.sha256；先对照当前目录清单的字节大小。原文件完整 SHA 只记录一次，并与已有 rnaseq.sha256 及 T1 RNA-seq provenance 输入哈希绑定；每个文件截取前 64 条完整真实记录，不生成读段；原始大 FASTQ 不回传。子集再检查各样本双端标识；缺文件或来源记录就报告，不下载补齐。
-- T3 默认从既有 t3_batch_report.tsv 的 in_band 条目中，选快照和原目录都保存完整 GFF/FAA 的一对，按合计原文件大小最小、accession 排序打破平局。可填 t3_accession 固定选一个已有批次成员；未验证或只有 FAA 的条目不选。文件名被改写、复制版本歧义或对应原文件缺失时报告，不能猜配对。
+- T3 默认从既有 t3_batch_report.tsv 的 in_band 条目中，直接在声明的 T3 原目录递归定位完整 GFF/FAA 对，按合计原文件大小最小、accession 排序打破平局。文件名可为完整 RefSeq 名或 accession_genomic.gff / accession_protein.faa（均可 gzip），也可放在 accession 目录下；不依赖快照是否登记副本原名。可填 t3_accession 固定选一个已有批次成员；未验证或只有 FAA 的条目不选。无法从文件名或目录确定 accession、复制版本歧义或原文件缺失时报告，不能猜配对。无论选中与否，t3_locations.json 记录目录存在性、报告列名/合格 accession、发现的 GFF/FAA 路径与未配齐/歧义原因。
 - T3 历史判定表和汇总只作私有身份核验；其中 in_band 等判定不能进入模型题目，模型只看白名单产物。该来源选择在模型调用前记录/审核，不能根据结果改选。
 
 脚本只传实际题目需要的 T1 QC/provenance、真实基因组小片段、指定 TSEBRA 事故和终稿 GTF 片段/全量计数、BUSCO 既有摘要、hints/GFF 片段、功能表前 1,024 条记录及按 query 匹配的完整蛋白、线虫正常终稿、酵母段 1/原读段，以及一对现有 T3 GFF/FAA。不打包整个快照，不重跑生信流水线。正常对照的拟南芥重复产物与酵母 hard_negative 分开。
 
-GTF 全量 gene_id 计数与截取行范围分开记录；完整原产物统计不能冒充片段统计。T1 DNA FASTA 前缀保持原序列名/坐标，末条序列可为前缀；功能蛋白按 query 选择完整记录。最终题目分母/字段在阶段 2 本地重算与核验。
+GTF 兼容带引号/无引号的 gene_id 属性、gene 行的显式 ID= 及 Augustus/TSEBRA 裸 gene ID；transcript 裸 ID 不被推断为基因 ID。全量唯一显式基因 ID 计数与截取行范围分开记录；完整原产物统计不能冒充片段统计。T1 DNA FASTA 前缀保持原序列名/坐标，末条序列可为前缀；功能蛋白按 query 选择完整记录。最终题目分母/字段在阶段 2 本地重算与核验。
 
 ## 执行与固定输出
 
@@ -46,13 +46,13 @@ mkdir -p bench_transfer/v1_prepare_t1t3
 python server/prepare_sources.py --config server/prepare_config.json
 ```
 
-旧 --inventory-only 参数保留兼容，但此版本所有操作本来就离线；不再自动增加“下载/计算未执行”的缺口。真实来源齐全才 complete（退出 0）；存在必需缺口则 blocked（退出 2），仍回传摘要、清单和已核验来源。可选来源缺失作为记录保留，不等于该题证据足够；阶段 2 还须逐题检查。
+旧 --inventory-only 参数保留兼容，但此版本所有操作本来就离线；不再自动增加“下载/计算未执行”的缺口。真实来源齐全才 complete（退出 0）；存在必需缺口则 blocked（退出 2），仍回传摘要、清单和已核验来源。可选来源缺失以 OPTIONAL 输出并作为记录保留，不等于该题证据足够；阶段 2 还须逐题检查。
 
 输出固定 ~/AssemblyGenomics-Skill/bench/bench_transfer/v1_prepare_t1t3/bundle/：
 
 - STATUS.json：cohort、真实路径、原产物与子集 SHA、截取、题号和缺口。
 - sources/：明确选择的小来源包。
-- inventory.json、snapshot_record.json、snapshot_manifest.txt、t3_selection.json；原读段齐全时另有 t1_read_pairing.json，STATUS 的 selection.source_bindings 记录历史校验清单及 provenance 的 SHA。
+- inventory.json、snapshot_record.json、snapshot_manifest.txt、t3_selection.json、t3_locations.json；原读段齐全时另有 t1_read_pairing.json，STATUS 的 selection.source_bindings 记录历史校验清单及 provenance 的 SHA。
 - config.json、python_version.json、scripts/、logs/prepare.log。
 - MANIFEST.json 和 MANIFEST.sha256：所有回传文件的完整 SHA/大小；后者包含前者哈希，避免自引用。
 
@@ -84,3 +84,14 @@ python server/prepare_sources.py --config server/prepare_config.json --output-ro
 ```
 
 此命令可重复执行。--output-root 只覆盖本次输出目录，保留已填写的配置、来源文件和旧结果包。回传时使用 bench_transfer/v1_prepare_t1t3_r2/bundle。
+
+## GTF/T3 定位修订后的执行
+
+服务器已成功准备 29 项来源。此前 GTF 解析只接受带引号的 gene_id，不能处理 gene 行裸 ID；T3 又要求快照文件与原文件同名。新版兼容已有输出形式，并直接定位报告对应的 T3 原文件，不改原数据。如果 GTF 仍失败或 T3 仍未配齐，回传本次完整包即可，缺口与路径信息已写入 STATUS.json 和 t3_locations.json。
+
+```bash
+cd ~/AssemblyGenomics-Skill/bench
+python server/prepare_sources.py --config server/prepare_config.json --output-root bench_transfer/v1_prepare_t1t3_r3
+```
+
+arab_repeat_library_record 和 arab_prior_configuration 是可选来源占位符，不属于六个必需缺口；阶段 2 仍须审核现有 QC/provenance 是否已足以支持对应题目，不能把可选缺失当作证据齐全。

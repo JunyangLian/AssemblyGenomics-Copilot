@@ -316,3 +316,60 @@ def test_output_override_preserves_saved_config_and_previous_directory(tmp_path,
     assert marker.read_bytes() == b"previous output\n"
     assert not (previous_output / "bundle").exists()
     assert transfer.verify(new_output / "bundle")["verified_files"] > 0
+
+
+@pytest.mark.parametrize("kind, attributes, expected", [
+    ("gene", "control_gene", "control_gene"),
+    ("gene", "ID=control_gene;", "control_gene"),
+    ("CDS", 'gene_id "control_gene"; transcript_id "control_tx";', "control_gene"),
+    ("CDS", "gene_id control_gene; transcript_id control_tx;", "control_gene"),
+    ("CDS", "gene_id=control_gene;", "control_gene"),
+    ("transcript", "control_tx", None),
+])
+def test_explicit_gtf_identifier_formats(kind, attributes, expected):
+    server = load_module("bench_prepare_gtf_identifier_test", "server/prepare_sources.py")
+    fields = ["format_fixture", "fixture", kind, "1", "2", ".", "+", ".", attributes]
+    assert server.feature_gene_id(fields)[0] == expected
+
+
+def test_gtf_gene_records_and_attributes_count_same_identifier(tmp_path):
+    """Format-only fixture, not a genome artifact or benchmark source."""
+    server = load_module("bench_prepare_gtf_count_test", "server/prepare_sources.py")
+    lines = ["# format fixture\n", "\n"]
+    for kind, attributes in [("gene", "control_gene"), ("transcript", "control_tx"),
+                             ("CDS", 'gene_id "control_gene"; transcript_id "control_tx";')]:
+        lines.append("\t".join(["format_fixture", "fixture", kind, "1", "2", ".", "+", ".", attributes]) + "\n")
+    source = tmp_path / "format_fixture.gtf"
+    original = "".join(lines).encode()
+    source.write_bytes(original)
+    content, selection = server.extract(source, {"method": "gtf", "limit": 3})
+    assert content == "".join(lines[:3]).encode()
+    assert selection["full_source_unique_gene_ids"] == 1
+    assert selection["gene_feature_records"] == 1
+    assert selection["rows_without_gene_id"] == 1
+    assert source.read_bytes() == original
+    with pytest.raises(ValueError, match="repeated"):
+        server.feature_gene_id(["", "", "gene", "", "", "", "", "", 'gene_id "a"; gene_id "b";'])
+
+
+def test_t3_pair_does_not_require_snapshot_names_or_descriptive_filename(tmp_path):
+    server = load_module("bench_prepare_t3_original_test", "server/prepare_sources.py")
+    config_path, _, _ = preparation_fixture(tmp_path)
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    project = Path(config["project_root"])
+    roots = server.scope_roots(config, project)
+    t3_root = roots["T3"][0]
+    for suffix in ("genomic.gff", "protein.faa"):
+        old = t3_root / f"GCF_000000000.1_control_{suffix}"
+        new = t3_root / f"GCF_000000000.1_{suffix}"
+        old.rename(new)
+    diagnostics = {}
+    result = server.select_t3_pair(config, {}, roots, diagnostics)
+    assert result["accession"] == "GCF_000000000.1"
+    assert set(result["files"]) == {"gff", "faa"}
+    assert all(r["snapshot_path"] is None for r in result["files"].values())
+    assert diagnostics["selected_accession"] == result["accession"]
+    (t3_root / "GCF_000000000.1_protein.faa").unlink()
+    with pytest.raises(ValueError, match="t3_locations.json"):
+        server.select_t3_pair(config, {}, roots, diagnostics)
+    assert diagnostics["skipped_pairs"][0]["reason"] == "missing mate"

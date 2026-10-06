@@ -88,6 +88,27 @@ def snapshot_index(root: Path) -> tuple[dict[str, list[Path]], dict]:
                      "excluded_conflicts": conflicts}
 
 
+def feature_gene_id(fields: list[str]) -> tuple[str | None, str | None]:
+    """Read explicit IDs, including Augustus/TSEBRA bare gene feature IDs."""
+    attributes = fields[8].strip()
+    ids = re.findall(r'(?:^|;)\s*gene_id(?:\s*=\s*|\s+)(?:"([^"]+)"|([^;\s"]+))', attributes)
+    if len(ids) > 1:
+        raise ValueError("repeated gene_id attribute")
+    if ids:
+        quoted, unquoted = ids[0]
+        return quoted or unquoted, "gene_id_attribute"
+    if fields[2] == "gene":
+        ids = re.findall(r'(?:^|;)\s*ID=([^;\s]+)', attributes)
+        if len(ids) > 1:
+            raise ValueError("repeated gene feature ID")
+        if ids:
+            return ids[0], "gene_feature_ID"
+        if attributes != "." and re.fullmatch(r'[^;\s=\"]+;?', attributes):
+            return attributes.rstrip(";"), "bare_gene_feature_ID"
+        raise ValueError(f"gene feature has no explicit identifier: {attributes[:160]}")
+    return None, None
+
+
 def extract(source: Path, spec: dict) -> tuple[bytes, dict]:
     method = spec["method"]
     if method == "copy":
@@ -144,23 +165,33 @@ def extract(source: Path, spec: dict) -> tuple[bytes, dict]:
                 "records": records, "bases": bases, "selection": "first records/prefix; no coordinate renaming",
                 "newline": "LF", "partial_last_record_possible": True}
     if method == "gtf":
-        genes, prefix = set(), []
+        genes, prefix, formats = set(), [], set()
+        gene_records, rows_without_gene_id = 0, 0
         with text_stream(source) as stream:
             for number, line in enumerate(stream, 1):
                 if number <= spec["limit"]:
                     prefix.append(line)
-                if line.startswith("#"):
+                if line.startswith("#") or not line.strip():
                     continue
                 fields = line.rstrip("\n").split("\t")
                 if len(fields) != 9:
                     raise ValueError(f"invalid GTF row {number}: {source}")
-                ids = re.findall(r'(?:^|;)\s*gene_id\s+"([^"]+)"', fields[8])
-                if len(ids) != 1:
-                    raise ValueError(f"cannot count gene_id at GTF row {number}: {source}")
-                genes.add(ids[0])
+                try:
+                    identifier, format_name = feature_gene_id(fields)
+                except ValueError as error:
+                    raise ValueError(f"GTF row {number}: {error}: {source}") from error
+                gene_records += fields[2] == "gene"
+                if identifier:
+                    genes.add(identifier); formats.add(format_name)
+                else:
+                    rows_without_gene_id += 1
+        if not genes:
+            raise ValueError(f"no explicit gene identifiers in original GTF: {source}")
         return "".join(prefix).encode("utf-8"), {"method": "line_ranges",
                 "first_line": 1, "last_line": len(prefix), "full_source_unique_gene_ids": len(genes),
-                "count_scope": "entire original GTF, all features with gene_id", "newline": "LF"}
+                "count_scope": "entire original GTF, explicit gene feature IDs and gene_id attributes",
+                "gene_id_formats": sorted(formats), "gene_feature_records": gene_records,
+                "rows_without_gene_id": rows_without_gene_id, "newline": "LF"}
     if method == "fasta_by_query":
         query_file = path(spec["id_source_path"])
         rows = list(csv.DictReader(io.StringIO(query_file.read_text(encoding="utf-8")), delimiter="\t"))
@@ -220,53 +251,64 @@ def check_output_layout(output: Path, snapshot: Path, project: Path) -> None:
         raise ValueError("output inside project must be a run directory under bench/bench_transfer")
 
 
-def select_t3_pair(config: dict, grouped: dict, roots: dict) -> dict:
-    """Select one existing report-backed GFF/FAA pair by total compressed size."""
-    report = Path(config["t3_report"].replace("{home}", str(Path.home()))).expanduser().resolve(strict=True)
+def select_t3_pair(config: dict, grouped: dict, roots: dict, diagnostics: dict | None = None) -> dict:
+    """Locate an existing report-backed pair in T3 roots, independent of snapshots."""
+    if diagnostics is None:
+        diagnostics = {}
+    report = Path(config["t3_report"].replace("{home}", str(Path.home())).replace(
+        "{project}", str(Path(config["project_root"]).expanduser().resolve()))).expanduser().resolve(strict=True)
     check_scope(report, "T3", roots)
-    with report.open(encoding="utf-8", newline="") as stream:
-        rows = list(csv.DictReader(stream, delimiter="\t"))
+    with report.open(encoding="utf-8-sig", newline="") as stream:
+        reader = csv.DictReader(stream, delimiter="\t")
+        diagnostics["report_columns"] = reader.fieldnames
+        rows = list(reader)
     eligible = {r["accession"]: r for r in rows if r.get("band_verdict") == "in_band"}
+    diagnostics.update(report_path=str(report), eligible_accessions=sorted(eligible),
+                       roots=[{"path": str(r), "exists": r.is_dir()} for r in roots["T3"]],
+                       candidate_files=[], skipped_pairs=[])
     requested = config.get("t3_accession")
     if requested and requested not in eligible:
         raise ValueError("selected T3 accession is not an in_band run in the existing report")
-    original_roots = [r for r in roots["T3"] if r.is_dir()]
     candidates = {}
-    snapshot_files = {p for paths in grouped.values() for p in paths if p.is_file()}
-    for p in sorted(snapshot_files):
-        match = re.match(r"^(GCF_[0-9]+\.[0-9]+)_.*(_genomic\.gff|_protein\.faa)(?:\.gz)?$", p.name)
-        if not match:
+    discovered = {p.resolve() for root in roots["T3"] if root.is_dir()
+                  for p in root.rglob("*") if p.is_file() and
+                  re.search(r"\.(?:gff3?|faa)(?:\.gz)?$", p.name)}
+    for origin in sorted(discovered):
+        check_scope(origin, "T3", roots)
+        kind = "faa" if re.search(r"\.faa(?:\.gz)?$", origin.name) else "gff"
+        # RefSeq accession in filename or species directory; never infer species from size.
+        identity = next((match.group(1) for part in (origin.name, *[p.name for p in origin.parents])
+                         if (match := re.match(r"^(GCF_[0-9]+\.[0-9]+)(?:_|\.|$)", part))), None)
+        diagnostics["candidate_files"].append({"path": str(origin), "kind": kind,
+            "accession": identity, "report_eligible": identity in eligible,
+            "size_bytes": origin.stat().st_size})
+        if identity not in eligible or (requested and requested != identity):
             continue
-        accession, suffix = match.groups()
-        if accession not in eligible or (requested and requested != accession):
-            continue
-        origins = {q.resolve() for root in original_roots for q in root.rglob(p.name) if q.is_file()}
-        if len(origins) != 1:
-            continue
-        origin = next(iter(origins))
-        kind = "gff" if suffix == "_genomic.gff" else "faa"
-        candidates.setdefault(accession, {}).setdefault(kind, []).append((p, origin))
+        candidates.setdefault(identity, {}).setdefault(kind, []).append(origin)
     complete = []
-    for accession, pair in candidates.items():
+    for accession, pair in sorted(candidates.items()):
         if set(pair) != {"gff", "faa"}:
+            diagnostics["skipped_pairs"].append({"accession": accession, "reason": "missing mate",
+                "present_kinds": sorted(pair)})
             continue
-        selected = {}
-        for kind, options in pair.items():
-            # Ambiguous versions/copies must be resolved, not silently chosen.
-            unique = {(str(p), str(o)): (p, o) for p, o in options}
-            if len(unique) != 1:
-                break
-            selected[kind] = next(iter(unique.values()))
-        if len(selected) == 2:
-            total = sum(p.stat().st_size for p, _ in selected.values())
-            complete.append((total, accession, selected))
+        if any(len(options) != 1 for options in pair.values()):
+            diagnostics["skipped_pairs"].append({"accession": accession, "reason": "ambiguous file paths",
+                "paths": {kind: [str(p) for p in options] for kind, options in pair.items()}})
+            continue
+        selected = {kind: options[0] for kind, options in pair.items()}
+        total = sum(p.stat().st_size for p in selected.values())
+        complete.append((total, accession, selected))
     if not complete:
-        raise ValueError("no complete report-backed T3 GFF/FAA pair in snapshot and original roots")
+        raise ValueError(f"no unique report-backed T3 GFF/FAA pair in declared roots "
+                         f"({len(eligible)} eligible accessions; {len(discovered)} annotation files); "
+                         "see t3_locations.json for paths")
     total, accession, selected = min(complete, key=lambda row: (row[0], row[1]))
+    diagnostics["selected_accession"] = accession
     return {"accession": accession, "report_row": eligible[accession],
             "report_path": str(report), "report_sha256": sha256(report), "total_source_bytes": total,
-            "files": {kind: {"snapshot_path": str(p), "source_origin": str(o)}
-                      for kind, (p, o) in selected.items()}}
+            "selection_policy": "smallest existing report-backed original pair; accession tie-break",
+            "files": {kind: {"snapshot_path": None, "source_origin": str(origin)}
+                      for kind, origin in selected.items()}}
 
 
 def main() -> int:
@@ -308,12 +350,14 @@ def main() -> int:
         inventory = [{"path": str(p), "size_bytes": p.stat().st_size}
                      for p in sorted(snapshot.rglob("*")) if p.is_file() and not p.is_symlink()]
         write_json(bundle / "inventory.json", inventory)
+        t3_locations = {}
         try:
-            t3 = select_t3_pair(config, grouped, roots)
+            t3 = select_t3_pair(config, grouped, roots, t3_locations)
             write_json(bundle / "t3_selection.json", t3)
         except (OSError, ValueError, KeyError) as error:
             t3 = None
             status["gaps"].append({"role": "t3_selection", "required": True, "reason": str(error)})
+        write_json(bundle / "t3_locations.json", t3_locations)
         for spec in config["sources"]:
             try:
                 role = spec["role"]
@@ -433,7 +477,8 @@ def main() -> int:
     print(f"Bundle: {bundle}; SHA-256 manifest: {checked['manifest_sha256']}")
     print(f"Files: {checked['verified_files']}; bytes: {checked['verified_bytes']}; jobs: {', '.join(status['jobs']) or 'none'}")
     for gap in status["gaps"]:
-        print(f"GAP {gap['role']}: {gap['reason']}")
+        label = "GAP" if gap["required"] else "OPTIONAL"
+        print(f"{label} {gap['role']}: {gap['reason']}")
     if "snapshot_record" in locals() and snapshot_record["excluded_conflicts"]:
         print(f"NOTE: {len(snapshot_record['excluded_conflicts'])} ambiguous historical snapshot paths "
               "excluded; recorded in snapshot_record.json")
