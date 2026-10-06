@@ -1,0 +1,86 @@
+{
+  "answers_frozen": false,
+  "approved_by": "本对话用户",
+  "approved_cases": [
+    {
+      "case_id": "case_001",
+      "expected_sha256": "def495e1ca3d9b997b7435fdad7cfc44b53f2f635fe7474c633db7b097990bbd"
+    },
+    {
+      "case_id": "case_002",
+      "expected_sha256": "1ee18be206b5593812bfd97018f0dc6654f15111e73db15fcc8361af59d4c976"
+    },
+    {
+      "case_id": "case_003",
+      "expected_sha256": "0a82c209f82d7ea46dd4129c524e0ef248617de63c41d9df10054a9360d7178e"
+    },
+    {
+      "case_id": "case_004",
+      "expected_sha256": "0f3cbe03c16d0543cfe616263ecc546113efc04ab783038fabacfe877456ddc9"
+    },
+    {
+      "case_id": "case_005",
+      "expected_sha256": "e6917d67cbea805b35b23cc264fd0851021012791ad6b7c7902c892ad47e55d2"
+    },
+    {
+      "case_id": "case_006",
+      "expected_sha256": "319cd69b3adb90ab22bfb264c9fb445b3772ef8146bd255fcd9e59e135fec78c"
+    },
+    {
+      "case_id": "case_007",
+      "expected_sha256": "65cc5729985ec7d531109f94a6715e71e9ad7117a852bb13e1ee4573fc2b417f"
+    },
+    {
+      "case_id": "case_008",
+      "expected_sha256": "2fbb1a1c0e496301b4a00e7570255dc8ec1cfa85286856ab302060ba0b3fc8e5"
+    },
+    {
+      "case_id": "case_009",
+      "expected_sha256": "56dd9fcd5d96071f1d50df6ccaf2556a2c3e1ccd1b0214ef51bbda8772c39364"
+    },
+    {
+      "case_id": "case_010",
+      "expected_sha256": "88280ac458a9be9cda7f3a10d2f38ffb66b9af527fd20ea964f79011ff736db3"
+    },
+    {
+      "case_id": "case_011",
+      "expected_sha256": "4b364c8339b88ad0dee1ce7013d083b00b980f009743c4d02abc6b434f18dd3e"
+    },
+    {
+      "case_id": "case_012",
+      "expected_sha256": "db03efc55d6ee6d24f0f85df8ec872faad5ff9d42a8e416e934b4a5f09bc6dfd"
+    },
+    {
+      "case_id": "case_013",
+      "expected_sha256": "11f10dd12e953947fc9a5732a6cf175249fd5a8c16c0236044edba175fc08704"
+    },
+    {
+      "case_id": "case_014",
+      "expected_sha256": "e9f8d1b9f26a798fc4fed592ea1b9f42849f504f12cecf9ec2ab353d5a108a05"
+    },
+    {
+      "case_id": "case_015",
+      "expected_sha256": "319cd69b3adb90ab22bfb264c9fb445b3772ef8146bd255fcd9e59e135fec78c"
+    },
+    {
+      "case_id": "case_016",
+      "expected_sha256": "8cf607d377e1ff4182d15dc5c1c6347b6414e55dd94e83d0c6b3d86f2f624b3e"
+    }
+  ],
+  "case_count": 16,
+  "date": "2026-10-06",
+  "model_calls": 0,
+  "note": "仅记录已明确批准的答案范围，不将同意推断为任何未填写的数值或API调用授权；expected文件未修改。",
+  "pending": [
+    "C知识包与两轴标签确认",
+    "H1主集合",
+    "四个数值门槛",
+    "比较模型及版本/运行计划"
+  ],
+  "question_answered": "是否也同意这16题拟定的判定和根因",
+  "scope": [
+    "case_001..case_016 acceptable_verdicts",
+    "case_001..case_016 root_cause"
+  ],
+  "user_reply": "同意"
+}
