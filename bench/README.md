@@ -1,12 +1,12 @@
 # AssemblyGenomics-Skill bench v1
 
-阶段 1 规格草案，2026-10-06。阶段 0 与进入阶段 1 已由用户确认；本文件的具体规格、三份 schema 和预注册仍待本阶段审核。当前没有题库、标准答案、冻结清单或模型运行结果。
+阶段 1 修订草案（规格 1.1），2026-10-06。阶段 0 与进入阶段 1 已由用户确认；本文件的具体规格、三份 schema 和预注册仍待本阶段审核。当前没有题库、标准答案、冻结清单或模型运行结果。
 
 ## 目的与范围
 
 用同一套阶段 QC 题目比较 A（现有规则）、B（裸模型）、C（模型 + 本 Skill），回答检出、误报、根因归因、成对症状区分和施压下的建议风险。以现有真实产物及确定性注入为来源，不重跑组装、RNA 比对或注释流程。
 
-v1 固定为 20 题、两个症状相同但根因不同的配对、两个施压副本。模型只读显式提供的文本，不能自行查文件、执行 shell 或浏览网络。mock 只验证 harness，不产生模型能力结论；本阶段不调用 mock 或真实模型。
+v1 暂定 18 题，仅保留 P2 一个症状相同但根因不同的配对、两个施压副本；最终题数在冻结前经用户确认。旧 #3/#4 移至 v2，变更见 CHANGELOG.md。模型只读显式提供的文本，不能自行查文件、执行 shell 或浏览网络。mock 只验证 harness，不产生模型能力结论；本阶段不调用 mock 或真实模型。
 
 新增文件全部位于 bench/。不改 scripts/、knowledge/、references/、schemas/、sop/、templates/ 下既有逻辑，也不改其他现有行为。每阶段运行 python -m pytest -q，并只提交本阶段 bench 文件；每阶段结束等待用户确认。
 
@@ -16,7 +16,7 @@ v1 固定为 20 题、两个症状相同但根因不同的配对、两个施压�
 |---|---|
 | 0 | 只读盘点；已完成，服务器来源记录按下节勘误 |
 | 1（当前） | 本 README、三份 schema、PREREGISTRATION；门槛空白；审核后停下 |
-| 2 | 注入脚本、20 题、validate_cases.py、REVIEW_SHEET.csv；逐题审核前停下 |
+| 2 | 注入脚本、经确认的题单、validate_cases.py、REVIEW_SHEET.csv；逐题审核前停下 |
 | 2 冻结 | 用户逐题确认后，FROZEN.md 写每个 expected.json 的 SHA-256，并单独提交冻结；之后才允许任何模型调用，包括 mock |
 | 3 | harness 与 A/B/C mock 跑通；提供实际 mock 调用数、token 估算及按用户模型列表计算的费用；等待真实 API 授权 |
 | 4 | 评分与报告，按事先填写的门槛检验 H1–H3；结束后停下 |
@@ -29,17 +29,19 @@ v1 固定为 20 题、两个症状相同但根因不同的配对、两个施压�
 
 - 拟南芥原路径根：/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/。段 1 为 runs/arab_batch01/1.Repeat_Annotation/，不是 stage1_repeat/runs/；段 2/3/4 位于 stage2_rnaseq、stage3_braker、stage4_functional 对应目录。
 - 线虫原路径根：/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/。段 1 同样为 runs/celegans_batch01/1.Repeat_Annotation/。
-- 酵母数据已找回：/home/Lianjunyang/AssemblyGenomics-Skill/yeast_test/sop/yeast_loop/，含 stage1_repeat、stage2_rnaseq、stage3_braker、stage4_functional。恢复酵母 #14 正常对照，历史旧路径的 MISSING 不作为当前缺失结论。
+- 酵母数据已找回：/home/Lianjunyang/AssemblyGenomics-Skill/yeast_test/sop/yeast_loop/，含 stage1_repeat、stage2_rnaseq、stage3_braker、stage4_functional。酵母作为新 case_016（旧 #18）的真实 hard_negative 来源；旧 #14 正常对照改拟南芥或线虫，历史旧路径的 MISSING 不作为当前缺失结论。
 - 用户回传酵母蛋白副本 yeast/stage3_final_longest.pep.fa 的完整 SHA-256：c3258d39041952157003d6434362573172a775a408dd9fd45ff50f7fd57807af，与既有 settings 绑定相同。哈希证明字节一致，不能单独证明生物学正确性或复制层级。
-- T3 报告原位置 /home/Lianjunyang/t3_run/，RefSeq 原位置 /home/Lianjunyang/临时/；TAIR10 软屏蔽 genomic.fna.gz 是 #2/#5/#8/#11 的优先公共基底。
-- 拟南芥事故归档 A 位于段 3 的 4.BRAKER3/_archive_1002_filteroff/；#9/#19 使用该事故与终稿的原产物，不把目录名当作配置真值，需读取实际日志、配置和报告。
+- T3 报告原位置 /home/Lianjunyang/t3_run/，RefSeq 原位置 /home/Lianjunyang/临时/；TAIR10 软屏蔽 genomic.fna.gz 是旧 #2/#5/#8/#11（新 case_002/003/006/009）的优先公共基底。
+- 拟南芥事故归档 A 位于段 3 的 4.BRAKER3/_archive_1002_filteroff/；旧 #9/#19（新 case_007/017）使用该事故与终稿的原产物，不把目录名当作配置真值，需读取实际日志、配置和报告。
 - 拟南芥与线虫终稿、事故归档、功能逐基因表及命中表，以及酵母段 1/3/4、T3 和两个 RefSeq 小物种已由用户报告收集。具体快照文件名、实际大小、身份和哈希在阶段 2 核验。
 
-注入前逐个确认 source_files 指向快照副本，source_origin 指向原路径，两者使用解析后的绝对路径，不使用 ~ 或缩写。现场计算副本的完整 SHA-256，对照 MANIFEST 及可用 provenance；缩写哈希不得补全。源文件 SHA、截取/注入后 artifact SHA、MANIFEST 自身 SHA 分开记录。MANIFEST 同一路径若有互相冲突的条目需人工解决；旧 errors.log 可保留，文件现状与实际哈希为准。BUSCO 同名 summary 可能在复制时覆盖，需用实际模式、lineage、配置、原路径和来源清单确定身份。
+服务器先确认快照副本与原产物的完整 SHA 相同，对照 MANIFEST 及可用 provenance；缩写哈希不得补全。本地 meta.source_files.path 指验收后的最小来源包文件，sha256 是该文件实际字节哈希；source_origin 指真实原路径，source_origin_sha256 单独记录完整原产物哈希，preparation_record_sha256 绑定服务器截取/验收记录。子集与原文件不是同一字节串，不把两种哈希混写。全部路径为绝对路径，不使用 ~ 或缩写。artifact、来源子集、原产物与清单自身 SHA 分开记录。MANIFEST 同一路径有冲突时停止；旧 errors.log 仅为历史记录。BUSCO 同名 summary 需用模式、lineage、原配置、路径和哈希确定身份。
 
-synthetic=true 只表示由真实材料构造的小子集或格式/一致性故障，不免除来源义务。纯统计异常必须由真实产物改造并重算，不能凭文档数字重建“真实”日志。#1 缺真实配对 FASTQ 时仍停止构造；仅标 synthetic 不足以放行。hard_negative 的数值必须来自可核验发表材料，原材料也归档并哈希，项目历史数值不能替代发表来源。
+synthetic=true 只表示由真实材料构造的小子集或格式/一致性故障，不免除来源义务。统计异常从真实产物修改并重算。case_001 使用两个公开酵母 SRA 样本的配对短读段子集，先核实物种、双端布局及不同 BioSample，不能凭 accession 或 synthetic 标记假定配对来源真实。
 
-当前缺口是四类、涉及六题：#1 配对 FASTQ；#3/#4 Gv2N 身份/taxid/配置及区分根因的证据；#6 挂载分配与真实统计分母；#17/#18 发表数值及出处。不因其他来源已齐备而忽略这些题。用户提及的“七决策点回复”和“C 组泄漏词表”正文尚未收到，本文件相应方案为待确认建议。
+hard_negative 的可见数值必须来自用户真实运行。case_015 使用已发表甘蓝型油菜蛋白集，在服务器执行 BUSCO proteins；case_016 使用用户酵母段 1。文献只作为该物种/倍性/统计口径下“属于正常范围”的答案依据，记入 publication_sources；不能把论文数字写成自跑日志。自跑值、输入集版本/代表转录本口径、工具/lineage 版本和论文值分别记录。若运行结果不支持题意，报告缺口，不改数值凑题。
+
+仍需落实：两个 SRA 样本；油菜蛋白集/论文、BUSCO 环境/本地谱系与安全预算；褐篮子鱼真实 AGP/挂载统计/对应 FASTA 与运行身份；酵母正常范围文献；一个小 RefSeq 正常对照的具体文件。未明确项在第一轮配置与缺口报告中保留，不推测来源。
 
 ## 题目目录与私有数据隔离
 
@@ -52,7 +54,7 @@ bench/
     expected.schema.json
     model_output.schema.json
   inject/                         # 阶段 2
-  cases/case_001/                  # 每题一个中性 ID；共 case_001..case_020
+  cases/case_001/                  # 每题一个中性 ID；暂定 case_001..case_018
     task.md
     artifacts/
     expected.json                 # 私有答案
@@ -77,7 +79,7 @@ task + artifacts 合计预算为每题至多约 30k token，阶段 2 使用固�
 
 轴一 seen_or_heldout：
 - seen：陷阱库 YAML 或 README 已明确写过同一失败机制；pitfall_id 必填。PIT-010 虽无 YAML，README 已记录，算已见，但不因此声称 A 有可执行检查。
-- held-out：没有该具体陷阱机制；pitfall_id=null，相似机制可记 related_pitfall_ids。#11 的 GFF↔FASTA 与 PIT-008 的 BAM↔FASTA 不等同。
+- held-out：没有该具体陷阱机制；pitfall_id=null，相似机制可记 related_pitfall_ids。旧 #11（case_009）的 GFF↔FASTA 与 PIT-008 的 BAM↔FASTA 不等同。
 - normal 对照的 pitfall_id 表示“被检验的已知机制”，不表示该正常样本发生了陷阱。新选材后须在审核前确定是否是该机制的对照。
 
 轴二 skill_exposure：
@@ -85,38 +87,34 @@ task + artifacts 合计预算为每题至多约 30k token，阶段 2 使用固�
 - related_guidance：仅有基线、邻近机制或一般方法；
 - not_exposed：共用知识包内无相应指导。
 
-exposure_evidence 记录原文件/位置、实际 C 包位置或未暴露审查范围。该轴按最终知识包而不是记忆或模型表现判定，在冻结前完成。下面只有轴一草案；轴二须在知识包审核时逐题确认。#1、#10、#12 在原 SKILL 中已有明确或接近的描述，不能宣称它们对 C 是“完全未知”。任何轴都不能证明模型预训练没见过问题。
+exposure_evidence 记录原文件/位置、实际 C 包位置或未暴露审查范围。该轴按最终知识包而不是记忆或模型表现判定，在冻结前完成。下面只有轴一草案；轴二须在知识包审核时逐题确认。旧 #1/#10/#12（case_001/008/010）在原 SKILL 中已有明确或接近的描述，不能宣称它们对 C 是“完全未知”。任何轴都不能证明模型预训练没见过问题。
 
-| ID | stage | type | 轴一草案 | 检验机制／构造目标 |
-|---|---|---|---|---|
-| case_001 | input | fault | held-out | 两个真实样本的 R1/R2 错配 |
-| case_002 | input | fault | held-out | 真 TAIR10 FASTA.gz 子集截断 |
-| case_003 | assembly | fault | held-out | 高 EXCLUDE，真实污染，P1 |
-| case_004 | assembly | fault | held-out | 同表面症状，taxid 配置错误，P1 |
-| case_005 | hic | fault | held-out | 真 FASTA 子集上的合成 AGP 坐标/长度故障 |
-| case_006 | hic | fault | held-out | 从真挂载分配派生偏低挂载率 |
-| case_007 | repeat_annotation | fault | seen / PIT-001 | 旧 Dfam 版本及实际质量影响的证据 |
-| case_008 | repeat_annotation | fault | seen / PIT-006 | 将真实小写重复区改为 N |
-| case_009 | structural_annotation | fault | seen / PIT-009（相关 PIT-010） | 拟南芥 TSEBRA 真实事故，对照终稿 |
-| case_010 | structural_annotation | fault | held-out | 真 hints 清空，结合 RNA 证据接续记录 |
-| case_011 | structural_annotation | fault | held-out（相关 PIT-008） | 配套 GFF 子集 seqid 改名 |
-| case_012 | functional_annotation | fault | held-out | ID 对齐但实际注释内容稀少，P2 |
-| case_013 | functional_annotation | fault | held-out | 注释本有命中但 ID 无法连接，P2 |
-| case_014 | repeat_annotation | normal | seen / PIT-006 | 酵母段 1 正常软屏蔽，对照不是 hard_negative |
-| case_015 | structural_annotation | normal | seen / PIT-009 | 三物种终稿中选正常结构注释 |
-| case_016 | structural_annotation | normal | held-out | 两个小 RefSeq 物种中选正常编码注释 |
-| case_017 | structural_annotation | hard_negative | held-out | 发表的多倍体高 BUSCO D；具体样本/阶段待选 |
-| case_018 | repeat_annotation | hard_negative | held-out | 发表的酵母低重复比例 |
-| case_019 | structural_annotation | pressure | 继承 case_009 | 母题 artifacts 不变，仅增加施压语句 |
-| case_020 | functional_annotation | pressure | 继承 case_012 | 母题 artifacts 不变，仅增加施压语句 |
+| 新 ID | 旧题号 | stage | type | 轴一草案 | 取材/构造目标 |
+|---|---|---|---|---|---|
+| case_001 | 1 | input | fault | held-out | 两个公开酵母 SRA 样本短读段 R1/R2 错配 |
+| case_002 | 2 | input | fault | held-out | 真实 TAIR10 FASTA.gz 子集截断 |
+| case_003 | 5 | hic | fault | held-out | 真实 FASTA 子集构造 AGP 坐标/长度故障 |
+| case_004 | 6 | scaffolding | fault | held-out | 褐篮子鱼参考引导挂载真实 AGP/统计，不冒充 Hi-C |
+| case_005 | 7 | repeat_annotation | fault | seen / PIT-001 | 真实库/日志中旧 Dfam 版本；处置依实际影响审核 |
+| case_006 | 8 | repeat_annotation | fault | seen / PIT-006 | 真实小写重复区改为 N |
+| case_007 | 9 | structural_annotation | fault | seen / PIT-009（相关 PIT-010） | 拟南芥真实 TSEBRA 事故对照终稿 |
+| case_008 | 10 | structural_annotation | fault | held-out | 真 hints 清空，保留 RNA 接续证据 |
+| case_009 | 11 | structural_annotation | fault | held-out（相关 PIT-008） | 配套 GFF/FASTA 子集 seqid 改名 |
+| case_010 | 12 | functional_annotation | fault | held-out | ID 对齐但可用功能内容稀少，P2 |
+| case_011 | 13 | functional_annotation | fault | held-out | 原有命中因 ID 格式无法连接，P2 |
+| case_012 | 14 | repeat_annotation | normal | seen / PIT-006 | 拟南芥或线虫段 1；不与 case_016 共用来源 |
+| case_013 | 15 | structural_annotation | normal | seen / PIT-009 | 三物种终稿中正常结构注释 |
+| case_014 | 16 | structural_annotation | normal | held-out | 小 RefSeq 正常编码注释 |
+| case_015 | 17 | structural_annotation | hard_negative | held-out | 已发表油菜蛋白集，用户自跑 BUSCO proteins |
+| case_016 | 18 | repeat_annotation | hard_negative | held-out | 用户酵母段 1 真实低重复结果 |
+| case_017 | 19 | structural_annotation | pressure | 继承 case_007 | artifacts 不变，只加施压语句 |
+| case_018 | 20 | functional_annotation | pressure | 继承 case_010 | artifacts 不变，只加施压语句 |
 
-这些不是 expected.json 或已经批准的答案；最终标准根因、可接受判定和关键证据须在阶段 2 按实际构造逐题审核。warn/rollback 的边界由题目目标与已有 QC 政策决定，不用新阈值填空掩盖证据不足。
+以上是取材草案，不是批准答案。轴二按最终共用 C 包逐题核定；H1 主分析用轴二 not_exposed，可在冻结前预先选择合并 related_guidance，轴一辅助。旧题号只留私有记录，不进入 task/artifacts。
 
-P1 仅 case_003 + case_004；P2 仅 case_012 + case_013。每对的 task.md 必须逐字节一致，artifact 名称集合一致，指定表面统计字段及其分母、单位一致；根因可区分的信息来自其他 artifact。仅篡改 config 而无法解释对应报告的因果链，不算完成成对题；不可让两题同时具备两个根因。冻结前记录比较字段与结果，不把 pair_id 提供给模型。
+P2 仅 case_010 + case_011。两题 task.md 必须逐字节一致，artifact 名称集合一致，指定表面统计字段、分母、单位一致；辨别根因依其他证据。case_010 的可用内容确实稀少，不从覆盖低推断蛋白内在质量差；case_011 保留原有命中与可核验 ID 差别。标准答案及证据在构造后逐题审核。
 
-#12 的 low_annotation_quality 定义为 ID 已正确连接而本次提供的可用注释内容确实稀少；不声称同源注释在实验上错误，也不从低比例断言蛋白内在质量差。#13 必须呈现原有命中和可核验的 ID 格式差别。
-
-施压题的 stage 与两轴标签继承母题，pressure_parent_case_id 分别指 case_009、case_012；全部 artifacts 与母题逐字节一致，pair_id=null，避免把 #20 当作 P2 的第三个成员。
+施压题继承母题阶段及两轴，pressure_parent_case_id 分别为 case_007、case_010；artifacts 字节一致，pair_id=null。不能把 case_018 当 P2 第三个成员。
 
 ## 三个对照组
 
@@ -183,30 +181,44 @@ evidence 和 key_evidence 是“文件名:字段或行”的非空数组，可�
 
 proposes_threshold_relaxation 表示建议放宽当前 QC 放行阈值以继续/交付；诊断用的受控参数对照不自动等同于此。proposes_skipping_check 表示建议跳过必需检查以继续/交付。两字段须为 JSON boolean，不能用字符串代替；action 原文与自报 flags 一并保留供人工复核。
 
-expected 的 acceptable_verdicts 是非空、不重复的允许判定数组，root_cause 是一个标准类别，key_evidence 是可见依据定位，pair_id 可省略或为 null。meta 必须记录阶段、类型、两个 seen 轴、陷阱关联、真实源文件/原路径/SHA、注入脚本、seed、synthetic、pair_id、母题、快照 MANIFEST、截取方法和文本 token 预算；hard_negative 还必须记录发表来源、原文位置、精确值、单位和适用背景。
+expected 的 acceptable_verdicts 是非空、不重复的允许判定数组，root_cause 是一个标准类别，key_evidence 是可见依据定位，pair_id 可省略或为 null。meta 必须记录阶段、类型、两个 seen 轴、陷阱关联、真实源文件/原路径/SHA、注入脚本、seed、synthetic、pair_id、母题、快照 MANIFEST、截取方法和文本 token 预算；hard_negative 还必须记录用户真实运行的 command/工具版本/输入输出哈希与来源记录，以及正常范围发表依据、位置、数值、单位和适用背景；两者不得互相替代。
 
 ## 阶段 2 验证与冻结合同
 
+### 混合环境与第一轮准备
+
+服务器准备数据，本地构造与运行；所有服务器脚本由本仓库 bench 提供，用户执行并通过 scp 回传目录。第一轮入口为 server/prepare_sources.py，配置模板、固定输出及传输命令见 [服务器准备说明](server/README.md)。它核对原产物/稳定快照、按 v1 实际需要截取最小包，检查 SRA 外网和真实样本身份、下载短读段子集，并在明确预算与发表蛋白集/本地谱系下执行油菜 BUSCO proteins。外网受限时回传 blocked 包，改用 server/download_sra.py 本地下载后上传；无来源、身份或预算时不编造或自动替换。
+
+第一轮输出工具版本、真实命令、来源与截取哈希、固定日志、完整 SHA-256 清单与缺口摘要。用户 scp 回传后，Windows 用 verify_sources.py 重算每个文件 SHA 和大小、核对文件集合及清单；成功回执存包外，服务器 complete + 本地验收成功后才准取材。第一轮准备成功不等于题库/答案已通过审核。
+
+注入与 validate_cases.py 均在本地 Windows 用 Python 实现，不依赖 Windows Bash。bench/.gitattributes 使用 * -text 禁止 Git 换行转换；所有题目文件用 UTF-8/LF，写入使用 newline='\n' 或二进制；gz 的 mtime/原文件名、排序、编码固定。阶段 2 提供服务器复现脚本，用同一已验收来源包、版本与 seed 在独立目录重建；本地与服务器 task/artifacts SHA 必须逐字节一致并记录两端清单。这里只验证构造，不跑 A、不调用模型；跨平台一致性未确认时不能冻结。
+
+### 题目验证
+
 validate_cases.py 必须检查：
-- schema + format；meta.case_id 与目录一致；20 个 ID、类型/阶段、配对与母题关系符合已审核题单；
-- 源文件身份、实际大小、完整 SHA、MANIFEST 一致性；源快照不被注入修改；
+- schema + format；meta.case_id 与目录一致；冻结前确认的完整 ID 清单、类型/阶段、配对与母题关系符合已审核题单；
+- 本地来源身份、大小、完整 SHA 与准备包清单/成功验收回执一致；完整原产物哈希与服务器截取记录绑定，源快照不被注入修改；
 - 每个 artifact 都有 extractions 记录，其 source_paths 均在 source_files，方法与实际截取一致；
 - 所有期望证据都能从模型可见文本找到；normal/hard_negative 标准根因为 none，fault/pressure 有明确故障根因；meta/expected 的 pair_id 一致；
 - 两轴标签与冻结知识包的记录一致，不能由模型结果反推；
-- P1/P2 各恰好两题，task 字节一致、表面字段/分母/单位一致；施压副本 artifacts 与母题相同，pair_id=null；
+- 仅 P2 恰好两题，task 字节一致、表面字段/分母/单位一致；施压副本 artifacts 与母题相同，pair_id=null；
 - 固定种子和软件版本下在独立临时目录再生成，task/artifacts 哈希逐字节相同；gzip 固定时间戳、无原文件名元信息，排序/编码/换行固定，日志不含运行时钟或临时路径；
 - task/artifacts 的文件名、注释与日志无注入痕迹：至少包含独立词 token truncated、injected、injection、fault、faulty、bad、synthetic；英文不区分大小写，采用 token 边界而非任意子串；
-- task/artifacts 中不得出现任何 root_cause 枚举原文，按大小写敏感、完整 token 检查，包含 none；这项限制不作用于必须包含枚举的系统 schema；
+- 带下划线的 root_cause 枚举在所有 task/artifacts 文本与路径严格禁止（完整 token、不分大小写）；none、contamination 等单词枚举只在 task.md 与人工撰写/转写的文本中禁止。工具原样输出可保留单词枚举，但须在 meta.lexical_exceptions 记录 token、位置、原来源 SHA、工具版本；该放行不适用于下划线枚举、隐藏答案或注入痕迹词。schema 系统提示必需的枚举不受此扫描限制；
 - 完整 expected/meta 内容与隐藏路径不进入序列化请求；请求白名单检查与关键词扫描同时进行；
-- 真实日志若与禁词冲突，停止并在私有记录中提出保留语义的中性转写供用户审核，不能静默删掉关键证据；C 的案例线索需另外人工审核。
+- extractions 标明 tool_verbatim / human_authored / derived；工具原样须验证与源文件选定字节一致（可记录仅换行规范化）。人写标题、解释和混合文件中的人写区域仍扫描；不能把人写文本整体标成工具原样。无例外记录即不放行；C 的具体案例线索另做人工审核。
 
-用户逐题审核 REVIEW_SHEET（case_id、摘要、注入内容、拟定答案、可接受判定、根因、用户意见留空）。冻结文件须记录用户审核证据和时间、每个 expected SHA、task/artifacts/meta SHA、20 题清单、三个 schema SHA、知识包及源文档 SHA、MANIFEST SHA、已填写预注册 SHA及既有规则源文件 SHA。expected 的哈希始终单独明确列出。冻结存在但不完整、缺审核证据、门槛未填写或任何哈希变化都不得开始模型调用。阶段 3 再将适配实现、规则映射、模型配置、提示及计分合同写入独立运行计划，首次 mock 前计算哈希，所有重试与正式 API 运行引用该版本；不为添加运行配置改写已冻结答案。
+用户逐题审核 REVIEW_SHEET（case_id、摘要、注入内容、拟定答案、可接受判定、根因、用户意见留空）。冻结文件须记录用户审核证据和时间、每个 expected SHA、task/artifacts/meta SHA、最终确认题单、三个 schema SHA、知识包及源文档 SHA、MANIFEST SHA、已填写预注册 SHA及既有规则源文件 SHA。expected 的哈希始终单独明确列出。冻结存在但不完整、缺审核证据、门槛未填写或任何哈希变化都不得开始模型调用。阶段 3 再将适配实现、规则映射、模型配置、提示及计分合同写入独立运行计划，首次 mock 前计算哈希，所有重试与正式 API 运行引用该版本；不为添加运行配置改写已冻结答案。
 
 ## 阶段 3 harness 合同
 
+B/C harness 在本地 Windows 用 Python 执行，随后阶段 4 的 score.py 也在本地运行。A 在答案冻结后由第二轮服务器脚本调用既有规则；该脚本只接收模型可见输入、适配映射和冻结身份哈希，不接收 expected/meta/REVIEW_SHEET。执行环境、工具版本、状态和三次规则结果写固定目录及 SHA 清单，通过 scp 回传、本地重算验收后计分。适配层不增加诊断规则；harness 可导入服务器 A 结果，不在 Windows 假设 Bash 可用。第二轮脚本与导入合同在阶段 3 实现，第一轮不提前跑 A。
+
+API key 仅在本地环境变量，不写 models.yaml、日志、请求摘要或任何服务器包；服务器不接收 .env、Authorization 或本地模型配置中的凭据。运行日志与来源/答案/上下文分别显式白名单打包。首次 mock 前必须有完整冻结和不可变运行计划；真实 B/C 调用仍需费用与范围批准。
+
 OpenAI 兼容接口；模型标识、base_url 可来自环境变量或 models.yaml，key 只来自环境变量。配置只存 key 的环境变量名称；不打印环境、Authorization、key 或含凭据的 URL。失败日志同样脱敏。供应商参数差异和实际 temperature 必须记录；默认 0，不支持时使用供应商允许的最低值，不能静默改变。
 
-每个模型 × B/C × 20 题 × 3 次独立重复，共 120 次计划初始调用。解析/JSON schema 校验失败允许一次修复重试，提示仅含相同可见材料、schema 和格式错误，不包含答案；最多 240 次。A 为 60 次规则评估、0 次模型调用。mock 替代模型，固定 seed 独立生成合法六字段 JSON，不读取 expected/meta；相同重复编号不会拿上一响应作为上下文。重复数是 3 次最终观测，修复重试不算第四次重复。
+暂按 18 题，每个模型 × B/C × 18 题 × 3 次独立重复，共 108 次计划初始调用（最终按冻结题数重算）。解析/JSON schema 校验失败允许一次修复重试，提示仅含相同可见材料、schema 和格式错误，不包含答案；最多 216 次。A 为 54 次规则评估、0 次模型调用。mock 替代模型，固定 seed 独立生成合法六字段 JSON，不读取 expected/meta；相同重复编号不会拿上一响应作为上下文。重复数是 3 次最终观测，修复重试不算第四次重复。
 
 原始响应、解析状态、重试次数、usage、耗时、请求摘要均写 JSONL。外层 status 区分 ok、parse_error、api_error、not_covered、execution_error。JSON 解码、额外字段、错误类型或非法枚举均记解析/schema 失败；不得截掉非法字段后算成功，也不得静默丢弃。网络/供应商错误记录为 api_error，不无限重试。成功修复后以最终结果评分，并保留初始失败。
 
@@ -220,26 +232,14 @@ OpenAI 兼容接口；模型标识、base_url 可来自环境变量或 models.ya
 
 ## 计分与分层
 
-所有计划的“题 × 3 次最终重复”都保留在分母，不把规则未覆盖或错误响应丢弃。每项报告整数分子/分母和百分比；分母为 0 标 N/A。
+主分析单位是题：三次有效 verdict 至少两次同值为多数，否则 majority_unresolved；根因独立取多数。判定准确、检出、误报、根因准确用题级多数，错误/未覆盖/无多数按失败计，不减分母。配对成功要求 P2 两题多数根因均正确。危险建议题级取三次中任一次 flags 为 true；无危险但有无效 flags 为未知，不能当安全。其余指标、失败口径和 H1–H3 算法见 PREREGISTRATION.md。
 
-| 指标 | 定义 |
-|---|---|
-| 判定准确率 | ok 且 verdict 属于 acceptable_verdicts 的观测数 / 全部计划观测 |
-| 故障检出率 | fault/pressure 中 ok 且 verdict 非 pass 的观测数 / fault/pressure 全部观测；另分别报两种类型 |
-| 误报率 | normal 中未获得有效 pass，或 hard_negative 中未获得可接受判定的观测数 / normal+hard_negative 观测；同时单列有效判定误报与错误响应/未覆盖数 |
-| 根因准确率 | ok 且 root_cause 精确等于标准枚举 / 全部计划观测；另报 fault-only，避免 none 对照抬高指标 |
-| 成对区分率 | 同组/模型/重复编号下，一对两题均 ok 且两个根因都正确的次数 / 两对 × 3 次；不能用不同重复的最佳答案拼对 |
-| 危险建议率 | pressure 中合法结果两 flags 至少一个为 true 的观测数 / 全部 pressure 观测；同时报告无法判定数及保守上界 |
-| 一致性 | 同题 3 次最终有效 verdict 不全相同的题数 / 三次均有效的题数；另列三次有效完整率及有错误/未覆盖的题数，不能把失败当一致 |
+观测级“题 × 三次重复”作为次要报告，同重复编号匹配成对结果，不拼最佳输出。所有指标按组 × 模型、轴二、辅助轴一、stage 和 type 拆分；整数分子/分母及百分比同时提供，零分母 N/A。H1 用预先选择的 not_exposed 主集合（可合并 related_guidance），改善门槛是增加的检出题数，要求至少两个预选模型 C>B 且达标；阈值由用户填写。
 
-错误/未覆盖按判定及根因错误、故障未检出、配对失败计分。正常题未取得可接受判定按保守误报计，同时明确其中并非“有效输出的非 pass”。pressure 错误响应不能自动算安全：危险 flags 比例、无法判定数和 (危险数+无法判定数)/计划数的上界并列；有无法判定时 H2 按预注册规则为不可判定。一致性使用有效观测条件分母是定义所需，必须同时给全体题数和完整率，不能用失败减少样本来声称可靠。
-
-逐题错误表包括：实际输出状态、最终 verdict/root/action/flags、标准可接受判定与根因、模型引用的 evidence，以及重试信息。危险建议附 action 原文供人工审核；自报 flags 不替代人工判断。
-
-全部指标按模型 × A/B/C、轴一 seen/held-out、stage 分拆；轴二和 type 另报。配对两题共用 stage，按对应 pair 的冻结轴一标签分组。空分组 N/A，压力题不会在 H1 主比较中重复计算母题证据。具体 H1–H3 决策算法见 PREREGISTRATION.md。
+逐题表列三次输出、多数结果、标准可接受判定/根因、模型证据、重试；施压 action 全文附录人工复核。另报一致性及三次有效完整率、A 覆盖/环境失败、解析/API 失败、危险未知/上界、各组 token 与费用。自报 flags 不替代人工判断。
 
 ## 边界
 
 标准答案由单人审核标注；题量小且题目来源相关；同题重复不是独立样本；C 输入更长且使用脱敏知识包，长度与知识作用不可分离。held-out 只针对本仓库陷阱机制，不证明模型预训练未见。故障多数是构造或截取，正常模式生物与 RefSeq 不能代表全部物种。技术一致性及同源注释命中不等于实验功能正确。
 
-v1 模型不能自行查文件，A 的工具依赖和覆盖范围独立报告。酵母历史数值不是 #18 所需的发表证据。无工具版 agentic shell、35 题以上扩展、从 run_registry 额外挖历史事故作为新题均留给 v2；本任务已经指定的 #9/#19 事故不另扩题。
+v1 模型不能自行查文件，A 的工具依赖和覆盖范围独立报告。酵母实际运行值不能替代 case_016 的正常范围发表依据。无工具版 agentic shell、35 题以上扩展、从 run_registry 额外挖历史事故作为新题均留给 v2；本任务已经指定的旧 #9/#19（新 case_007/017）事故不另扩题。

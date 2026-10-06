@@ -1,0 +1,425 @@
+{
+  "spec_version": "1.1",
+  "project_root": "~/AssemblyGenomics-Skill",
+  "snapshot_root": "~/bench_sources",
+  "output_root": "~/bench_transfer/v1_prepare",
+  "max_file_bytes": 16777216,
+  "sources": [
+    {
+      "role": "arab_repeat_qc",
+      "origin": "{project}/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/mask_qc.json",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        5,
+        6,
+        12
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_repeat_genome",
+      "origin": "{project}/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/genome.softmasked.fa",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "fasta",
+      "extension": ".fa",
+      "cases": [
+        6,
+        12
+      ],
+      "required": true,
+      "records": 128,
+      "max_bases": 200000,
+      "expected_sha256": "aaf046110ee3e91294d1388e3546587a20bd5e82b09ac0cae2d670fa76524d67"
+    },
+    {
+      "role": "arab_repeat_run_record",
+      "origin": "{project}/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/provenance.json",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        5,
+        6,
+        12
+      ],
+      "required": false,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_repeat_library_record",
+      "origin": null,
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".txt",
+      "cases": [
+        5
+      ],
+      "required": false,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "tair_genome",
+      "origin": "{home}/临时/GCF_000001735.4_TAIR10.1_genomic.fna.gz",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "fasta",
+      "extension": ".fa",
+      "cases": [
+        2,
+        3,
+        6,
+        9
+      ],
+      "required": true,
+      "records": 1,
+      "max_bases": 200000
+    },
+    {
+      "role": "arab_final_models",
+      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/5.TSEBRA_intron08/models.gtf",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "gtf",
+      "extension": ".gtf",
+      "cases": [
+        7,
+        13,
+        17
+      ],
+      "required": true,
+      "limit": 1000
+    },
+    {
+      "role": "arab_prior_models",
+      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/_archive_1002_filteroff/5.TSEBRA_intron08/models.gtf",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "gtf",
+      "extension": ".gtf",
+      "cases": [
+        7,
+        17
+      ],
+      "required": true,
+      "limit": 1000
+    },
+    {
+      "role": "arab_final_busco",
+      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/5.BUSCO/BUSCO_longest/short_summary*.txt",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".txt",
+      "cases": [
+        7,
+        13,
+        17
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_prior_busco",
+      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/_archive_1002_filteroff/5.BUSCO/BUSCO_longest/short_summary*.txt",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".txt",
+      "cases": [
+        7,
+        17
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_final_provenance",
+      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/provenance.json",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        7,
+        13,
+        17
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_prior_configuration",
+      "origin": null,
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".txt",
+      "cases": [
+        7,
+        17
+      ],
+      "required": false,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_hints",
+      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/run_ETP/hintsfile.gff",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "lines",
+      "extension": ".gff",
+      "cases": [
+        8
+      ],
+      "required": true,
+      "limit": 1000
+    },
+    {
+      "role": "arab_gene_models",
+      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/5.Longest/Athaliana_longest.gff3",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "lines",
+      "extension": ".gff3",
+      "cases": [
+        9,
+        13
+      ],
+      "required": true,
+      "limit": 1000
+    },
+    {
+      "role": "arab_coding_validation",
+      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/5.Longest/coding_only_verified/validation.json",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        13
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_functional_table",
+      "origin": "{project}/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/Integration/functional_annotation.tsv",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "lines",
+      "extension": ".tsv",
+      "cases": [
+        10,
+        11,
+        18
+      ],
+      "required": true,
+      "limit": 1025
+    },
+    {
+      "role": "arab_functional_statistics",
+      "origin": "{project}/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/Integration/annotation_statistics.tsv",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".tsv",
+      "cases": [
+        10,
+        11,
+        18
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_functional_validation",
+      "origin": "{project}/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/Integration/validation.json",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        10,
+        11,
+        18
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "arab_query_proteins",
+      "origin": "{project}/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/0.Query/query.faa",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "fasta_by_query",
+      "extension": ".faa",
+      "cases": [
+        10,
+        11,
+        18
+      ],
+      "required": true,
+      "id_source_role": "arab_functional_table"
+    },
+    {
+      "role": "arab_functional_provenance",
+      "origin": "{project}/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/provenance.json",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        10,
+        11,
+        18
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "yeast_repeat_qc",
+      "origin": "{project}/yeast_test/sop/yeast_loop/stage1_repeat/runs/batch01/1.Repeat_Annotation/mask_qc.json",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        16
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "yeast_repeat_genome",
+      "origin": "{project}/yeast_test/sop/yeast_loop/stage1_repeat/runs/batch01/1.Repeat_Annotation/genome.softmasked.fa",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "fasta",
+      "extension": ".fa",
+      "cases": [
+        16
+      ],
+      "required": true,
+      "records": 1,
+      "max_bases": 200000
+    },
+    {
+      "role": "yeast_repeat_run_record",
+      "origin": "{project}/yeast_test/sop/yeast_loop/stage1_repeat/runs/batch01/1.Repeat_Annotation/provenance.json",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        16
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "siganus_agp",
+      "origin": null,
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "copy",
+      "extension": ".agp",
+      "cases": [
+        4
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "siganus_statistics",
+      "origin": null,
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        4
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "siganus_run_record",
+      "origin": null,
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        4
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "siganus_component_fai",
+      "origin": null,
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "copy",
+      "extension": ".fai",
+      "cases": [
+        4
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "refseq_gff",
+      "origin": null,
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".gff3",
+      "cases": [
+        14
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "refseq_proteins",
+      "origin": null,
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".faa",
+      "cases": [
+        14
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    }
+  ],
+  "sra": {
+    "runs": [
+      null,
+      null
+    ],
+    "spots": 1000,
+    "fastq_dump": "fastq-dump",
+    "timeout_seconds": 1800,
+    "uploaded_subset_bundle": null
+  },
+  "busco": {
+    "executable": "busco",
+    "hmmsearch": "hmmsearch",
+    "protein_fasta": null,
+    "protein_set_description": null,
+    "publication": null,
+    "lineage": null,
+    "cpu": null,
+    "memory_gib": null
+  }
+}

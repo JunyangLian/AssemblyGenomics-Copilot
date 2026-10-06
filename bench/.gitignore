@@ -1,0 +1,5 @@
+incoming/
+local_sra/
+server/prepare_config.json
+__pycache__/
+.pytest_cache/
