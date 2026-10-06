@@ -1,0 +1,20 @@
+{
+  "busco": {
+    "complete_pct": 98.1,
+    "duplicated_pct": 0.5,
+    "fragmented_pct": 0.4,
+    "lineage": "nematoda_odb10",
+    "missing_pct": 1.5,
+    "mode": "proteins",
+    "n": 3131,
+    "single_pct": 97.6
+  },
+  "coding_validation": {
+    "cds_unchanged": true,
+    "coding_genes": 19156,
+    "coding_transcripts": 19156,
+    "excluded": [],
+    "proteins_unchanged": true
+  },
+  "gene_count": 19156
+}

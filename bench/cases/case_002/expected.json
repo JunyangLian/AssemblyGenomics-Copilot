@@ -1,0 +1,11 @@
+{
+  "acceptable_verdicts": [
+    "block"
+  ],
+  "key_evidence": [
+    "integrity.json:read_completed",
+    "integrity.json:message"
+  ],
+  "pair_id": null,
+  "root_cause": "truncated_input"
+}

@@ -1,0 +1,7 @@
+{
+  "lowercase_bases": 0,
+  "n_bases": 241,
+  "repeat_bases_before_masking": 241,
+  "replacement_symbol": "N",
+  "sequence_length": 6000
+}

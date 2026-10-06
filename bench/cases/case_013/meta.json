@@ -1,0 +1,91 @@
+{
+  "benchmark_version": "v1",
+  "case_id": "case_013",
+  "exposure_evidence": [
+    "knowledge/baselines/README.md dual-layer/advisory policy and all registered taxon bands; inspect retained mechanisms against normal controls.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/annotation_metrics.json",
+      "content_sha256": "be4bb32d5774c8f62ecf29f553402421a6c28ac4fdbd13274fe5766dee8eca3e",
+      "method": "derived_summary",
+      "selection": "whole received original T3 GFF/FAA recomputation; distinct coding gene ancestors and CDS protein_id joins; no report verdict copied",
+      "size_bytes": 256,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/t3_gff.gff3.gz",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/t3_proteins.faa.gz"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/models.gff3",
+      "content_sha256": "15b8ae3b4287acacbc9f4dbec4ee020dd0f7828e4a82a96d74efa8fac9704e80",
+      "method": "feature_subset",
+      "selection": "first two complete gene blocks, with original rows and a GFF version directive",
+      "size_bytes": 2573,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/t3_gff.gff3.gz"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/proteins.faa",
+      "content_sha256": "ffacc231a1141f865bdd0ef60b348d35af73109bbf7d89fb8e6e6f2b0b722eea",
+      "method": "fasta_records",
+      "selection": "complete source proteins linked to the selected GFF CDS IDs",
+      "size_bytes": 860,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/t3_proteins.faa.gz"
+      ],
+      "text_origin": "derived"
+    }
+  ],
+  "injection_script": null,
+  "input_budget": {
+    "estimated_tokens": 4447,
+    "estimator": "visible_packet_utf8_bytes_v1 (conservative upper bound)",
+    "limit_tokens": 30000
+  },
+  "legacy_case_number": 16,
+  "pair_id": null,
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "seed": 0,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "related_guidance",
+  "source_files": [
+    {
+      "cohort": "T3",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/t3_gff.gff3.gz",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "t3_gff",
+      "sha256": "ea1a13928163800fb63453588ae79327fc10b6c7f44f4bc0f8624b209c84a6ad",
+      "size_bytes": 706994,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/临时/GCF_045282275.1_CBM3_genomic.gff.gz",
+      "source_origin_sha256": "ea1a13928163800fb63453588ae79327fc10b6c7f44f4bc0f8624b209c84a6ad"
+    },
+    {
+      "cohort": "T3",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/t3_proteins.faa.gz",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "t3_proteins",
+      "sha256": "14dc3835b0609a754f26c3e8adb4889a8c6ff18f6a696053985fc6357f0ba6b1",
+      "size_bytes": 1690895,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/临时/GCF_045282275.1_CBM3_protein.faa.gz",
+      "source_origin_sha256": "14dc3835b0609a754f26c3e8adb4889a8c6ff18f6a696053985fc6357f0ba6b1"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "1.2",
+  "stage": "structural_annotation",
+  "synthetic": false,
+  "type": "normal"
+}

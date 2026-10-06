@@ -1,0 +1,11 @@
+{
+  "answers_frozen": false,
+  "case_count": 16,
+  "context_sha256": "c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf",
+  "errors": [],
+  "max_visible_token_upper_bound": 9416,
+  "model_calls": 0,
+  "reproduction_checked": true,
+  "source_manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+  "status": "pass"
+}

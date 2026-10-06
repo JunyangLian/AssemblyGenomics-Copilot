@@ -1,0 +1,125 @@
+{
+  "benchmark_version": "v1",
+  "case_id": "case_012",
+  "exposure_evidence": [
+    "knowledge/pitfalls/README.md PIT-010: rerun gene loss mechanism; this normal control supplies genuine final count, protein BUSCO and coding closure.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/annotation_metrics.json",
+      "content_sha256": "99da3ffe3ddf67b2ba5ec26b76e3e153ab12edfe11f94636305951ba4a6bc7e2",
+      "method": "derived_summary",
+      "selection": "full original gene count and real BUSCO protein result; project real coding closure fields without source status or paths",
+      "size_bytes": 411,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_final_models.gtf",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_final_busco.txt",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_coding_validation.json"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/models.gff3",
+      "content_sha256": "ac034f610e8150bf996252d0c0bea81e0952881b4e15637debd3defda0c27ddc",
+      "method": "feature_subset",
+      "selection": "first two complete gene blocks, with original rows and a GFF version directive",
+      "size_bytes": 3595,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_final_gff.gff3"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/proteins.faa",
+      "content_sha256": "bbaa68e624e7a9febb6c908ee352f75debcbca7425c0666af390ddae71b75db7",
+      "method": "fasta_records",
+      "selection": "complete source proteins linked to the selected GFF CDS IDs",
+      "size_bytes": 398,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_final_proteins.faa"
+      ],
+      "text_origin": "derived"
+    }
+  ],
+  "injection_script": null,
+  "input_budget": {
+    "estimated_tokens": 5383,
+    "estimator": "visible_packet_utf8_bytes_v1 (conservative upper bound)",
+    "limit_tokens": 30000
+  },
+  "legacy_case_number": 15,
+  "pair_id": null,
+  "pitfall_id": "PIT-010",
+  "pressure_parent_case_id": null,
+  "seed": 0,
+  "seen_or_heldout": "seen",
+  "skill_exposure": "explicit_rule",
+  "source_files": [
+    {
+      "cohort": "T1_celegans",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_coding_validation.json",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "celegans_coding_validation",
+      "sha256": "06d2e29d096832d724861c082101f3aa41cbba116e80f30961d460beff9a61ef",
+      "size_bytes": 1174,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.Longest/coding_only_verified/validation.json",
+      "source_origin_sha256": "06d2e29d096832d724861c082101f3aa41cbba116e80f30961d460beff9a61ef"
+    },
+    {
+      "cohort": "T1_celegans",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_final_busco.txt",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "celegans_final_busco",
+      "sha256": "f76e7775c4775a11c585081794c526f49450d46bb753073eeb0b52bbfe6cac55",
+      "size_bytes": 708,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.BUSCO/BUSCO_longest/short_summary.specific.nematoda_odb10.BUSCO_longest.txt",
+      "source_origin_sha256": "f76e7775c4775a11c585081794c526f49450d46bb753073eeb0b52bbfe6cac55"
+    },
+    {
+      "cohort": "T1_celegans",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_final_gff.gff3",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "celegans_final_gff",
+      "sha256": "50c8fde018063d0fd6520d965170a9c30b66eb1dd47190b9e0be32470f4136ce",
+      "size_bytes": 105817,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.Longest/Celegans_longest.gff3",
+      "source_origin_sha256": "a1e986b175fab718b822231151a3e1603238cad7dabf52bb344a334b3a93a92d"
+    },
+    {
+      "cohort": "T1_celegans",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_final_models.gtf",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "celegans_final_models",
+      "sha256": "f7718d7930f872e685b839c251b1bff214cdb9a9ccc87d97c81ba854db406225",
+      "size_bytes": 83226,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.TSEBRA_intron08/models.gtf",
+      "source_origin_sha256": "c1403b26e400af49217f6cca51494d5497ff83caf75c3a80e925feea00d49da3"
+    },
+    {
+      "cohort": "T1_celegans",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/celegans_final_proteins.faa",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "celegans_final_proteins",
+      "sha256": "ac4beb7bb62b1c27a2895752b2040e61ad08c2171f7357c914d6b99f97db1509",
+      "size_bytes": 32404,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.Longest/Celegans_longest.pep.fa",
+      "source_origin_sha256": "e60ef0732aa11d962fc45011a47391bd8e2265cffda2895fa00a38962de2fb32"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "1.2",
+  "stage": "structural_annotation",
+  "synthetic": false,
+  "type": "normal"
+}

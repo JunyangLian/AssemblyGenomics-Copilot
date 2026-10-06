@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "pass"
+  ],
+  "key_evidence": [
+    "annotation_metrics.json:coding_genes",
+    "annotation_metrics.json:cds_protein_ids_without_sequence",
+    "annotation_metrics.json:duplicate_protein_ids"
+  ],
+  "pair_id": null,
+  "root_cause": "none"
+}

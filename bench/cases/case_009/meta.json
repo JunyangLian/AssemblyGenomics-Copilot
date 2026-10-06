@@ -1,0 +1,91 @@
+{
+  "benchmark_version": "v1",
+  "case_id": "case_009",
+  "exposure_evidence": [
+    "SKILL.md introduction mentions sparse functional coverage; no scenario-specific coverage threshold.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/annotation_statistics.json",
+      "content_sha256": "08e4aed75d71442a21e1ee414e801a15a84aeb50a2c52298a9edecf79a02abf3",
+      "method": "derived_summary",
+      "selection": "recompute joined union of seven flags using exact ID matches; same denominator and coverage in both P2 cases",
+      "size_bytes": 172,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_functional_table.tsv",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_query_proteins.faa"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/functional.tsv",
+      "content_sha256": "310daffcb8a9b1c3f5e0ea1429f4e7a0b6d686392b604fffe60340939063cca8",
+      "method": "feature_subset",
+      "selection": "first 16 real rows, query plus original seven flags; keep row 1 and clear all flags in rows 2-16",
+      "size_bytes": 444,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_functional_table.tsv"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/query.faa",
+      "content_sha256": "5cbc6512aa72b6f8767e28838a766a5d69f96921ef4c34726da18cd8a2b216cb",
+      "method": "fasta_records",
+      "selection": "first 16 query IDs in real table; complete matching protein sequences, unchanged",
+      "size_bytes": 6888,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_query_proteins.faa"
+      ],
+      "text_origin": "derived"
+    }
+  ],
+  "injection_script": "bench/inject/functional_tables.py",
+  "input_budget": {
+    "estimated_tokens": 8473,
+    "estimator": "visible_packet_utf8_bytes_v1 (conservative upper bound)",
+    "limit_tokens": 30000
+  },
+  "legacy_case_number": 12,
+  "pair_id": "P2",
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "seed": 0,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "related_guidance",
+  "source_files": [
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_functional_table.tsv",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_functional_table",
+      "sha256": "3c07df0cf68befeba87e191e564fe6d12c8bd5f03dd19066e3bbd64462182dca",
+      "size_bytes": 90097,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/Integration/functional_annotation.tsv",
+      "source_origin_sha256": "b56c7acdfeaf1ec7d9ac50c81076b7f676227ac7b5685ece86837492f81c6f04"
+    },
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_query_proteins.faa",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_query_proteins",
+      "sha256": "3359bb24a13420f8e8fa105d9a07147b440a2352cc4876b081dc7e7f9f1e2224",
+      "size_bytes": 474822,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/0.Query/query.faa",
+      "source_origin_sha256": "4a9a2a936a5cd5911c5db09d5c38bbb5567213a8c64cc8c26f447b007174bf21"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "1.2",
+  "stage": "functional_annotation",
+  "synthetic": false,
+  "type": "fault"
+}

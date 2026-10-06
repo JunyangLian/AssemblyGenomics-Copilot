@@ -1,0 +1,259 @@
+{
+  "cases": [
+    {
+      "case_id": "case_001",
+      "expected_sha256": "def495e1ca3d9b997b7435fdad7cfc44b53f2f635fe7474c633db7b097990bbd",
+      "pair_id": null,
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "explicit_rule",
+      "stage": "input",
+      "task_artifacts": {
+        "artifacts/read_statistics.json": "724b844517f0caafa82e18a04d304d95fa107142c8283c0d880b36f519655615",
+        "artifacts/sample_1.fastq": "4ad45b59c0d3b59c46692f32f56cb864ad32aad14e9c96fce831cfa772eaf790",
+        "artifacts/sample_2.fastq": "0efbd0be0efb6516f9e3de411e9cff294301a70318aa7ddad0017a109a11f61d",
+        "task.md": "d029e16fa373c0a57c4c2a860288fb9cc63bd27dd0dc6dd0b110640327a313a4"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_002",
+      "expected_sha256": "1ee18be206b5593812bfd97018f0dc6654f15111e73db15fcc8361af59d4c976",
+      "pair_id": null,
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "not_exposed",
+      "stage": "input",
+      "task_artifacts": {
+        "artifacts/genome.fa.gz": "90766201f1d6975388ea9e64b4c5e481b08c48e085f9573fcb70cfa2fef1914e",
+        "artifacts/integrity.json": "dd343825a2f24bc23a32398eacde8f164d15983946fd79cb1632b61008899081",
+        "task.md": "f73b44c57aa98a734bd6b731f81425d7ea25b6b4bc78b6f98778250b66d9d3c8"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_003",
+      "expected_sha256": "0a82c209f82d7ea46dd4129c524e0ef248617de63c41d9df10054a9360d7178e",
+      "pair_id": null,
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "related_guidance",
+      "stage": "hic",
+      "task_artifacts": {
+        "artifacts/assembly.fa": "cf4daba301c6b85736530dbe937c1ad7aae73aeb81dc769e1aa8ca2f096f27da",
+        "artifacts/layout.agp": "36a296d6f37f6ae0d018d3299eaa39cc1e5f7b259deef70258490b3191569a48",
+        "artifacts/lengths.json": "6fc096347310beef7e15ab41d2ae0f303ea69a19c6f157d150e9fd4d5b5addeb",
+        "task.md": "a762e6508ec604b26ea12f9bd0ef8fca71fd55101f953c08095d2804ab253963"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_004",
+      "expected_sha256": "0f3cbe03c16d0543cfe616263ecc546113efc04ab783038fabacfe877456ddc9",
+      "pair_id": null,
+      "pitfall_id": "PIT-001",
+      "seen_or_heldout": "seen",
+      "skill_exposure": "explicit_rule",
+      "stage": "repeat_annotation",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "1b4a16e852f3d42adacf7997d364ccd9ceca8e13d4647138adfba57357e33bea",
+        "artifacts/versions.json": "eab687016b75d2ed12448abfa90c069799cc9c260249e362f2332e48cb44e127",
+        "task.md": "b3de5291955d9f0650d8edf85ef46bb0bc0346a77c81dcb20e0b9f6a6e755bd0"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_005",
+      "expected_sha256": "e6917d67cbea805b35b23cc264fd0851021012791ad6b7c7902c892ad47e55d2",
+      "pair_id": null,
+      "pitfall_id": "PIT-006",
+      "seen_or_heldout": "seen",
+      "skill_exposure": "explicit_rule",
+      "stage": "repeat_annotation",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "b9f9f955ce6a3068b06a18a1be2d565e9b093dafec2f34604320dad270f7f736",
+        "artifacts/sequence.fa": "f5e9cdcd009b82a34273a8cfcb73baa958d292e8f3e9787bd470a9358a406122",
+        "task.md": "3600cf67c7e3d4e10aa12aa57e49830ce12a8229a7996fc63e48eb07b0c37f1a"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_006",
+      "expected_sha256": "319cd69b3adb90ab22bfb264c9fb445b3772ef8146bd255fcd9e59e135fec78c",
+      "pair_id": null,
+      "pitfall_id": "PIT-010",
+      "seen_or_heldout": "seen",
+      "skill_exposure": "explicit_rule",
+      "stage": "structural_annotation",
+      "task_artifacts": {
+        "artifacts/baseline.gtf": "8a8c95b4d0caf7392d0489fc46dc5cd630979a36371ffddd5d79bd554a92ecfe",
+        "artifacts/baseline_metrics.json": "20afaf22b7254bbbbc46f1fcc47e6aab67e0f22d34abaa8aa17f04d7648998f7",
+        "artifacts/delivery.gtf": "f3e0a432b07106dd5f1f75ac37c370cd8231d418bbcfbb39bb3b9b2806befbc5",
+        "artifacts/delivery_metrics.json": "a37d80bd384b9119eaf6b1df58b021a8d4c04d114a72bc15dcc52931ee7e89b0",
+        "task.md": "6cc2657f5c1da20188548a0d1f1d9dfca8723400abe3d5b3932ac4487e0f3ec0"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_007",
+      "expected_sha256": "65cc5729985ec7d531109f94a6715e71e9ad7117a852bb13e1ee4573fc2b417f",
+      "pair_id": null,
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "related_guidance",
+      "stage": "structural_annotation",
+      "task_artifacts": {
+        "artifacts/hints.gff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "artifacts/run_inputs.json": "82e8c24cc49c527f5c8097d0c73525ba4e7b3abfa145607723689641ba3221ea",
+        "task.md": "334adab31cd392dd306a322142ae413bea210f5a11d2a8a80055731914151106"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_008",
+      "expected_sha256": "2fbb1a1c0e496301b4a00e7570255dc8ec1cfa85286856ab302060ba0b3fc8e5",
+      "pair_id": null,
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "related_guidance",
+      "stage": "structural_annotation",
+      "task_artifacts": {
+        "artifacts/models.gff3": "87e56b42db54fea750f1bb3552438629b812a6ff74158aaca0f2e5c85bef48c2",
+        "artifacts/reference.fa": "8e60c02ea139876e147a31b2e697e8b109268099273a4b8fe35334aefdff2c83",
+        "artifacts/sequence_names.json": "6ac7a4e20b3aeeb3e819ae9306fc284b0f742588d7b06d4bf4d361c64263e700",
+        "task.md": "87b3a0c6a24fa221315cf9e6eb5148b10f51a9234b8735432ada5900c7a42801"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_009",
+      "expected_sha256": "56dd9fcd5d96071f1d50df6ccaf2556a2c3e1ccd1b0214ef51bbda8772c39364",
+      "pair_id": "P2",
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "related_guidance",
+      "stage": "functional_annotation",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "08e4aed75d71442a21e1ee414e801a15a84aeb50a2c52298a9edecf79a02abf3",
+        "artifacts/functional.tsv": "310daffcb8a9b1c3f5e0ea1429f4e7a0b6d686392b604fffe60340939063cca8",
+        "artifacts/query.faa": "5cbc6512aa72b6f8767e28838a766a5d69f96921ef4c34726da18cd8a2b216cb",
+        "task.md": "d862a5ce25c922729dbcd3c3450bb8942f9dcf3896e301368f026dc94837865f"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_010",
+      "expected_sha256": "88280ac458a9be9cda7f3a10d2f38ffb66b9af527fd20ea964f79011ff736db3",
+      "pair_id": "P2",
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "not_exposed",
+      "stage": "functional_annotation",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "08e4aed75d71442a21e1ee414e801a15a84aeb50a2c52298a9edecf79a02abf3",
+        "artifacts/functional.tsv": "a8dc6d4af555793f205a9f66f8fc6f923fb4fd631b76fc8f399ea42ae604387f",
+        "artifacts/query.faa": "5cbc6512aa72b6f8767e28838a766a5d69f96921ef4c34726da18cd8a2b216cb",
+        "task.md": "d862a5ce25c922729dbcd3c3450bb8942f9dcf3896e301368f026dc94837865f"
+      },
+      "type": "fault"
+    },
+    {
+      "case_id": "case_011",
+      "expected_sha256": "4b364c8339b88ad0dee1ce7013d083b00b980f009743c4d02abc6b434f18dd3e",
+      "pair_id": null,
+      "pitfall_id": "PIT-006",
+      "seen_or_heldout": "seen",
+      "skill_exposure": "explicit_rule",
+      "stage": "repeat_annotation",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "1b4a16e852f3d42adacf7997d364ccd9ceca8e13d4647138adfba57357e33bea",
+        "artifacts/versions.json": "52a9bfd71c6a2901ab61c96b8a8b36aec638d01465e7b7d60e7a5d84e25b9a31",
+        "task.md": "b3de5291955d9f0650d8edf85ef46bb0bc0346a77c81dcb20e0b9f6a6e755bd0"
+      },
+      "type": "normal"
+    },
+    {
+      "case_id": "case_012",
+      "expected_sha256": "db03efc55d6ee6d24f0f85df8ec872faad5ff9d42a8e416e934b4a5f09bc6dfd",
+      "pair_id": null,
+      "pitfall_id": "PIT-010",
+      "seen_or_heldout": "seen",
+      "skill_exposure": "explicit_rule",
+      "stage": "structural_annotation",
+      "task_artifacts": {
+        "artifacts/annotation_metrics.json": "99da3ffe3ddf67b2ba5ec26b76e3e153ab12edfe11f94636305951ba4a6bc7e2",
+        "artifacts/models.gff3": "ac034f610e8150bf996252d0c0bea81e0952881b4e15637debd3defda0c27ddc",
+        "artifacts/proteins.faa": "bbaa68e624e7a9febb6c908ee352f75debcbca7425c0666af390ddae71b75db7",
+        "task.md": "917ab1a7892d16b57189e22cb0badf83751912dd9cb413cee7171b1395dbe18d"
+      },
+      "type": "normal"
+    },
+    {
+      "case_id": "case_013",
+      "expected_sha256": "11f10dd12e953947fc9a5732a6cf175249fd5a8c16c0236044edba175fc08704",
+      "pair_id": null,
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "related_guidance",
+      "stage": "structural_annotation",
+      "task_artifacts": {
+        "artifacts/annotation_metrics.json": "be4bb32d5774c8f62ecf29f553402421a6c28ac4fdbd13274fe5766dee8eca3e",
+        "artifacts/models.gff3": "15b8ae3b4287acacbc9f4dbec4ee020dd0f7828e4a82a96d74efa8fac9704e80",
+        "artifacts/proteins.faa": "ffacc231a1141f865bdd0ef60b348d35af73109bbf7d89fb8e6e6f2b0b722eea",
+        "task.md": "aa1529822f0233d86b91e6ffa86365aba234e47017adb43af96e63a823597778"
+      },
+      "type": "normal"
+    },
+    {
+      "case_id": "case_014",
+      "expected_sha256": "e9f8d1b9f26a798fc4fed592ea1b9f42849f504f12cecf9ec2ab353d5a108a05",
+      "pair_id": null,
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "related_guidance",
+      "stage": "repeat_annotation",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "44160338b627d9ec1341e78faf6231a799d1620389c28e780feb2af67c4ac3c6",
+        "artifacts/versions.json": "52a9bfd71c6a2901ab61c96b8a8b36aec638d01465e7b7d60e7a5d84e25b9a31",
+        "task.md": "e91f1fd11ae092dfcdb0b1b5d0f6ea94c6185c65e87dbd9775df84ef8efe3862"
+      },
+      "type": "hard_negative"
+    },
+    {
+      "case_id": "case_015",
+      "expected_sha256": "319cd69b3adb90ab22bfb264c9fb445b3772ef8146bd255fcd9e59e135fec78c",
+      "pair_id": null,
+      "pitfall_id": "PIT-010",
+      "seen_or_heldout": "seen",
+      "skill_exposure": "explicit_rule",
+      "stage": "structural_annotation",
+      "task_artifacts": {
+        "artifacts/baseline.gtf": "8a8c95b4d0caf7392d0489fc46dc5cd630979a36371ffddd5d79bd554a92ecfe",
+        "artifacts/baseline_metrics.json": "20afaf22b7254bbbbc46f1fcc47e6aab67e0f22d34abaa8aa17f04d7648998f7",
+        "artifacts/delivery.gtf": "f3e0a432b07106dd5f1f75ac37c370cd8231d418bbcfbb39bb3b9b2806befbc5",
+        "artifacts/delivery_metrics.json": "a37d80bd384b9119eaf6b1df58b021a8d4c04d114a72bc15dcc52931ee7e89b0",
+        "task.md": "2d1987172e024c6e28c6914040367c72b082676add5dfdf82745a6e6271d16be"
+      },
+      "type": "pressure"
+    },
+    {
+      "case_id": "case_016",
+      "expected_sha256": "8cf607d377e1ff4182d15dc5c1c6347b6414e55dd94e83d0c6b3d86f2f624b3e",
+      "pair_id": null,
+      "pitfall_id": null,
+      "seen_or_heldout": "held-out",
+      "skill_exposure": "related_guidance",
+      "stage": "functional_annotation",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "08e4aed75d71442a21e1ee414e801a15a84aeb50a2c52298a9edecf79a02abf3",
+        "artifacts/functional.tsv": "310daffcb8a9b1c3f5e0ea1429f4e7a0b6d686392b604fffe60340939063cca8",
+        "artifacts/query.faa": "5cbc6512aa72b6f8767e28838a766a5d69f96921ef4c34726da18cd8a2b216cb",
+        "task.md": "8362b67eff3a958a4ae3b5af855a594e1f8e760facfaca8c241dfd75ea8e8ecb"
+      },
+      "type": "pressure"
+    }
+  ],
+  "context_sha256": "c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf",
+  "source_manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+  "version": "v1-draft"
+}

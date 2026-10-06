@@ -1,6 +1,6 @@
 # AssemblyGenomics-Skill bench v1
 
-阶段 1 修订草案（规格 1.2），2026-10-06。阶段 0 与进入阶段 1 已由用户确认；本文件的具体规格、三份 schema 和预注册仍待本阶段审核。当前没有题库、标准答案、冻结清单或模型运行结果。
+规格 1.2，2026-10-06。阶段 2 已获用户授权，16 道题库及拟定答案已构造并通过本地校验，等待逐题审核与 Linux 复现回传。标准答案尚未冻结，没有任何模型调用或运行结果；预注册数值门槛仍为空。
 
 ## 目的与范围
 
@@ -15,8 +15,8 @@ v1 暂定 16 题，仅保留 P2 一个症状相同但根因不同的配对、两
 | 阶段 | 交付与继续条件 |
 |---|---|
 | 0 | 只读盘点；已完成，服务器来源记录按下节勘误 |
-| 1（当前） | 本 README、三份 schema、PREREGISTRATION、离线来源准备工具；门槛空白；审核后停下 |
-| 2 | 注入脚本、经确认的题单、validate_cases.py、REVIEW_SHEET.csv；逐题审核前停下 |
+| 1 | README、三份 schema、PREREGISTRATION、离线来源准备工具；已按审核意见修订，门槛空白 |
+| 2（当前） | 注入脚本、16 题草案、validate_cases.py、REVIEW_SHEET.csv、共用 C 包、服务器复现包；停下等逐题审核 |
 | 2 冻结 | 用户逐题确认后，FROZEN.md 写每个 expected.json 的 SHA-256，并单独提交冻结；之后才允许任何模型调用，包括 mock |
 | 3 | harness 与 A/B/C mock 跑通；提供实际 mock 调用数、token 估算及按用户模型列表计算的费用；等待真实 API 授权 |
 | 4 | 评分与报告，按事先填写的门槛检验 H1–H3；结束后停下 |
@@ -25,7 +25,7 @@ v1 暂定 16 题，仅保留 P2 一个症状相同但根因不同的配对、两
 
 ## 来源快照与阶段 0 勘误
 
-用户已将服务器快照移至 /home/Lianjunyang/AssemblyGenomics-Skill/bench/bench_sources/（报告约 480MB，含 MANIFEST.txt）。这是来源记录，当前 Windows 会话尚未直接访问或核验服务器文件；大小、成功复制及服务器工具可用性不写成已在本会话验证。
+用户已将服务器快照移至 /home/Lianjunyang/AssemblyGenomics-Skill/bench/bench_sources/（报告约 480MB，含 MANIFEST.txt）。服务器 r3 最小包已回传并完成一次 Windows 验收：34 项来源、46 个 payload、4,166,362 B，详情见 SOURCE_REVIEW.md。未直接连接服务器原目录；不把完整快照大小及服务器工具能力写成在本会话实测。
 
 - 拟南芥原路径根：/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/。段 1 为 runs/arab_batch01/1.Repeat_Annotation/，不是 stage1_repeat/runs/；段 2/3/4 位于 stage2_rnaseq、stage3_braker、stage4_functional 对应目录。
 - 线虫原路径根：/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/。段 1 同样为 runs/celegans_batch01/1.Repeat_Annotation/。
@@ -40,6 +40,8 @@ v1 暂定 16 题，仅保留 P2 一个症状相同但根因不同的配对、两
 产物来源严格限于 T1_arabidopsis、T1_celegans、T1_yeast、T3；不读取其他项目作为取材，不新增物种，不下载数据，不重跑 BUSCO/组装/注释。服务器脚本以 cohort 和原路径白名单核对，meta.source_files 必须记录 cohort；T3 只允许既有批次的 GFF/FAA 及私有身份核验报告。此限制替代上一版的 SRA 下载、褐篮子鱼与油菜准备要求。
 
 synthetic=true 只表示真实材料上的小子集/格式构造，不免除 SHA 来源义务。case_001 优先从 T1 酵母已验证的 WT_Rep1/2 原 FASTQ 截取，核对原 RNA-seq provenance 的输入哈希及各样本双端标识。2026-10-06 用户提供当前服务器目录清单，确认四个原读段的路径与大小；完整 SHA、历史 rnaseq.sha256 和 RNA-seq provenance 绑定仍由服务器脚本核验，本地验收后才能使用。缺失或不一致时报缺口，不重新下载。case_002 由 T1 真实 FASTA 子集确定性压缩后截断；case_003 用 T1 FASTA 子集构造 AGP 一致性题，明确 synthetic，不声称存在真实 Hi-C 产物。
+
+当前阶段 2 交付、审核注意事项与服务器复现/回传命令见 [PHASE2_REPORT.md](PHASE2_REPORT.md)。本地入口为 `python bench/build_context.py`、`python bench/build_cases.py`、`python bench/validate_cases.py`；已通过验收的来源包须保留在本地。构建不会覆盖人工 CSV 意见；FROZEN.md 存在后拒绝覆盖正式题库与知识包。
 
 case_001 的原文件目录固定为 ~/AssemblyGenomics-Skill/yeast_test/0.Raw_Data/rnaseq/，下表大小来自用户的当前 ls 输出，不代表已经完成 SHA 核验：
 
@@ -81,7 +83,7 @@ bench/
   reports/<run_id>.md              # 阶段 4
 ~~~
 
-模型输入仅来自 task.md 和显式白名单内的 artifacts 文本，加上 B/C 的系统提示、输出 schema，以及 C 的共用知识包。不递归打包 case 目录；不跟随 symlink；不包含文件系统绝对路径、真实归档目录名或原服务器目录列表。v1 不传可供模型自行打开的文件路径。二进制 FASTA.gz/BAM/hic 只能以真实子集文本或确定性标准工具诊断的中性文本视图提供，不能假定纯文本模型能直接读取二进制。
+模型输入仅来自 task.md 和显式白名单内的 artifacts 文本，加上 B/C 的系统提示、输出 schema，以及 C 的共用知识包。不递归打包 case 目录；不跟随 symlink；不包含文件系统绝对路径、真实归档目录名或原服务器目录列表。v1 不传可供模型自行打开的文件路径。visible_input.py 是唯一输入白名单。case_002 的 gzip 文件作为磁盘产物保留，但只给模型文件名/字节数和 integrity.json 中实际 Python 读取诊断，不提供 base64，不假定纯文本模型能读取二进制。
 
 expected.json、meta.json、REVIEW_SHEET、FROZEN、预注册、来源清单、注入脚本、构建日志、运行/评分结果都不得进入 B/C 请求，也不得进入 A 的判定逻辑。评分器在输出完成后才读取标准答案。manifest 与 provenance 的原始副本属于私有来源；若需要展示某个版本或配置字段，只把该事实抽取到单独 artifact，记录抽取方式，不传完整私有文档。
 
@@ -105,20 +107,20 @@ exposure_evidence 记录原文件/位置、实际 C 包位置或未暴露审查�
 
 | 新 ID | 最初题号 | stage | type | 轴一草案 | T1/T3 取材/构造目标 |
 |---|---|---|---|---|---|
-| case_001 | 1 | input | fault | held-out | T1 酵母两真实样本原 FASTQ 子集错配；路径/大小已确认，SHA 待核验 |
+| case_001 | 1 | input | fault | held-out | T1 酵母两真实样本原 FASTQ 子集错配；来源已验收 |
 | case_002 | 2 | input | fault | held-out | T1 FASTA 子集压缩后截断 |
 | case_003 | 5 | hic | fault | held-out | T1 FASTA 子集构造 AGP 坐标故障，synthetic |
 | case_004 | 7 | repeat_annotation | fault | seen / PIT-001 | T1 库/日志证据中的 Dfam 版本问题 |
 | case_005 | 8 | repeat_annotation | fault | seen / PIT-006 | T1 真实小写重复区改 N |
-| case_006 | 9 | structural_annotation | fault | seen / PIT-009（相关 PIT-010） | T1 拟南芥真实 TSEBRA 事故与终稿 |
+| case_006 | 9 | structural_annotation | fault | seen / PIT-010（相关 PIT-002/009） | T1 拟南芥真实 TSEBRA 事故与终稿；不推断精确参数根因 |
 | case_007 | 10 | structural_annotation | fault | held-out | T1 hints 清空，保留证据接续记录 |
 | case_008 | 11 | structural_annotation | fault | held-out（相关 PIT-008） | T1 配套 GFF/FASTA 子集 seqid 改名 |
 | case_009 | 12 | functional_annotation | fault | held-out | T1 拟南芥 ID 对齐但可用功能内容稀少，P2 |
 | case_010 | 13 | functional_annotation | fault | held-out | T1 原有命中因 ID 格式无法连接，P2 |
 | case_011 | 14 | repeat_annotation | normal | seen / PIT-006 | T1 拟南芥段 1；不用酵母来源 |
-| case_012 | 15 | structural_annotation | normal | seen / PIT-009 | T1 线虫终稿结构注释 |
+| case_012 | 15 | structural_annotation | normal | seen / PIT-010 | T1 线虫终稿结构注释 |
 | case_013 | 16 | structural_annotation | normal | held-out | 现有 T3 一个完整已验证 GFF/FAA 对 |
-| case_014 | 18 | repeat_annotation | hard_negative | held-out | T1 酵母真实低重复结果，文献只支持正常范围 |
+| case_014 | 18 | repeat_annotation | hard_negative | held-out | T1 酵母真实低重复结果，文献只支持物种背景，不给全部重复的精确区间 |
 | case_015 | 19 | structural_annotation | pressure | 继承 case_006 | artifacts 不变，只加施压语句 |
 | case_016 | 20 | functional_annotation | pressure | 继承 case_009 | artifacts 不变，只加施压语句 |
 

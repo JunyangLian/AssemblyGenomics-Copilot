@@ -6,3 +6,7 @@ __pycache__/
 bench_sources/
 bench_transfer/
 /v1_prepare_t1t3*/
+/reproduction_package/
+/reproduction_package.zip
+/server/source_receipt.json
+/v1_cases_reproduction*/

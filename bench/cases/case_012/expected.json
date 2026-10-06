@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "pass"
+  ],
+  "key_evidence": [
+    "annotation_metrics.json:gene_count",
+    "annotation_metrics.json:busco.complete_pct",
+    "annotation_metrics.json:coding_validation.excluded"
+  ],
+  "pair_id": null,
+  "root_cause": "none"
+}

@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "block"
+  ],
+  "key_evidence": [
+    "annotation_statistics.json:annotation_coverage_pct",
+    "query.faa:1",
+    "functional.tsv:3"
+  ],
+  "pair_id": "P2",
+  "root_cause": "id_mismatch"
+}

@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "warn",
+    "rollback"
+  ],
+  "key_evidence": [
+    "versions.json:database_version",
+    "task.md:1"
+  ],
+  "pair_id": null,
+  "root_cause": "outdated_database"
+}

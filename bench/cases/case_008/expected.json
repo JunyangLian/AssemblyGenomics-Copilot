@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "block"
+  ],
+  "key_evidence": [
+    "reference.fa:1",
+    "models.gff3:2",
+    "sequence_names.json:common_sequence_names"
+  ],
+  "pair_id": null,
+  "root_cause": "seqid_mismatch"
+}

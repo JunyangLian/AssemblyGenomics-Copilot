@@ -1,0 +1,13 @@
+{
+  "acceptable_verdicts": [
+    "pass",
+    "warn"
+  ],
+  "key_evidence": [
+    "mask_metrics.json:lowercase_pct",
+    "mask_metrics.json:sequence_equal_ignorecase",
+    "versions.json:database_version"
+  ],
+  "pair_id": null,
+  "root_cause": "none"
+}

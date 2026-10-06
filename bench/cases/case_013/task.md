@@ -1,0 +1,1 @@
+审核 Nakaseomyces bracarensis（酵母纲）参考注释 GCF_045282275.1（CBM3）的 GFF/蛋白交付。annotation_metrics.json 根据完整 GFF 与 FAA 计算；models.gff3 与 proteins.faa 展示两个完整基因及对应蛋白。当前审核针对编码计数、ID 接续和蛋白内容一致性，不评估新的组装。请判断是否可以继续使用，并说明依据及下一步。

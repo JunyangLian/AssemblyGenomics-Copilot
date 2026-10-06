@@ -1,0 +1,116 @@
+{
+  "benchmark_version": "v1",
+  "case_id": "case_014",
+  "exposure_evidence": [
+    "knowledge/baselines/README.md dual-layer/advisory policy and all registered taxon bands; inspect retained mechanisms against normal controls.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/mask_metrics.json",
+      "content_sha256": "44160338b627d9ec1341e78faf6231a799d1620389c28e780feb2af67c4ac3c6",
+      "method": "derived_summary",
+      "selection": "whole-run real repeat QC invariants and percentages; omit status/rules; do not substitute subset percentages",
+      "size_bytes": 128,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_repeat_qc.json"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/versions.json",
+      "content_sha256": "52a9bfd71c6a2901ab61c96b8a8b36aec638d01465e7b7d60e7a5d84e25b9a31",
+      "method": "derived_summary",
+      "selection": "actual user run tool and database versions only",
+      "size_bytes": 152,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_repeat_run_record.json"
+      ],
+      "text_origin": "derived"
+    }
+  ],
+  "injection_script": null,
+  "input_budget": {
+    "estimated_tokens": 920,
+    "estimator": "visible_packet_utf8_bytes_v1 (conservative upper bound)",
+    "limit_tokens": 30000
+  },
+  "legacy_case_number": 18,
+  "own_run": {
+    "command": null,
+    "command_missing_reason": "Existing T1 provenance records settings, versions and input hashes but not the complete executed command. No rerun or inferred command.",
+    "command_status": "not_recorded",
+    "input_sha256": [
+      "1ec41f951b35f2752d5065edeafe6972455609d4383fb36dae12519a60b27a73",
+      "fe42735d3e6242f8c40b457a232940e34ef15eb4502717e54a34ed118face4c1"
+    ],
+    "output_source_paths": [
+      "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_repeat_qc.json"
+    ],
+    "run_record_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_repeat_run_record.json",
+    "run_record_sha256": "84a38c95688b01215ef23bc9241dcf3afb42a36c1e96006504384c391a9f5ea2",
+    "runner": "user",
+    "tool_versions": {
+      "database": "Dfam",
+      "database_version": "3.9",
+      "repeatmasker": "RepeatMasker version 4.2.2",
+      "repeatmodeler": "RepeatModeler version 2.0.7"
+    }
+  },
+  "pair_id": null,
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "publication_sources": [
+    {
+      "citation": "Carr M, Bensasson D, Bergman CM (2012). Evolutionary Genomics of Transposable Elements in Saccharomyces cerevisiae. PLOS ONE 7(11):e50978.",
+      "doi": "10.1371/journal.pone.0050978",
+      "locator": "Results: Re-evaluation of TE Content and Copy Number in the S288c Reference Genome, first paragraph",
+      "reported_values": [
+        {
+          "context": "S288c reference; 406829 bp recognizable Ty. Not all RepeatModeler/RepeatMasker repeats. Supports compact low-TE background, not an exact normal interval for 6.333%.",
+          "metric": "recognizable Ty element coverage",
+          "unit": "percent",
+          "value": 3.35
+        }
+      ],
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0050978"
+    }
+  ],
+  "seed": 0,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "related_guidance",
+  "source_files": [
+    {
+      "cohort": "T1_yeast",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_repeat_qc.json",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "yeast_repeat_qc",
+      "sha256": "ddb9496f88d0817ce52337f69a8cb007adf15b10786673b9a012f7f5f195d065",
+      "size_bytes": 491,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/yeast_test/sop/yeast_loop/stage1_repeat/runs/batch01/1.Repeat_Annotation/mask_qc.json",
+      "source_origin_sha256": "ddb9496f88d0817ce52337f69a8cb007adf15b10786673b9a012f7f5f195d065"
+    },
+    {
+      "cohort": "T1_yeast",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_repeat_run_record.json",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "yeast_repeat_run_record",
+      "sha256": "84a38c95688b01215ef23bc9241dcf3afb42a36c1e96006504384c391a9f5ea2",
+      "size_bytes": 2127,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/yeast_test/sop/yeast_loop/stage1_repeat/runs/batch01/1.Repeat_Annotation/provenance.json",
+      "source_origin_sha256": "84a38c95688b01215ef23bc9241dcf3afb42a36c1e96006504384c391a9f5ea2"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "1.2",
+  "stage": "repeat_annotation",
+  "synthetic": false,
+  "type": "hard_negative"
+}

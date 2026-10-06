@@ -1,0 +1,11 @@
+{
+  "ambiguous_residues": 0,
+  "cds_protein_ids_without_sequence": 0,
+  "coding_genes": 5179,
+  "duplicate_protein_ids": 0,
+  "gene_loci": 5179,
+  "internal_stops": 0,
+  "median_protein_length_aa": 424,
+  "proteins": 5179,
+  "proteins_without_cds_id": 0
+}

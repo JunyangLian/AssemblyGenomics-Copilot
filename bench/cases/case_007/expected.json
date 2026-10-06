@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "rollback"
+  ],
+  "key_evidence": [
+    "run_inputs.json:evidence_mode",
+    "run_inputs.json:hints_entries",
+    "hints.gff:empty"
+  ],
+  "pair_id": null,
+  "root_cause": "evidence_not_used"
+}

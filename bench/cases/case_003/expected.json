@@ -1,0 +1,11 @@
+{
+  "acceptable_verdicts": [
+    "block"
+  ],
+  "key_evidence": [
+    "lengths.json:fasta_lengths",
+    "layout.agp:1"
+  ],
+  "pair_id": null,
+  "root_cause": "agp_inconsistent"
+}
