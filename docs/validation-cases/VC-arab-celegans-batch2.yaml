@@ -1,0 +1,73 @@
+# VC-005~011：拟南芥+线虫 T1 判定点（第二批，2026-10-06 注册）
+# 来源：use-case-004/005 实录；全部为已发生事件的事后预标注。
+# ⚠ status=draft_pending_review：预期判定待领域确认（用户复核后逐条转 passed）——T2 铁律：判定先行。
+- id: VC-005
+  tier: stage
+  case: arab_batch01
+  stage: tsebra_rerun
+  input: "TSEBRA 重跑（intron0.8+filter）12,637 基因 vs raw 合并 27,645（TAIR10 真值 27,655）"
+  expected_verdict: gap
+  actual_verdict: gap
+  actual_action: "BUSCO 76.7% fail-fast 拦截 → 三层单因素归因（filter/重跑/直连）→ tsebra_rerun=false → 97.9%"
+  status: draft_pending_review
+  evidence: "use-case-004；PIT-009/010"
+- id: VC-006
+  tier: stage
+  case: celegans_batch01
+  stage: busco_threshold
+  input: "重跑+filter 配置下 BUSCO 90.1%，阈值 95→90 放行（v1）"
+  expected_verdict: warn
+  actual_verdict: warn
+  actual_action: "事后判定为过早放行——先归因（PIT-009/010 自伤）再调带；redo 直连后 98.1% 过 95"
+  status: draft_pending_review
+  evidence: "use-case-005 §教训"
+- id: VC-007
+  tier: stage
+  case: arab_batch01
+  stage: longest_export
+  input: "导出校验只验 GFF3↔序列一致，不验基因数保持（AGAT 静默丢基因将全绿通过）"
+  expected_verdict: gap
+  actual_verdict: gap
+  actual_action: "驱动新增基因数保持校验（models.gtf→longest 1:1，不等即 RuntimeError）"
+  status: draft_pending_review
+  evidence: "PIT-005 类盲区补丁；run_stage3.py [D] 步"
+- id: VC-008
+  tier: stage
+  case: celegans_batch01
+  stage: diamond_nr
+  input: "NR-animal DIAMOND 被 run_cmd 默认 7200s 杀死，TimeoutExpired 未捕获直接崩驱动"
+  expected_verdict: fail
+  actual_verdict: fail
+  actual_action: "移除 run_cmd 默认 7200s 与 IPS 10800s 全部硬超时；--resume 跳过已完成库续跑"
+  status: draft_pending_review
+  evidence: "use-case-005 段 4；与段 3 BRAKER 7200s 同款（error_log 2026-10-06）"
+- id: VC-009
+  tier: stage
+  case: arab_batch01
+  stage: export_utr
+  input: "braker.gtf 直连后 AGAT 产物携带 five_prime_UTR，导出器白名单拒收（fail-loud）"
+  expected_verdict: fail
+  actual_verdict: fail
+  actual_action: "白名单扩展 UTRS（接受、计数、不入索引）——修复分类错误而非绕过检查"
+  status: draft_pending_review
+  evidence: "export_coding_gff3.py UTRS"
+- id: VC-010
+  tier: stage
+  case: arab_batch01
+  stage: longest
+  input: "AGAT keep_longest_isoform：models 18,376 → gff3 18,376 → pep 18,376（1:1）"
+  expected_verdict: pass
+  actual_verdict: pass
+  actual_action: "阴性对照：longest 步无罪，排除 AGAT 嫌疑后才锁定 TSEBRA 重跑"
+  status: draft_pending_review
+  evidence: "use-case-004 归因链"
+- id: VC-011
+  tier: e2e
+  case: arab_batch01+celegans_batch01
+  stage: functional
+  input: "段 4 Any-Annotated 拟南芥 97.99%（带 [75,100]）、线虫 97.12%（带 [90,100]）；validation.json 双 PASS"
+  expected_verdict: pass
+  actual_verdict: pass
+  actual_action: "两观察值记为类群 case 锚点；七类明细入 use-case-004/005"
+  status: draft_pending_review
+  evidence: "use-case-004/005 段 4 节"

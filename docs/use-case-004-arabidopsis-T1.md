@@ -84,7 +84,9 @@ T1 端到端案例 #2：**植物 + 单倍体 + 中等基因组（135 Mb）+ eudi
 
 - **Any-Annotated 27,089/27,645 = 97.99%**（advisory 带 [75,100]，通过）
 - InterProScan 5.76-107.0（24 线程，--disable-precalc，9.2 小时）：IPR 蛋白 23,352 / GO 蛋白 18,495
-- TrEMBL best 命中 26,856；七类明细待 statistics.tsv 回贴补录
+- 七类明细（27,645 分母）：Nr(Plants) 97.52 / Swissprot 70.33 / KEGG 59.08 / KOG 74.46 /
+  TrEMBL 97.15 / Interpro 84.47 / GO 66.90；**Any 97.99**，未注释 556
+- validation.json：PASS（all_queries_one_row / denominator_is_total / seven_flags_complete / unannotated_kept 全 true）
 - 五库：NR=Plants 子集、Swissprot/TrEMBL=Eukaryota、KEGG=全库、KOG 全集；diamond --very-sensitive 24 线程
 - 教训：run_cmd 默认 7200s + IPS 10800s 硬超时会在大库上杀子步（与段 3 BRAKER 7200s 同款）——已全部移除
 

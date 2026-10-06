@@ -39,7 +39,9 @@ T1 端到端案例 #3：**后生动物 + 100 Mb + 内含子极简模式生物 + 
 
 - **Any-Annotated 18,605/19,156 = 97.12%**（advisory 带 [90,100]，通过）
 - InterProScan 5.76-107.0（24 线程，5.4 小时）：IPR 蛋白 14,358 / GO 蛋白 10,925
-- TrEMBL best 命中 18,287；七类明细待 statistics.tsv 回贴补录
+- 七类明细（19,156 分母）：Nr(animal) 95.68 / Swissprot 52.35 / KEGG 48.56 / KOG 66.27 /
+  TrEMBL 95.46 / Interpro 74.95 / GO 57.03；**Any 97.12**，未注释 551
+- validation.json：PASS（4 项技术一致性全 true）
 - 五库：NR=animal 子集、KEGG=animal 子集（带配对 id→KO 表）、Swissprot/TrEMBL=Eukaryota、KOG 全集
 
 ## T1 结论
