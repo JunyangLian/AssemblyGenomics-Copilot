@@ -34,3 +34,15 @@ T1 端到端案例 #3：**后生动物 + 100 Mb + 内含子极简模式生物 + 
 
 - [x] 段 1 重复注释 / 段 2 RNA 比对 / 段 3 结构注释（2026-10-05 收官）
 - [ ] 段 4 功能注释（动物库变体）
+
+## 段 4 结果（2026-10-06，功能注释）
+
+- **Any-Annotated 18,605/19,156 = 97.12%**（advisory 带 [90,100]，通过）
+- InterProScan 5.76-107.0（24 线程，5.4 小时）：IPR 蛋白 14,358 / GO 蛋白 10,925
+- TrEMBL best 命中 18,287；七类明细待 statistics.tsv 回贴补录
+- 五库：NR=animal 子集、KEGG=animal 子集（带配对 id→KO 表）、Swissprot/TrEMBL=Eukaryota、KOG 全集
+
+## T1 结论
+
+线虫 T1 四段闭环：WBcel235 + 单样本 N2 RNA → 段 3 BUSCO 98.1% / 19,156 基因 → 段 4 Any-Annotated 97.12%。
+v1 的 90.1% 教训（先归因再调带）已沉淀为 VC-006 候选用例。

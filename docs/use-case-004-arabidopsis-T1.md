@@ -79,3 +79,16 @@ T1 端到端案例 #2：**植物 + 单倍体 + 中等基因组（135 Mb）+ eudi
 - 参照：raw braker.gtf 全异构体 BUSCO 98.1%（S:83.1, D:15.0——proteins 模式不折叠异构体，D 虚高；M 1.2% 是真信号）；TAIR10 真值 27,655 编码基因，预测 27,645（Δ=10，0.04%）。
 - 交付物：`Athaliana_longest.{gff3,pep.fa,cds.fa}`（27,645 基因/转录本/蛋白，导出校验 0 排除、序列逐一不变，pep sha256 `4a9a2a93…`）。
 - 复用教训：PIT-009（单外显子过滤在 ET 模式下连内含子丰富物种都杀）、PIT-010（TSEBRA 重跑≠内部合并，已加 `tsebra_rerun=false` + AGAT 基因数保持校验）、导出器 UTR 白名单。
+
+## 段 4 结果（2026-10-06，功能注释）
+
+- **Any-Annotated 27,089/27,645 = 97.99%**（advisory 带 [75,100]，通过）
+- InterProScan 5.76-107.0（24 线程，--disable-precalc，9.2 小时）：IPR 蛋白 23,352 / GO 蛋白 18,495
+- TrEMBL best 命中 26,856；七类明细待 statistics.tsv 回贴补录
+- 五库：NR=Plants 子集、Swissprot/TrEMBL=Eukaryota、KEGG=全库、KOG 全集；diamond --very-sensitive 24 线程
+- 教训：run_cmd 默认 7200s + IPS 10800s 硬超时会在大库上杀子步（与段 3 BRAKER 7200s 同款）——已全部移除
+
+## T1 结论
+
+拟南芥 T1 四段闭环：组装锚 GCF_000001735.4 + 单样本 RNA → 段 1 软屏蔽（16.5%）→ 段 2 比对（79.88%）→
+段 3 BUSCO 97.9% / 27,645 基因 → 段 4 Any-Annotated 97.99%。全链无阈值放宽。
