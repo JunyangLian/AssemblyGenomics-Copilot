@@ -1,5 +1,11 @@
 # bench 变更记录
 
+## 规格 1.2 跨平台复现包本地验收 — 2026-10-06，冻结前
+
+- 用户回传 `v1_cases_reproduction/bundle/`，完成一次小包传输验收：96 个 payload、163,672 B，清单 SHA 与用户服务器报告一致。
+- 60 个任务/产物文件及 16 份 expected 与当前 Windows 题库逐字节一致；复现索引、代码及 C 包哈希一致；16 份 meta 在将真实来源根路径按主机重绑定后完全一致。新增 `REPRODUCTION_VERIFIED.json`，更新阶段报告及 README。
+- 未重新扫描服务器原始来源；标准答案、标签、知识包和门槛不变。阶段 2 技术验证完成，逐题审核仍待用户确认；未冻结、未调用模型。
+
 ## 规格 1.2 服务器复现摘要回传 — 2026-10-06，冻结前
 
 - 用户在 Linux 执行 `server/reproduce_cases.py`，报告 PASS：16 cases、0 differences；结果清单 SHA 为 `ad30fb9fa3120ca528516d98a0482e3505153ad29ddaca8b11ad0d1d5e5a5bde`。

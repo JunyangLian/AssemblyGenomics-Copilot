@@ -11,9 +11,9 @@
 - `validate_cases.py`、`CASE_INPUTS.json`、`VALIDATION.json`：三份 schema 合法、题库两份私有 JSON 校验、禁词/路径扫描、证据可定位、来源绑定、全产物抽取记录、LF、预算、配对/施压约束、本地重建字节一致。源原文件不重新扫描哈希；来源包沿用已经通过的一次本地验收。
 - `server/reproduce_cases.py`、`make_reproduction_package.py`：第二阶段 Linux 字节复现入口及最小上传包；记录 Python/zlib/代码版本和完整 SHA-256 清单。它们不执行 A，也不调用模型。
 
-当前本地校验 16/16 通过，模型可见 packet UTF-8 字节数作为保守 token 上界，最高 9,416，低于 30,000。系统提示、schema 与 C 包另计。C 包 15,919 B，SHA 见 `CASE_INPUTS.json`。P2 任务、查询蛋白、统计文件逐字节相同；覆盖均 1/16（6.25%）。施压题 task 只增加同一催促句，产物逐字节继承母题。复现入口已在本地试跑通过；用户已回传 Linux 执行摘要：**PASS，16 cases，0 differences**。本地尚未收到服务器结果目录，完整回执验收待完成。
+当前本地校验 16/16 通过，模型可见 packet UTF-8 字节数作为保守 token 上界，最高 9,416，低于 30,000。系统提示、schema 与 C 包另计。C 包 15,919 B，SHA 见 `CASE_INPUTS.json`。P2 任务、查询蛋白、统计文件逐字节相同；覆盖均 1/16（6.25%）。施压题 task 只增加同一催促句，产物逐字节继承母题。Linux 服务器复现 **PASS，16 cases，0 differences**；整包已回传并通过本地验收，回执见 `REPRODUCTION_VERIFIED.json`。
 
-服务器回传摘要（2026-10-06）：结果目录 `/home/Lianjunyang/AssemblyGenomics-Skill/bench/bench_transfer/v1_cases_reproduction/bundle`；`MANIFEST.json` SHA-256 为 `ad30fb9fa3120ca528516d98a0482e3505153ad29ddaca8b11ad0d1d5e5a5bde`。该 SHA 来自用户终端报告，尚非本地整包验收结论；脚本报告未调用 API、A 规则或重新扫描原文件哈希。不需要重跑服务器复现，下一步回传现有目录。
+服务器结果目录 `/home/Lianjunyang/AssemblyGenomics-Skill/bench/bench_transfer/v1_cases_reproduction/bundle`；本地接收于 `bench/v1_cases_reproduction/bundle/`。本地验收 96 个 payload、163,672 B，`MANIFEST.json` SHA-256 为 `ad30fb9fa3120ca528516d98a0482e3505153ad29ddaca8b11ad0d1d5e5a5bde`，与用户终端报告一致。60 个 task/artifact 文件及 16 份 expected 的字节哈希与本地题库一致，完整复现索引、代码版本及 C 包哈希一致。16 份 meta 仅在实际本地来源根路径上不同，将 Linux 根路径映射到 Windows 根路径后完整 JSON 相同；原路径、来源 SHA、抽取方式、标签和答案均不变。未调用模型、A 规则或重新扫描服务器原文件哈希。
 
 全仓 `python -m pytest -q`：185 passed。没有 FROZEN.md，模型调用为 0。
 
@@ -23,7 +23,7 @@
 2. case_006/015 采用真实归档 12,637 / BUSCO 76.7% 与真实终稿 27,645 / 97.9%。比较角色为重构，不声称历史相邻；缺失的精确历史 TSEBRA 配置不补造。轴一暂按明确记录等效重跑损失的 PIT-010，PIT-002/009 仅相关，不将事故断言为某一过滤器。建议审核该机制标签。
 3. case_014 的本次值 6.333% 来自用户真实 RepeatMasker/RepeatModeler 输出。Carr 等论文的 Ty 3.35% 是不同口径，只支持紧凑、低 TE 背景，不构造“所有重复”的精确发表正常区间。原命令未留档，meta 明示 not_recorded，版本/输入哈希及运行记录仍齐全。建议保留 pass/warn 并审核此证据边界。
 4. 审核共用 C 包及两轴标签。not_exposed 暂为 case_002（gzip）和 case_010（功能表 ID 连接），只有 2 道故障；其余 held-out 多有一般/邻近指导。建议 H1 冻结前选择合并 related_guidance，按最终题数填写门槛；不得在模型结果后改标签或集合。
-5. 服务器复现已执行并报告通过；按下方回传命令传输现有整包即可。模型输入及 expected 哈希须与 Windows 一致；meta 的绝对本地路径因主机不同而不同，按同一来源清单、role、完整原路径及 SHA 绑定，不要求把 Linux 路径写成 Windows 路径。
+5. 跨平台复现和回传验收均已完成，无需再次执行或传输；保留回执和现有结果目录作为冻结前证据。
 
 ## 上传与服务器执行
 
@@ -54,4 +54,4 @@ python server/reproduce_cases.py
 scp -r Lianjunyang@user:~/AssemblyGenomics-Skill/bench/bench_transfer/v1_cases_reproduction "D:\1_yanjiusheng\GenomeAssembly Copilot\bench\"
 ```
 
-收到结果后只验收此小复现包并检查 RESULT，不复查服务器原始大文件。本地逐题审核、C 包/分层确认、门槛填写、跨平台复现通过后，才创建 FROZEN.md 并单独提交冻结；阶段 3 尚未开始。
+本次只验收小复现包并检查 RESULT，未复查服务器原始大文件。跨平台技术验证已完成；等待逐题审核、C 包/分层确认和门槛填写，再创建 FROZEN.md 并单独提交冻结；阶段 3 尚未开始。上述上传/执行/回传命令保留用于归档，无需重跑。

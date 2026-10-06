@@ -1,0 +1,46 @@
+{
+  "answers_frozen": false,
+  "bundle": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_cases_reproduction/bundle",
+  "case_count": 16,
+  "checksum_manifest_sha256": "d4bf82970c040b328452c7ddef68745d7e5b1fa8a18da5e2e8a53d905798414d",
+  "context_sha256": "c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf",
+  "errors": [],
+  "expected_files_compared": 16,
+  "manifest_sha256": "ad30fb9fa3120ca528516d98a0482e3505153ad29ddaca8b11ad0d1d5e5a5bde",
+  "metadata_compared_after_source_root_rebinding": 16,
+  "model_calls": 0,
+  "original_source_hash_rescans": 0,
+  "server_source_roots": [
+    "/home/Lianjunyang/AssemblyGenomics-Skill/bench/bench_transfer/v1_prepare_t1t3_r3/bundle"
+  ],
+  "server_versions": {
+    "code_sha256": {
+      "build_cases.py": "6ca2d02a248ef75ed8afc9cf7d563f72e0eb31668f62b6171ad0ad9c52b554b4",
+      "inject/__init__.py": "9e90a39f43ef143bf21f36f9c8f568a9e34d95132fd398d17de17fa961c63da5",
+      "inject/agp_layout.py": "389dcbe5770be5bb16237801a7dea2b4c02f9eda04114cd79b5f93da7cd5a7a8",
+      "inject/common.py": "097b77f8d706882b545d5c9e7dd748afde9cae11481faa30cfd8a3eff69c019a",
+      "inject/functional_tables.py": "8ea739c721ccce88ca0a46ad265e643a604e4b1b82033709b90bf2024922facb",
+      "inject/gene_models.py": "0d160db50e81e407428ee2f099dd48ce378b76286f9f82e4cc27d088b2bfb155",
+      "inject/gzip_stream.py": "869165550195c274cd9542a5ab7cdb896aead8f9845c7c25232a65f3d5c7e813",
+      "inject/input_reads.py": "ad9afa20373129eaabd399a5fd032ed4624d9946e175c88ce3c3938e266050cc",
+      "inject/masking.py": "d93e02f77a03feba8b1091dd39caa87cc736374e52a6c924a86a94614b14ce58",
+      "inject/pressure.py": "e7f0fe105197315fb3d5bc6000b49ff5bdca41dd0fb3bd4781deafde816cca57",
+      "inject/repeat_library.py": "fe005e6d57a6d644f8e2b98ee04df63a4d55ce2872d9f20bfab4e8e12149b3ad",
+      "inject/rna_evidence.py": "a4eb227bcc7e52187f27073f4d16d071d810c524efe27a8f39dfc9e7bddc97b6",
+      "inject/sequence_names.py": "d4e1197894d75a6cae70a292847febcb80d1d389ccf6ce0919802ab0f67eb768",
+      "server/reproduce_cases.py": "b2abce4b13a43359c2729eb85392dc443e8329181043397cc99fc825561b81ae",
+      "transfer.py": "0ce92c78c5cd0e9517ade7f55d8f833fd0ba2be699a609d9346aac8c80f7c4b2",
+      "visible_input.py": "ecefb375053fcbbf16d8dd7e610c98b8d81b2353e37f0e2e540694b6f5d58421"
+    },
+    "external_tools": "not invoked; Python only",
+    "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.39",
+    "python": "3.9.23",
+    "zlib_compiled": "1.3.1",
+    "zlib_runtime": "1.3.2"
+  },
+  "source_manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+  "status": "pass",
+  "task_artifact_files_compared": 60,
+  "verified_bytes": 163672,
+  "verified_files": 96
+}
