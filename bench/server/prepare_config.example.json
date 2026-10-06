@@ -2,8 +2,8 @@
   "spec_version": "1.2",
   "source_scope": "T1_T3",
   "project_root": "~/AssemblyGenomics-Skill",
-  "snapshot_root": "~/bench_sources",
-  "output_root": "~/bench_transfer/v1_prepare_t1t3",
+  "snapshot_root": "~/AssemblyGenomics-Skill/bench/bench_sources",
+  "output_root": "~/AssemblyGenomics-Skill/bench/bench_transfer/v1_prepare_t1t3",
   "max_file_bytes": 16777216,
   "scope_roots": {
     "T1_arabidopsis": [

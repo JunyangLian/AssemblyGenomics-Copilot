@@ -25,7 +25,7 @@ v1 暂定 16 题，仅保留 P2 一个症状相同但根因不同的配对、两
 
 ## 来源快照与阶段 0 勘误
 
-用户提供服务器快照 /home/Lianjunyang/bench_sources/（报告约 480MB，含 MANIFEST.txt）。这是来源记录，当前 Windows 会话尚未直接访问或核验服务器文件；大小、成功复制及服务器工具可用性不写成已在本会话验证。
+用户已将服务器快照移至 /home/Lianjunyang/AssemblyGenomics-Skill/bench/bench_sources/（报告约 480MB，含 MANIFEST.txt）。这是来源记录，当前 Windows 会话尚未直接访问或核验服务器文件；大小、成功复制及服务器工具可用性不写成已在本会话验证。
 
 - 拟南芥原路径根：/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/。段 1 为 runs/arab_batch01/1.Repeat_Annotation/，不是 stage1_repeat/runs/；段 2/3/4 位于 stage2_rnaseq、stage3_braker、stage4_functional 对应目录。
 - 线虫原路径根：/home/Lianjunyang/AssemblyGenomics-Skill/caenorhabditis/run/。段 1 同样为 runs/celegans_batch01/1.Repeat_Annotation/。
@@ -199,7 +199,7 @@ expected 的 acceptable_verdicts 是非空、不重复的允许判定数组，ro
 
 ### 混合环境与第一轮准备
 
-服务器仅准备已有 T1/T3 数据，本地构造与运行；所有服务器脚本由 bench 提供，用户执行并 scp 回传目录。第一轮入口 server/prepare_sources.py 及配置/命令见 [服务器准备说明](server/README.md)。它核对稳定快照与原产物，按题目截取最小来源包，检查 T1 原读段是否仍存在及是否匹配原 provenance，选择现有 T3 已验证的 GFF/FAA 对。不访问外网、不下载 SRA、不跑 BUSCO 或注释，不再需要新增油菜、鱼类路径或计算预算。缺源列缺口，等待用户决定。
+服务器后续工作目录固定为 ~/AssemblyGenomics-Skill/bench/，快照为 bench_sources/、准备输出为 bench_transfer/v1_prepare_t1t3/；T1/T3 原产物路径保持既有来源记录。服务器仅准备已有 T1/T3 数据，本地构造与运行；所有服务器脚本由 bench 提供，用户执行并 scp 回传目录。第一轮入口 server/prepare_sources.py 及配置/命令见 [服务器准备说明](server/README.md)。它核对稳定快照与原产物，按题目截取最小来源包，检查 T1 原读段是否仍存在及是否匹配原 provenance，选择现有 T3 已验证的 GFF/FAA 对。不访问外网、不下载 SRA、不跑 BUSCO 或注释，不再需要新增油菜、鱼类路径或计算预算。缺源列缺口，等待用户决定。
 
 第一轮输出 Python 版本、既有 provenance 中的历史工具版本/命令记录、来源与截取哈希、固定日志、完整 SHA-256 清单与缺口摘要。用户 scp 回传后，Windows 用 verify_sources.py 重算每个文件 SHA 和大小、核对文件集合及清单；成功回执存包外，服务器 complete + 本地验收成功后才准取材。第一轮准备成功不等于题库/答案已通过审核。
 

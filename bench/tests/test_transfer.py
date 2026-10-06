@@ -220,3 +220,37 @@ def test_confirmed_yeast_source_config_has_no_repeat_read_bindings():
         assert roles[role]["expected_size_bytes"] > 0
         assert roles[role]["checksum_record_role"] == "yeast_rnaseq_checksums"
         assert roles[role]["binding_record_role"] == "yeast_rnaseq_record"
+
+
+@pytest.mark.parametrize("location", ["snapshot", "snapshot_child", "snapshot_parent",
+                                     "project", "project_parent", "other_project_directory",
+                                     "transfer_root"])
+def test_preparation_rejects_overlapping_or_unmanaged_output(tmp_path, location):
+    server = load_module("bench_prepare_layout_test", "server/prepare_sources.py")
+    project = tmp_path / "project"
+    snapshot = project / "bench" / "bench_sources"
+    outputs = {"snapshot": snapshot, "snapshot_child": snapshot / "out",
+               "snapshot_parent": snapshot.parent, "project": project,
+               "project_parent": tmp_path, "other_project_directory": project / "arabidopsis" / "out",
+               "transfer_root": project / "bench" / "bench_transfer"}
+    with pytest.raises(ValueError):
+        server.check_output_layout(outputs[location], snapshot, project)
+
+
+def test_preparation_runs_in_project_bench_transfer_directory(tmp_path, monkeypatch):
+    server = load_module("bench_prepare_managed_layout_test", "server/prepare_sources.py")
+    config_path, _, _ = preparation_fixture(tmp_path)
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    project = Path(config["project_root"])
+    snapshot = project / "bench" / "bench_sources"
+    snapshot.mkdir(parents=True)
+    for source in Path(config["snapshot_root"]).iterdir():
+        (snapshot / source.name).write_bytes(source.read_bytes())
+    output = project / "bench" / "bench_transfer" / "v1_prepare_t1t3"
+    config.update(snapshot_root=str(snapshot), output_root=str(output))
+    transfer.write_json(config_path, config)
+    monkeypatch.setattr(sys, "argv", ["prepare_sources.py", "--config", str(config_path)])
+    assert server.main() == 0
+    first = transfer.verify(output / "bundle")
+    assert server.main() == 0
+    assert transfer.verify(output / "bundle") == first

@@ -198,6 +198,17 @@ def check_scope(origin: Path, cohort: str, roots: dict[str, list[Path]]) -> None
         raise ValueError(f"origin is outside declared T1/T3 cohort: {origin}")
 
 
+def check_output_layout(output: Path, snapshot: Path, project: Path) -> None:
+    """Allow managed bench output inside the project, never source overlap."""
+    if output == snapshot or snapshot in output.parents or output in snapshot.parents:
+        raise ValueError("output and source snapshot must not overlap")
+    if output == project or output in project.parents:
+        raise ValueError("output must not contain the project")
+    managed = (project / "bench" / "bench_transfer").resolve()
+    if project in output.parents and managed not in output.parents:
+        raise ValueError("output inside project must be a run directory under bench/bench_transfer")
+
+
 def select_t3_pair(config: dict, grouped: dict, roots: dict) -> dict:
     """Select one existing report-backed GFF/FAA pair by total compressed size."""
     report = Path(config["t3_report"].replace("{home}", str(Path.home()))).expanduser().resolve(strict=True)
@@ -260,8 +271,10 @@ def main() -> int:
     output = Path(config["output_root"]).expanduser().resolve()
     snapshot = Path(config["snapshot_root"]).expanduser().resolve()
     project = Path(config["project_root"]).expanduser().resolve()
-    if output == snapshot or output == project or snapshot in output.parents or project in output.parents:
-        parser.error("output must be separate from snapshot and project")
+    try:
+        check_output_layout(output, snapshot, project)
+    except ValueError as error:
+        parser.error(str(error))
     bundle, work = output / "bundle", output / "work"
     bundle.mkdir(parents=True, exist_ok=True); work.mkdir(parents=True, exist_ok=True)
     status = {"status": "blocked", "inventory_only": args.inventory_only,

@@ -4,10 +4,10 @@
 
 ## 配置与来源范围
 
-复制 prepare_config.example.json 为 prepare_config.json（不用密钥）。默认来源依据用户提供的路径及既有 T1 SOP 记录；服务器当前文件仍须核验，不能把历史记录当作现存证据。{project}/{home} 在服务器展开。
+服务器工作目录统一为 ~/AssemblyGenomics-Skill/bench/，来源快照位于 bench_sources/，固定输出位于 bench_transfer/v1_prepare_t1t3/。复制 server/prepare_config.example.json 为 server/prepare_config.json（不用密钥）。已有私有配置时，更新 snapshot_root 和 output_root 为新版示例中的路径；cp -n 不覆盖已有配置。默认来源依据用户提供的路径及既有 T1 SOP 记录；服务器当前文件仍须核验，不能把历史记录当作现存证据。{project}/{home} 在服务器展开。
 
 - source_scope 固定 T1_T3；cohort 仅四个值：T1_arabidopsis、T1_celegans、T1_yeast、T3。每个原文件必须位于对应 scope_roots，指向其他项目即报缺口。
-- 既有快照来源先完整哈希原产物，再按 MANIFEST.txt 定位同字节副本；snapshot_path 默认 null。原产物、快照、清单不一致则停止该来源。摘要 glob 必须恰好匹配一个文件，多份结果不猜身份。
+- 移动后的 MANIFEST.txt 应继续使用快照内相对路径；若含旧位置的绝对路径，脚本会报告缺口，不自动重写历史清单。既有快照来源先完整哈希原产物，再按 MANIFEST.txt 定位同字节副本；snapshot_path 默认 null。原产物、快照、清单不一致则停止该来源。摘要 glob 必须恰好匹配一个文件，多份结果不猜身份。
 - T1 原读段可能未进入 480MB 快照：仅从用户已确认的 {project}/yeast_test/0.Raw_Data/rnaseq/ 查 WT_Rep1/2 各 R1/R2 和 rnaseq.sha256；先对照当前目录清单的字节大小。配置明确 snapshot_required=false，原文件前后全量 SHA 核对，同时与历史 rnaseq.sha256 及 T1 RNA-seq provenance 输入哈希绑定；每个文件截取前 64 条完整真实记录，不生成读段；原始大 FASTQ 不回传。子集再检查各样本双端标识；缺文件或来源记录就报告，不下载补齐。
 - T3 默认从既有 t3_batch_report.tsv 的 in_band 条目中，选快照和原目录都保存完整 GFF/FAA 的一对，按合计原文件大小最小、accession 排序打破平局。可填 t3_accession 固定选一个已有批次成员；未验证或只有 FAA 的条目不选。文件名被改写、复制版本歧义或对应原文件缺失时报告，不能猜配对。
 - T3 历史判定表和汇总只作私有身份核验；其中 in_band 等判定不能进入模型题目，模型只看白名单产物。该来源选择在模型调用前记录/审核，不能根据结果改选。
@@ -21,13 +21,15 @@ GTF 全量 gene_id 计数与截取行范围分开记录；完整原产物统计�
 用现有 scp 通道上传 bench/ 脚本和配置，保留 bench/server/prepare_sources.py 与 bench/transfer.py 的相对布局。不要上传 .env/API key。Python 3.10+，仅标准库；此轮不需要新增计算预算或可执行生信工具。
 
 ```bash
-mkdir -p ~/bench_transfer/v1_prepare_t1t3
-python ~/AssemblyGenomics-Skill/bench/server/prepare_sources.py --config ~/AssemblyGenomics-Skill/bench/server/prepare_config.json
+cd ~/AssemblyGenomics-Skill/bench
+cp -n server/prepare_config.example.json server/prepare_config.json
+mkdir -p bench_transfer/v1_prepare_t1t3
+python server/prepare_sources.py --config server/prepare_config.json
 ```
 
 旧 --inventory-only 参数保留兼容，但此版本所有操作本来就离线；不再自动增加“下载/计算未执行”的缺口。真实来源齐全才 complete（退出 0）；存在必需缺口则 blocked（退出 2），仍回传摘要、清单和已核验来源。可选来源缺失作为记录保留，不等于该题证据足够；阶段 2 还须逐题检查。
 
-输出固定 ~/bench_transfer/v1_prepare_t1t3/bundle/：
+输出固定 ~/AssemblyGenomics-Skill/bench/bench_transfer/v1_prepare_t1t3/bundle/：
 
 - STATUS.json：cohort、真实路径、原产物与子集 SHA、截取、题号和缺口。
 - sources/：明确选择的小来源包。
@@ -37,7 +39,7 @@ python ~/AssemblyGenomics-Skill/bench/server/prepare_sources.py --config ~/Assem
 
 Python 版本实测记录；历史生信工具版本/命令从原 provenance/日志回传，不能用今天安装的版本替代原运行。末尾打印状态、来源数量、文件数、字节数、清单哈希及缺口。不打印环境或密钥。
 
-相同配置重复执行得到相同截取字节与清单；已存在且内容不同的 payload 拒绝覆盖，不删除任何数据。脚本、源数据或选择改变时，指定新的固定 output_root（例如 v1_prepare_t1t3_r2），保留旧包。本轮的 output_root 已与旧 SRA/BUSCO 准备目录分开。
+相同配置重复执行得到相同截取字节与清单；已存在且内容不同的 payload 拒绝覆盖，不删除任何数据。脚本、源数据或选择改变时，指定新的固定 output_root（例如 v1_prepare_t1t3_r2），保留旧包。允许输出到项目内 bench/bench_transfer/ 的独立运行子目录；与 bench_sources/ 不得重叠，项目其他目录仍禁止作为输出。迁入的旧结果包保持不动；如果目标运行目录已经有旧脚本生成的包，改用新的固定子目录 v1_prepare_t1t3_r2，并相应修改回传路径。
 
 ## scp 回传与本地验收
 
@@ -45,7 +47,7 @@ Python 版本实测记录；历史生信工具版本/命令从原 provenance/日
 
 ```powershell
 New-Item -ItemType Directory -Force -Path bench/incoming | Out-Null
-scp -r SERVER_ALIAS:~/bench_transfer/v1_prepare_t1t3/bundle bench/incoming/v1_prepare_t1t3
+scp -r SERVER_ALIAS:~/AssemblyGenomics-Skill/bench/bench_transfer/v1_prepare_t1t3/bundle bench/incoming/v1_prepare_t1t3
 python bench/verify_sources.py bench/incoming/v1_prepare_t1t3 --receipt bench/incoming/v1_prepare_t1t3.verified.json
 ```
 
