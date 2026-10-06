@@ -8,7 +8,7 @@
 
 - source_scope 固定 T1_T3；cohort 仅四个值：T1_arabidopsis、T1_celegans、T1_yeast、T3。每个原文件必须位于对应 scope_roots，指向其他项目即报缺口。
 - 既有快照来源先完整哈希原产物，再按 MANIFEST.txt 定位同字节副本；snapshot_path 默认 null。原产物、快照、清单不一致则停止该来源。摘要 glob 必须恰好匹配一个文件，多份结果不猜身份。
-- T1 原读段可能未进入 480MB 快照：仅在已记录的 yeast_test/0.Raw_Data/rnaseq/ 两个迁移前后位置查 WT_Rep1/2 各 R1/R2。配置明确 snapshot_required=false，原文件前后全量 SHA 核对，并与 T1 RNA-seq provenance 输入哈希绑定；截取前 64 条真实记录，不生成读段。子集再检查各样本双端标识；缺文件或来源记录就报告，不下载补齐。
+- T1 原读段可能未进入 480MB 快照：仅从用户已确认的 {project}/yeast_test/0.Raw_Data/rnaseq/ 查 WT_Rep1/2 各 R1/R2 和 rnaseq.sha256；先对照当前目录清单的字节大小。配置明确 snapshot_required=false，原文件前后全量 SHA 核对，同时与历史 rnaseq.sha256 及 T1 RNA-seq provenance 输入哈希绑定；每个文件截取前 64 条完整真实记录，不生成读段；原始大 FASTQ 不回传。子集再检查各样本双端标识；缺文件或来源记录就报告，不下载补齐。
 - T3 默认从既有 t3_batch_report.tsv 的 in_band 条目中，选快照和原目录都保存完整 GFF/FAA 的一对，按合计原文件大小最小、accession 排序打破平局。可填 t3_accession 固定选一个已有批次成员；未验证或只有 FAA 的条目不选。文件名被改写、复制版本歧义或对应原文件缺失时报告，不能猜配对。
 - T3 历史判定表和汇总只作私有身份核验；其中 in_band 等判定不能进入模型题目，模型只看白名单产物。该来源选择在模型调用前记录/审核，不能根据结果改选。
 
@@ -31,7 +31,7 @@ python ~/AssemblyGenomics-Skill/bench/server/prepare_sources.py --config ~/Assem
 
 - STATUS.json：cohort、真实路径、原产物与子集 SHA、截取、题号和缺口。
 - sources/：明确选择的小来源包。
-- inventory.json、snapshot_record.json、snapshot_manifest.txt、t3_selection.json；原读段齐全时另有 t1_read_pairing.json。
+- inventory.json、snapshot_record.json、snapshot_manifest.txt、t3_selection.json；原读段齐全时另有 t1_read_pairing.json，STATUS 的 selection.source_bindings 记录历史校验清单及 provenance 的 SHA。
 - config.json、python_version.json、scripts/、logs/prepare.log。
 - MANIFEST.json 和 MANIFEST.sha256：所有回传文件的完整 SHA/大小；后者包含前者哈希，避免自引用。
 

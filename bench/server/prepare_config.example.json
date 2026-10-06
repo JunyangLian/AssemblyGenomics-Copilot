@@ -14,8 +14,7 @@
     ],
     "T1_yeast": [
       "{project}/yeast_test/sop/yeast_loop",
-      "{project}/yeast_test/0.Raw_Data/rnaseq",
-      "{home}/yeast_test/0.Raw_Data/rnaseq"
+      "{project}/yeast_test/0.Raw_Data/rnaseq"
     ],
     "T3": [
       "{home}/临时",
@@ -301,10 +300,7 @@
       ],
       "required": true,
       "max_bytes": 4194304,
-      "cohort": "T1_yeast",
-      "binding_record_role": "yeast_rnaseq_record",
-      "sample_id": "WT_Repe",
-      "mate": "qc"
+      "cohort": "T1_yeast"
     },
     {
       "role": "yeast_repeat_genome",
@@ -319,10 +315,7 @@
       "required": true,
       "records": 1,
       "max_bases": 200000,
-      "cohort": "T1_yeast",
-      "binding_record_role": "yeast_rnaseq_record",
-      "sample_id": "WT_Repe",
-      "mate": "me"
+      "cohort": "T1_yeast"
     },
     {
       "role": "yeast_repeat_run_record",
@@ -336,10 +329,7 @@
       ],
       "required": true,
       "max_bytes": 4194304,
-      "cohort": "T1_yeast",
-      "binding_record_role": "yeast_rnaseq_record",
-      "sample_id": "WT_Repe",
-      "mate": "rd"
+      "cohort": "T1_yeast"
     },
     {
       "role": "t3_gff",
@@ -472,8 +462,23 @@
       "max_bytes": 4194304
     },
     {
+      "role": "yeast_rnaseq_checksums",
+      "origin": "{project}/yeast_test/0.Raw_Data/rnaseq/rnaseq.sha256",
+      "cohort": "T1_yeast",
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "copy",
+      "extension": ".txt",
+      "cases": [
+        1
+      ],
+      "required": true,
+      "max_bytes": 1048576,
+      "expected_size_bytes": 328
+    },
+    {
       "role": "yeast_rep1_r1",
-      "origin": null,
+      "origin": "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_1.fq.gz",
       "cohort": "T1_yeast",
       "snapshot_path": null,
       "snapshot_required": false,
@@ -484,17 +489,15 @@
       ],
       "required": true,
       "records": 64,
-      "origin_candidates": [
-        "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_1.fq.gz",
-        "{home}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_1.fq.gz"
-      ],
       "binding_record_role": "yeast_rnaseq_record",
       "sample_id": "WT_Rep1",
-      "mate": "r1"
+      "mate": "r1",
+      "expected_size_bytes": 551652741,
+      "checksum_record_role": "yeast_rnaseq_checksums"
     },
     {
       "role": "yeast_rep1_r2",
-      "origin": null,
+      "origin": "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_2.fq.gz",
       "cohort": "T1_yeast",
       "snapshot_path": null,
       "snapshot_required": false,
@@ -505,17 +508,15 @@
       ],
       "required": true,
       "records": 64,
-      "origin_candidates": [
-        "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_2.fq.gz",
-        "{home}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_2.fq.gz"
-      ],
       "binding_record_role": "yeast_rnaseq_record",
       "sample_id": "WT_Rep1",
-      "mate": "r2"
+      "mate": "r2",
+      "expected_size_bytes": 570060621,
+      "checksum_record_role": "yeast_rnaseq_checksums"
     },
     {
       "role": "yeast_rep2_r1",
-      "origin": null,
+      "origin": "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_1.fq.gz",
       "cohort": "T1_yeast",
       "snapshot_path": null,
       "snapshot_required": false,
@@ -526,17 +527,15 @@
       ],
       "required": true,
       "records": 64,
-      "origin_candidates": [
-        "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_1.fq.gz",
-        "{home}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_1.fq.gz"
-      ],
       "binding_record_role": "yeast_rnaseq_record",
       "sample_id": "WT_Rep2",
-      "mate": "r1"
+      "mate": "r1",
+      "expected_size_bytes": 779855365,
+      "checksum_record_role": "yeast_rnaseq_checksums"
     },
     {
       "role": "yeast_rep2_r2",
-      "origin": null,
+      "origin": "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_2.fq.gz",
       "cohort": "T1_yeast",
       "snapshot_path": null,
       "snapshot_required": false,
@@ -547,13 +546,11 @@
       ],
       "required": true,
       "records": 64,
-      "origin_candidates": [
-        "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_2.fq.gz",
-        "{home}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_2.fq.gz"
-      ],
       "binding_record_role": "yeast_rnaseq_record",
       "sample_id": "WT_Rep2",
-      "mate": "r2"
+      "mate": "r2",
+      "expected_size_bytes": 801366670,
+      "checksum_record_role": "yeast_rnaseq_checksums"
     },
     {
       "role": "t3_report",

@@ -162,3 +162,61 @@ def test_obsolete_download_config_is_rejected(tmp_path, monkeypatch):
     with pytest.raises(SystemExit) as error:
         server.main()
     assert error.value.code == 2
+
+
+@pytest.mark.parametrize("entry", ["correct", "wrong", "missing", "conflicting", "malformed"])
+def test_historical_read_checksum_binding(tmp_path, entry):
+    server = load_module("bench_prepare_checksum_test", "server/prepare_sources.py")
+    source = tmp_path / "control.txt"
+    source.write_bytes(b"transport bytes only\n")
+    digest = transfer.sha256(source)
+    rows = {"correct": f"{digest}  ./control.txt\n",
+            "wrong": f"{'0'*64}  control.txt\n",
+            "missing": f"{digest}  different.txt\n",
+            "conflicting": f"{digest}  control.txt\n{'0'*64}  control.txt\n",
+            "malformed": "not a checksum\n"}
+    record = tmp_path / "checksums.txt"
+    record.write_bytes(rows[entry].encode())
+    if entry == "correct":
+        server.check_read_checksum(source, digest, record)
+    else:
+        with pytest.raises(ValueError):
+            server.check_read_checksum(source, digest, record)
+
+
+def test_source_listing_size_mismatch_blocks_preparation(tmp_path, monkeypatch):
+    server = load_module("bench_prepare_size_test", "server/prepare_sources.py")
+    config_path, output, _ = preparation_fixture(tmp_path)
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    config["sources"][0]["expected_size_bytes"] = 1
+    transfer.write_json(config_path, config)
+    monkeypatch.setattr(sys, "argv", ["prepare_sources.py", "--config", str(config_path)])
+    assert server.main() == 2
+    status = json.loads((output / "bundle" / "STATUS.json").read_text(encoding="utf-8"))
+    assert not status["sources"]
+    assert any("origin size differs" in gap["reason"] for gap in status["gaps"])
+    assert transfer.verify(output / "bundle")["verified_files"] > 0
+
+
+def test_repeat_sources_do_not_enter_read_pairing(tmp_path, monkeypatch):
+    server = load_module("bench_prepare_repeat_test", "server/prepare_sources.py")
+    config_path, output, _ = preparation_fixture(tmp_path)
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    config["sources"][0]["role"] = "yeast_repeat_qc"
+    transfer.write_json(config_path, config)
+    monkeypatch.setattr(sys, "argv", ["prepare_sources.py", "--config", str(config_path)])
+    assert server.main() == 0
+    assert not (output / "bundle" / "t1_read_pairing.json").exists()
+
+
+def test_confirmed_yeast_source_config_has_no_repeat_read_bindings():
+    config = json.loads((Path(__file__).resolve().parents[1] / "server" /
+                         "prepare_config.example.json").read_text(encoding="utf-8"))
+    roles = {s["role"]: s for s in config["sources"]}
+    for role in ("yeast_repeat_qc", "yeast_repeat_genome", "yeast_repeat_run_record"):
+        assert "binding_record_role" not in roles[role]
+    for role in ("yeast_rep1_r1", "yeast_rep1_r2", "yeast_rep2_r1", "yeast_rep2_r2"):
+        assert roles[role]["origin"].startswith("{project}/yeast_test/0.Raw_Data/rnaseq/")
+        assert roles[role]["expected_size_bytes"] > 0
+        assert roles[role]["checksum_record_role"] == "yeast_rnaseq_checksums"
+        assert roles[role]["binding_record_role"] == "yeast_rnaseq_record"

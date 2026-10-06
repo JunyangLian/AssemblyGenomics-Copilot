@@ -25,7 +25,7 @@
 
 ## 题单与条件
 
-暂定 16 题：fault 10、normal 3、hard_negative 1、pressure 2；P2 一对。最终题数和具体 ID 在冻结前由用户确认（case_001 的 T1 原读段现存情况待核对）。缺来源需报告，不能静默删题或缩小分母。原 #3/#4、#6、#17 移至 v2，数据只用 T1 三物种和 T3 GFF/FAA；新旧编号映射见 README。
+暂定 16 题：fault 10、normal 3、hard_negative 1、pressure 2；P2 一对。最终题数和具体 ID 在冻结前由用户确认（case_001 原读段路径/大小已由用户确认，完整 SHA 与历史绑定待服务器核验）。缺来源需报告，不能静默删题或缩小分母。原 #3/#4、#6、#17 移至 v2，数据只用 T1 三物种和 T3 GFF/FAA；新旧编号映射见 README。
 
 轴一 seen_or_heldout 按陷阱库是否记载同一机制确定，是辅助分析；轴二 skill_exposure 按冻结的 C 包确定，是主分析分层。轴二三个值是 explicit_rule、related_guidance、not_exposed。轴一 held-out 不等于 C 没有指导，也不能证明模型预训练没见过。标签及判定依据在冻结前逐题核定。
 

@@ -39,11 +39,23 @@ v1 暂定 16 题，仅保留 P2 一个症状相同但根因不同的配对、两
 
 产物来源严格限于 T1_arabidopsis、T1_celegans、T1_yeast、T3；不读取其他项目作为取材，不新增物种，不下载数据，不重跑 BUSCO/组装/注释。服务器脚本以 cohort 和原路径白名单核对，meta.source_files 必须记录 cohort；T3 只允许既有批次的 GFF/FAA 及私有身份核验报告。此限制替代上一版的 SRA 下载、褐篮子鱼与油菜准备要求。
 
-synthetic=true 只表示真实材料上的小子集/格式构造，不免除 SHA 来源义务。case_001 优先从 T1 酵母已验证的 WT_Rep1/2 原 FASTQ 截取，核对原 RNA-seq provenance 的输入哈希及各样本双端标识。记录证明曾使用过，不证明当前服务器仍保留原读段；缺失时报告并等待决定，不重新下载。case_002 由 T1 真实 FASTA 子集确定性压缩后截断；case_003 用 T1 FASTA 子集构造 AGP 一致性题，明确 synthetic，不声称存在真实 Hi-C 产物。
+synthetic=true 只表示真实材料上的小子集/格式构造，不免除 SHA 来源义务。case_001 优先从 T1 酵母已验证的 WT_Rep1/2 原 FASTQ 截取，核对原 RNA-seq provenance 的输入哈希及各样本双端标识。2026-10-06 用户提供当前服务器目录清单，确认四个原读段的路径与大小；完整 SHA、历史 rnaseq.sha256 和 RNA-seq provenance 绑定仍由服务器脚本核验，本地验收后才能使用。缺失或不一致时报缺口，不重新下载。case_002 由 T1 真实 FASTA 子集确定性压缩后截断；case_003 用 T1 FASTA 子集构造 AGP 一致性题，明确 synthetic，不声称存在真实 Hi-C 产物。
+
+case_001 的原文件目录固定为 ~/AssemblyGenomics-Skill/yeast_test/0.Raw_Data/rnaseq/，下表大小来自用户的当前 ls 输出，不代表已经完成 SHA 核验：
+
+| 文件 | 大小（B） |
+| --- | ---: |
+| WT_Rep1_1.fq.gz | 551652741 |
+| WT_Rep1_2.fq.gz | 570060621 |
+| WT_Rep2_1.fq.gz | 779855365 |
+| WT_Rep2_2.fq.gz | 801366670 |
+| rnaseq.sha256 | 328 |
+
+服务器先核对大小和完整 SHA，再同时对照历史校验清单与 T1 输入 provenance；每个文件只回传前 64 条完整记录及私有来源回执，原始大 FASTQ 留在服务器。没有提供的哈希不得补造。
 
 唯一保留的 hard_negative（case_014）使用用户 T1 酵母段 1 真实低重复结果。文献可以作为该物种/统计口径下正常范围的答案依据，记入 publication_sources；不把论文数值写成自跑日志。实际值、工具版本及论文值分开记录。油菜高 BUSCO D 和褐篮子鱼挂载题移至 v2，不以其他材料偷偷顶替。
 
-第一轮只需现有 T1/T3 文件和 Python。T1 原 FASTQ 的保留情况、酵母正常范围文献、库版本/事故配置证据是否充分尚待核对。T3 正常对照按现有报告与快照选择一个完整已验证 GFF/FAA 对，选择原则为原文件合计大小最小、accession 排序打破平局；具体身份在冻结前审核，不根据模型结果选样。
+第一轮只需现有 T1/T3 文件和 Python。T1 原 FASTQ 的存在性已由用户目录清单确认，字节完整性和历史绑定、酵母正常范围文献、库版本/事故配置证据是否充分尚待核对。T3 正常对照按现有报告与快照选择一个完整已验证 GFF/FAA 对，选择原则为原文件合计大小最小、accession 排序打破平局；具体身份在冻结前审核，不根据模型结果选样。
 
 ## 题目目录与私有数据隔离
 
@@ -93,7 +105,7 @@ exposure_evidence 记录原文件/位置、实际 C 包位置或未暴露审查�
 
 | 新 ID | 最初题号 | stage | type | 轴一草案 | T1/T3 取材/构造目标 |
 |---|---|---|---|---|---|
-| case_001 | 1 | input | fault | held-out | T1 酵母两真实样本原 FASTQ 子集错配；现存源待核对 |
+| case_001 | 1 | input | fault | held-out | T1 酵母两真实样本原 FASTQ 子集错配；路径/大小已确认，SHA 待核验 |
 | case_002 | 2 | input | fault | held-out | T1 FASTA 子集压缩后截断 |
 | case_003 | 5 | hic | fault | held-out | T1 FASTA 子集构造 AGP 坐标故障，synthetic |
 | case_004 | 7 | repeat_annotation | fault | seen / PIT-001 | T1 库/日志证据中的 Dfam 版本问题 |

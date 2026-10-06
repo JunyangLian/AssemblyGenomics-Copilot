@@ -37,6 +37,21 @@ def save_immutable(destination: Path, content: bytes) -> None:
     destination.write_bytes(content)
 
 
+def check_read_checksum(origin: Path, digest: str, checksum_file: Path) -> None:
+    """Bind a read to the historical sha256sum list, without guessing hashes."""
+    matches = set()
+    for line in checksum_file.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        match = re.fullmatch(r"([a-fA-F0-9]{64}) [ *](.+)", line)
+        if not match:
+            raise ValueError("invalid historical RNA-seq checksum line")
+        if Path(match[2]).name == origin.name:
+            matches.add(match[1].lower())
+    if matches != {digest}:
+        raise ValueError("T1 read SHA is missing, conflicting, or differs from rnaseq.sha256")
+
+
 def snapshot_index(root: Path) -> tuple[dict[str, list[Path]], dict]:
     source = root / "MANIFEST.txt"
     grouped, named = {}, {}
@@ -291,6 +306,8 @@ def main() -> int:
                     raise ValueError(f"expected one origin file, got {len(candidates)}: {patterns}")
                 origin = path(candidates[0])
                 check_scope(origin, spec["cohort"], roots)
+                if "expected_size_bytes" in spec and origin.stat().st_size != spec["expected_size_bytes"]:
+                    raise ValueError("origin size differs from user-reported file listing")
                 if spec["cohort"] == "T3" and not spec.get("t3_kind"):
                     allowed_reports = {"t3_report": "t3_batch_report.tsv", "t3_summary": "t3_batch_summary.json"}
                     if allowed_reports.get(role) != origin.name:
@@ -311,9 +328,16 @@ def main() -> int:
                 else:
                     # Existing T1 reads/report missing from snapshot: hash before/after read.
                     source = origin
-                if sha256(source) != digest:
+                if source != origin and sha256(source) != digest:
                     raise ValueError("snapshot bytes do not match manifest/origin")
                 extraction_spec = dict(spec)
+                binding_receipts = {}
+                if spec.get("checksum_record_role"):
+                    matches = [r for r in status["sources"] if r["role"] == spec["checksum_record_role"]]
+                    if len(matches) != 1:
+                        raise ValueError("historical RNA-seq checksum list has not been prepared")
+                    check_read_checksum(origin, digest, bundle / matches[0]["package_path"])
+                    binding_receipts["checksum_record_sha256"] = matches[0]["package_sha256"]
                 if spec.get("binding_record_role"):
                     matches = [r for r in status["sources"] if r["role"] == spec["binding_record_role"]]
                     if len(matches) != 1:
@@ -322,12 +346,15 @@ def main() -> int:
                     samples = [r for r in record["samples"] if r["id"] == spec["sample_id"]]
                     if len(samples) != 1 or samples[0][spec["mate"] + "_sha256"] != digest:
                         raise ValueError("T1 read SHA does not match original RNA-seq provenance")
+                    binding_receipts["provenance_sha256"] = matches[0]["package_sha256"]
                 if spec.get("id_source_role"):
                     matches = [r for r in status["sources"] if r["role"] == spec["id_source_role"]]
                     if len(matches) != 1:
                         raise ValueError("required selected query table has not been prepared")
                     extraction_spec["id_source_path"] = str(bundle / matches[0]["package_path"])
                 content, selection = extract(source, extraction_spec)
+                if binding_receipts:
+                    selection["source_bindings"] = binding_receipts
                 destination = bundle / "sources" / (role + spec["extension"])
                 if spec.get("t3_kind"):
                     destination = bundle / "sources" / (role + (".gff3" if spec["t3_kind"] == "gff" else ".faa")
@@ -335,7 +362,7 @@ def main() -> int:
                 if destination.parent != bundle / "sources" or len(content) > config["max_file_bytes"]:
                     raise ValueError("unsafe output path or extracted file exceeds limit")
                 save_immutable(destination, content)
-                if sha256(source) != digest or sha256(origin) != digest:
+                if sha256(source) != digest or (source != origin and sha256(origin) != digest):
                     raise ValueError("origin/snapshot changed while extracting")
                 status["sources"].append({"role": role, "source_path": str(source),
                     "cohort": spec["cohort"],
@@ -349,7 +376,8 @@ def main() -> int:
     except (OSError, ValueError, KeyError) as error:
         status["gaps"].append({"role": "snapshot", "required": True, "reason": str(error)})
     try:
-        read_rows = {r["role"]: r for r in status["sources"] if r["role"].startswith("yeast_rep")}
+        read_rows = {r["role"]: r for r in status["sources"]
+                     if re.fullmatch(r"yeast_rep[12]_r[12]", r["role"])}
         if read_rows:
             pair_receipts = []
             for replicate in (1, 2):
