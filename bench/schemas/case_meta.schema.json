@@ -1,0 +1,540 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssemblyGenomics bench v1 case metadata",
+  "description": "私有溯源与分层元数据。schema 检查字段，来源真实性、文件哈希、配对相等及跨文件一致性另由验证器检查。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "benchmark_version",
+    "case_id",
+    "stage",
+    "type",
+    "seen_or_heldout",
+    "skill_exposure",
+    "exposure_evidence",
+    "pitfall_id",
+    "source_files",
+    "injection_script",
+    "seed",
+    "synthetic",
+    "pair_id",
+    "pressure_parent_case_id",
+    "source_snapshot",
+    "extractions",
+    "input_budget"
+  ],
+  "properties": {
+    "benchmark_version": {
+      "const": "v1"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^case_[0-9]{3}$"
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "input",
+        "assembly",
+        "hic",
+        "repeat_annotation",
+        "structural_annotation",
+        "functional_annotation"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "fault",
+        "normal",
+        "hard_negative",
+        "pressure"
+      ]
+    },
+    "seen_or_heldout": {
+      "type": "string",
+      "enum": [
+        "seen",
+        "held-out"
+      ],
+      "description": "轴一：实际陷阱库机制是否已见；不能表达模型预训练是否见过。"
+    },
+    "skill_exposure": {
+      "type": "string",
+      "enum": [
+        "explicit_rule",
+        "related_guidance",
+        "not_exposed"
+      ],
+      "description": "轴二：冻结的 C 知识包是否明确暴露该判定规则，或仅提供相关指导。"
+    },
+    "exposure_evidence": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "原知识文件及位置、C 知识包位置，或未暴露的检查范围；仅私有记录。",
+      "minItems": 1
+    },
+    "pitfall_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "PIT-001",
+        "PIT-002",
+        "PIT-003",
+        "PIT-004",
+        "PIT-005",
+        "PIT-006",
+        "PIT-007",
+        "PIT-008",
+        "PIT-009",
+        "PIT-010",
+        null
+      ]
+    },
+    "related_pitfall_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "PIT-001",
+          "PIT-002",
+          "PIT-003",
+          "PIT-004",
+          "PIT-005",
+          "PIT-006",
+          "PIT-007",
+          "PIT-008",
+          "PIT-009",
+          "PIT-010"
+        ]
+      }
+    },
+    "source_files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "source_origin",
+          "sha256",
+          "size_bytes",
+          "role"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 2,
+            "pattern": "^(?:/|[A-Za-z]:[\\\\/])",
+            "description": "实际解析后的绝对路径；不得使用 ~、环境变量或省略号。服务器路径使用 /home/... 形式。"
+          },
+          "source_origin": {
+            "type": "string",
+            "minLength": 2,
+            "pattern": "^(?:/|[A-Za-z]:[\\\\/])",
+            "description": "实际解析后的绝对路径；不得使用 ~、环境变量或省略号。服务器路径使用 /home/... 形式。"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "description": "该原始文件的用途；仅存在于私有元数据。"
+          },
+          "source_kind": {
+            "type": "string",
+            "enum": [
+              "analysis_artifact",
+              "reference_assembly",
+              "published_data"
+            ]
+          },
+          "provenance_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "如有，指绑定该输入/输出的 provenance 文件自身 SHA-256；不能替代源文件哈希。"
+          }
+        }
+      }
+    },
+    "injection_script": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^bench/inject/(?!\\.\\.?(/|$))(?!.*\\/\\.\\.?(/|$))[A-Za-z0-9_./-]+\\.py$"
+        }
+      ],
+      "description": "故障/施压构造脚本；无故障注入的正常题和 hard_negative 可为 null。截取方法另记 extractions。"
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295,
+      "description": "确定性种子；未用随机数仍显式记录 0。"
+    },
+    "synthetic": {
+      "type": "boolean",
+      "description": "构造格式/一致性故障或小子集时为 true；不免除真实来源及 SHA-256 义务，也不等同于可凭空生成读段。"
+    },
+    "pair_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "P1",
+        "P2",
+        null
+      ]
+    },
+    "pressure_parent_case_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^case_[0-9]{3}$"
+    },
+    "source_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "root",
+        "manifest_path",
+        "manifest_sha256"
+      ],
+      "properties": {
+        "root": {
+          "type": "string",
+          "minLength": 2,
+          "pattern": "^(?:/|[A-Za-z]:[\\\\/])",
+          "description": "实际解析后的绝对路径；不得使用 ~、环境变量或省略号。服务器路径使用 /home/... 形式。"
+        },
+        "manifest_path": {
+          "type": "string",
+          "minLength": 2,
+          "pattern": "^(?:/|[A-Za-z]:[\\\\/])",
+          "description": "实际解析后的绝对路径；不得使用 ~、环境变量或省略号。服务器路径使用 /home/... 形式。"
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "extractions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "artifact_path",
+          "source_paths",
+          "method",
+          "selection",
+          "content_sha256",
+          "size_bytes"
+        ],
+        "properties": {
+          "artifact_path": {
+            "type": "string",
+            "pattern": "^artifacts/(?!\\.\\.?(/|$))(?!.*\\/\\.\\.?(/|$))[^:\\\\\\r\\n]+$",
+            "description": "相对题目目录的模型可见产物路径。路径规范化与无符号链接越界由验证器检查。"
+          },
+          "source_paths": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "pattern": "^(?:/|[A-Za-z]:[\\\\/])",
+              "description": "实际解析后的绝对路径；不得使用 ~、环境变量或省略号。服务器路径使用 /home/... 形式。"
+            }
+          },
+          "method": {
+            "type": "string",
+            "enum": [
+              "whole_file",
+              "line_ranges",
+              "byte_ranges",
+              "fasta_records",
+              "fastq_records",
+              "feature_subset",
+              "derived_summary"
+            ]
+          },
+          "selection": {
+            "type": "string",
+            "minLength": 1,
+            "description": "精确记录选择条件、记录 ID、行/字节范围及坐标约定；说明重算统计、格式变换和标准工具诊断方法。"
+          },
+          "content_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "description": "覆盖每个可见 artifact；SHA-256 为注入/截取后的文件自身哈希。task.md 哈希在冻结清单单独记录。"
+    },
+    "input_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "estimator",
+        "estimated_tokens",
+        "limit_tokens"
+      ],
+      "properties": {
+        "estimator": {
+          "type": "string",
+          "minLength": 1,
+          "description": "固定版本的 tokenizer 或保守估算方法。"
+        },
+        "estimated_tokens": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 30000
+        },
+        "limit_tokens": {
+          "const": 30000
+        }
+      },
+      "description": "仅 task.md 加 artifacts 的可见文本预算；系统提示/schema/C 知识包另行统计，不能隐藏 C 组长度差异。"
+    },
+    "publication_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "citation",
+          "locator",
+          "reported_values"
+        ],
+        "properties": {
+          "citation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "doi": {
+            "type": "string",
+            "pattern": "^10\\.\\d{4,9}/\\S+$"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://"
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1,
+            "description": "论文表格、图、正文段或补充材料精确位置。"
+          },
+          "reported_values": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "metric",
+                "value",
+                "unit",
+                "context"
+              ],
+              "properties": {
+                "metric": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {
+                  "type": [
+                    "number",
+                    "string"
+                  ]
+                },
+                "unit": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "context": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "例如物种/倍性、BUSCO 模式及 lineage、重复统计口径。"
+                }
+              }
+            }
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "doi"
+            ]
+          },
+          {
+            "required": [
+              "url"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "seen_or_heldout": {
+            "const": "seen"
+          }
+        },
+        "required": [
+          "seen_or_heldout"
+        ]
+      },
+      "then": {
+        "properties": {
+          "pitfall_id": {
+            "type": "string",
+            "enum": [
+              "PIT-001",
+              "PIT-002",
+              "PIT-003",
+              "PIT-004",
+              "PIT-005",
+              "PIT-006",
+              "PIT-007",
+              "PIT-008",
+              "PIT-009",
+              "PIT-010"
+            ]
+          },
+          "exposure_evidence": {
+            "minItems": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "pitfall_id": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "pressure"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "pair_id": {
+            "type": "null"
+          },
+          "pressure_parent_case_id": {
+            "type": "string",
+            "pattern": "^case_[0-9]{3}$"
+          },
+          "injection_script": {
+            "type": "string"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "pressure_parent_case_id": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "fault"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "injection_script": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "hard_negative"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "required": [
+          "publication_sources"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "pair_id": {
+            "enum": [
+              "P1",
+              "P2"
+            ]
+          }
+        },
+        "required": [
+          "pair_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "type": {
+            "const": "fault"
+          }
+        }
+      }
+    }
+  ]
+}
