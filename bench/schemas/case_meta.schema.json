@@ -22,7 +22,8 @@
     "source_snapshot",
     "extractions",
     "input_budget",
-    "spec_version"
+    "spec_version",
+    "source_scope"
   ],
   "properties": {
     "benchmark_version": {
@@ -129,7 +130,8 @@
           "source_origin",
           "sha256",
           "size_bytes",
-          "role"
+          "role",
+          "cohort"
         ],
         "properties": {
           "path": {
@@ -189,6 +191,15 @@
             "type": "string",
             "pattern": "^[a-f0-9]{64}$",
             "description": "服务器准备记录/本地验收记录哈希，绑定原产物与子集的选择。"
+          },
+          "cohort": {
+            "enum": [
+              "T1_arabidopsis",
+              "T1_celegans",
+              "T1_yeast",
+              "T3"
+            ],
+            "description": "仅允许已验证的 T1 三物种及 T3 来源；文献只作为正常范围依据。"
           }
         }
       }
@@ -458,7 +469,7 @@
       "description": "仅作为正常范围与标准答案依据；可见数值必须来自用户真实运行，不得抄成工具输出。"
     },
     "spec_version": {
-      "const": "1.1"
+      "const": "1.2"
     },
     "legacy_case_number": {
       "type": "integer",
@@ -531,14 +542,18 @@
         "input_sha256",
         "output_source_paths",
         "run_record_path",
-        "run_record_sha256"
+        "run_record_sha256",
+        "command_status"
       ],
       "properties": {
         "runner": {
           "const": "user"
         },
         "command": {
-          "type": "array",
+          "type": [
+            "array",
+            "null"
+          ],
           "minItems": 1,
           "items": {
             "type": "string",
@@ -585,9 +600,53 @@
         "lineage_manifest_sha256": {
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
+        },
+        "command_status": {
+          "enum": [
+            "recorded",
+            "not_recorded"
+          ]
+        },
+        "command_missing_reason": {
+          "type": "string",
+          "minLength": 1
         }
       },
-      "description": "用户实际执行的运行记录；旧运行从原 provenance/日志核对，不能推测命令或版本。BUSCO proteins 另需 lineage 与清单哈希（语义校验）。"
+      "description": "既有 T1 用户实际运行记录；原 provenance/日志未记录命令时显式标 not_recorded 并说明，不推测、不为补字段重跑。输入/输出哈希和工具版本仍须核对。",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "command_status": {
+                "const": "not_recorded"
+              }
+            },
+            "required": [
+              "command_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "command_missing_reason"
+            ],
+            "properties": {
+              "command": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "command": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "source_scope": {
+      "const": "T1_T3"
     }
   },
   "allOf": [

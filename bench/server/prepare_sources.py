@@ -1,4 +1,4 @@
-"""First server round: provenance checks, bounded source extraction, SRA, BUSCO.
+"""First server round: offline provenance checks and bounded T1/T3 extraction.
 
 No cases/answers, model calls, annotation pipelines, or A-group scoring here.
 Python 3.10+, standard library only. User runs this on the Linux server.
@@ -11,15 +11,9 @@ import glob
 import gzip
 import io
 import json
-import os
 from pathlib import Path
 import re
-import signal
-import subprocess
 import sys
-import time
-import urllib.parse
-import urllib.request
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from transfer import files, manifest, sha256, verify, write_json
@@ -83,6 +77,24 @@ def extract(source: Path, spec: dict) -> tuple[bytes, dict]:
                     break
         return "".join(selected).encode("utf-8"), {"method": "line_ranges",
                 "first_line": 1, "last_line": len(selected), "newline": "LF"}
+    if method == "fastq":
+        # Existing, real T1 reads only. No reads are generated or downloaded.
+        selected, count = [], 0
+        with text_stream(source) as stream:
+            for _ in range(spec["records"]):
+                header = stream.readline()
+                if not header:
+                    break
+                record = [header] + [stream.readline() for _ in range(3)]
+                if (not all(record) or not header.startswith("@") or
+                        not record[2].startswith("+") or
+                        len(record[1].rstrip("\n")) != len(record[3].rstrip("\n"))):
+                    raise ValueError("invalid/incomplete FASTQ record in T1 source")
+                selected.extend(record); count += 1
+        if count != spec["records"]:
+            raise ValueError("T1 reads have fewer records than requested subset")
+        return "".join(selected).encode("utf-8"), {"method": "fastq_records",
+                "first_record": 1, "records": count, "newline": "LF"}
     if method == "fasta":
         selected, records, bases = [], 0, 0
         with text_stream(source) as stream:
@@ -151,265 +163,85 @@ def extract(source: Path, spec: dict) -> tuple[bytes, dict]:
     raise ValueError(f"unknown extraction method: {method}")
 
 
-def run(command: list[str], log: Path, *, memory_gib=None, timeout=None) -> None:
-    log.parent.mkdir(parents=True, exist_ok=True)
-    preexec = None
-    if memory_gib is not None:
-        import resource
-        def limit_memory():
-            ceiling = int(memory_gib * 1024 ** 3)
-            resource.setrlimit(resource.RLIMIT_AS, (ceiling, ceiling))
-        preexec = limit_memory
-    # No shell expansion, no environment/key dump, no credentials in command.
-    with log.open("wb") as output:
-        if memory_gib is None:
-            subprocess.run(command, stdout=output, stderr=subprocess.STDOUT, check=True,
-                           timeout=timeout)
-            return
-        # A separate Linux process group lets the total job be stopped together.
-        process = subprocess.Popen(command, stdout=output, stderr=subprocess.STDOUT,
-                                   preexec_fn=preexec, start_new_session=True)
-        started = time.monotonic()
-        try:
-            while process.poll() is None:
-                rss = 0
-                for directory in Path("/proc").iterdir():
-                    if not directory.name.isdigit():
-                        continue
-                    try:
-                        stat = (directory / "stat").read_text()
-                        # After '(comm)': state, ppid, process group, ...
-                        if int(stat[stat.rfind(")") + 2:].split()[2]) != process.pid:
-                            continue
-                        match = re.search(r"^VmRSS:\s+(\d+)\s+kB$",
-                                          (directory / "status").read_text(), re.M)
-                        if match:
-                            rss += int(match[1]) * 1024
-                    except (FileNotFoundError, ProcessLookupError, PermissionError):
-                        continue
-                if rss > memory_gib * 1024 ** 3:
-                    raise ValueError("BUSCO process-group RSS exceeded configured memory budget")
-                if timeout is not None and time.monotonic() - started > timeout:
-                    raise subprocess.TimeoutExpired(command, timeout)
-                time.sleep(0.25)
-            if process.returncode:
-                raise subprocess.CalledProcessError(process.returncode, command)
-        except BaseException:
-            try:
-                os.killpg(process.pid, signal.SIGKILL)
-            except ProcessLookupError:
-                pass
-            process.wait()
-            raise
+COHORTS = {"T1_arabidopsis", "T1_celegans", "T1_yeast", "T3"}
 
 
-def version(executable: str, output: Path, option="--version") -> str:
-    run([executable, option], output, timeout=30)
-    return output.read_text(encoding="utf-8", errors="replace").strip()
+def scope_roots(config: dict, project: Path) -> dict[str, list[Path]]:
+    result = {}
+    for cohort, values in config["scope_roots"].items():
+        if cohort not in COHORTS:
+            raise ValueError(f"unsupported source cohort: {cohort}")
+        result[cohort] = [Path(value.replace("{project}", str(project)).replace(
+            "{home}", str(Path.home()))).expanduser().resolve() for value in values]
+    if set(result) != COHORTS:
+        raise ValueError("scope_roots must explicitly define the three T1 species and T3")
+    return result
 
 
-def ena_metadata(accession: str, destination: Path) -> dict:
-    if not re.fullmatch(r"(?:SRR|ERR|DRR)[0-9]+", accession):
-        raise ValueError("invalid SRA run accession")
-    query = urllib.parse.urlencode({"accession": accession, "result": "read_run",
-        "fields": "run_accession,sample_accession,scientific_name,tax_id,library_layout,library_strategy",
-        "format": "tsv"})
-    url = "https://www.ebi.ac.uk/ena/portal/api/filereport?" + query
-    with urllib.request.urlopen(url, timeout=20) as response:
-        content = response.read(1024 * 1024)
-    rows = list(csv.DictReader(io.StringIO(content.decode("utf-8")), delimiter="\t"))
-    if len(rows) != 1 or rows[0]["run_accession"] != accession:
-        raise ValueError(f"ENA did not return one matching run: {accession}")
-    row = rows[0]
-    if row["library_layout"] != "PAIRED" or not row["scientific_name"].startswith("Saccharomyces cerevisiae"):
-        raise ValueError(f"not a paired S. cerevisiae run: {accession}")
-    save_immutable(destination, content)
-    return {**row, "metadata_url": url, "metadata_sha256": sha256(destination)}
+def check_scope(origin: Path, cohort: str, roots: dict[str, list[Path]]) -> None:
+    if cohort not in COHORTS or not any(root == origin or root in origin.parents for root in roots[cohort]):
+        raise ValueError(f"origin is outside declared T1/T3 cohort: {origin}")
 
 
-def check_pairs(directory: Path, accession: str, maximum: int) -> dict:
-    left, right = directory / f"{accession}_1.fastq", directory / f"{accession}_2.fastq"
-    if not left.is_file() or not right.is_file():
-        raise ValueError("SRA tool did not emit both paired files")
-    count = 0
-    with left.open("rb") as a, right.open("rb") as b:
-        while True:
-            la, lb = a.readline(), b.readline()
-            if not la and not lb:
+def select_t3_pair(config: dict, grouped: dict, roots: dict) -> dict:
+    """Select one existing report-backed GFF/FAA pair by total compressed size."""
+    report = Path(config["t3_report"].replace("{home}", str(Path.home()))).expanduser().resolve(strict=True)
+    check_scope(report, "T3", roots)
+    with report.open(encoding="utf-8", newline="") as stream:
+        rows = list(csv.DictReader(stream, delimiter="\t"))
+    eligible = {r["accession"]: r for r in rows if r.get("band_verdict") == "in_band"}
+    requested = config.get("t3_accession")
+    if requested and requested not in eligible:
+        raise ValueError("selected T3 accession is not an in_band run in the existing report")
+    original_roots = [r for r in roots["T3"] if r.is_dir()]
+    candidates = {}
+    snapshot_files = {p for paths in grouped.values() for p in paths if p.is_file()}
+    for p in sorted(snapshot_files):
+        match = re.match(r"^(GCF_[0-9]+\.[0-9]+)_.*(_genomic\.gff|_protein\.faa)(?:\.gz)?$", p.name)
+        if not match:
+            continue
+        accession, suffix = match.groups()
+        if accession not in eligible or (requested and requested != accession):
+            continue
+        origins = {q.resolve() for root in original_roots for q in root.rglob(p.name) if q.is_file()}
+        if len(origins) != 1:
+            continue
+        origin = next(iter(origins))
+        kind = "gff" if suffix == "_genomic.gff" else "faa"
+        candidates.setdefault(accession, {}).setdefault(kind, []).append((p, origin))
+    complete = []
+    for accession, pair in candidates.items():
+        if set(pair) != {"gff", "faa"}:
+            continue
+        selected = {}
+        for kind, options in pair.items():
+            # Ambiguous versions/copies must be resolved, not silently chosen.
+            unique = {(str(p), str(o)): (p, o) for p, o in options}
+            if len(unique) != 1:
                 break
-            aa, bb = [la] + [a.readline() for _ in range(3)], [lb] + [b.readline() for _ in range(3)]
-            for record in (aa, bb):
-                if (not all(record) or not record[0].startswith(b"@") or
-                    not record[2].startswith(b"+") or
-                    len(record[1].rstrip()) != len(record[3].rstrip())):
-                    raise ValueError("invalid/incomplete FASTQ record")
-            normalize = lambda header: re.sub(rb"/[12]$", b"", header.split()[0])
-            if normalize(aa[0]) != normalize(bb[0]):
-                raise ValueError("within-sample read identifiers do not match")
-            count += 1
-    if not 0 < count <= maximum:
-        raise ValueError("unexpected subset record count")
-    return {"pairs": count, "sha256": {p.name: sha256(p) for p in (left, right)}}
-
-
-def prepare_sra(config: dict, bundle: Path, work: Path) -> dict:
-    runs = config["runs"]
-    if len(runs) != 2 or any(not r for r in runs) or runs[0] == runs[1]:
-        raise ValueError("configure two confirmed, distinct SRA runs")
-    count = config["spots"]
-    if not isinstance(count, int) or not 0 < count <= 10000:
-        raise ValueError("SRA spots must be 1..10000")
-    if config.get("uploaded_subset_bundle"):
-        uploaded = path(config["uploaded_subset_bundle"])
-        verify(uploaded)
-        upload_status = json.loads((uploaded / "STATUS.json").read_text(encoding="utf-8"))
-        if upload_status["status"] != "complete":
-            raise ValueError("uploaded SRA preparation was not complete")
-        receipts, samples = [], []
-        for accession in runs:
-            source_dir = uploaded / "sra" / accession
-            receipt = json.loads((source_dir / "run_record.json").read_text(encoding="utf-8"))
-            checked = check_pairs(source_dir, accession, count)
-            if checked != receipt["checked"] or receipt["selection"] != {"first_spot": 1, "last_spot": count}:
-                raise ValueError("uploaded subset does not match requested spots or recorded hashes")
-            rows = list(csv.DictReader(io.StringIO((source_dir / "metadata.tsv").read_text(encoding="utf-8")), delimiter="\t"))
-            if (len(rows) != 1 or rows[0]["run_accession"] != accession or
-                    rows[0]["library_layout"] != "PAIRED" or
-                    not rows[0]["scientific_name"].startswith("Saccharomyces cerevisiae")):
-                raise ValueError("uploaded SRA metadata has wrong identity/layout")
-            samples.append(rows[0]["sample_accession"])
-            for name in ("metadata.tsv", "run_record.json", f"{accession}_1.fastq", f"{accession}_2.fastq"):
-                save_immutable(bundle / "sra" / accession / name, (source_dir / name).read_bytes())
-            receipts.append(receipt)
-        if not all(samples) or samples[0] == samples[1]:
-            raise ValueError("uploaded runs must belong to different samples")
-        return {"runs": receipts, "uploaded_manifest_sha256": sha256(uploaded / "MANIFEST.json")}
-    metadata = []
-    for accession in runs:
-        destination = bundle / "sra" / accession / "metadata.tsv"
-        if destination.exists():
-            # Revalidate cached metadata, never assume arbitrary uploaded FASTQ is genuine.
-            row = list(csv.DictReader(io.StringIO(destination.read_text(encoding="utf-8")), delimiter="\t"))
-            if len(row) != 1 or row[0]["run_accession"] != accession:
-                raise ValueError("invalid cached SRA metadata")
-            if not row[0]["scientific_name"].startswith("Saccharomyces cerevisiae") or row[0]["library_layout"] != "PAIRED":
-                raise ValueError("cached metadata has wrong species/layout")
-            metadata.append(row[0])
-        else:
-            try:
-                metadata.append(ena_metadata(accession, destination))
-            except (OSError, ValueError) as error:
-                raise ValueError(f"SRA external access/identity check unavailable; download locally then upload "
-                                 f"a verified subset bundle: {error}") from error
-    if not all(m.get("sample_accession") for m in metadata) or metadata[0]["sample_accession"] == metadata[1]["sample_accession"]:
-        raise ValueError("two runs must belong to different public samples")
-    tool = config["fastq_dump"]
-    tool_version = version(tool, bundle / "logs" / "fastq_dump_version.log")
-    run([tool, "--help"], bundle / "logs" / "fastq_dump_help.log", timeout=30)
-    help_text = (bundle / "logs" / "fastq_dump_help.log").read_text(encoding="utf-8", errors="replace")
-    if "--minSpotId" not in help_text or "--maxSpotId" not in help_text:
-        raise ValueError("installed fastq-dump lacks ranged extraction; do not download full runs")
-    results = []
-    for accession, meta in zip(runs, metadata):
-        target = work / "sra" / accession
-        target.mkdir(parents=True, exist_ok=True)
-        command = [tool, "--minSpotId", "1", "--maxSpotId", str(count),
-                   "--split-files", "--skip-technical", "--outdir", str(target), accession]
-        receipt_path = target / "completed.json"
-        if receipt_path.exists():
-            receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
-            if receipt["command"] != command or receipt["tool_version"] != tool_version:
-                raise ValueError("SRA cache configuration changed; choose a new output directory")
-            if any(receipt["metadata"].get(key) != meta.get(key) for key in
-                   ("run_accession", "sample_accession", "scientific_name", "library_layout")):
-                raise ValueError("cached SRA metadata differs from completed run record")
-            checked = check_pairs(target, accession, count)
-            if checked != receipt["checked"]:
-                raise ValueError("SRA cached subset changed")
-        else:
-            if any(target.glob("*.fastq")):
-                raise ValueError("incomplete SRA attempt exists; choose a new fixed output directory")
-            # Limited spot extraction; tool may still use remote cache. No full prefetch.
-            run(command, bundle / "logs" / f"{accession}.log", timeout=config["timeout_seconds"])
-            checked = check_pairs(target, accession, count)
-            receipt = {"command": command, "tool_version": tool_version, "checked": checked,
-                       "metadata": meta, "selection": {"first_spot": 1, "last_spot": count}}
-            write_json(receipt_path, receipt)
-        for source in sorted(target.glob("*.fastq")):
-            save_immutable(bundle / "sra" / accession / source.name, source.read_bytes())
-        save_immutable(bundle / "sra" / accession / "run_record.json", receipt_path.read_bytes())
-        results.append(receipt)
-    return {"runs": results}
-
-
-def prepare_busco(config: dict, bundle: Path, work: Path) -> dict:
-    protein, lineage = path(config["protein_fasta"]), path(config["lineage"])
-    if not config["publication"] or not config["protein_set_description"]:
-        raise ValueError("configure published protein set identity/citation and isoform policy")
-    cpu, memory = config["cpu"], config["memory_gib"]
-    if not isinstance(cpu, int) or isinstance(cpu, bool) or not 0 < cpu <= (os.cpu_count() or 1):
-        raise ValueError("configure explicit safe BUSCO CPU budget")
-    if not isinstance(memory, (int, float)) or isinstance(memory, bool) or memory <= 0:
-        raise ValueError("configure explicit BUSCO memory budget in GiB")
-    if not lineage.is_dir() or not (lineage / "dataset.cfg").is_file():
-        raise ValueError("BUSCO lineage must be a complete local dataset directory")
-    lineage_rows = [{"path": n, "sha256": sha256(p), "size_bytes": p.stat().st_size}
-                    for n, p in files(lineage).items()]
-    write_json(bundle / "busco" / "lineage_manifest.json", lineage_rows)
-    tool = config["executable"]
-    versions = {"busco": version(tool, bundle / "logs" / "busco_version.log"),
-                "hmmsearch": version(config["hmmsearch"], bundle / "logs" / "hmmsearch_version.log", "-h")}
-    run([tool, "--help"], bundle / "logs" / "busco_help.log", timeout=30)
-    help_text = (bundle / "logs" / "busco_help.log").read_text(encoding="utf-8", errors="replace")
-    command = [tool, "-i", str(protein), "-m", "proteins", "-l", str(lineage),
-               "-c", str(cpu), "--offline", "-o", "protein_qc", "--out_path", str(work / "busco")]
-    if "--opt-out-run-stats" in help_text:
-        command.append("--opt-out-run-stats")
-    else:
-        release = re.search(r"\b(\d+)\.(\d+)\.(\d+)\b", versions["busco"])
-        if not release or tuple(map(int, release.groups())) >= (5, 6, 0):
-            raise ValueError("BUSCO version cannot disable telemetry; select a supported version")
-        # BUSCO introduced run-stat collection in 5.6.0; older releases have no flag.
-    identity = {"command": command, "input_sha256": sha256(protein), "versions": versions,
-                "lineage_manifest_sha256": sha256(bundle / "busco" / "lineage_manifest.json"),
-                "memory_gib": memory, "publication": config["publication"],
-                "memory_control": "per-process RLIMIT_AS plus 0.25s sampled process-group RSS guard",
-                "protein_set_description": config["protein_set_description"]}
-    receipt_path = work / "busco" / "completed.json"
-    result = work / "busco" / "protein_qc"
-    if receipt_path.exists():
-        old = json.loads(receipt_path.read_text(encoding="utf-8"))
-        if old["identity"] != identity:
-            raise ValueError("BUSCO cache configuration changed; choose a new output directory")
-    else:
-        if result.exists():
-            raise ValueError("incomplete BUSCO attempt exists; choose a new fixed output directory")
-        result.parent.mkdir(parents=True, exist_ok=True)
-        run(command, bundle / "logs" / "busco_run.log", memory_gib=memory)
-    selected = {n: p for n, p in files(result).items()
-                if (p.name.startswith("short_summary") or p.name in {"full_table.tsv", "missing_busco_list.tsv", "busco.log"})}
-    if not any(n.endswith(".txt") and "short_summary" in n for n in selected) or not any(n.endswith("full_table.tsv") for n in selected):
-        raise ValueError("BUSCO did not produce summary and full table")
-    hashes = {n: sha256(p) for n, p in selected.items()}
-    if receipt_path.exists() and old["output_sha256"] != hashes:
-        raise ValueError("BUSCO cached result changed")
-    if sha256(protein) != identity["input_sha256"] or any(sha256(lineage / r["path"]) != r["sha256"] for r in lineage_rows):
-        raise ValueError("BUSCO input or lineage changed during run")
-    receipt = {"runner": "user", "identity": identity, "output_sha256": hashes,
-               "protein_path": str(protein), "lineage_path": str(lineage)}
-    write_json(receipt_path, receipt)
-    for name, source in selected.items():
-        save_immutable(bundle / "busco" / "results" / name, source.read_bytes())
-    save_immutable(bundle / "busco" / "run_record.json", receipt_path.read_bytes())
-    return receipt
+            selected[kind] = next(iter(unique.values()))
+        if len(selected) == 2:
+            total = sum(p.stat().st_size for p, _ in selected.values())
+            complete.append((total, accession, selected))
+    if not complete:
+        raise ValueError("no complete report-backed T3 GFF/FAA pair in snapshot and original roots")
+    total, accession, selected = min(complete, key=lambda row: (row[0], row[1]))
+    return {"accession": accession, "report_row": eligible[accession],
+            "report_path": str(report), "report_sha256": sha256(report), "total_source_bytes": total,
+            "files": {kind: {"snapshot_path": str(p), "source_origin": str(o)}
+                      for kind, (p, o) in selected.items()}}
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True, type=Path)
-    parser.add_argument("--inventory-only", action="store_true", help="No SRA download or BUSCO execution")
+    parser.add_argument("--inventory-only", action="store_true", help="Compatibility flag; all preparation is offline and extracts existing files only")
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    if config.get("source_scope") != "T1_T3" or config.get("spec_version") != "1.2":
+        parser.error("use the 1.2 T1/T3-only preparation config")
+    if "sra" in config or "busco" in config:
+        parser.error("new downloads or BUSCO execution are outside current source scope")
     output = Path(config["output_root"]).expanduser().resolve()
     snapshot = Path(config["snapshot_root"]).expanduser().resolve()
     project = Path(config["project_root"]).expanduser().resolve()
@@ -426,28 +258,47 @@ def main() -> int:
                "platform": sys.platform})
     log = bundle / "logs" / "prepare.log"; log.parent.mkdir(exist_ok=True)
     try:
+        roots = scope_roots(config, project)
         grouped, snapshot_record = snapshot_index(snapshot)
         write_json(bundle / "snapshot_record.json", snapshot_record)
         save_immutable(bundle / "snapshot_manifest.txt", (snapshot / "MANIFEST.txt").read_bytes())
         inventory = [{"path": str(p), "size_bytes": p.stat().st_size}
                      for p in sorted(snapshot.rglob("*")) if p.is_file() and not p.is_symlink()]
         write_json(bundle / "inventory.json", inventory)
+        try:
+            t3 = select_t3_pair(config, grouped, roots)
+            write_json(bundle / "t3_selection.json", t3)
+        except (OSError, ValueError, KeyError) as error:
+            t3 = None
+            status["gaps"].append({"role": "t3_selection", "required": True, "reason": str(error)})
         for spec in config["sources"]:
             try:
                 role = spec["role"]
                 if not re.fullmatch(r"[a-z0-9_]+", role):
                     raise ValueError("source role must be a safe neutral identifier")
-                origin_pattern = spec["origin"]
-                if not origin_pattern:
+                origin_patterns = spec.get("origin_candidates", [spec.get("origin")])
+                if spec.get("t3_kind"):
+                    if t3 is None:
+                        raise ValueError("T3 pair selection is unavailable")
+                    chosen = t3["files"][spec["t3_kind"]]
+                    origin_patterns = [chosen["source_origin"]]
+                if not origin_patterns or any(not p for p in origin_patterns):
                     raise ValueError("origin path is not configured")
-                origin_pattern = origin_pattern.replace("{project}", str(project)).replace("{home}", str(Path.home()))
-                candidates = sorted(glob.glob(origin_pattern))
+                patterns = [p.replace("{project}", str(project)).replace("{home}", str(Path.home()))
+                            for p in origin_patterns]
+                candidates = sorted({p for pattern in patterns for p in glob.glob(pattern)})
                 if len(candidates) != 1:
-                    raise ValueError(f"expected one origin file, got {len(candidates)}: {origin_pattern}")
-                origin = path(candidates[0]); digest = sha256(origin)
+                    raise ValueError(f"expected one origin file, got {len(candidates)}: {patterns}")
+                origin = path(candidates[0])
+                check_scope(origin, spec["cohort"], roots)
+                if spec["cohort"] == "T3" and not spec.get("t3_kind"):
+                    allowed_reports = {"t3_report": "t3_batch_report.tsv", "t3_summary": "t3_batch_summary.json"}
+                    if allowed_reports.get(role) != origin.name:
+                        raise ValueError("T3 source must be the selected GFF/FAA pair or existing batch reports")
+                digest = sha256(origin)
                 if spec.get("expected_sha256") and digest != spec["expected_sha256"]:
                     raise ValueError("origin does not match pre-existing SHA binding")
-                snapshot_path = spec.get("snapshot_path")
+                snapshot_path = chosen["snapshot_path"] if spec.get("t3_kind") else spec.get("snapshot_path")
                 if snapshot_path:
                     source = path(snapshot_path)
                     if source not in grouped.get(digest, []):
@@ -458,11 +309,19 @@ def main() -> int:
                         raise ValueError("no snapshot copy matches the full origin SHA")
                     source = matches[0]
                 else:
-                    # Newly identified scaffolding files: hash before/after read.
+                    # Existing T1 reads/report missing from snapshot: hash before/after read.
                     source = origin
                 if sha256(source) != digest:
                     raise ValueError("snapshot bytes do not match manifest/origin")
                 extraction_spec = dict(spec)
+                if spec.get("binding_record_role"):
+                    matches = [r for r in status["sources"] if r["role"] == spec["binding_record_role"]]
+                    if len(matches) != 1:
+                        raise ValueError("T1 RNA-seq provenance has not been prepared")
+                    record = json.loads((bundle / matches[0]["package_path"]).read_text(encoding="utf-8"))
+                    samples = [r for r in record["samples"] if r["id"] == spec["sample_id"]]
+                    if len(samples) != 1 or samples[0][spec["mate"] + "_sha256"] != digest:
+                        raise ValueError("T1 read SHA does not match original RNA-seq provenance")
                 if spec.get("id_source_role"):
                     matches = [r for r in status["sources"] if r["role"] == spec["id_source_role"]]
                     if len(matches) != 1:
@@ -470,29 +329,46 @@ def main() -> int:
                     extraction_spec["id_source_path"] = str(bundle / matches[0]["package_path"])
                 content, selection = extract(source, extraction_spec)
                 destination = bundle / "sources" / (role + spec["extension"])
+                if spec.get("t3_kind"):
+                    destination = bundle / "sources" / (role + (".gff3" if spec["t3_kind"] == "gff" else ".faa")
+                                                        + (".gz" if source.suffix == ".gz" else ""))
                 if destination.parent != bundle / "sources" or len(content) > config["max_file_bytes"]:
                     raise ValueError("unsafe output path or extracted file exceeds limit")
                 save_immutable(destination, content)
                 if sha256(source) != digest or sha256(origin) != digest:
                     raise ValueError("origin/snapshot changed while extracting")
                 status["sources"].append({"role": role, "source_path": str(source),
+                    "cohort": spec["cohort"],
                     "source_origin": str(origin), "source_sha256": digest,
                     "source_size_bytes": source.stat().st_size,
                     "package_path": destination.relative_to(bundle).as_posix(),
                     "package_sha256": sha256(destination), "selection": selection,
                     "cases": spec["cases"]})
-            except (OSError, ValueError, KeyError, TypeError) as error:
+            except (OSError, ValueError, KeyError, TypeError, EOFError) as error:
                 status["gaps"].append({"role": spec.get("role"), "required": spec.get("required", True), "reason": str(error)})
     except (OSError, ValueError, KeyError) as error:
         status["gaps"].append({"role": "snapshot", "required": True, "reason": str(error)})
-    if not args.inventory_only:
-        for name, job in (("sra", prepare_sra), ("busco", prepare_busco)):
-            try:
-                status["jobs"][name] = job(config[name], bundle, work)
-            except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
-                status["gaps"].append({"role": name, "required": True, "reason": str(error)})
-    else:
-        status["gaps"].append({"role": "execution", "required": True, "reason": "inventory only; SRA/BUSCO not executed"})
+    try:
+        read_rows = {r["role"]: r for r in status["sources"] if r["role"].startswith("yeast_rep")}
+        if read_rows:
+            pair_receipts = []
+            for replicate in (1, 2):
+                names = [f"yeast_rep{replicate}_r{mate}" for mate in (1, 2)]
+                if any(name not in read_rows for name in names):
+                    raise ValueError("incomplete T1 sample subset; both mates are required")
+                headers = []
+                for name in names:
+                    lines = (bundle / read_rows[name]["package_path"]).read_text(encoding="utf-8").splitlines()
+                    headers.append([re.sub(r"/[12]$", "", h.split()[0]) for h in lines[::4]])
+                if headers[0] != headers[1]:
+                    raise ValueError("real within-sample T1 subset identifiers do not pair")
+                pair_receipts.append({"sample": f"WT_Rep{replicate}", "pairs": len(headers[0]),
+                                      "roles": names})
+            if len({read_rows[f"yeast_rep{rep}_r1"]["source_sha256"] for rep in (1, 2)}) != 2:
+                raise ValueError("T1 two-sample source copies are identical")
+            write_json(bundle / "t1_read_pairing.json", pair_receipts)
+    except (OSError, ValueError, KeyError) as error:
+        status["gaps"].append({"role": "T1_read_pairing", "required": True, "reason": str(error)})
     required_gaps = [g for g in status["gaps"] if g["required"]]
     status["status"] = "blocked" if required_gaps else "complete"
     write_json(bundle / "STATUS.json", status)

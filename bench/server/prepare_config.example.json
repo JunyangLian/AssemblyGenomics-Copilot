@@ -1,9 +1,29 @@
 {
-  "spec_version": "1.1",
+  "spec_version": "1.2",
+  "source_scope": "T1_T3",
   "project_root": "~/AssemblyGenomics-Skill",
   "snapshot_root": "~/bench_sources",
-  "output_root": "~/bench_transfer/v1_prepare",
+  "output_root": "~/bench_transfer/v1_prepare_t1t3",
   "max_file_bytes": 16777216,
+  "scope_roots": {
+    "T1_arabidopsis": [
+      "{project}/arabidopsis/run"
+    ],
+    "T1_celegans": [
+      "{project}/caenorhabditis/run"
+    ],
+    "T1_yeast": [
+      "{project}/yeast_test/sop/yeast_loop",
+      "{project}/yeast_test/0.Raw_Data/rnaseq",
+      "{home}/yeast_test/0.Raw_Data/rnaseq"
+    ],
+    "T3": [
+      "{home}/临时",
+      "{home}/t3_run"
+    ]
+  },
+  "t3_report": "{home}/t3_run/t3_batch_report.tsv",
+  "t3_accession": null,
   "sources": [
     {
       "role": "arab_repeat_qc",
@@ -13,12 +33,13 @@
       "method": "copy",
       "extension": ".json",
       "cases": [
+        4,
         5,
-        6,
-        12
+        11
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_repeat_genome",
@@ -28,13 +49,17 @@
       "method": "fasta",
       "extension": ".fa",
       "cases": [
-        6,
-        12
+        2,
+        3,
+        5,
+        8,
+        11
       ],
       "required": true,
-      "records": 128,
+      "records": 1,
       "max_bases": 200000,
-      "expected_sha256": "aaf046110ee3e91294d1388e3546587a20bd5e82b09ac0cae2d670fa76524d67"
+      "expected_sha256": "aaf046110ee3e91294d1388e3546587a20bd5e82b09ac0cae2d670fa76524d67",
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_repeat_run_record",
@@ -44,12 +69,13 @@
       "method": "copy",
       "extension": ".json",
       "cases": [
+        4,
         5,
-        6,
-        12
+        11
       ],
       "required": false,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_repeat_library_record",
@@ -59,27 +85,11 @@
       "method": "copy",
       "extension": ".txt",
       "cases": [
-        5
+        4
       ],
       "required": false,
-      "max_bytes": 4194304
-    },
-    {
-      "role": "tair_genome",
-      "origin": "{home}/临时/GCF_000001735.4_TAIR10.1_genomic.fna.gz",
-      "snapshot_path": null,
-      "snapshot_required": true,
-      "method": "fasta",
-      "extension": ".fa",
-      "cases": [
-        2,
-        3,
-        6,
-        9
-      ],
-      "required": true,
-      "records": 1,
-      "max_bases": 200000
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_final_models",
@@ -89,12 +99,12 @@
       "method": "gtf",
       "extension": ".gtf",
       "cases": [
-        7,
-        13,
-        17
+        6,
+        15
       ],
       "required": true,
-      "limit": 1000
+      "limit": 1000,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_prior_models",
@@ -104,11 +114,12 @@
       "method": "gtf",
       "extension": ".gtf",
       "cases": [
-        7,
-        17
+        6,
+        15
       ],
       "required": true,
-      "limit": 1000
+      "limit": 1000,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_final_busco",
@@ -118,12 +129,12 @@
       "method": "copy",
       "extension": ".txt",
       "cases": [
-        7,
-        13,
-        17
+        6,
+        15
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_prior_busco",
@@ -133,11 +144,12 @@
       "method": "copy",
       "extension": ".txt",
       "cases": [
-        7,
-        17
+        6,
+        15
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_final_provenance",
@@ -147,12 +159,12 @@
       "method": "copy",
       "extension": ".json",
       "cases": [
-        7,
-        13,
-        17
+        6,
+        15
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_prior_configuration",
@@ -162,11 +174,12 @@
       "method": "copy",
       "extension": ".txt",
       "cases": [
-        7,
-        17
+        6,
+        15
       ],
       "required": false,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_hints",
@@ -176,10 +189,11 @@
       "method": "lines",
       "extension": ".gff",
       "cases": [
-        8
+        7
       ],
       "required": true,
-      "limit": 1000
+      "limit": 1000,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_gene_models",
@@ -189,24 +203,11 @@
       "method": "lines",
       "extension": ".gff3",
       "cases": [
-        9,
-        13
+        8
       ],
       "required": true,
-      "limit": 1000
-    },
-    {
-      "role": "arab_coding_validation",
-      "origin": "{project}/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/5.Longest/coding_only_verified/validation.json",
-      "snapshot_path": null,
-      "snapshot_required": true,
-      "method": "copy",
-      "extension": ".json",
-      "cases": [
-        13
-      ],
-      "required": true,
-      "max_bytes": 4194304
+      "limit": 1000,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_functional_table",
@@ -216,12 +217,13 @@
       "method": "lines",
       "extension": ".tsv",
       "cases": [
+        9,
         10,
-        11,
-        18
+        16
       ],
       "required": true,
-      "limit": 1025
+      "limit": 1025,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_functional_statistics",
@@ -231,12 +233,13 @@
       "method": "copy",
       "extension": ".tsv",
       "cases": [
+        9,
         10,
-        11,
-        18
+        16
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_functional_validation",
@@ -246,12 +249,13 @@
       "method": "copy",
       "extension": ".json",
       "cases": [
+        9,
         10,
-        11,
-        18
+        16
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_query_proteins",
@@ -261,12 +265,13 @@
       "method": "fasta_by_query",
       "extension": ".faa",
       "cases": [
+        9,
         10,
-        11,
-        18
+        16
       ],
       "required": true,
-      "id_source_role": "arab_functional_table"
+      "id_source_role": "arab_functional_table",
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "arab_functional_provenance",
@@ -276,12 +281,13 @@
       "method": "copy",
       "extension": ".json",
       "cases": [
+        9,
         10,
-        11,
-        18
+        16
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_arabidopsis"
     },
     {
       "role": "yeast_repeat_qc",
@@ -291,10 +297,14 @@
       "method": "copy",
       "extension": ".json",
       "cases": [
-        16
+        14
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_yeast",
+      "binding_record_role": "yeast_rnaseq_record",
+      "sample_id": "WT_Repe",
+      "mate": "qc"
     },
     {
       "role": "yeast_repeat_genome",
@@ -304,11 +314,15 @@
       "method": "fasta",
       "extension": ".fa",
       "cases": [
-        16
+        14
       ],
       "required": true,
       "records": 1,
-      "max_bases": 200000
+      "max_bases": 200000,
+      "cohort": "T1_yeast",
+      "binding_record_role": "yeast_rnaseq_record",
+      "sample_id": "WT_Repe",
+      "mate": "me"
     },
     {
       "role": "yeast_repeat_run_record",
@@ -318,108 +332,256 @@
       "method": "copy",
       "extension": ".json",
       "cases": [
-        16
+        14
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T1_yeast",
+      "binding_record_role": "yeast_rnaseq_record",
+      "sample_id": "WT_Repe",
+      "mate": "rd"
     },
     {
-      "role": "siganus_agp",
-      "origin": null,
-      "snapshot_path": null,
-      "snapshot_required": false,
-      "method": "copy",
-      "extension": ".agp",
-      "cases": [
-        4
-      ],
-      "required": true,
-      "max_bytes": 4194304
-    },
-    {
-      "role": "siganus_statistics",
-      "origin": null,
-      "snapshot_path": null,
-      "snapshot_required": false,
-      "method": "copy",
-      "extension": ".json",
-      "cases": [
-        4
-      ],
-      "required": true,
-      "max_bytes": 4194304
-    },
-    {
-      "role": "siganus_run_record",
-      "origin": null,
-      "snapshot_path": null,
-      "snapshot_required": false,
-      "method": "copy",
-      "extension": ".json",
-      "cases": [
-        4
-      ],
-      "required": true,
-      "max_bytes": 4194304
-    },
-    {
-      "role": "siganus_component_fai",
-      "origin": null,
-      "snapshot_path": null,
-      "snapshot_required": false,
-      "method": "copy",
-      "extension": ".fai",
-      "cases": [
-        4
-      ],
-      "required": true,
-      "max_bytes": 4194304
-    },
-    {
-      "role": "refseq_gff",
+      "role": "t3_gff",
       "origin": null,
       "snapshot_path": null,
       "snapshot_required": true,
       "method": "copy",
       "extension": ".gff3",
       "cases": [
-        14
+        13
       ],
       "required": true,
-      "max_bytes": 4194304
+      "max_bytes": 4194304,
+      "cohort": "T3",
+      "t3_kind": "gff"
     },
     {
-      "role": "refseq_proteins",
+      "role": "t3_proteins",
       "origin": null,
       "snapshot_path": null,
       "snapshot_required": true,
       "method": "copy",
       "extension": ".faa",
       "cases": [
-        14
+        13
+      ],
+      "required": true,
+      "max_bytes": 4194304,
+      "cohort": "T3",
+      "t3_kind": "faa"
+    },
+    {
+      "role": "celegans_final_models",
+      "origin": "{project}/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.TSEBRA_intron08/models.gtf",
+      "cohort": "T1_celegans",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "gtf",
+      "extension": ".gtf",
+      "cases": [
+        12
+      ],
+      "required": true,
+      "limit": 1000
+    },
+    {
+      "role": "celegans_final_busco",
+      "origin": "{project}/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.BUSCO/BUSCO_longest/short_summary*.txt",
+      "cohort": "T1_celegans",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".txt",
+      "cases": [
+        12
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "celegans_final_gff",
+      "origin": "{project}/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.Longest/Celegans_longest.gff3",
+      "cohort": "T1_celegans",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "lines",
+      "extension": ".gff3",
+      "cases": [
+        12
+      ],
+      "required": true,
+      "limit": 1000
+    },
+    {
+      "role": "celegans_final_proteins",
+      "origin": "{project}/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.Longest/Celegans_longest.pep.fa",
+      "cohort": "T1_celegans",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "fasta",
+      "extension": ".faa",
+      "cases": [
+        12
+      ],
+      "required": true,
+      "records": 64,
+      "max_bases": 200000,
+      "expected_sha256": "e60ef0732aa11d962fc45011a47391bd8e2265cffda2895fa00a38962de2fb32"
+    },
+    {
+      "role": "celegans_coding_validation",
+      "origin": "{project}/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/5.Longest/coding_only_verified/validation.json",
+      "cohort": "T1_celegans",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        12
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "celegans_final_provenance",
+      "origin": "{project}/caenorhabditis/run/stage3_braker/runs/celegans_batch01/4.BRAKER3/provenance.json",
+      "cohort": "T1_celegans",
+      "snapshot_path": null,
+      "snapshot_required": true,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        12
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "yeast_rnaseq_record",
+      "origin": "{project}/yeast_test/sop/yeast_loop/stage2_rnaseq/runs/batch01/2.RNAseq/provenance.json",
+      "cohort": "T1_yeast",
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        1
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "yeast_rep1_r1",
+      "origin": null,
+      "cohort": "T1_yeast",
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "fastq",
+      "extension": ".fastq",
+      "cases": [
+        1
+      ],
+      "required": true,
+      "records": 64,
+      "origin_candidates": [
+        "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_1.fq.gz",
+        "{home}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_1.fq.gz"
+      ],
+      "binding_record_role": "yeast_rnaseq_record",
+      "sample_id": "WT_Rep1",
+      "mate": "r1"
+    },
+    {
+      "role": "yeast_rep1_r2",
+      "origin": null,
+      "cohort": "T1_yeast",
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "fastq",
+      "extension": ".fastq",
+      "cases": [
+        1
+      ],
+      "required": true,
+      "records": 64,
+      "origin_candidates": [
+        "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_2.fq.gz",
+        "{home}/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_2.fq.gz"
+      ],
+      "binding_record_role": "yeast_rnaseq_record",
+      "sample_id": "WT_Rep1",
+      "mate": "r2"
+    },
+    {
+      "role": "yeast_rep2_r1",
+      "origin": null,
+      "cohort": "T1_yeast",
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "fastq",
+      "extension": ".fastq",
+      "cases": [
+        1
+      ],
+      "required": true,
+      "records": 64,
+      "origin_candidates": [
+        "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_1.fq.gz",
+        "{home}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_1.fq.gz"
+      ],
+      "binding_record_role": "yeast_rnaseq_record",
+      "sample_id": "WT_Rep2",
+      "mate": "r1"
+    },
+    {
+      "role": "yeast_rep2_r2",
+      "origin": null,
+      "cohort": "T1_yeast",
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "fastq",
+      "extension": ".fastq",
+      "cases": [
+        1
+      ],
+      "required": true,
+      "records": 64,
+      "origin_candidates": [
+        "{project}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_2.fq.gz",
+        "{home}/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_2.fq.gz"
+      ],
+      "binding_record_role": "yeast_rnaseq_record",
+      "sample_id": "WT_Rep2",
+      "mate": "r2"
+    },
+    {
+      "role": "t3_report",
+      "origin": "{home}/t3_run/t3_batch_report.tsv",
+      "cohort": "T3",
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "copy",
+      "extension": ".tsv",
+      "cases": [
+        13
+      ],
+      "required": true,
+      "max_bytes": 4194304
+    },
+    {
+      "role": "t3_summary",
+      "origin": "{home}/t3_run/t3_batch_summary.json",
+      "cohort": "T3",
+      "snapshot_path": null,
+      "snapshot_required": false,
+      "method": "copy",
+      "extension": ".json",
+      "cases": [
+        13
       ],
       "required": true,
       "max_bytes": 4194304
     }
-  ],
-  "sra": {
-    "runs": [
-      null,
-      null
-    ],
-    "spots": 1000,
-    "fastq_dump": "fastq-dump",
-    "timeout_seconds": 1800,
-    "uploaded_subset_bundle": null
-  },
-  "busco": {
-    "executable": "busco",
-    "hmmsearch": "hmmsearch",
-    "protein_fasta": null,
-    "protein_set_description": null,
-    "publication": null,
-    "lineage": null,
-    "cpu": null,
-    "memory_gib": null
-  }
+  ]
 }

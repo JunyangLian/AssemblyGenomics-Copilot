@@ -86,41 +86,79 @@ def test_source_hash_conflict_and_immutable_write(tmp_path):
     assert destination.read_bytes() == b"transport\n"
 
 
-def test_sra_network_failure_blocks_tool_execution(tmp_path, monkeypatch):
-    server = load_module("bench_prepare_network_test", "server/prepare_sources.py")
-    def offline(*args, **kwargs):
-        raise OSError("network unavailable")
-    def no_tool(*args, **kwargs):
-        pytest.fail("SRA tool must not run after a failed identity/network check")
-    monkeypatch.setattr(server.urllib.request, "urlopen", offline)
-    monkeypatch.setattr(server, "run", no_tool)
-    config = {"runs": ["SRR1", "SRR2"], "spots": 10}
-    with pytest.raises(ValueError, match="external access/identity"):
-        server.prepare_sra(config, tmp_path / "bundle", tmp_path / "work")
+def test_cross_project_source_is_rejected_before_extraction(tmp_path):
+    server = load_module("bench_prepare_scope_test", "server/prepare_sources.py")
+    source = tmp_path / "unrelated_project" / "control.txt"
+    roots = {"T1_arabidopsis": [tmp_path / "arabidopsis"]}
+    with pytest.raises(ValueError, match="outside declared T1/T3"):
+        server.check_scope(source, "T1_arabidopsis", roots)
+    with pytest.raises(ValueError, match="outside declared T1/T3"):
+        server.check_scope(source, "unregistered_cohort", roots)
+
+
+def preparation_fixture(tmp_path):
+    """Transport names/bytes only; no genome statistics or benchmark cases."""
+    snapshot, project, output, t3_root = [tmp_path / n for n in ("snapshot", "project", "output", "t3")]
+    snapshot.mkdir(); project.mkdir(); t3_root.mkdir()
+    original = project / "control.txt"; original.write_bytes(b"transport control\n")
+    copied = snapshot / "copy.txt"; copied.write_bytes(original.read_bytes())
+    checksum_lines = [f"{transfer.sha256(original)}  copy.txt\n"]
+    for suffix in ("genomic.gff", "protein.faa"):
+        filename = f"GCF_000000000.1_control_{suffix}"
+        source = t3_root / filename; source.write_bytes(b"transport fixture only\n")
+        (snapshot / filename).write_bytes(source.read_bytes())
+        checksum_lines.append(f"{transfer.sha256(source)}  {filename}\n")
+    (snapshot / "MANIFEST.txt").write_bytes("".join(checksum_lines).encode())
+    report = t3_root / "t3_batch_report.tsv"
+    report.write_bytes(b"accession\tband_verdict\nGCF_000000000.1\tin_band\n")
+    config = {"spec_version": "1.2", "source_scope": "T1_T3", "output_root": str(output),
+              "project_root": str(project), "snapshot_root": str(snapshot), "max_file_bytes": 1024,
+              "scope_roots": {"T1_arabidopsis": [str(project)], "T1_celegans": [str(project / "celegans")],
+                              "T1_yeast": [str(project / "yeast")], "T3": [str(t3_root)]},
+              "t3_report": str(report), "t3_accession": None,
+              "sources": [{"role": "control", "origin": str(original), "cohort": "T1_arabidopsis",
+                           "method": "copy", "max_bytes": 1024, "extension": ".txt", "cases": []}]}
+    config_path = tmp_path / "config.json"; transfer.write_json(config_path, config)
+    return config_path, output, original
 
 
 def test_inventory_command_repeats_without_running_tools(tmp_path):
-    # Plain transport bytes only, never a genome/statistics fixture.
-    snapshot, project, output = [tmp_path / n for n in ("snapshot", "project", "output")]
-    snapshot.mkdir(); project.mkdir()
-    original = project / "control.txt"; original.write_bytes(b"transport control\n")
-    copied = snapshot / "copy.txt"; copied.write_bytes(original.read_bytes())
-    (snapshot / "MANIFEST.txt").write_bytes(f"{transfer.sha256(original)}  copy.txt\n".encode())
-    config = {"output_root": str(output), "project_root": str(project),
-              "snapshot_root": str(snapshot), "max_file_bytes": 1024,
-              "sources": [{"role": "control", "origin": str(original), "method": "copy",
-                           "max_bytes": 1024, "extension": ".txt", "cases": []}]}
-    config_path = tmp_path / "config.json"; transfer.write_json(config_path, config)
+    config_path, output, original = preparation_fixture(tmp_path)
     script = Path(__file__).resolve().parents[1] / "server" / "prepare_sources.py"
     command = [sys.executable, str(script), "--config", str(config_path), "--inventory-only"]
     first = subprocess.run(command, capture_output=True, check=False)
-    assert first.returncode == 2, first.stderr
-    assert b"BLOCKED" in first.stdout
+    assert first.returncode == 0, first.stderr
+    assert b"COMPLETE" in first.stdout
     before = transfer.verify(output / "bundle")
     second = subprocess.run(command, capture_output=True, check=False)
-    assert second.returncode == 2, second.stderr
+    assert second.returncode == 0, second.stderr
     assert transfer.verify(output / "bundle") == before
     status = json.loads((output / "bundle" / "STATUS.json").read_text(encoding="utf-8"))
     assert len(status["sources"]) == 1
     assert status["sources"][0]["source_sha256"] == transfer.sha256(original)
     assert not status["jobs"]
+
+
+def test_preparation_does_not_access_network_or_run_external_tools(tmp_path, monkeypatch):
+    import urllib.request
+    server = load_module("bench_prepare_offline_test", "server/prepare_sources.py")
+    config_path, output, _ = preparation_fixture(tmp_path)
+    def forbidden(*args, **kwargs):
+        pytest.fail("offline source preparation attempted network or external tool execution")
+    monkeypatch.setattr(urllib.request, "urlopen", forbidden)
+    monkeypatch.setattr(subprocess, "run", forbidden)
+    monkeypatch.setattr(subprocess, "Popen", forbidden)
+    monkeypatch.setattr(sys, "argv", ["prepare_sources.py", "--config", str(config_path)])
+    assert server.main() == 0
+    assert transfer.verify(output / "bundle")["verified_files"] > 0
+
+
+def test_obsolete_download_config_is_rejected(tmp_path, monkeypatch):
+    server = load_module("bench_prepare_old_config_test", "server/prepare_sources.py")
+    config_path, _, _ = preparation_fixture(tmp_path)
+    config = json.loads(config_path.read_text(encoding="utf-8")); config["busco"] = {}
+    transfer.write_json(config_path, config)
+    monkeypatch.setattr(sys, "argv", ["prepare_sources.py", "--config", str(config_path)])
+    with pytest.raises(SystemExit) as error:
+        server.main()
+    assert error.value.code == 2
