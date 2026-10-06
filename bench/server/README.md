@@ -7,8 +7,8 @@
 服务器工作目录统一为 ~/AssemblyGenomics-Skill/bench/，来源快照位于 bench_sources/，固定输出位于 bench_transfer/v1_prepare_t1t3/。复制 server/prepare_config.example.json 为 server/prepare_config.json（不用密钥）。已有私有配置时，更新 snapshot_root 和 output_root 为新版示例中的路径；cp -n 不覆盖已有配置。默认来源依据用户提供的路径及既有 T1 SOP 记录；服务器当前文件仍须核验，不能把历史记录当作现存证据。{project}/{home} 在服务器展开。
 
 - source_scope 固定 T1_T3；cohort 仅四个值：T1_arabidopsis、T1_celegans、T1_yeast、T3。每个原文件必须位于对应 scope_roots，指向其他项目即报缺口。
-- 移动后的 MANIFEST.txt 应继续使用快照内相对路径；若含旧位置的绝对路径，脚本会报告缺口，不自动重写历史清单。既有快照来源先完整哈希原产物，再按 MANIFEST.txt 定位同字节副本；snapshot_path 默认 null。原产物、快照、清单不一致则停止该来源。摘要 glob 必须恰好匹配一个文件，多份结果不猜身份。
-- T1 原读段可能未进入 480MB 快照：仅从用户已确认的 {project}/yeast_test/0.Raw_Data/rnaseq/ 查 WT_Rep1/2 各 R1/R2 和 rnaseq.sha256；先对照当前目录清单的字节大小。配置明确 snapshot_required=false，原文件前后全量 SHA 核对，同时与历史 rnaseq.sha256 及 T1 RNA-seq provenance 输入哈希绑定；每个文件截取前 64 条完整真实记录，不生成读段；原始大 FASTQ 不回传。子集再检查各样本双端标识；缺文件或来源记录就报告，不下载补齐。
+- 移动后的 MANIFEST.txt 应继续使用快照内相对路径；越界记录仍报告缺口，不自动重写历史清单。同一路径出现不同哈希时，保留原清单，把该路径排除出匹配并记入 snapshot_record.json.excluded_conflicts；无关历史条目不阻断 v1。按用户确认的源文件稳定性，直接从已定位的 T1/T3 原文件截取，完整来源 SHA 只记录一次；清单匹配的副本路径仅作私有记录，不反复哈希副本或原文件。旧 snapshot_required 字段不阻断原文件已存在的 T1 来源。摘要 glob 必须恰好匹配一个文件，多份结果不猜身份。
+- T1 原读段可能未进入 480MB 快照：仅从用户已确认的 {project}/yeast_test/0.Raw_Data/rnaseq/ 查 WT_Rep1/2 各 R1/R2 和 rnaseq.sha256；先对照当前目录清单的字节大小。原文件完整 SHA 只记录一次，并与已有 rnaseq.sha256 及 T1 RNA-seq provenance 输入哈希绑定；每个文件截取前 64 条完整真实记录，不生成读段；原始大 FASTQ 不回传。子集再检查各样本双端标识；缺文件或来源记录就报告，不下载补齐。
 - T3 默认从既有 t3_batch_report.tsv 的 in_band 条目中，选快照和原目录都保存完整 GFF/FAA 的一对，按合计原文件大小最小、accession 排序打破平局。可填 t3_accession 固定选一个已有批次成员；未验证或只有 FAA 的条目不选。文件名被改写、复制版本歧义或对应原文件缺失时报告，不能猜配对。
 - T3 历史判定表和汇总只作私有身份核验；其中 in_band 等判定不能进入模型题目，模型只看白名单产物。该来源选择在模型调用前记录/审核，不能根据结果改选。
 
@@ -73,3 +73,14 @@ python bench/verify_sources.py bench/incoming/v1_prepare_t1t3 --receipt bench/in
 本地逐文件重算 SHA/大小，核对两份清单，拒绝额外/遗漏文件、重复条目、越界路径和 symlink。回执写在包外。哈希一致但服务器 blocked 仍不准构题；complete + 验收成功后才能进入逐题来源核验。缺 T1 原 FASTQ 就列缺口，由用户在冻结前决定，不自行删题、扩源或替题。
 
 阶段 2 的本地/服务器独立重建命令随注入脚本交付，两端 task/artifacts 哈希必须一致；第二轮 A 脚本仅在答案冻结后提供。所有模型 key 只在本地环境变量，本轮没有模型调用。
+
+## 本次历史清单冲突后的重跑
+
+用户已确认源文件未变更。本工具保留冲突清单与记录，直接使用唯一定位的原产物；不要求修复无关的 yeast/short_summary.txt，也不重新核验整个快照。更新 prepare_sources.py 后，保留之前的 blocked 包，给这次运行指定新目录：
+
+```bash
+cd ~/AssemblyGenomics-Skill/bench
+python server/prepare_sources.py --config server/prepare_config.json --output-root bench_transfer/v1_prepare_t1t3_r2
+```
+
+此命令可重复执行。--output-root 只覆盖本次输出目录，保留已填写的配置、来源文件和旧结果包。回传时使用 bench_transfer/v1_prepare_t1t3_r2/bundle。

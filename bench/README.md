@@ -51,7 +51,7 @@ case_001 的原文件目录固定为 ~/AssemblyGenomics-Skill/yeast_test/0.Raw_D
 | WT_Rep2_2.fq.gz | 801366670 |
 | rnaseq.sha256 | 328 |
 
-服务器先核对大小和完整 SHA，再同时对照历史校验清单与 T1 输入 provenance；每个文件只回传前 64 条完整记录及私有来源回执，原始大 FASTQ 留在服务器。没有提供的哈希不得补造。
+按用户确认的文件稳定性，服务器定位原文件并核对大小，完整来源 SHA 只记录一次并对照历史校验清单与 T1 输入 provenance；每个文件只回传前 64 条完整记录及私有来源回执，原始大 FASTQ 留在服务器。没有提供的哈希不得补造。
 
 唯一保留的 hard_negative（case_014）使用用户 T1 酵母段 1 真实低重复结果。文献可以作为该物种/统计口径下正常范围的答案依据，记入 publication_sources；不把论文数值写成自跑日志。实际值、工具版本及论文值分开记录。油菜高 BUSCO D 和褐篮子鱼挂载题移至 v2，不以其他材料偷偷顶替。
 
@@ -199,7 +199,7 @@ expected 的 acceptable_verdicts 是非空、不重复的允许判定数组，ro
 
 ### 混合环境与第一轮准备
 
-服务器后续工作目录固定为 ~/AssemblyGenomics-Skill/bench/，快照为 bench_sources/、准备输出为 bench_transfer/v1_prepare_t1t3/；T1/T3 原产物路径保持既有来源记录。服务器仅准备已有 T1/T3 数据，本地构造与运行；所有服务器脚本由 bench 提供，用户执行并 scp 回传目录。第一轮入口 server/prepare_sources.py 及配置/命令见 [服务器准备说明](server/README.md)。它核对稳定快照与原产物，按题目截取最小来源包，检查 T1 原读段是否仍存在及是否匹配原 provenance，选择现有 T3 已验证的 GFF/FAA 对。不访问外网、不下载 SRA、不跑 BUSCO 或注释，不再需要新增油菜、鱼类路径或计算预算。缺源列缺口，等待用户决定。
+服务器后续工作目录固定为 ~/AssemblyGenomics-Skill/bench/，快照为 bench_sources/、准备输出为 bench_transfer/v1_prepare_t1t3/；T1/T3 原产物路径保持既有来源记录。服务器仅准备已有 T1/T3 数据，本地构造与运行；所有服务器脚本由 bench 提供，用户执行并 scp 回传目录。第一轮入口 server/prepare_sources.py 及配置/命令见 [服务器准备说明](server/README.md)。它定位稳定来源与原产物，完整来源 SHA 只记录一次，按题目截取最小来源包；历史清单冲突条目保留并排除匹配，无关条目不阻断，检查 T1 原读段是否仍存在及是否匹配原 provenance，选择现有 T3 已验证的 GFF/FAA 对。不访问外网、不下载 SRA、不跑 BUSCO 或注释，不再需要新增油菜、鱼类路径或计算预算。缺源列缺口，等待用户决定。
 
 第一轮输出 Python 版本、既有 provenance 中的历史工具版本/命令记录、来源与截取哈希、固定日志、完整 SHA-256 清单与缺口摘要。用户 scp 回传后，Windows 用 verify_sources.py 重算每个文件 SHA 和大小、核对文件集合及清单；成功回执存包外，服务器 complete + 本地验收成功后才准取材。第一轮准备成功不等于题库/答案已通过审核。
 

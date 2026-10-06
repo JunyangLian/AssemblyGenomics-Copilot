@@ -1,5 +1,11 @@
 # bench 变更记录
 
+## 规格 1.2 来源定位简化 — 2026-10-06，冻结前
+
+- 用户确认源文件未改动，要求以位置定位为主，不再反复检查源哈希。现直接从唯一定位的原产物截取，完整来源 SHA 只记录一次；保留回传来源包的完整清单与本地验收。
+- 历史 MANIFEST.txt 对同路径记载不同哈希时，不修改原清单，排除该路径的所有候选并记录 excluded_conflicts；不因无关酵母 BUSCO 摘要阻断 v1。T1 原文件存在时，旧 snapshot_required 不再强制依赖副本清单，仍核验原路径属于允许的来源。
+- 更新脚本后使用新的固定输出目录 v1_prepare_t1t3_r2，保留已有 blocked 包；不生成诊断题库、不改答案、不调用模型。
+
 ## 规格 1.2 上传依赖修复 — 2026-10-06，冻结前
 
 - 根据服务器 ModuleNotFoundError 报告，明确第一轮最小上传清单为 bench/transfer.py、bench/server/prepare_sources.py、bench/server/prepare_config.json，并提供 scp 命令；保留已填写的服务器配置。

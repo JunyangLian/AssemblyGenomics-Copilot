@@ -75,12 +75,17 @@ def snapshot_index(root: Path) -> tuple[dict[str, list[Path]], dict]:
         candidate = candidate.resolve()
         if root not in candidate.parents:
             raise ValueError(f"snapshot manifest path leaves snapshot: {candidate}")
-        if candidate in named and named[candidate] != digest:
-            raise ValueError(f"conflicting snapshot hashes: {candidate}")
-        named[candidate] = digest
-        grouped.setdefault(digest, []).append(candidate)
+        named.setdefault(candidate, set()).add(digest)
+    conflicts = []
+    for candidate, digests in sorted(named.items()):
+        if len(digests) > 1:
+            conflicts.append({"path": str(candidate), "recorded_sha256": sorted(digests),
+                              "resolution": "excluded_from_source_matching"})
+        else:
+            grouped.setdefault(next(iter(digests)), []).append(candidate)
     return grouped, {"root": str(root), "manifest_path": str(source),
-                     "manifest_sha256": sha256(source), "entries": len(named)}
+                     "manifest_sha256": sha256(source), "entries": len(named),
+                     "excluded_conflicts": conflicts}
 
 
 def extract(source: Path, spec: dict) -> tuple[bytes, dict]:
@@ -267,9 +272,13 @@ def select_t3_pair(config: dict, grouped: dict, roots: dict) -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True, type=Path)
+    parser.add_argument("--output-root", type=Path,
+                        help="Use a new fixed run directory without changing the saved config")
     parser.add_argument("--inventory-only", action="store_true", help="Compatibility flag; all preparation is offline and extracts existing files only")
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
+    if args.output_root is not None:
+        config["output_root"] = str(args.output_root)
     if config.get("source_scope") != "T1_T3" or config.get("spec_version") != "1.2":
         parser.error("use the 1.2 T1/T3-only preparation config")
     if "sra" in config or "busco" in config:
@@ -335,20 +344,18 @@ def main() -> int:
                 if spec.get("expected_sha256") and digest != spec["expected_sha256"]:
                     raise ValueError("origin does not match pre-existing SHA binding")
                 snapshot_path = chosen["snapshot_path"] if spec.get("t3_kind") else spec.get("snapshot_path")
+                matched_snapshot = None
                 if snapshot_path:
-                    source = path(snapshot_path)
-                    if source not in grouped.get(digest, []):
+                    matched_snapshot = path(snapshot_path)
+                    if matched_snapshot not in grouped.get(digest, []):
                         raise ValueError("configured snapshot path is not manifest-bound to origin")
-                elif spec.get("snapshot_required", True):
-                    matches = sorted(set(grouped.get(digest, [])))
-                    if not matches:
-                        raise ValueError("no snapshot copy matches the full origin SHA")
-                    source = matches[0]
                 else:
-                    # Existing T1 reads/report missing from snapshot: hash before/after read.
-                    source = origin
-                if source != origin and sha256(source) != digest:
-                    raise ValueError("snapshot bytes do not match manifest/origin")
+                    matches = sorted(set(grouped.get(digest, [])))
+                    if matches:
+                        matched_snapshot = matches[0]
+                # User confirms stable originals. Extract there and record SHA once;
+                # historical snapshot bookkeeping is not a global integrity gate.
+                source = origin
                 extraction_spec = dict(spec)
                 binding_receipts = {}
                 if spec.get("checksum_record_role"):
@@ -372,6 +379,7 @@ def main() -> int:
                         raise ValueError("required selected query table has not been prepared")
                     extraction_spec["id_source_path"] = str(bundle / matches[0]["package_path"])
                 content, selection = extract(source, extraction_spec)
+                selection["source_hash_policy"] = "original_recorded_once"
                 if binding_receipts:
                     selection["source_bindings"] = binding_receipts
                 destination = bundle / "sources" / (role + spec["extension"])
@@ -381,9 +389,8 @@ def main() -> int:
                 if destination.parent != bundle / "sources" or len(content) > config["max_file_bytes"]:
                     raise ValueError("unsafe output path or extracted file exceeds limit")
                 save_immutable(destination, content)
-                if sha256(source) != digest or (source != origin and sha256(origin) != digest):
-                    raise ValueError("origin/snapshot changed while extracting")
                 status["sources"].append({"role": role, "source_path": str(source),
+                    "manifest_matched_snapshot_path": str(matched_snapshot) if matched_snapshot else None,
                     "cohort": spec["cohort"],
                     "source_origin": str(origin), "source_sha256": digest,
                     "source_size_bytes": source.stat().st_size,
@@ -427,6 +434,9 @@ def main() -> int:
     print(f"Files: {checked['verified_files']}; bytes: {checked['verified_bytes']}; jobs: {', '.join(status['jobs']) or 'none'}")
     for gap in status["gaps"]:
         print(f"GAP {gap['role']}: {gap['reason']}")
+    if "snapshot_record" in locals() and snapshot_record["excluded_conflicts"]:
+        print(f"NOTE: {len(snapshot_record['excluded_conflicts'])} ambiguous historical snapshot paths "
+              "excluded; recorded in snapshot_record.json")
     return 2 if required_gaps else 0
 
 

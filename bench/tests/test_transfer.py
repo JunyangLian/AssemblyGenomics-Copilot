@@ -76,8 +76,10 @@ def test_source_hash_conflict_and_immutable_write(tmp_path):
     digest = transfer.sha256(source)
     manifest = tmp_path / "MANIFEST.txt"
     manifest.write_bytes(f"{digest}  source.txt\n{'0'*64}  source.txt\n".encode())
-    with pytest.raises(ValueError, match="conflicting"):
-        server.snapshot_index(tmp_path)
+    grouped, record = server.snapshot_index(tmp_path)
+    assert not grouped
+    assert record["excluded_conflicts"][0]["path"] == str(source)
+    assert record["excluded_conflicts"][0]["recorded_sha256"] == sorted([digest, "0" * 64])
     destination = tmp_path / "fixed.txt"
     server.save_immutable(destination, b"transport\n")
     server.save_immutable(destination, b"transport\n")
@@ -269,3 +271,48 @@ def test_missing_transfer_upload_has_actionable_message(tmp_path):
     assert b"one level above server/" in result.stderr
     assert b"Traceback" not in result.stderr
     assert not (server_dir.parent / "bench_transfer").exists()
+
+
+@pytest.mark.parametrize("conflicted_name", ["unused.txt", "copy.txt"])
+def test_snapshot_conflict_does_not_block_needed_original(tmp_path, monkeypatch, conflicted_name):
+    server = load_module("bench_prepare_unused_conflict_test", "server/prepare_sources.py")
+    config_path, output, original = preparation_fixture(tmp_path)
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    snapshot = Path(config["snapshot_root"])
+    manifest = snapshot / "MANIFEST.txt"
+    manifest.write_bytes(manifest.read_bytes() +
+                         (f"{'0'*64}  {conflicted_name}\n{'1'*64}  {conflicted_name}\n").encode())
+    before = manifest.read_bytes()
+    original_sha = server.sha256
+    read_count = 0
+    def counted_sha(path):
+        nonlocal read_count
+        if Path(path) == original:
+            read_count += 1
+        return original_sha(path)
+    monkeypatch.setattr(server, "sha256", counted_sha)
+    monkeypatch.setattr(sys, "argv", ["prepare_sources.py", "--config", str(config_path)])
+    assert server.main() == 0
+    assert read_count == 1
+    assert manifest.read_bytes() == before
+    record = json.loads((output / "bundle" / "snapshot_record.json").read_text(encoding="utf-8"))
+    assert len(record["excluded_conflicts"]) == 1
+    status = json.loads((output / "bundle" / "STATUS.json").read_text(encoding="utf-8"))
+    assert status["sources"][0]["source_path"] == str(original)
+
+
+def test_output_override_preserves_saved_config_and_previous_directory(tmp_path, monkeypatch):
+    server = load_module("bench_prepare_output_override_test", "server/prepare_sources.py")
+    config_path, previous_output, _ = preparation_fixture(tmp_path)
+    saved_config = config_path.read_bytes()
+    previous_output.mkdir()
+    marker = previous_output / "previous.txt"
+    marker.write_bytes(b"previous output\n")
+    new_output = tmp_path / "new_output"
+    monkeypatch.setattr(sys, "argv", ["prepare_sources.py", "--config", str(config_path),
+                                      "--output-root", str(new_output)])
+    assert server.main() == 0
+    assert config_path.read_bytes() == saved_config
+    assert marker.read_bytes() == b"previous output\n"
+    assert not (previous_output / "bundle").exists()
+    assert transfer.verify(new_output / "bundle")["verified_files"] > 0
