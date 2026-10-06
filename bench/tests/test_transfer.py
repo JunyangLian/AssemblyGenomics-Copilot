@@ -254,3 +254,18 @@ def test_preparation_runs_in_project_bench_transfer_directory(tmp_path, monkeypa
     first = transfer.verify(output / "bundle")
     assert server.main() == 0
     assert transfer.verify(output / "bundle") == first
+
+
+def test_missing_transfer_upload_has_actionable_message(tmp_path):
+    server_dir = tmp_path / "bench" / "server"
+    server_dir.mkdir(parents=True)
+    script = server_dir / "prepare_sources.py"
+    original = Path(__file__).resolve().parents[1] / "server" / "prepare_sources.py"
+    script.write_bytes(original.read_bytes())
+    result = subprocess.run([sys.executable, str(script), "--help"], capture_output=True, check=False)
+    assert result.returncode == 2
+    assert b"Missing required file:" in result.stderr
+    assert b"transfer.py" in result.stderr
+    assert b"one level above server/" in result.stderr
+    assert b"Traceback" not in result.stderr
+    assert not (server_dir.parent / "bench_transfer").exists()

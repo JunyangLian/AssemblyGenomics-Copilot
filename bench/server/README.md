@@ -20,6 +20,25 @@ GTF 全量 gene_id 计数与截取行范围分开记录；完整原产物统计�
 
 用现有 scp 通道上传 bench/ 脚本和配置，保留 bench/server/prepare_sources.py 与 bench/transfer.py 的相对布局。不要上传 .env/API key。Python 3.10+，仅标准库；此轮不需要新增计算预算或可执行生信工具。
 
+第一轮的最小上传清单是三个文件，不要只上传 server/：
+
+```text
+~/AssemblyGenomics-Skill/bench/
+  transfer.py
+  server/
+    prepare_sources.py
+    prepare_config.json
+```
+
+在本地仓库根目录的 PowerShell 中执行（SERVER_ALIAS 替换成已有 scp 主机别名）：
+
+```powershell
+scp bench/transfer.py SERVER_ALIAS:~/AssemblyGenomics-Skill/bench/transfer.py
+scp bench/server/prepare_sources.py SERVER_ALIAS:~/AssemblyGenomics-Skill/bench/server/prepare_sources.py
+```
+
+这两条只更新脚本，保留服务器已有的 prepare_config.json。首次配置可另外上传 prepare_config.example.json，复制并填写为 prepare_config.json。缺少 transfer.py 时，新脚本会打印目标路径并退出 2，不开始读取来源或写输出；无需通过 pip 安装任何名为 transfer 的包。
+
 ```bash
 cd ~/AssemblyGenomics-Skill/bench
 cp -n server/prepare_config.example.json server/prepare_config.json

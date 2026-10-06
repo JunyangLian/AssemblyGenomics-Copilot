@@ -15,8 +15,14 @@ from pathlib import Path
 import re
 import sys
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from transfer import files, manifest, sha256, verify, write_json
+BENCH_ROOT = Path(__file__).resolve().parents[1]
+if not (BENCH_ROOT / "transfer.py").is_file():
+    print(f"Missing required file: {BENCH_ROOT / 'transfer.py'}. "
+          "Upload local bench/transfer.py to the server bench/ directory "
+          "(one level above server/), then rerun.", file=sys.stderr)
+    raise SystemExit(2)
+sys.path.insert(0, str(BENCH_ROOT))
+from transfer import manifest, sha256, verify, write_json
 
 
 def path(value: str) -> Path:

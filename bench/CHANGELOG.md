@@ -1,5 +1,10 @@
 # bench 变更记录
 
+## 规格 1.2 上传依赖修复 — 2026-10-06，冻结前
+
+- 根据服务器 ModuleNotFoundError 报告，明确第一轮最小上传清单为 bench/transfer.py、bench/server/prepare_sources.py、bench/server/prepare_config.json，并提供 scp 命令；保留已填写的服务器配置。
+- 准备入口在缺少同目录布局中的 transfer.py 时直接给出所需路径与修复提示，退出 2；新增缺依赖启动验证。题单、答案、预注册口径与模型调用状态不变。
+
 ## 规格 1.2 服务器目录调整 — 2026-10-06，冻结前
 
 - 按用户要求，服务器工作目录统一为 ~/AssemblyGenomics-Skill/bench/；稳定来源包为 bench_sources/，准备结果为 bench_transfer/v1_prepare_t1t3/。同步配置、执行命令及 scp 回传路径，忽略两类本地数据目录。
