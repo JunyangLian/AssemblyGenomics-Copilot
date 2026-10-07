@@ -70,7 +70,6 @@ class Budget:
         protected_versions = {self.locked['plan']['version']}
         if self.locked['plan'].get('resume'):
             protected_versions.add(self.locked['plan']['resume']['parent_version'])
-            protected_versions.update(self.locked['plan']['resume'].get('protected_versions', []))
         if any(r['slot'] == version + ':' + slot for r in self.state['slots'] for version in protected_versions):
             raise ApprovalError('slot already reserved; never resend without a registered revision')
         proposed = {'calls': self.state['calls'] + 1,

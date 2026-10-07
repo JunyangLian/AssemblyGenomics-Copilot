@@ -65,14 +65,16 @@ def test_parent_budget_slot_cannot_be_resent_under_a_new_plan(tmp_path, monkeypa
 
 def test_roster_requires_explicit_post_start_amendment_and_preserves_thresholds(tmp_path):
     for name in ['models.yaml', 'MODEL_AUTHORIZATION.json', 'FROZEN.md', 'preregistration.json',
-                 'PROVIDER_MODELS_ROSTER2.json', 'PROVIDER_MODELS.json', 'MODEL_ROSTER_REVISION.json']:
+                 'PROVIDER_MODELS_ROSTER2.json', 'PROVIDER_MODELS.json', 'MODEL_ROSTER_REVISION.json',
+                 'VISION_MODEL_REVISION.json', 'PROVIDER_MODELS_VISION.json']:
         (tmp_path / name).write_bytes((V2 / name).read_bytes())
     assert [m['requested_model_id'] for m in models(tmp_path)] == [
-        'deepseek-v4-flash-0731', 'deepseek-v4-pro-0813', 'minimax-m3', 'glm-5.3', 'qwen3.8-27b']
+        'deepseek-v4-flash-vision', 'deepseek-v4-pro-0813', 'minimax-m3', 'glm-5.3', 'qwen3.8-27b']
     doc = read_json(tmp_path / 'MODEL_ROSTER_REVISION.json'); doc['thresholds_changed'] = True
     write_json(tmp_path / 'MODEL_ROSTER_REVISION.json', doc)
     with pytest.raises(ValueError, match='invalid explicit roster amendment'): models(tmp_path)
     (tmp_path / 'MODEL_ROSTER_REVISION.json').unlink()
+    (tmp_path / 'VISION_MODEL_REVISION.json').unlink()
     with pytest.raises(ValueError, match='roster differs'): models(tmp_path)
 
 
@@ -81,9 +83,46 @@ def test_actual_parent_resume_preserves_all_results_and_unknown_call():
     locked = verify()
     rows = resume.parent_records(V2, locked)
     observations = [r for r in rows if r['record_type'] == 'observation']
-    assert len(observations) == 98
-    assert sum(r['status'] == 'ok' for r in observations) == 24
-    assert sum(r['status'] == 'api_error' for r in observations) == 1
-    assert sum(r['status'] == 'interrupted' for r in observations) == 1
+    receipt = read_json(V2 / locked['plan']['resume']['receipt'])
+    counts = receipt.get('carried_counts', receipt['counts'])
+    assert len(observations) == receipt.get('carried_observations', receipt['observations'])
+    for status in ['ok', 'api_error', 'interrupted']:
+        assert sum(r['status'] == status for r in observations) == counts[status]
     assert all(r.get('reused_from') for r in rows)
     assert not any(r['model'] == 'Kimi-K2.6' for r in rows)
+    assert not any(r['model'] in locked['plan']['resume'].get('audit_only_models', []) for r in rows)
+
+
+def test_replacement_does_not_reclassify_the_previous_flash_response():
+    from bench.v2.plan import verify
+    locked = verify()
+    parent_path = V2 / locked['plan']['resume']['records']
+    original = resume.rows(parent_path)
+    old = [r for r in original if r['model'] == 'DeepSeek-V4-Flash-0731' and r['record_type'] == 'observation']
+    assert len(old) == 72
+    assert sum(r['status'] == 'identity_error' for r in old) == 1
+    assert all(r['parsed'] is None for r in old)
+    assert all(r['model'] != 'DeepSeek-V4-Flash-Vision' for r in resume.parent_records(V2, locked))
+
+
+def test_operator_stop_finishes_without_any_new_request_or_fake_failures(tmp_path, monkeypatch):
+    from contextlib import nullcontext
+    from bench.v2 import run
+    locked = {'plan': {'models': [{'name': 'model'}], 'cases': [{'case_id': 'case'}]},
+              'plan_sha256': 'p', 'frozen_md_sha256': 'f'}
+    (tmp_path / 'schemas').mkdir()
+    write_json(tmp_path / 'schemas/model_output.schema.json', {})
+    directories = {}
+    for group in ['B', 'C2']:
+        directory = tmp_path / 'runs' / ('model_' + group); directory.mkdir(parents=True)
+        (directory / 'records.jsonl').write_bytes(b'')
+        directories[group, 'model'] = directory
+    (tmp_path / 'runs/STOP_AFTER_CURRENT_REQUEST').write_bytes(b'operator requested stop\n')
+    monkeypatch.setattr(run, 'verify', lambda *args: locked)
+    monkeypatch.setattr(run, 'approval', lambda *args: None)
+    monkeypatch.setattr(run, 'exclusive', lambda *args: nullcontext())
+    monkeypatch.setattr(run, 'Budget', lambda *args: object())
+    monkeypatch.setattr(run, 'prepare_api', lambda *args: (directories, {}, set()))
+    monkeypatch.setattr(run, 'OpenAICompatible', lambda *args: pytest.fail('no credential/client access after stop'))
+    assert run.execute('api', tmp_path) == []
+    assert all((d / 'records.jsonl').read_bytes() == b'' for d in directories.values())

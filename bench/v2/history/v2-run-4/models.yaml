@@ -1,8 +1,7 @@
 # Proposed protocol for mock. Paid execution additionally requires explicit resource approval.
 models:
-  - name: DeepSeek-V4-Flash-Vision
-    requested_model_id: deepseek-v4-flash-vision
-    accepted_response_ids: [deepseek-v4-flash-vision, DeepSeek-V4-Flash-Vision, dsv4-flash-vision]
+  - name: DeepSeek-V4-Flash-0731
+    requested_model_id: deepseek-v4-flash-0731
     base_url: https://discovery-api.intern-ai.org.cn/v1
     key_env: INTERN_DISCOVERY_API_KEY
     parameters: {temperature: 0, max_tokens: 8192}

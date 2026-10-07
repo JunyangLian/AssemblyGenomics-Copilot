@@ -32,38 +32,26 @@ def parent_records(root, locked):
     previous = {m['name']: m for m in parent['models']}
     selected = {m['name']: m for m in locked['plan']['models']}
     result = []
-    source_rows = rows(root / registered['records'])
-    source_observations = [r for r in source_rows if r['record_type'] == 'observation']
-    source_keys = [slot(r) for r in source_observations]
-    if (len(source_keys) != len(set(source_keys)) or len(source_keys) != receipt['observations']
-        or dict(Counter(r['status'] for r in source_observations)) != receipt['counts']):
-        raise ValueError('resume source cannot select answers or discard failures')
-    audit_only = registered.get('audit_only_models', [])
-    if audit_only != receipt.get('audit_only_models', []):
-        raise ValueError('audit-only model removal must be explicitly registered')
-    for row in source_rows:
-        if row['plan_sha256'] != receipt['parent_plan_sha256'] or row['frozen_md_sha256'] != locked['frozen_md_sha256']:
-            raise ValueError('unexpected source observation identity')
-        if row['model'] in audit_only:
-            continue  # preserved in immutable parent archive, never relabelled as the replacement
+    for row in rows(root / registered['records']):
         if row['model'] not in selected:
             raise ValueError('cannot discard an already attempted removed model')
         if selected[row['model']] != previous[row['model']]:
             raise ValueError('resumed model protocol changed')
+        if row['plan_sha256'] != receipt['parent_plan_sha256'] or row['frozen_md_sha256'] != locked['frozen_md_sha256']:
+            raise ValueError('unexpected source observation identity')
         if row.get('request_summary'):
             body = request(root / 'cases' / row['case_id'], row['group'], selected[row['model']], root, row.get('attempt', 0) > 0)
             if row['request_summary'] != summary(root / 'cases' / row['case_id'], body, root):
                 raise ValueError('resumed request differs from current public request')
         provenance = {'plan_sha256': row['plan_sha256'], 'run_id': row.get('run_id'),
             'record_sha256': digest(canonical(row)), 'source_log': row.get('source_log'),
-            'source_records': registered['records'], 'source_records_sha256': registered['records_sha256'],
-            'ancestor': row.get('reused_from')}
+            'source_records': registered['records'], 'source_records_sha256': registered['records_sha256']}
         result.append({**row, 'plan_sha256': locked['plan_sha256'], 'reused_from': provenance})
     observations = [r for r in result if r['record_type'] == 'observation']
     keys = [slot(r) for r in observations]
-    if len(keys) != len(set(keys)) or len(keys) != receipt.get('carried_observations', receipt['observations']):
+    if len(keys) != len(set(keys)) or len(keys) != receipt['observations']:
         raise ValueError('resume slots missing or duplicated')
-    if dict(Counter(r['status'] for r in observations)) != receipt.get('carried_counts', receipt['counts']):
+    if dict(Counter(r['status'] for r in observations)) != receipt['counts']:
         raise ValueError('resume cannot select successful answers or discard failures')
     return result
 

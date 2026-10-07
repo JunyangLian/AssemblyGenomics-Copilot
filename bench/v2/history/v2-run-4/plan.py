@@ -39,22 +39,6 @@ def models(root=V2):
             or set(names) - set(original_names) != {'GLM-5.3'} or len(names) != 5):
             raise ValueError('only the human-requested Kimi to GLM substitution is authorized')
         provider_file = amendment['provider_metadata_file']
-    vision_path = root / 'VISION_MODEL_REVISION.json'
-    vision = read_json(vision_path) if vision_path.exists() else None
-    if vision:
-        if (vision.get('user_authorized') is not True or not vision.get('user_quote')
-            or vision.get('previous_model_names') != names
-            or vision.get('frozen_md_sha256') != digest((root / 'FROZEN.md').read_bytes())
-            or vision.get('preregistration_sha256') != digest((root / 'preregistration.json').read_bytes())
-            or vision.get('post_start') is not True or vision.get('thresholds_changed') is not False
-            or vision.get('provider_metadata_file') != 'PROVIDER_MODELS_VISION.json'
-            or vision.get('request_model_id') != 'deepseek-v4-flash-vision'
-            or vision.get('accepted_response_ids') != ['deepseek-v4-flash-vision', 'DeepSeek-V4-Flash-Vision', 'dsv4-flash-vision']):
-            raise ValueError('invalid explicit Vision replacement; no implicit model or alias fallback')
-        replacements = ['DeepSeek-V4-Flash-Vision' if n == 'DeepSeek-V4-Flash-0731' else n for n in names]
-        if vision.get('model_names') != replacements:
-            raise ValueError('only the human-requested Flash Vision replacement is authorized')
-        names, provider_file = replacements, vision['provider_metadata_file']
     # The authorization stores the display names as strings.
     if [m['name'] for m in result] != names:
         raise ValueError('model roster differs from human authorization')
@@ -63,12 +47,7 @@ def models(root=V2):
         raise ValueError('provider mapping must come from the authorized model-list endpoint')
     official = {m['name']: m['id'] for m in provider['models']}
     for m in result:
-        fields = {'name', 'requested_model_id', 'base_url', 'key_env', 'parameters', 'thinking_status', 'price'}
-        if vision and m['name'] == 'DeepSeek-V4-Flash-Vision':
-            fields.add('accepted_response_ids')
-            if m.get('accepted_response_ids') != vision['accepted_response_ids']:
-                raise ValueError('Vision response identities differ from explicit human replacement')
-        if set(m) != fields:
+        if set(m) != {'name', 'requested_model_id', 'base_url', 'key_env', 'parameters', 'thinking_status', 'price'}:
             raise ValueError('unsupported configuration field; keys must stay in environment')
         if m['requested_model_id'] != official.get(m['name']):
             raise ValueError('request ID does not match exact official display-name mapping')

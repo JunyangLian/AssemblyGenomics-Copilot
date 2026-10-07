@@ -46,3 +46,7 @@ scp回传bundle整目录后，在本地运行python bench/v2/import_rules.py <bu
 续跑由 resume.py 读取锁定的 history/v2-run-3/RESUME_RECEIPT 与原始记录；98 条已有观测（含 24 条有效 Pro、超时、中断和 Flash 暂停）全部原样承接。API_RUNS.json 在请求前固定唯一目录索引，再运行使用原目录并跳过所有已完成槽位。账本已预留但无最终结果的请求记 interrupted，不补发；保留 identity_error 引起的跨组暂停。父计划同一语义槽位的重复预留也会拒绝。禁止依据标准答案选择补跑；标准答案不用于恢复判断。
 
 启动命令仍为 powershell -NoProfile -ExecutionPolicy Bypass -File .\bench\v2\start_api.ps1。本地环境 key 无需重设；统一预算上限不扩充。当前 A 包绑定 v2-run-4，服务器操作与回传目录不变。费用/账户墨点尚未确认；官方模型元数据的 pricing 仅是平台公布值，不能冒充余额或实际账单。
+
+用户随后选择 deepseek-v4-flash-vision，当前锁为v2-run-5。Vision作为替换型号新跑144槽位，原0731错误/暂停保留审计，不改为成功或拿其响应冒充Vision。Pro等其它模型所有既有好/坏结果均承接；原题库、提示、参数、分析门槛不变。三个允许返回标识仅对Vision生效（官方ID、展示名、用户已知并选择的dsv4-flash-vision），不是开放别名或证明0731权重，详情见新预注册附录。
+
+累计预算不增加；API_START_STATUS的执行调用与承接调用分列。未来需停队时创建bench/v2/runs/STOP_AFTER_CURRENT_REQUEST，当前观测完成后返回而不生成未执行槽位的伪失败；resume目录索引保持不变。清除标记前须确认旧进程退出；保留所有未知预留。当前A ZIP绑定v2-run-5，规则/输入不变，仅运行锁身份更新。

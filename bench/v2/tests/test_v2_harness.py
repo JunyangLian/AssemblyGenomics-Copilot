@@ -33,7 +33,7 @@ def test_private_controls_never_reach_requests_and_context_identical():
 
 
 def test_request_ids_use_exact_official_mapping_while_display_names_remain():
-    official = {m['name']: m['id'] for m in read_json(V2 / 'PROVIDER_MODELS_ROSTER2.json')['models']}
+    official = {m['name']: m['id'] for m in read_json(V2 / 'PROVIDER_MODELS_VISION.json')['models']}
     for m in models():
         body = request(CASE, 'B', m)
         assert body['model'] == official[m['name']] == m['requested_model_id']
@@ -129,6 +129,16 @@ def test_exact_official_display_name_is_a_registered_identity():
     rows = []
     final = observe(CASE, 'B', MODEL, Replies([(raw, None)]), 1, LOCK, rows.append)
     assert final['status'] == 'ok' and final['parsed'] is not None
+
+
+def test_explicit_vision_returned_id_is_allowed_only_for_the_replacement():
+    raw = valid_raw(); raw['model'] = 'dsv4-flash-vision'
+    final = observe(CASE, 'B', MODEL, Replies([(raw, None)]), 1, LOCK, lambda row: None)
+    assert MODEL['requested_model_id'] == 'deepseek-v4-flash-vision'
+    assert final['status'] == 'ok'
+    pro = next(m for m in models() if m['requested_model_id'] == 'deepseek-v4-pro-0813')
+    final = observe(CASE, 'B', pro, Replies([(raw, None)]), 1, LOCK, lambda row: None)
+    assert final['status'] == 'identity_error' and final['parsed'] is None
 
 
 def test_a_reuse_only_when_original_bytes_and_rule_identity_match():

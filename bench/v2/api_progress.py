@@ -62,10 +62,12 @@ def progress(root=V2):
         'provider_prompt_tokens_reported': sum(r['usage'].get('prompt_tokens') or 0 for r in used),
         'provider_completion_tokens_reported': sum(r['usage'].get('completion_tokens') or 0 for r in used),
         'provider_usage_exceeded_reservation': ledger.get('provider_usage_exceeded_reservation', False),
-        'fee': None, 'fee_note': 'provider price unknown; reservations are not billed token usage',
+        'fee': None, 'fee_note': 'account billing/ink conversion unconfirmed; metadata pricing is not a final bill; reservations are not billed usage',
         'transient_incomplete_jsonl_lines': incomplete_lines, 'hypotheses_scored': False,
         'orphan_lock_present': lock.exists() and not active,
         'roster_revision': plan.get('roster_revision'),
+        'vision_revision': plan.get('vision_revision'),
+        'audit_only_model_records': plan.get('resume', {}).get('audit_only_models', []),
         'prior_cohorts': ['history/v2-run-1/TRANSPORT_FAILURE.json', 'history/v2-run-2/TRANSPORT_FAILURE.json']}
     write_json(root / 'API_START_STATUS.json', result)
     print(json.dumps({k: result[k] for k in ('status','plan_version','completed_current_observations',
