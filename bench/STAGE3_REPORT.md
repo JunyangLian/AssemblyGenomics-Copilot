@@ -1,4 +1,4 @@
-# 阶段3 B/C完成汇总（不计分）
+# 阶段3完成汇总（不计分）
 
 完成时间：2026-10-07 13:23:57，Asia/Shanghai。三模型×B/C×16题×3重复，288/288个计划观测均有最终记录；269个有效JSON，19个API错误，0个最终parse_error。有效JSON只表示格式合法，尚未比较标准答案。
 
@@ -40,8 +40,12 @@ Kimi B：4个API错误（3次超时、1次中断）；C：15个API错误（14次
 
 完成后全套测试：228 passed in 21.47s，日志runs/API_final_pytest.log。冻结校验通过；已有scripts/knowledge/references/schemas/sop/templates逻辑未修改。
 
-## 尚需处理
+## A组验收与阶段结束
 
-真实A服务器结果仍待回传，不能用本地模拟A替代。服务器执行及回传命令见server/README.md；只上传rules_package.zip，运行后回传bench_transfer/v1_rules_run_1/bundle。本地import_rules.py验收通过后才进入全对照计分。
+服务器真实A于2026-10-07 14:55执行完成，本地incoming/bundle已验收：48/48个唯一观测，27次有原规则判定、21次未覆盖、0次环境执行错误；对应9题可判定、7题未覆盖，每题3次状态一致。ok仅表示规则产生结构化判定，不表示与标准答案吻合；not_covered按预注册保留并计未检出，不补规则扩大覆盖。
 
-阶段4未开始：没有读取expected进行准确率、根因、危险建议或H1–H3比较，也未调整任何答案或门槛。等待A回传及用户阶段确认。
+完整回传包6个载荷文件及两份清单通过校验，manifest SHA为bd3bca6df9a7a29590b927d3b8763c8f294a69e624d5269a6455460c9f540763。公开输入、原规则、原适配器身份匹配；旧SERVER_PLAN经已登记的父版本兼容合同接纳。execution_layout中的包装器、支持包、18个原规则源文件与本地冻结副本核对一致，未修改判定映射。回执A_RECEIPT.json，完整包保存于runs/20261007T145503284836+0800_rules_A_3ccf85e4ccb9。
+
+A为0次模型调用。全对照共有336个计划最终观测（A48+B/C288），完整接纳；原始API完成回执的A=pending是13:24时的历史快照，全阶段当前状态以STAGE3_COMPLETION.json及本节为准。
+
+阶段4未开始：没有读取expected进行准确率、根因、危险建议或H1–H3比较，也未调整任何答案或门槛。阶段3在此结束，最终全套pytest：231 passed in 26.76s；冻结与运行计划校验通过。按用户要求等待确认后再开始阶段4。
