@@ -71,22 +71,10 @@ class Budget:
         self.authorized = approval(root, locked)
         self.path = root / 'runs' / ('api_ledger_' + locked['plan_sha256'][:16] + '.json')
         self.state = read_json(self.path) if self.path.exists() else {'calls':0, 'reserved_cny':0, 'slots':[]}
-        prior = locked['plan'].get('prior_ledger')
-        if prior and not self.path.exists():
-            source = (root / prior['path']).resolve(strict=True)
-            if (root / 'runs').resolve() not in source.parents or digest(source.read_bytes()) != prior['sha256']:
-                raise ApprovalError('prior ledger identity changed; cumulative budget cannot be reset')
-            self.state = read_json(source)
-            if self.state['calls'] != prior['calls'] or self.state['reserved_cny'] != prior['reserved_cny']:
-                raise ApprovalError('prior reservation totals differ')
-            self.state['carried_from'] = prior['path']
 
     def reserve(self, slot, model, input_upper):
         from harness_common import write_json
-        self.authorized = approval(self.root, self.locked)
-        namespace = self.locked['plan'].get('slot_namespace')
-        if namespace:
-            slot = namespace + ':' + slot
+        approval(self.root, self.locked)
         cost = (input_upper * model['input_cny_per_million'] + model['output_token_budget'] * model['output_cny_per_million']) / 1e6
         if slot in self.state['slots']:
             raise ApprovalError('request already reserved; review partial run before resuming')

@@ -18,9 +18,9 @@ def run_id(model, group, frozen):
     return stamp + '_' + model + '_' + group + '_' + frozen[:12]
 
 
-def observe(case, group, model, client, repeat, locked, emit, root=BENCH, start_attempt=0):
+def observe(case, group, model, client, repeat, locked, emit, root=BENCH):
     final = None
-    for attempt in range(start_attempt, locked['plan']['parse_retries'] + 1):
+    for attempt in range(locked['plan']['parse_retries'] + 1):
         body = request(case, group, model, root, retry=attempt > 0)
         request_info = summary(case, body, root)
         slot = ':'.join([model['name'], group, case.name, str(repeat), str(attempt)])

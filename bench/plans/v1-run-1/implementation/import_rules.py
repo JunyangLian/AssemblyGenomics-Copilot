@@ -16,22 +16,12 @@ def accept(bundle, root=BENCH):
     receipt = verify_transfer(bundle)
     status = read_json(bundle / 'STATUS.json')
     identity = read_json(bundle / 'identity.json')
-    permitted_plan_hashes = {locked['plan_sha256']}
-    if locked['plan'].get('rules_parent_plan_sha256'):
-        parent_path = root / 'plans/v1-run-1/RUN_PLAN.json'
-        if digest(parent_path.read_bytes()) != locked['plan']['rules_parent_plan_sha256']:
-            raise ValueError('A parent plan archive differs')
-        parent = read_json(parent_path)
-        if parent['cases'] != locked['plan']['cases'] or parent['rule_sources'] != locked['plan']['rule_sources']:
-            raise ValueError('A parent inputs/rules differ from current plan')
-        if parent['rule_mapping'] != locked['plan']['rule_mapping']:
-            raise ValueError('A parent rule mapping differs')
-        permitted_plan_hashes.add(locked['plan']['rules_parent_plan_sha256'])
     if status.get('status') != 'complete' or status.get('api_calls') != 0:
         raise ValueError('server A transport is incomplete or has unexpected model calls')
     for doc in [status, identity]:
-        if doc.get('plan_sha256') not in permitted_plan_hashes or doc.get('frozen_md_sha256') != locked['frozen_md_sha256']:
-            raise ValueError('server result identity differs')
+        for field in ['plan_sha256', 'frozen_md_sha256']:
+            if doc.get(field) != locked[field]:
+                raise ValueError('server result identity differs')
     if identity.get('rule_sources') != locked['plan']['rule_sources']:
         raise ValueError('server existing rule identity differs')
     from make_rules_package import EXPORT
@@ -50,7 +40,7 @@ def accept(bundle, root=BENCH):
             row.get('simulated') is not False or row.get('record_type') != 'observation' or
             row.get('run_id') != status['run_id']):
             raise ValueError('non-server A observation')
-        if row['plan_sha256'] != status['plan_sha256'] or row['frozen_md_sha256'] != locked['frozen_md_sha256']:
+        if row['plan_sha256'] != locked['plan_sha256'] or row['frozen_md_sha256'] != locked['frozen_md_sha256']:
             raise ValueError('observation identity differs')
         case = root / 'cases' / row['case_id']
         if row.get('request_summary', {}).get('visible_payload_sha256') != digest(canonical(packet(case))):

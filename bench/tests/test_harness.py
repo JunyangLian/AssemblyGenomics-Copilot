@@ -133,6 +133,28 @@ def test_single_api_process_lock(tmp_path):
     assert not (tmp_path/'runs/API_ACTIVE.lock').exists()
 
 
+def test_prior_failed_run_reservations_are_not_reset(tmp_path, locked, model):
+    prior_path=tmp_path/'runs/old_ledger.json'
+    prior={'calls':1,'reserved_cny':0.2,'slots':['old-slot']}
+    hc.write_json(prior_path,prior)
+    locked['plan']['prior_ledger']={'path':'runs/old_ledger.json','sha256':hc.digest(prior_path.read_bytes()),'calls':1,'reserved_cny':0.2}
+    locked['plan']['slot_namespace']='new-transport-run'
+    approved(tmp_path,locked,max_calls=2)
+    budget=ma.Budget(tmp_path,locked)
+    budget.reserve('old-slot',model,1000)
+    assert budget.state['calls']==2 and budget.state['reserved_cny']>0.2
+    assert budget.state['slots']==['old-slot','new-transport-run:old-slot']
+    assert hc.read_json(prior_path)==prior
+    with pytest.raises(ma.ApprovalError,match='cap'):budget.reserve('another-slot',model,1000)
+
+
+def test_prior_ledger_tamper_blocks_budget_migration(tmp_path,locked):
+    prior_path=tmp_path/'runs/old_ledger.json';hc.write_json(prior_path,{'calls':1,'reserved_cny':0.2,'slots':['old-slot']})
+    locked['plan']['prior_ledger']={'path':'runs/old_ledger.json','sha256':'a'*64,'calls':1,'reserved_cny':0.2}
+    approved(tmp_path,locked)
+    with pytest.raises(ma.ApprovalError,match='identity'):ma.Budget(tmp_path,locked)
+
+
 def test_transport_credentials_never_logged(tmp_path, model, monkeypatch, locked):
     approved(tmp_path, locked)
     secret='test-private-credential-value'

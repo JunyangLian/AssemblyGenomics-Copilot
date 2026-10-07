@@ -10,7 +10,7 @@ from harness_common import BENCH, SYSTEM, REPAIR, canonical, digest, models, rea
 from visible_input import visible_files
 
 IMPLEMENTATION = ['harness_common.py', 'run_plan.py', 'run.py', 'rule_adapter.py', 'model_adapter.py',
-                  'make_rules_package.py', 'import_rules.py', 'mock_report.py', 'server/run_rules.py', 'models.yaml', 'transfer.py', 'start_api.ps1', 'revise_transport_plan.py', 'resume_api.py', 'register_resume_plan.py', 'summarize_api.py']
+                  'make_rules_package.py', 'import_rules.py', 'mock_report.py', 'server/run_rules.py', 'models.yaml', 'transfer.py']
 
 
 def rule_snapshot(repo):

@@ -74,3 +74,30 @@ def test_transport_byte_tamper_rejected(roundtrip):
     bench,bundle,locked=roundtrip
     p=bundle/'records.jsonl';p.write_bytes(p.read_bytes()+b'changed\n')
     with pytest.raises(ValueError,match='SHA-256'):import_rules.accept(bundle,bench)
+
+
+def use_parent_plan(bench,bundle,locked):
+    locked['plan']['rule_mapping']={'PIT-006':{'verdict':'rollback','root_cause':'masking_mode_error'}}
+    parent_path=bench/'plans/v1-run-1/RUN_PLAN.json'
+    hc.write_json(parent_path,locked['plan'])
+    sha=hc.digest(parent_path.read_bytes())
+    locked['plan']['rules_parent_plan_sha256']=sha
+    for name in ['STATUS.json','identity.json']:
+        data=hc.read_json(bundle/name);data['plan_sha256']=sha;hc.write_json(bundle/name,data)
+    path=bundle/'records.jsonl';rows=[json.loads(s) for s in path.read_text(encoding='utf-8').splitlines()]
+    for row in rows:row['plan_sha256']=sha
+    path.write_bytes(b''.join(hc.canonical(row) for row in rows));manifest(bundle)
+    return parent_path
+
+
+def test_same_rules_and_public_inputs_admit_original_server_plan(roundtrip):
+    bench,bundle,locked=roundtrip
+    use_parent_plan(bench,bundle,locked)
+    assert import_rules.accept(bundle,bench)['observations']==3
+
+
+def test_original_server_plan_archive_tamper_rejected(roundtrip):
+    bench,bundle,locked=roundtrip
+    path=use_parent_plan(bench,bundle,locked)
+    path.write_bytes(path.read_bytes()+b'changed\n')
+    with pytest.raises(ValueError,match='archive'):import_rules.accept(bundle,bench)

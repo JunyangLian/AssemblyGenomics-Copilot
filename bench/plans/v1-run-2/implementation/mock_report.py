@@ -50,7 +50,7 @@ def report(root=BENCH):
         data['prior_reserved_cny_not_billing'] = prior['reserved_cny']
         data['remaining_reserved_budget_cny'] = 270 - prior['reserved_cny']
     write_json(root/'MOCK_REPORT.json',data)
-    lines = ['# 阶段3 mock 与费用报告', '', '日期：2026-10-07。标准答案原样冻结，未进行计分；本次 mock 的真实 API 调用 0、模型费用 ¥0；历史真实调用另见 API_STATUS.md。', '',
+    lines = ['# 阶段3 mock 与费用报告', '', '日期：2026-10-07。标准答案原样冻结，未进行计分；真实 API 调用 0，实际模型费用 ¥0。', '',
         f'运行计划 SHA-256：`{locked["plan_sha256"]}`。', '',
         f'B/C：实际 {data["actual_mock_model_calls"]} 次 mock 调用，{data["parse_errors"]} 个最终解析失败。A：48个模拟运输槽位，不产生生物判定；服务器真实 A 待回传。', '',
         '| 模型 | B 平均输入代理 token | C 平均输入代理 token | 初始/最多调用 | 1000输出假设费用 | 初始保守额度 | 全重试保守额度 |',
@@ -62,10 +62,10 @@ def report(root=BENCH):
         '参数：均请求 temperature=0；DeepSeek/Qwen关闭思考，Kimi启用思考；不静默回退参数。服务端是否接受/实际生效、账号权限及别名具体版本尚未真实验证；失败会记录，不擅自替换模型。', '',
         '价格核对日期2026-10-06，人民币/百万token：DeepSeek 2/8（高峰未缓存），Qwen 3/12（北京），Kimi 20/100（北京，含思考）；忽略缓存、赠送额度和促销。', '',
         '[DeepSeek价格](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/)；[Qwen价格](https://help.aliyun.com/en/model-studio/qwen3-8-27b)；[Kimi价格](https://help.aliyun.com/zh/model-studio/model-pricing)；[阿里云参数及完整输出上限](https://help.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions)。', '',
-        '用户已批准三模型、累计576次请求/270元预留额度，API_APPROVAL.json绑定当前计划；mock本身不新增付费调用。费用守卫在发送前按保守值预留额度，达到上限即停，不自动重试网络错误；这是计划额度，最终账单以供应商为准。', '',
+        '真实调用仍需用户批准模型/计划/调用上限与费用预算，另存API_APPROVAL.json；当前没有此批准文件。费用守卫在发送前按保守值预留额度，达到上限即停，不自动重试网络错误；这是计划额度，最终账单以供应商为准。', '',
         '原始JSONL保存在本地 bench/runs/（被既有Git忽略）；模拟记录不得用于H1-H3。A服务器结果需验证48个唯一槽位、原规则身份和公开输入哈希后才准计分。']
     if 'remaining_global_call_cap' in data:
-        lines += ['', f'本版本继承先前运行{data["prior_api_reservations"]}次预留及¥{data["prior_reserved_cny_not_billing"]:.4f}计划额度（不是扣费）。累计最多576次/270元，因此当前剩余最多{data["remaining_global_call_cap"]}次和¥{data["remaining_reserved_budget_cny"]:.4f}；不能同时执行理论上的全部576次新请求。原运行/账本保留，标准答案和参数未改。']
+        lines += ['', f'本版本继承旧TLS失败运行{data["prior_api_reservations"]}次预留及¥{data["prior_reserved_cny_not_billing"]:.4f}计划额度（不是扣费）。累计最多576次/270元，因此当前剩余最多{data["remaining_global_call_cap"]}次和¥{data["remaining_reserved_budget_cny"]:.4f}；不能同时执行理论上的全部576次新请求。原运行/账本保留，标准答案和参数未改。']
     (root/'MOCK_REPORT.md').write_bytes(('\n'.join(lines)+'\n').encode('utf-8'))
     return data
 

@@ -1,0 +1,13 @@
+{
+  "approved": true,
+  "date": "2026-10-07",
+  "user_approval_quote": "批准，这三个api都可以直接调用，因为账户余额不多",
+  "approval_context": "User approved the preceding proposal: three registered models, B/C, at most 576 calls, CNY 270. No further permission request is required within this scope.",
+  "plan_sha256": "e694c6e22811bef07ac8f20c002ff62ad6cf10997cdca34df28744c553954bed",
+  "frozen_md_sha256": "3ccf85e4ccb9f4c8233e436a7cc2bbfb87b0c9b8e3991018f37cdfb7d560ea1b",
+  "models": ["deepseek-flash", "qwen3.8-27b", "kimi-k3"],
+  "groups": ["B", "C"],
+  "max_calls": 576,
+  "max_cost_cny": 270,
+  "keys": "Local environment variables only; no key values in this file."
+}

@@ -32,7 +32,7 @@ try {
         }
     }
     Write-Output 'Starting approved B/C run: at most 576 requests and CNY 270 reserved allowance.'
-    python bench/resume_api.py
+    python bench/run.py --mode api
     if ($LASTEXITCODE -ne 0) { throw 'Run stopped; preserve bench/runs logs and ledger before attempting another run' }
 } finally {
     [Environment]::SetEnvironmentVariable('NO_PROXY', $benchOriginalNoProxy, 'Process')

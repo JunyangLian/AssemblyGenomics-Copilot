@@ -230,6 +230,12 @@ validate_cases.py 必须检查：
 
 ### v1-run-1 实施（2026-10-07）
 
+后续运行版本v1-run-2：首轮本机代理导致TLS握手EOF，120个返回失败观测和121次预留原样保留，未收到模型响应。直连无密钥探测完成TLS验证后，仅在启动脚本进程NO_PROXY加入api.deepseek.com和dashscope.aliyuncs.com，退出恢复，不关闭证书验证、不修改系统代理。题目、标准答案、C包、模型和参数保持不变。
+
+原RUN_PLAN、批准、mock报告和实现归档于plans/v1-run-1；现计划69fd7e8374a2bbaf09e43e26c0b280b05fefbd6e4a7141bf76baa845761bb4fb在修复后首次mock/模型请求前另锁定。revise_transport_plan.py只允许没有任何模型响应的运输失败升级。新账本继承121次/¥33.3999预留（不是账户扣费），不清零；剩余最多455次及¥236.6001额度，三模型总累计仍受576次/¥270上限约束。旧API错误不参与修复后版本模型比较，也不删除或改写；报告须附独立基础设施失败记录。
+
+A题目、适配及原规则未变，因此现导入器可接收已生成的v1-run-1服务器包结果，但须验证原计划归档SHA、完全一致的公开题目/规则/映射及适配字节身份。仍使用原rules_package.zip，无需重新上传题目。阶段3状态由summarize_api.py汇总JSONL和usage（不读答案、不计分）；费用按批准未缓存/高峰单价估算，真实账户扣费unknown，不把账本预留当花费。
+
 用户已批准三模型B/C、最多576次调用、人民币270元上限，原回复保存在API_APPROVAL.json，绑定同一RUN_PLAN和FROZEN。批准不代表已执行；本地进程/用户/系统环境未发现DEEPSEEK_API_KEY或DASHSCOPE_API_KEY时不调用API。可在本地PowerShell执行 `powershell -NoProfile -File bench/start_api.ps1`，用隐藏输入配置两个进程环境变量并启动原锁定harness；不写仓库、日志、注册表或服务器，退出时恢复原环境变量。无需再次批准相同范围；运行日志和账本留在bench/runs。若不完整运行或余额/权限失败，先保留结果和账本，不能直接重跑而扩大调用额度。
 
 本轮预先指定 deepseek-flash、qwen3.8-27b、kimi-k3，配置见 models.yaml。仅保存 DEEPSEEK_API_KEY / DASHSCOPE_API_KEY 的变量名，不保存值。Qwen/Kimi 用户提供的是 Anthropic URL，Chat Completions 适配层使用北京对应的 OpenAI 地址 https://dashscope.aliyuncs.com/compatible-mode/v1；业务空间/地域权限仍待实际调用验证。模型名、地址的环境变量覆盖必须在生成 RUN_PLAN 之前设定；之后任何变化均拒绝运行，不静默换模型或端点。
@@ -292,3 +298,13 @@ OpenAI 兼容接口；模型标识、base_url 可来自环境变量或 models.ya
 v1 模型不能自行查文件，A 的工具依赖和覆盖范围独立报告。酵母实际运行值不能替代 case_014 的正常范围发表依据。无工具版 agentic shell、35 题以上扩展、从 run_registry 额外挖历史事故作为新题均留给 v2；本任务已经指定的旧 #9/#19（新 case_006/015）事故不另扩题。
 
 第一轮来源包已于 2026-10-06 在本地验收，位置与取材边界见 [来源审查记录](SOURCE_REVIEW.md)。这不是题库或标准答案批准。
+
+## 阶段3调度修订 v1-run-3 — 2026-10-07
+
+用户选择优先完成DeepSeek/Qwen C，再继续Kimi B/C。入口改为 `powershell -NoProfile -File bench/start_api.ps1`，通过隐藏输入向子进程环境提供密钥；仅对两个批准域名设置进程NO_PROXY并在退出时恢复。`resume_api.py`校验父版本日志字节和相同公开请求，跳过已有最终观测；已预留中断请求补记api_error、usage unknown，不重发。原始响应留在父目录，由API_RUNS.json关联；预算继承所有旧预留，命名空间不更改，累计576次/270元上限不重置。题目、答案、知识包、参数、三次重复和门槛不变。此调整未比较标准答案或计算准确率。
+
+## 阶段3真实API回执
+
+API完成或预算守卫停下后，运行 `python bench/seal_api.py`。回执只验证请求身份、唯一观测、公开输入与token/格式状态，不读取标准答案进行计分。恢复索引可能列入同版本mock目录；封存时按mode=api与允许的父版本显式过滤，原索引备份为runs/API_RUNS.unsealed.json，不删除任何原始日志。API_RECEIPT.json绑定各JSONL字节及回执脚本身份，列出全部缺失槽位，API_RUNS.json只引用获准真实目录。失败、中断、无usage和历史TLS失败各保留原样。只有收到真实A回传并完成阶段3确认后才开始阶段4。
+
+已启动队列可由 `python bench/finish_api.py` 在独立本地进程等待完成，随后自动生成API_RECEIPT/API_STATUS/API_COMPLETION、重跑全套pytest并打包api_logs.zip及逐文件SHA清单。该进程不读取key、不调用模型、不重试、不给答案计分、不进入阶段4；6小时仍在运行则记录needs_attention并保持原队列。A服务器结果仍须用户回传。
