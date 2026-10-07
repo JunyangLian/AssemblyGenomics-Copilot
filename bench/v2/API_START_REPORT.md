@@ -15,3 +15,19 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\bench\v2\set_api_key.ps1
 按隐藏提示输入平台key。脚本只设置本地用户环境变量，不显示内容、不记录凭据、不调用API；输入不出现在命令历史中。设置完成后回复“已设置”，agent从用户环境继承到启动进程，再执行已批准的run.py --mode api。服务器不接收key或B/C2配置。
 
 完整pytest：278 passed in 82.54s (0:01:22)。PowerShell隐藏输入脚本语法校验通过，批准文件和v2冻结运行锁验证通过。正式结果仍待本地凭据；新增A24条仍待服务器包回传。当前不进入阶段4计分。
+
+## 后续启动与基础设施修订（2026-10-07）
+
+用户明确要求agent直接设置并启动。已通过set_api_key.ps1的隐藏输入将凭据设置为本地用户环境变量；没有复制到仓库、运行日志或服务器。start_api.ps1从用户环境继承到运行进程。
+
+v2-run-1遇到本地代理TLS EOF；直连/域名范围内NO_PROXY的无key HTTPS诊断成功，随后登记v2-run-2，只对discovery-api.intern-ai.org.cn绕过代理，TLS证书校验保持开启。首个失败队列保留193次预留、192条api_error、1条中断，另527个未执行槽位；全部720计划槽位归档于history/v2-run-1，不作无错误运行描述，不返还预留。
+
+v2-run-2实际返回HTTP404。官方GET /v1/models证明展示名和请求ID大小写不同：请求ID分别为deepseek-v4-flash-0731、deepseek-v4-pro-0813、minimax-m3、qwen3.8-27b、kimi-k2.6，五个is_ready均为true。原指定模型和版本未更换。模型列表GET不是模型调用，响应仅保留选中的五模型元数据并脱敏，证据为PROVIDER_MODELS.json。该队列保留258次预留、257条HTTP404、1条中断，另462个未执行槽位，证据为history/v2-run-2。前两次累计451次预留，0有效模型响应，费用未知，不宣称供应商实际收费0。
+
+登记v2-run-3后，runtime只把已核对的requested_model_id写入request.model，日志model仍为用户展示名；平台的精确ID/官方展示名为预登记的返回标识，其余标识仍暂停。题目、标准答案、C2、预注册、请求参数和预算不变。每个旧队列所有计划槽位保留单独报告，原始失败日志不删；新全套720槽位为新的明确运行队列，不根据QC答案挑选题或重跑某个错误答案。全局账本继续累计，最多1440次，已用451次预留；若本队列消耗剩余额度，后续槽位按预算失败保留，不追加上限。
+
+v2-run-2和v2-run-3各重新跑720次mock，格式全通过，0额外真实模型调用；原mock/批准/运行锁/实现/规则包摘要归档到对应history。修订后的完整pytest：**282 passed in 82.94s (0:01:22)**。测试补充失败/中断/未执行槽位保留、拒绝按有效模型结果选择新队列、官方ID映射和返回展示名核对。
+
+v2-run-3正式队列已经开始，DeepSeek Pro已返回身份符合且schema通过的答复。Flash首个计划请求返回dsv4-flash-vision，未能核实0731版本，按冻结身份策略记identity_error并暂停该模型其余槽位；没有静默把它视为0731。其余模型继续串行排队，费用及实际默认思考模式仍unknown，不做H1–H3计分。动态状态见API_START_STATUS.json，可运行python bench/v2/api_progress.py更新；状态的运行中标记基于活动锁，异常中断须核对进程，不能盲目清锁。
+
+当前A服务器包已按v2-run-3重新生成，使用现有rules_package.zip，旧包留在本地work；没有重扫原始数据或要求重新构题。新增A24条仍待服务器回传。运行尚未完成，本报告是启动检查点。

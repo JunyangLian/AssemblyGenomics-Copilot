@@ -16,8 +16,7 @@ from visible_input import packet, visible_files
 def request(case, group, model, root=V2, retry=False):
     if group not in ('B', 'C2'):
         raise ValueError('v2 model group must be B or C2')
-    requested = {**model, 'name': model.get('requested_model_id', model['name'])}
-    return original_request(case, 'C' if group == 'C2' else 'B', requested, root, retry)
+    return original_request(case, 'C' if group == 'C2' else 'B', model, root, retry)
 
 
 def rules(repo=REPO):

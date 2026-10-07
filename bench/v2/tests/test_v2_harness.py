@@ -32,6 +32,14 @@ def test_private_controls_never_reach_requests_and_context_identical():
     assert all(s == systems[0] for s in systems)
 
 
+def test_request_ids_use_exact_official_mapping_while_display_names_remain():
+    official = {m['name']: m['id'] for m in read_json(V2 / 'PROVIDER_MODELS.json')['models']}
+    for m in models():
+        body = request(CASE, 'B', m)
+        assert body['model'] == official[m['name']] == m['requested_model_id']
+        assert m['name'] != body['model']
+
+
 class Replies:
     def __init__(self, outputs): self.outputs, self.calls = outputs, []
     def complete(self, body, slot):
@@ -40,7 +48,7 @@ class Replies:
 
 def valid_raw():
     raw = Mock(SCHEMA, 20261007).complete(request(CASE, 'B', MODEL), 'test')[0]
-    raw['model'] = MODEL['name']
+    raw['model'] = request(CASE, 'B', MODEL)['model']
     return raw
 
 
@@ -114,6 +122,13 @@ def test_identity_mismatch_never_scores_as_success():
     client = Replies([(raw, None)]); rows = []
     final = observe(CASE, 'B', MODEL, client, 1, LOCK, rows.append)
     assert final['status'] == 'identity_error' and final['parsed'] is None
+
+
+def test_exact_official_display_name_is_a_registered_identity():
+    raw = valid_raw(); raw['model'] = MODEL['name']
+    rows = []
+    final = observe(CASE, 'B', MODEL, Replies([(raw, None)]), 1, LOCK, rows.append)
+    assert final['status'] == 'ok' and final['parsed'] is not None
 
 
 def test_a_reuse_only_when_original_bytes_and_rule_identity_match():

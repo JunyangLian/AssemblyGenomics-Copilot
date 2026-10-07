@@ -30,9 +30,7 @@ def observe(case, group, model, client, repeat, locked, emit, root=V2):
             raw, error, called = None, str(exc), False
         parsed, parsing = parse_response(raw, case, root) if error is None else (None, None)
         status = ('resource_error' if not called else 'api_error') if error else ('parse_error' if parsing else 'ok')
-        # The provider's pinned metadata maps this exact display name to this exact ID.
-        registered_identities = {body['model'], model['name']}
-        identity_mismatch = isinstance(raw, dict) and raw.get('model') and raw['model'] not in registered_identities and not isinstance(client, Mock)
+        identity_mismatch = isinstance(raw, dict) and raw.get('model') and raw['model'] != body['model'] and not isinstance(client, Mock)
         if identity_mismatch:
             status, parsed, error = 'identity_error', None, 'returned model differs from registered request ID; pause this model'
         record = {'record_type': 'attempt', 'case_id': case.name, 'group': group, 'model': model['name'],

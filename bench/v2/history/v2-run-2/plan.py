@@ -24,15 +24,9 @@ def models(root=V2):
     # The authorization stores the display names as strings.
     if [m['name'] for m in result] != names:
         raise ValueError('model roster differs from human authorization')
-    provider = read_json(root / 'PROVIDER_MODELS.json')
-    if provider['source'] != 'https://discovery-api.intern-ai.org.cn/v1/models':
-        raise ValueError('provider mapping must come from the authorized model-list endpoint')
-    official = {m['name']: m['id'] for m in provider['models']}
     for m in result:
-        if set(m) != {'name', 'requested_model_id', 'base_url', 'key_env', 'parameters', 'thinking_status', 'price'}:
+        if set(m) != {'name', 'base_url', 'key_env', 'parameters', 'thinking_status', 'price'}:
             raise ValueError('unsupported configuration field; keys must stay in environment')
-        if m['requested_model_id'] != official.get(m['name']):
-            raise ValueError('request ID does not match exact official display-name mapping')
         if not re.fullmatch(r'[A-Za-z0-9_.-]+', m['name']):
             raise ValueError('invalid model ID')
         if safe_url(m['base_url']) != 'https://discovery-api.intern-ai.org.cn/v1':
