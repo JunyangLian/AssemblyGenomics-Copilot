@@ -33,3 +33,5 @@ python v2/server/reproduce_cases.py --output-root bench_transfer/v2_cases_reprod
 ```
 
 传回整个bench_transfer/v2_cases_reproduction_r2/bundle；使用新目录保留r1输出。仍然只跑纯Python构题，不准备来源、不执行A或调用模型。
+
+r2已于2026-10-07回传并通过本地完整验收：24题零差异，170个payload文件；最新证明见REPRODUCTION_VERIFIED.json。当前修订版无需再次复现，等待人工答案审核及门槛确认。

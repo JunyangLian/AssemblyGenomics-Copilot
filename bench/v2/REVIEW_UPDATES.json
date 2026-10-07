@@ -12,10 +12,11 @@
     }
   ],
   "global_answer_approval": false,
-  "linux_reproduction_status": "pending_current_revision",
+  "linux_reproduction_status": "pass_current_revision",
   "metrics_field_available": false,
   "model_calls": 0,
   "reason": "original line pointer identified a gene feature, not the CDS protein-reference field",
+  "reproduction_receipt_path": "bench/v2/REPRODUCTION_VERIFIED.json",
   "revision": "pre-freeze-evidence-r2",
   "selected_key_evidence": [
     "annotation_metrics.json:cds_rows",

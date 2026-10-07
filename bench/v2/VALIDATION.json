@@ -10,7 +10,7 @@
   "new_count": 8,
   "regression_count": 16,
   "reproduction_checked": true,
-  "server_reproduction_status": "pending",
+  "server_reproduction_status": "pass",
   "source_manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
   "status": "pass"
 }
