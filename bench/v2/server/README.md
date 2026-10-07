@@ -21,3 +21,15 @@ python v2/server/reproduce_cases.py
 本阶段结果为人工审核草案，没有FROZEN。服务器复现成功也不等于人工批准标准答案。
 
 2026-10-07回传已完成并在本地验收：170个payload文件、24题零差异，Linux/Python 3.9.23。证据见上级REPRODUCTION_VERIFIED.json。原人工审核及答案冻结要求继续适用。
+
+## 审核修订r2
+
+new_019私有证据定位修订后，需再次上传最新reproduction_package.zip（源数据与所有task/artifact不变），执行：
+
+```bash
+cd ~/AssemblyGenomics-Skill/bench
+python -m zipfile -e v2/reproduction_package.zip .
+python v2/server/reproduce_cases.py --output-root bench_transfer/v2_cases_reproduction_r2
+```
+
+传回整个bench_transfer/v2_cases_reproduction_r2/bundle；使用新目录保留r1输出。仍然只跑纯Python构题，不准备来源、不执行A或调用模型。

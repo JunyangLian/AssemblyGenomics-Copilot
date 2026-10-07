@@ -1,0 +1,42 @@
+{
+  "answers_frozen": false,
+  "benchmark_version": "v2",
+  "bundle_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v2/incoming/v2_cases_reproduction/bundle",
+  "case_count": 24,
+  "comparison": "Every task/artifact/expected/label byte hash plus portable metadata hash. Only accepted-bundle absolute prefix is normalized; source origin paths and all other metadata are retained.",
+  "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+  "human_review_status": "pending",
+  "linux_reproduction_status": "pass",
+  "local_reference_sha256": "436bbb726b2da07da29236d1dc00854b12ea3bed97462f9f41ad896ea8afb5d6",
+  "model_calls": 0,
+  "new_count": 8,
+  "original_source_hash_rescans": 0,
+  "regression_count": 16,
+  "server_versions": {
+    "code_sha256": {
+      "inject/common.py": "097b77f8d706882b545d5c9e7dd748afde9cae11481faa30cfd8a3eff69c019a",
+      "inject/pressure.py": "e7f0fe105197315fb3d5bc6000b49ff5bdca41dd0fb3bd4781deafde816cca57",
+      "transfer.py": "0ce92c78c5cd0e9517ade7f55d8f833fd0ba2be699a609d9346aac8c80f7c4b2",
+      "v2/__init__.py": "44500a31499e3f7bae43e739c599ad737db6ffbacac6d22b09e72d1d81bb5989",
+      "v2/build_cases.py": "9b013229587a4269183a1e307c0514ff95df5e3ffdc1245e90ca6aaeae622cf2",
+      "v2/inject/__init__.py": "3bf15fba5d8b5ae0cb7aa3c2ccb12e1062c4be7054bbc4f795cb442200821e87",
+      "v2/inject/functional.py": "a28fc06041a4046e75db9a371591b21f0c28a8e0afe21cc7227cb93e510b1a40",
+      "v2/inject/masking.py": "01f5cfe6de6bbc330c35435a2d8a57d9d6491d3596a3504555c5286eb69b7b8c",
+      "v2/inject/pressure.py": "427232eb4081f1252ca6f387e38ba66ebe4589d565e49c1929297f21ba82fe10",
+      "v2/inject/structural.py": "60b5b86cc726b27b3ccb4fe3acf44fe85a8465ad868ce9ca24eb7158741f4d65",
+      "v2/server/reproduce_cases.py": "bd824adfb8daf3858dfb858dc648f7914cbd980bda00de2cad0269e923e3dce5",
+      "visible_input.py": "ecefb375053fcbbf16d8dd7e610c98b8d81b2353e37f0e2e540694b6f5d58421"
+    },
+    "external_tools": "not invoked; Python only",
+    "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.39",
+    "python": "3.9.23"
+  },
+  "source_manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+  "status": "pass",
+  "transport": {
+    "checksum_manifest_sha256": "04b4e89c3026b0420e87f2f9add7a3114b10f4223a96f9dbbe5b17220a02c596",
+    "manifest_sha256": "cb96003d2e6ee1cffbb1c25fdd668b1d7f4bd4895def7d01378f16d58354e0c6",
+    "verified_bytes": 358905,
+    "verified_files": 170
+  }
+}

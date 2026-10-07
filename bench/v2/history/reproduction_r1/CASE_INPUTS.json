@@ -516,7 +516,7 @@
     {
       "case_id": "new_019",
       "construction_note": "真实多片段CDS及匹配蛋白；原始partial=true字段保留，本题只评文件连接与计数，不评生物学模型完整性",
-      "expected_sha256": "05ad6670b07746992af307920a51b8d6014c6f908caff858210e384a75062321",
+      "expected_sha256": "21192afcc05a748619c88a0729b15392f088f399caf2bb5677434006aa7d86f1",
       "labels": {
         "case_id": "new_019",
         "collection": "new",

@@ -1,0 +1,27 @@
+{
+  "answers_frozen": false,
+  "benchmark_version": "v2",
+  "changes": [
+    {
+      "case_id": "new_019",
+      "changed_fields": [
+        "expected_sha256"
+      ],
+      "new_expected_sha256": "05ad6670b07746992af307920a51b8d6014c6f908caff858210e384a75062321",
+      "old_expected_sha256": "21192afcc05a748619c88a0729b15392f088f399caf2bb5677434006aa7d86f1"
+    }
+  ],
+  "global_answer_approval": false,
+  "linux_reproduction_status": "pending_current_revision",
+  "metrics_field_available": false,
+  "model_calls": 0,
+  "reason": "original line pointer identified a gene feature, not the CDS protein-reference field",
+  "revision": "pre-freeze-evidence-r2",
+  "selected_key_evidence": [
+    "annotation_metrics.json:cds_rows",
+    "models.gff3:protein_id",
+    "proteins.faa:1"
+  ],
+  "thresholds_user_confirmed": false,
+  "user_review_scope": "new_019: keep pass; point evidence to exact CDS protein_id/FAA connection; partial=true does not imply rejection within file-only scope"
+}

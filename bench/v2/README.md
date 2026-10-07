@@ -1,6 +1,6 @@
 # bench v2：规格草案
 
-2026-10-07。状态：阶段2题库草案已构造并在本地校验，Linux回传已验收，等待逐题审核；没有v2冻结或模型结果。用户同意上一轮提出的推进方向，随后指定五模型及统一Intern Discovery端点，替代先前三模型/原厂端点草案。脱敏的授权记录与边界见`MODEL_AUTHORIZATION.json`；本阶段不调用模型。
+2026-10-07。状态：阶段2题库草案已构造并在本地校验，首版Linux回传已验收；new_019证据修订版等待复现与逐题审核；没有v2冻结或模型结果。用户同意上一轮提出的推进方向，随后指定五模型及统一Intern Discovery端点，替代先前三模型/原厂端点草案。脱敏的授权记录与边界见`MODEL_AUTHORIZATION.json`；本阶段不调用模型。
 
 v1完整保留，其16题是已查看结果的回归集。v2当前24题：16道原题+8道新增题；新增题包括6道非施压题和2道施压副本。主比较只用新增集合，回归集合单独报告，不能合并宣称全为未见题。题目均来自已验收的T1拟南芥/线虫/酵母和T3 GFF/FAA；不引入其他项目、不下载数据、不重跑组装/注释或BUSCO。
 
@@ -68,3 +68,9 @@ P3按既定梯度最终选32条完整蛋白（源表第65..96条），两题覆�
 ## 2026-10-07服务器回传验收
 
 本地接收`incoming/v2_cases_reproduction/bundle`，完整清单170个payload文件通过；MANIFEST.json与用户服务器公布的cb96003d2e6ee1cffbb1c25fdd668b1d7f4bd4895def7d01378f16d58354e0c6一致。服务器Linux/Python 3.9.23，构题代码、24题所有可见文件、expected、标签和规范化meta均匹配Windows参考。未重新扫描原始来源大文件。验收脚本为accept_reproduction.py，证据为REPRODUCTION_VERIFIED.json；VALIDATION的server_reproduction_status更新为pass。答案审核与门槛仍pending，未生成FROZEN或调用模型。
+
+## 冻结前审核修订r2：new_019关键依据
+
+按用户建议保持pass/none/P4，仅将key_evidence中的models.gff3:2替换为models.gff3:protein_id。当前metrics无cds_protein_ids_without_sequence，采用用户的三项依据备选，不新增指标或模型可见文件。所有24题的任务、产物、规范化meta和C2标签哈希不变，仅new_019 expected哈希变化；差异登记在REVIEW_UPDATES.json。partial=true不超出本题文件连接与计数审核范围，不能单独据此判block。
+
+此前Linux验收针对r1，原证明和参考保存于history/reproduction_r1；当前REPRODUCTION_VERIFIED标pending。更新的reproduction_package.zip已在Windows解包复现通过。为符合原跨平台答案哈希一致要求，服务器使用同一来源包对修订版再运行一次，可指定输出bench_transfer/v2_cases_reproduction_r2；不重取来源、不扫描原始大文件、不调用模型。其余答案审核和门槛仍待确认。

@@ -4,7 +4,7 @@
   ],
   "key_evidence": [
     "annotation_metrics.json:cds_rows",
-    "models.gff3:2",
+    "models.gff3:protein_id",
     "proteins.faa:1"
   ],
   "pair_id": "P4",

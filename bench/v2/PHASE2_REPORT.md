@@ -35,3 +35,9 @@
 已接收用户指定的incoming/v2_cases_reproduction/bundle，完整运输清单170个payload文件通过，MANIFEST.json匹配用户公布的服务器哈希。24题可见文件、expected、C2标签、规范化meta、参考清单及12个构题代码文件哈希均一致；Linux/Python 3.9.23。接收证明写入REPRODUCTION_VERIFIED.json，VALIDATION服务器复现更新为pass。新验收脚本拒绝不符的运输哈希、假报Linux、答案/来源origin被改但重写清单的包；五项验收测试加入全仓检查。
 
 本次完整pytest：261 passed in 54.91s；v1冻结/运行计划仍PASS。人工题目审核和5个门槛仍待确认，无标准答案修改、无v2 FROZEN、0模型调用。此补充属于阶段2验收，不进入阶段3。
+
+## 冻结前人工审核修订r2
+
+new_019维持pass/none，仅把关键依据models.gff3:2改成models.gff3:protein_id，采用用户在缺少cds_protein_ids_without_sequence字段时给出的三项备选。没有增加metrics字段。确定性生成器、CASE_INPUTS、REVIEW_SHEET与REVIEW_UPDATES已同步；核对24题的task/artifact/meta/标签哈希全部不变，仅该题expected哈希变化。原partial=true保留，本题限定文件连接与计数，不按生物学完整性阻断。
+
+完整pytest：262 passed in 57.59s；v1冻结与计划验证PASS。r2 Windows独立解包复现24题零差异，新包已准备。r1真实Linux验收和参考存档于history/reproduction_r1，当前服务器复现标pending而不是沿用旧答案哈希。按server/README在新输出目录v2_cases_reproduction_r2补跑即可；无需重取数据或扫描原始大文件。当前仍无v2模型调用或冻结，其他题与五个门槛待用户确认。

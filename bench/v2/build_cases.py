@@ -128,7 +128,7 @@ def build(src, output):
     evidence = {
         17: ['annotation_statistics.json:annotation_coverage_pct', 'functional.tsv:query', 'functional.tsv:IPR'],
         18: ['annotation_statistics.json:annotation_coverage_pct', 'functional.tsv:query', 'query.faa:1'],
-        19: ['annotation_metrics.json:cds_rows', 'models.gff3:2', 'proteins.faa:1'],
+        19: ['annotation_metrics.json:cds_rows', 'models.gff3:protein_id', 'proteins.faa:1'],
         20: ['models.gff3:protein_id', 'proteins.faa:1'],
         21: ['mask_metrics.json:lowercase_bases', 'mask_metrics.json:sequence_equal_ignorecase', 'versions.json:run_date'],
         22: ['mask_metrics.json:lowercase_bases', 'mask_metrics.json:n_bases', 'mask_metrics.json:sequence_equal_ignorecase']}

@@ -19,6 +19,14 @@ def bundle(tmp_path):
     if not ORIGINAL.exists(): pytest.skip('private Linux return bundle absent')
     target = tmp_path / 'bundle'
     shutil.copytree(ORIGINAL, target)
+    # Unit-test transport fixture aligned to the current draft, NOT Linux proof.
+    # The real return directory remains immutable and may be an older revision.
+    shutil.copytree(V2 / 'cases', target / 'cases', dirs_exist_ok=True)
+    (target / 'REPRODUCED_INPUTS.json').write_bytes((V2 / 'CASE_INPUTS.json').read_bytes())
+    versions = read(target / 'versions.json')
+    versions['code_sha256'] = {name:digest((BENCH / name).read_bytes()) for name in versions['code_sha256']}
+    (target / 'versions.json').write_bytes(json_bytes(versions))
+    manifest(target)
     return target
 
 
@@ -27,11 +35,20 @@ def rewritten_manifest(bundle):
     return digest((bundle / 'MANIFEST.json').read_bytes())
 
 
-def test_real_linux_bundle_accepted():
+def test_real_linux_bundle_requires_current_reference():
     if not ORIGINAL.exists(): pytest.skip('private Linux return bundle absent')
+    if read(ORIGINAL / 'REPRODUCED_INPUTS.json') != read(V2 / 'CASE_INPUTS.json'):
+        with pytest.raises(ValueError, match='reconstruction reference differs'):
+            inspect(ORIGINAL, SERVER_SHA)
+        return
     result = inspect(ORIGINAL, SERVER_SHA)
     assert result['case_count'] == 24 and result['linux_reproduction_status'] == 'pass'
     assert not result['answers_frozen'] and result['model_calls'] == 0
+
+
+def test_current_unit_transport_fixture_accepted(bundle):
+    result = inspect(bundle, digest((bundle / 'MANIFEST.json').read_bytes()))
+    assert result['case_count'] == 24 and not result['answers_frozen']
 
 
 def test_altered_payload_rejected_by_transport(bundle):

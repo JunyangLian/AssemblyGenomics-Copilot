@@ -155,3 +155,7 @@ Kimi 300秒超时阻塞串行队列，用户明确选择优先DeepSeek/Qwen C。
 ## 2026-10-07 — v2阶段2服务器复现验收
 
 接收完整Linux回传包，170个payload文件清单与服务器公布哈希一致；24题任务、产物、答案、标签、规范化meta及构题代码与Windows参考一致。新增纯离线验收入口与五项拒绝篡改的测试；VALIDATION更新服务器复现为pass，保存REPRODUCTION_VERIFIED记录。来源包绝对前缀之外未豁免metadata差异。不改题目/答案/C2，不调用模型；人工审核与五个预注册门槛仍待确认，未生成v2 FROZEN。
+
+## 2026-10-07 — v2冻结前审核修订r2
+
+用户建议new_019维持pass并明确CDS protein_id→FAA ID接续。实际metrics没有cds_protein_ids_without_sequence，故仅将expected的models.gff3:2改为models.gff3:protein_id；同步确定性生成器、参考与审核表。未新增模型可见指标，全部24题任务/artifact/meta/标签哈希不变，其余23题答案哈希不变。保留partial=true，不把生物学完整性纳入本题范围。无v2模型结果、未冻结、0调用；r1 Linux验收存档，r2本地通过并更新转移包，服务器复现待执行。本次不是见模型结果后的答案调整。

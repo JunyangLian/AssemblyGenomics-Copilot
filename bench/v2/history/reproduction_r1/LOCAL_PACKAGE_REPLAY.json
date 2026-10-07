@@ -3,8 +3,8 @@
   "comparison": "Every task/artifact/expected/label byte hash plus portable metadata hash. Only accepted-bundle absolute prefix is normalized; source origin paths and all other metadata are retained.",
   "errors": [],
   "execution_host": "Windows independent extracted package; NOT Linux",
-  "linux_reproduction_status": "pending_current_revision",
+  "linux_reproduction_status": "pending",
   "model_calls": 0,
-  "package_sha256": "6c9e40d8a8a0c8ba2b55d60127c409816c6da3a61de38fb3836d78c2d55bdac4",
+  "package_sha256": "c3e89ef703f3576722770c42f3b965c11e5bb49197078b8e420b86b7df2f1154",
   "status": "pass"
 }

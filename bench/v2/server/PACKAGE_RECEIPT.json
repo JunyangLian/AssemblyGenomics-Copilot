@@ -498,7 +498,7 @@
     },
     {
       "path": "v2/CASE_INPUTS.json",
-      "sha256": "436bbb726b2da07da29236d1dc00854b12ea3bed97462f9f41ad896ea8afb5d6",
+      "sha256": "bc7e269d4acde8b90def00fa4860c612408e17575aa9e8aa820d7651ee32c491",
       "size_bytes": 36916
     },
     {
@@ -508,8 +508,8 @@
     },
     {
       "path": "v2/build_cases.py",
-      "sha256": "9b013229587a4269183a1e307c0514ff95df5e3ffdc1245e90ca6aaeae622cf2",
-      "size_bytes": 15220
+      "sha256": "f401af4d8fff5b3cc21e5bd4a99be4b4eb4954cc49efbb3b73016f2fd60d6472",
+      "size_bytes": 15229
     },
     {
       "path": "v2/context/addendum.md",
@@ -563,8 +563,8 @@
     }
   ],
   "model_calls": 0,
-  "package_sha256": "c3e89ef703f3576722770c42f3b965c11e5bb49197078b8e420b86b7df2f1154",
-  "package_size_bytes": 133396,
+  "package_sha256": "6c9e40d8a8a0c8ba2b55d60127c409816c6da3a61de38fb3836d78c2d55bdac4",
+  "package_size_bytes": 133395,
   "server_existing_bundle": "bench_transfer/v1_prepare_t1t3_r3/bundle",
   "source_bundle_included": false
 }
