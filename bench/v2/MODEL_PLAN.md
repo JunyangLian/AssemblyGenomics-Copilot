@@ -14,7 +14,7 @@
 
 ## 参数与身份核对
 
-通用候选参数为temperature=0、输出token限额8192、stream=false。优先让五模型使用同一思考条件，但统一平台对各模型的thinking/reasoning_effort/enable_thinking控制尚未核对；本阶段不把这些原厂扩展字段当成已支持。若部分模型只能思考或平台默认模式不透明，在冻结前明确逐模型条件与已知限制，由用户审查；不在正式请求失败后静默切换。每模型B/C2的参数必须相同，思考模式按实际条件分层报告。当前models.draft.json不是可执行配置，mode/实际参数未解决前不能锁定正式计划。
+通用候选参数为temperature=0、输出token限额8192、stream=false。统一平台的thinking/reasoning_effort/enable_thinking控制尚未核对，不发送原厂扩展字段。阶段3先锁定这个供mock验证的共用请求协议；逐模型thinking_status均为provider_default_unknown，不能声称五模型实际思考条件一致。models.draft.json仍是历史草案，models.yaml是提议协议配置；真实调用需另外确认未知默认模式与参数生效限制，并登记数值预算。不在请求失败后静默更改参数或别名；如需改协议，另登记运行计划版本并重跑mock。
 
 temperature若不支持0，按文档最低值在冻结前登记，不冒称实际生效；请求值与服务端生效值分开记录。思考token与最终文本限额的供应商计量方式也需核对，不能假设max_tokens一定覆盖二者。超时、资源错误、usage缺失均保留，不无界补跑。
 
