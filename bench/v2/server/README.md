@@ -19,3 +19,5 @@ python v2/server/reproduce_cases.py
 比较规则：所有task、artifact、expected与v2_labels的文件哈希必须完全相同。新meta的来源包绝对路径随主机不同，跨平台仅把这一固定前缀规范化为SOURCE_BUNDLE再逐字节计算哈希；真实source_origin、原始/子集SHA、截取与所有其它字段保留并比较。v1回归meta直接复制原字节，另写v2_labels，不改原meta。输出完整运输清单仍记录每个文件的实际字节哈希。
 
 本阶段结果为人工审核草案，没有FROZEN。服务器复现成功也不等于人工批准标准答案。
+
+2026-10-07回传已完成并在本地验收：170个payload文件、24题零差异，Linux/Python 3.9.23。证据见上级REPRODUCTION_VERIFIED.json。原人工审核及答案冻结要求继续适用。

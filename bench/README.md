@@ -327,4 +327,4 @@ API完成或预算守卫停下后，运行 `python bench/seal_api.py`。回执�
 
 ### v2阶段2题库草案（2026-10-07）
 
-24题已构造、校验，本地256测试通过；v1回归字节保持冻结。新增题审核、Linux复现和门槛确认仍待完成，0模型调用、尚无v2 FROZEN。阶段汇报见[v2/PHASE2_REPORT.md](v2/PHASE2_REPORT.md)，人工审核表见[v2/REVIEW_SHEET.csv](v2/REVIEW_SHEET.csv)，服务器复现说明见[v2/server/README.md](v2/server/README.md)。
+24题已构造、校验，本地256测试通过；v1回归字节保持冻结。Linux回传已验收；最新全仓261测试通过。新增题审核和门槛确认仍待完成，0模型调用、尚无v2 FROZEN。阶段汇报见[v2/PHASE2_REPORT.md](v2/PHASE2_REPORT.md)，人工审核表见[v2/REVIEW_SHEET.csv](v2/REVIEW_SHEET.csv)，服务器复现说明见[v2/server/README.md](v2/server/README.md)。

@@ -16,6 +16,7 @@ from validate_cases import leak_errors, evidence_valid
 from visible_input import visible_files, estimated_tokens
 from v2.build_cases import V2, DEFAULT_BUNDLE, DEFAULT_RECEIPT, build, snapshot, context_bytes
 from v2.inject import functional, structural, masking
+from v2.accept_reproduction import receipt_current
 
 
 def read(path):
@@ -170,7 +171,7 @@ def validate(cases=None, bundle=DEFAULT_BUNDLE, receipt=DEFAULT_RECEIPT, reprodu
     return {'status':'fail' if errors else 'pass', 'case_count':len(roster), 'regression_count':16, 'new_count':8,
             'source_manifest_sha256': reference['source_manifest_sha256'], 'context_sha256':reference['context_sha256'],
             'functional_query_count':reference['functional_query_count'], 'max_visible_token_upper_bound':maximum,
-            'reproduction_checked':checked, 'server_reproduction_status':'pending', 'errors':errors,
+            'reproduction_checked':checked, 'server_reproduction_status':'pass' if receipt_current() else 'pending', 'errors':errors,
             'model_calls':0, 'answers_frozen':False, 'human_review_status':'pending'}
 
 

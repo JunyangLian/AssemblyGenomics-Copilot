@@ -1,6 +1,6 @@
 # bench v2：规格草案
 
-2026-10-07。状态：阶段2题库草案已构造并在本地校验，等待Linux复现与逐题审核；没有v2冻结或模型结果。用户同意上一轮提出的推进方向，随后指定五模型及统一Intern Discovery端点，替代先前三模型/原厂端点草案。脱敏的授权记录与边界见`MODEL_AUTHORIZATION.json`；本阶段不调用模型。
+2026-10-07。状态：阶段2题库草案已构造并在本地校验，Linux回传已验收，等待逐题审核；没有v2冻结或模型结果。用户同意上一轮提出的推进方向，随后指定五模型及统一Intern Discovery端点，替代先前三模型/原厂端点草案。脱敏的授权记录与边界见`MODEL_AUTHORIZATION.json`；本阶段不调用模型。
 
 v1完整保留，其16题是已查看结果的回归集。v2当前24题：16道原题+8道新增题；新增题包括6道非施压题和2道施压副本。主比较只用新增集合，回归集合单独报告，不能合并宣称全为未见题。题目均来自已验收的T1拟南芥/线虫/酵母和T3 GFF/FAA；不引入其他项目、不下载数据、不重跑组装/注释或BUSCO。
 
@@ -61,6 +61,10 @@ P3按既定梯度最终选32条完整蛋白（源表第65..96条），两题覆�
 
 `context/skill_context.md`为C1原字节加共享addendum，修订来源见PROVENANCE。原知识文件不改；新实例的C2暴露均为explicit_rule，不能作为not_exposed泛化证据。
 
-本地构造、语义重算、schema、泄漏、配对、压力克隆及重新构造均通过；最大可见输入保守上界25,921 token。固定转移包由`python bench/v2/package_reproduction.py`生成，只列白名单，不含运行结果/凭据；实际来源包沿用服务器旧包。服务器执行与回传说明见`server/README.md`。Windows解包演练通过，Linux状态仍pending。跨主机meta只规范化已验收来源包绝对前缀，所有其它内容及真实来源绑定比较；task/artifact/expected/标签哈希严格相同。
+本地构造、语义重算、schema、泄漏、配对、压力克隆及重新构造均通过；最大可见输入保守上界25,921 token。固定转移包由`python bench/v2/package_reproduction.py`生成，只列白名单，不含运行结果/凭据；实际来源包沿用服务器旧包。服务器执行与回传说明见`server/README.md`。Windows解包演练通过，Linux回传已验收，证明见REPRODUCTION_VERIFIED.json。跨主机meta只规范化已验收来源包绝对前缀，所有其它内容及真实来源绑定比较；task/artifact/expected/标签哈希严格相同。
 
 本阶段不创建FROZEN、不调用mock、规则或API。审核表含24题，其中16题字节及旧答案已有v1批准记录；8题新答案需确认。预计的720初始调用仍只是五模型B/C2×24×3的设计量，实际余额/资源上限在后续mock汇报时另定。
+
+## 2026-10-07服务器回传验收
+
+本地接收`incoming/v2_cases_reproduction/bundle`，完整清单170个payload文件通过；MANIFEST.json与用户服务器公布的cb96003d2e6ee1cffbb1c25fdd668b1d7f4bd4895def7d01378f16d58354e0c6一致。服务器Linux/Python 3.9.23，构题代码、24题所有可见文件、expected、标签和规范化meta均匹配Windows参考。未重新扫描原始来源大文件。验收脚本为accept_reproduction.py，证据为REPRODUCTION_VERIFIED.json；VALIDATION的server_reproduction_status更新为pass。答案审核与门槛仍pending，未生成FROZEN或调用模型。

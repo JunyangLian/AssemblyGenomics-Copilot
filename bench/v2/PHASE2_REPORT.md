@@ -29,3 +29,9 @@
 - **模型运行**：本阶段没有调用mock、在线探测或API。答案审核、门槛确认与独立冻结之后进入阶段3，先mock并汇报token/资源预算；五模型全B/C2设计为720初始请求，实际平台参数/资源上限仍需登记，不能借用v1余额假设。
 
 本阶段到此停下；没有发布任何v2模型表现或假设结论。
+
+## 2026-10-07回传验收补充
+
+已接收用户指定的incoming/v2_cases_reproduction/bundle，完整运输清单170个payload文件通过，MANIFEST.json匹配用户公布的服务器哈希。24题可见文件、expected、C2标签、规范化meta、参考清单及12个构题代码文件哈希均一致；Linux/Python 3.9.23。接收证明写入REPRODUCTION_VERIFIED.json，VALIDATION服务器复现更新为pass。新验收脚本拒绝不符的运输哈希、假报Linux、答案/来源origin被改但重写清单的包；五项验收测试加入全仓检查。
+
+本次完整pytest：261 passed in 54.91s；v1冻结/运行计划仍PASS。人工题目审核和5个门槛仍待确认，无标准答案修改、无v2 FROZEN、0模型调用。此补充属于阶段2验收，不进入阶段3。
