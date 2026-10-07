@@ -1,0 +1,30 @@
+{
+  "authorized_base_url": "https://discovery-api.intern-ai.org.cn/v1",
+  "authorized_by": "本对话用户",
+  "authorized_model_names": [
+    "DeepSeek-V4-Flash-0731",
+    "DeepSeek-V4-Pro-0813",
+    "MiniMax-M3",
+    "Qwen3.8-27B",
+    "Kimi-K2.6"
+  ],
+  "calls_performed_this_stage": 0,
+  "credential_persisted": false,
+  "credential_supplied_in_chat": true,
+  "date": "2026-10-07",
+  "key_env": "INTERN_DISCOVERY_API_KEY",
+  "model_permission_granted": true,
+  "numeric_budget_approved": false,
+  "required_before_any_model_call": [
+    "user_reviewed_expected_and_separate_v2_FREEZE",
+    "locked_v2_prompts_context_labels_parameters_and_model_IDs"
+  ],
+  "required_before_paid_model_call": [
+    "completed_mock_and_token_resource_or_fee_report",
+    "explicit_numerical_v2_budget_registration"
+  ],
+  "scope": "v2 five models via user-specified OpenAI endpoint after stage gates",
+  "supersedes": "earlier v2 three-model/direct-provider draft (never executed)",
+  "user_reply_sanitized": "v2可以用 DeepSeek-V4-Flash-0731，DeepSeek-V4-Pro-0813，MiniMax-M3，Qwen3.8-27B，Kimi-K2.6 这五个，OpenAI协议：https://discovery-api.intern-ai.org.cn/v1；凭据省略。",
+  "v1_approval_or_ledger_modified": false
+}

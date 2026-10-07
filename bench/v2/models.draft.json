@@ -1,0 +1,125 @@
+{
+  "authorization_source": "MODEL_AUTHORIZATION.json",
+  "base_url": "https://discovery-api.intern-ai.org.cn/v1",
+  "budget": {
+    "currency": null,
+    "max_calls": null,
+    "max_cost": null,
+    "max_ink_points": null,
+    "max_input_tokens": null,
+    "max_output_tokens": null
+  },
+  "draft_volume": {
+    "case_count": 24,
+    "groups": [
+      "B",
+      "C2"
+    ],
+    "initial_calls": 720,
+    "max_with_one_format_repair": 1440,
+    "models": 5,
+    "repetitions": 3
+  },
+  "key_env": "INTERN_DISCOVERY_API_KEY",
+  "models": [
+    {
+      "base_url": "https://discovery-api.intern-ai.org.cn/v1",
+      "candidate_common_parameters": {
+        "max_tokens": 8192,
+        "stream": false,
+        "temperature": 0
+      },
+      "key_env": "INTERN_DISCOVERY_API_KEY",
+      "model_id_source": "user_provided_not_documentation_verified",
+      "name": "DeepSeek-V4-Flash-0731",
+      "parameters": null,
+      "price": null,
+      "provider_verified": false,
+      "requested_model_id": "DeepSeek-V4-Flash-0731",
+      "resource_weight": null,
+      "returned_model": null,
+      "system_fingerprint": null,
+      "thinking_control_status": "pending_provider_documentation"
+    },
+    {
+      "base_url": "https://discovery-api.intern-ai.org.cn/v1",
+      "candidate_common_parameters": {
+        "max_tokens": 8192,
+        "stream": false,
+        "temperature": 0
+      },
+      "key_env": "INTERN_DISCOVERY_API_KEY",
+      "model_id_source": "user_provided_not_documentation_verified",
+      "name": "DeepSeek-V4-Pro-0813",
+      "parameters": null,
+      "price": null,
+      "provider_verified": false,
+      "requested_model_id": "DeepSeek-V4-Pro-0813",
+      "resource_weight": null,
+      "returned_model": null,
+      "system_fingerprint": null,
+      "thinking_control_status": "pending_provider_documentation"
+    },
+    {
+      "base_url": "https://discovery-api.intern-ai.org.cn/v1",
+      "candidate_common_parameters": {
+        "max_tokens": 8192,
+        "stream": false,
+        "temperature": 0
+      },
+      "key_env": "INTERN_DISCOVERY_API_KEY",
+      "model_id_source": "user_provided_not_documentation_verified",
+      "name": "MiniMax-M3",
+      "parameters": null,
+      "price": null,
+      "provider_verified": false,
+      "requested_model_id": "MiniMax-M3",
+      "resource_weight": null,
+      "returned_model": null,
+      "system_fingerprint": null,
+      "thinking_control_status": "pending_provider_documentation"
+    },
+    {
+      "base_url": "https://discovery-api.intern-ai.org.cn/v1",
+      "candidate_common_parameters": {
+        "max_tokens": 8192,
+        "stream": false,
+        "temperature": 0
+      },
+      "key_env": "INTERN_DISCOVERY_API_KEY",
+      "model_id_source": "user_provided_not_documentation_verified",
+      "name": "Qwen3.8-27B",
+      "parameters": null,
+      "price": null,
+      "provider_verified": false,
+      "requested_model_id": "Qwen3.8-27B",
+      "resource_weight": null,
+      "returned_model": null,
+      "system_fingerprint": null,
+      "thinking_control_status": "pending_provider_documentation"
+    },
+    {
+      "base_url": "https://discovery-api.intern-ai.org.cn/v1",
+      "candidate_common_parameters": {
+        "max_tokens": 8192,
+        "stream": false,
+        "temperature": 0
+      },
+      "key_env": "INTERN_DISCOVERY_API_KEY",
+      "model_id_source": "user_provided_not_documentation_verified",
+      "name": "Kimi-K2.6",
+      "parameters": null,
+      "price": null,
+      "provider_verified": false,
+      "requested_model_id": "Kimi-K2.6",
+      "resource_weight": null,
+      "returned_model": null,
+      "system_fingerprint": null,
+      "thinking_control_status": "pending_provider_documentation"
+    }
+  ],
+  "protocol": "openai_chat_completions",
+  "provider_documentation": "https://discovery.intern-ai.org.cn/token-plan/home",
+  "status": "draft_not_executable",
+  "version": "v2-spec-draft-1"
+}
