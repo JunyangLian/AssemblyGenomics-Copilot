@@ -96,13 +96,13 @@ def test_actual_parent_resume_preserves_all_results_and_unknown_call():
 def test_replacement_does_not_reclassify_the_previous_flash_response():
     from bench.v2.plan import verify
     locked = verify()
-    parent_path = V2 / locked['plan']['resume']['records']
+    parent_path = V2 / 'history/v2-run-4/resume_records.jsonl'
     original = resume.rows(parent_path)
     old = [r for r in original if r['model'] == 'DeepSeek-V4-Flash-0731' and r['record_type'] == 'observation']
     assert len(old) == 72
     assert sum(r['status'] == 'identity_error' for r in old) == 1
     assert all(r['parsed'] is None for r in old)
-    assert all(r['model'] != 'DeepSeek-V4-Flash-Vision' for r in resume.parent_records(V2, locked))
+    assert all(r['model'] != 'DeepSeek-V4-Flash-0731' for r in resume.parent_records(V2, locked))
 
 
 def test_operator_stop_finishes_without_any_new_request_or_fake_failures(tmp_path, monkeypatch):

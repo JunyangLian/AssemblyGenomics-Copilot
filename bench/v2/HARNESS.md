@@ -50,3 +50,9 @@ scp回传bundle整目录后，在本地运行python bench/v2/import_rules.py <bu
 用户随后选择 deepseek-v4-flash-vision，当前锁为v2-run-5。Vision作为替换型号新跑144槽位，原0731错误/暂停保留审计，不改为成功或拿其响应冒充Vision。Pro等其它模型所有既有好/坏结果均承接；原题库、提示、参数、分析门槛不变。三个允许返回标识仅对Vision生效（官方ID、展示名、用户已知并选择的dsv4-flash-vision），不是开放别名或证明0731权重，详情见新预注册附录。
 
 累计预算不增加；API_START_STATUS的执行调用与承接调用分列。未来需停队时创建bench/v2/runs/STOP_AFTER_CURRENT_REQUEST，当前观测完成后返回而不生成未执行槽位的伪失败；resume目录索引保持不变。清除标记前须确认旧进程退出；保留所有未知预留。当前A ZIP绑定v2-run-5，规则/输入不变，仅运行锁身份更新。
+
+用户随后要求四个同时运行，当前v2-run-6启用最多四个请求线程、每模型最多一个在途观测，以模型轮转队列分配名额。每模型内部B后C2；全局不再等所有B结束才进入C2。同一观测的格式重试在原线程顺序执行；网络失败仍不重试，身份错误只暂停对应模型并保留槽位。其它模型继续，因此慢请求不会占住所有名额。
+
+ConcurrentBudget在共享互斥锁内重新读取同一API_LEDGER，检查祖先/当前槽位防重复、累计调用和token上限，原子替换完整账本后才能POST。usage同样在锁内更新，不能覆盖另一线程的预留/usage；超出规划用量阻止随后新预留，已经在途的最多四请求等待结束。Windows临时共享错误采用有限重试，损坏JSON仍报错。独占进程锁不取消，不启动四个独立runner。
+
+旧75条观测与527次预留全部承接，平缓切换未新增中断；新主体题尚未观察，调度修订登记SCHEDULING_REVISION。实际运行信息在runs/SCHEDULER_STATUS及API_START_STATUS.concurrency，包括最多/峰值线程、在途题目和等待数。若创建STOP_AFTER_CURRENT_REQUEST，将停止派发并等待所有已在途观测结束，不伪造剩余失败；正式恢复前清除这个已审核标记。入口命令仍start_api.ps1，无需重新设置key或批准预算。

@@ -11,7 +11,6 @@ from bench.v2.plan import verify
 from bench.v2.adapter import Mock, Budget, OpenAICompatible, ApprovalError, approval, exclusive
 from rule_adapter import evaluate_case
 from bench.v2.resume import prepare_api, rows as read_rows
-from bench.v2.concurrent_budget import ConcurrentBudget
 
 
 def run_id(model, group, frozen):
@@ -57,13 +56,8 @@ def execute(mode='mock', root=V2):
     if mode == 'api':
         approval(root, locked)
     with exclusive(root) if mode == 'api' else nullcontext():
-        budget_type = ConcurrentBudget if locked['plan'].get('execution', {}).get('max_workers', 1) > 1 else Budget
-        budget = budget_type(root, locked) if mode == 'api' else None
+        budget = Budget(root, locked) if mode == 'api' else None
         schema = read_json(root / 'schemas/model_output.schema.json')
-        if locked['plan'].get('execution', {}).get('max_workers', 1) > 1:
-            from bench.v2.parallel import execute as parallel_execute
-            print(f'{mode}: starting {locked["plan"]["execution"]["max_workers"]} request workers; one per model; shared cumulative budget', flush=True)
-            return parallel_execute(mode, root, locked, budget, schema, run_id, observe)
         paths, paused_models, existing = [], set(), {}
         directories = {}
         if mode == 'api':

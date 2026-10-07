@@ -6,6 +6,7 @@ from collections import Counter
 import json
 import os
 from bench.v2.runtime import V2, canonical, digest, read_json, write_json
+from bench.v2.concurrent_budget import atomic_read_json
 
 
 def progress(root=V2):
@@ -24,7 +25,7 @@ def progress(root=V2):
             elif row['record_type'] == 'observation': observations.append(row)
     slots = [(r['model'], r['group'], r['case_id'], r['repetition']) for r in observations]
     if len(slots) != len(set(slots)): raise ValueError('duplicate current API observation')
-    ledger = read_json(root / 'runs/API_LEDGER.json')
+    ledger = atomic_read_json(root / 'runs/API_LEDGER.json')
     groups = []
     for m in plan['models']:
         for group in plan['groups']:
@@ -69,6 +70,14 @@ def progress(root=V2):
         'vision_revision': plan.get('vision_revision'),
         'audit_only_model_records': plan.get('resume', {}).get('audit_only_models', []),
         'prior_cohorts': ['history/v2-run-1/TRANSPORT_FAILURE.json', 'history/v2-run-2/TRANSPORT_FAILURE.json']}
+    scheduler = root / 'runs/SCHEDULER_STATUS.json'
+    if scheduler.exists():
+        scheduled = atomic_read_json(scheduler)
+        if scheduled.get('mode') == 'api' and scheduled.get('plan_sha256') == plan_sha:
+            result['concurrency'] = {'max_workers': scheduled['max_workers'],
+                'peak_active': scheduled['peak_active'], 'active_requests': scheduled['active'] if active else [],
+                'pending': scheduled['pending'], 'updated_at_utc': scheduled['updated_at_utc'],
+                'stop_requested': scheduled['stop_requested']}
     write_json(root / 'API_START_STATUS.json', result)
     print(json.dumps({k: result[k] for k in ('status','plan_version','completed_current_observations',
         'current_status_counts','current_logged_called_attempts','cumulative_reserved_calls',
