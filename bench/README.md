@@ -230,6 +230,8 @@ validate_cases.py 必须检查：
 
 ### v1-run-1 实施（2026-10-07）
 
+用户已批准三模型B/C、最多576次调用、人民币270元上限，原回复保存在API_APPROVAL.json，绑定同一RUN_PLAN和FROZEN。批准不代表已执行；本地进程/用户/系统环境未发现DEEPSEEK_API_KEY或DASHSCOPE_API_KEY时不调用API。可在本地PowerShell执行 `powershell -NoProfile -File bench/start_api.ps1`，用隐藏输入配置两个进程环境变量并启动原锁定harness；不写仓库、日志、注册表或服务器，退出时恢复原环境变量。无需再次批准相同范围；运行日志和账本留在bench/runs。若不完整运行或余额/权限失败，先保留结果和账本，不能直接重跑而扩大调用额度。
+
 本轮预先指定 deepseek-flash、qwen3.8-27b、kimi-k3，配置见 models.yaml。仅保存 DEEPSEEK_API_KEY / DASHSCOPE_API_KEY 的变量名，不保存值。Qwen/Kimi 用户提供的是 Anthropic URL，Chat Completions 适配层使用北京对应的 OpenAI 地址 https://dashscope.aliyuncs.com/compatible-mode/v1；业务空间/地域权限仍待实际调用验证。模型名、地址的环境变量覆盖必须在生成 RUN_PLAN 之前设定；之后任何变化均拒绝运行，不静默换模型或端点。
 
 三个模型均请求 temperature=0。DeepSeek/Qwen使用非思考模式；Kimi按专用模型文档启用思考，用 max_completion_tokens=8192 限制思考+回答（文档允许最多10 token误差）。其余两模型上限8192。通用阿里云参数文档与Kimi专页关于能否关闭思考存在冲突，因此保留Kimi思考，不用关闭思考的假定降估费用。不同思考模式是额外混杂因素，B/C在同一模型内参数相同。请求参数全部记录；服务端实际温度若未返回则标unknown，不把请求值当已验证生效值。不通过提前真实调用探测账号或参数。
@@ -251,7 +253,7 @@ A适配只调用 scripts/run_pitfall_checks.py 的原检查与 scripts/check_bas
 
 第二轮A包由 `python bench/make_rules_package.py` 生成 bench/rules_package.zip。包仅含task/artifacts、原规则身份和适配代码，不含expected/meta、C知识、models.yaml或凭据。上传并执行命令见 server/README.md；脚本可重复执行，固定输出替换旧槽位而不追加，输出版本、日志及完整SHA清单。本地 `python bench/import_rules.py <回传bundle目录>` 验收48个唯一观测、所有输入身份、结构判定与脚本版本后保存A_RECEIPT.json。真实A只在服务器执行。
 
-费用见 MOCK_REPORT.md / .json。输入UTF-8字节/3为代理，字节数加消息包装为保守计划额度，均不冒充真实token；默认输出情景1000 token/调用，另给完整输出上限及全修复上限。估价用未缓存公开单价，忽略促销及免费额度。真实运行仍需单独用户批准，API_APPROVAL.json绑定用户批准原文、RUN_PLAN SHA、FROZEN SHA、三模型、B/C、max_calls及max_cost_cny；当前不创建该批准文件。
+费用见 MOCK_REPORT.md / .json。输入UTF-8字节/3为代理，字节数加消息包装为保守计划额度，均不冒充真实token；默认输出情景1000 token/调用，另给完整输出上限及全修复上限。估价用未缓存公开单价，忽略促销及免费额度。真实运行须有独立用户批准，API_APPROVAL.json绑定用户批准原文、RUN_PLAN SHA、FROZEN SHA、三模型、B/C、max_calls及max_cost_cny；本轮用户批准后已创建该批准文件。
 
 真实入口 `python bench/run.py --mode api` 在任何环境key读取/网络前检查批准。单进程文件锁和持久预留账本控制全局调用/费用上限，发送前按输入保守额度和完整输出额度预留；未知是否已扣费的失败也占额度，不自动再次发送已预留槽位。不跟随HTTP重定向，不记录Authorization、错误响应体或环境内容。若日志因崩溃不完整，保留账本及锁以人工核对；不得用删除账本重跑来扩大预算。供应商usage缺失保持null；原响应仅在必要的凭据脱敏后落盘。
 

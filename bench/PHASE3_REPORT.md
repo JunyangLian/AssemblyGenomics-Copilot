@@ -1,5 +1,7 @@
 # 阶段3汇报（实现与mock，2026-10-07）
 
+后续状态：用户已明确批准三模型B/C、最多576次、270元预算，见API_APPROVAL.json。本地进程/User/Machine环境均未配置两个key，实际API请求仍为0；新增start_api.ps1隐藏输入配置与启动原锁定harness，不再请求同范围批准。后续全仓pytest 221 passed（21.29秒），PowerShell语法及批准绑定检查通过。下文费用和mock数据保留原运行记录；A回传仍待完成。
+
 1. 已完成文件：run.py、harness_common.py、model_adapter.py、rule_adapter.py、run_plan.py、models.yaml、RUN_PLAN.json/sha256、mock_report.py、MOCK_RUNS.json、MOCK_REPORT.md/json、make_rules_package.py、server/run_rules.py、import_rules.py、tests/test_harness.py、tests/test_rules_transport.py；README、server/README、CHANGELOG、bench/.gitignore已更新。原仓库scripts/knowledge等行为不变；原冻结122个文件及答案保持一致。
 
 2. pytest：阶段末 `python -m pytest -q`，221 passed，22.18秒（新增28个离线测试）。覆盖解析失败与一次重试、API错误不丢槽位、输入白名单、B/C相同输入、预算/并发守卫、脱敏、服务器运输篡改/重复/身份拒绝。所有HTTP测试均为本地fixture，不用真实key/API。
