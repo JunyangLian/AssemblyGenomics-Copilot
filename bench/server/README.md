@@ -95,3 +95,25 @@ python server/prepare_sources.py --config server/prepare_config.json --output-ro
 ```
 
 arab_repeat_library_record 和 arab_prior_configuration 是可选来源占位符，不属于六个必需缺口；阶段 2 仍须审核现有 QC/provenance 是否已足以支持对应题目，不能把可选缺失当作证据齐全。
+
+## 第二轮：冻结后的A组规则（v1-run-1）
+
+本地生成 rules_package.zip，用户只上传这个包到 ~/AssemblyGenomics-Skill/bench/。不上传本地密钥、models.yaml、expected/meta、API审批或runs原始模型日志。
+
+```bash
+cd ~/AssemblyGenomics-Skill/bench
+python -m zipfile -e rules_package.zip rules_package
+python rules_package/server/run_rules.py
+```
+
+固定输出 bench_transfer/v1_rules_run_1/bundle，含48个A规则观测、versions.json、identity.json、STATUS.json、run.log、完整MANIFEST.json和MANIFEST.sha256。可以重复执行；已知输出文件替换，观测不追加。脚本先校验公开题目包和原规则身份，然后只读这些输入，调用原检查；不扫描原始大源文件、不做组装/注释/BUSCO、不调用API。
+
+如果原规则文件身份不符，状态blocked并打印具体路径，先回传结果目录；不要自行修改规则或清单。not_covered与execution_error保留，不能补规则或伪造pass。A的complete只表示全部计划槽位已返回，具体QC状态在counts和JSONL中。bash/awk必须真实可用，samtools/diamond版本同时记录；本轮适用检查不强行调用不需要的工具。
+
+scp回传 bundle 整目录，本地（仓库根）执行：
+
+```powershell
+python bench/import_rules.py 'bench/incoming/v1_rules_run_1/bundle'
+```
+
+验收通过才准计分；标准答案不发送给服务器A。所有脚本和Python文件都在bench内，原仓库行为不改。

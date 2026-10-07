@@ -1,0 +1,59 @@
+version: 1
+price_date: '2026-10-06'
+currency: CNY
+models:
+  - name: deepseek-flash
+    base_url: https://api.deepseek.com
+    key_env: DEEPSEEK_API_KEY
+    model_env: BENCH_DEEPSEEK_MODEL
+    base_url_env: BENCH_DEEPSEEK_BASE_URL
+    documented_version: DeepSeek-V4.1-Flash (mutable alias)
+    parameters:
+      temperature: 0
+      thinking: {type: disabled}
+      max_tokens: 8192
+    output_token_budget: 8192
+    input_cny_per_million: 2
+    output_cny_per_million: 8
+    price_note: peak, uncached; off-peak is half; discounts/free quota excluded
+    sources:
+      - https://api-docs.deepseek.com/zh-cn/quick_start/pricing/
+      - https://api-docs.deepseek.com/api/create-chat-completion/
+  - name: qwen3.8-27b
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    provided_anthropic_url: https://dashscope.aliyuncs.com/apps/anthropic
+    key_env: DASHSCOPE_API_KEY
+    model_env: BENCH_QWEN_MODEL
+    base_url_env: BENCH_QWEN_BASE_URL
+    documented_version: qwen3.8-27b (mutable alias; returned version logged)
+    parameters:
+      temperature: 0
+      enable_thinking: false
+      max_tokens: 8192
+    output_token_budget: 8192
+    input_cny_per_million: 3
+    output_cny_per_million: 12
+    price_note: Beijing pay-as-you-go, uncached; discounts/free quota excluded
+    sources:
+      - https://help.aliyun.com/en/model-studio/qwen3-8-27b
+      - https://help.aliyun.com/zh/model-studio/base-url
+      - https://help.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions
+  - name: kimi-k3
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    provided_anthropic_url: https://dashscope.aliyuncs.com/apps/anthropic
+    key_env: DASHSCOPE_API_KEY
+    model_env: BENCH_KIMI_MODEL
+    base_url_env: BENCH_KIMI_BASE_URL
+    documented_version: kimi-k3 (mutable alias; returned version logged)
+    parameters:
+      temperature: 0
+      enable_thinking: true
+      max_completion_tokens: 8192
+    output_token_budget: 8202
+    input_cny_per_million: 20
+    output_cny_per_million: 100
+    price_note: Beijing, thinking + answer billed; documented cap tolerance 10 tokens
+    sources:
+      - https://help.aliyun.com/zh/model-studio/kimi-api
+      - https://help.aliyun.com/zh/model-studio/model-pricing
+      - https://help.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions

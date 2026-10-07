@@ -228,6 +228,35 @@ validate_cases.py 必须检查：
 
 ## 阶段 3 harness 合同
 
+### v1-run-1 实施（2026-10-07）
+
+本轮预先指定 deepseek-flash、qwen3.8-27b、kimi-k3，配置见 models.yaml。仅保存 DEEPSEEK_API_KEY / DASHSCOPE_API_KEY 的变量名，不保存值。Qwen/Kimi 用户提供的是 Anthropic URL，Chat Completions 适配层使用北京对应的 OpenAI 地址 https://dashscope.aliyuncs.com/compatible-mode/v1；业务空间/地域权限仍待实际调用验证。模型名、地址的环境变量覆盖必须在生成 RUN_PLAN 之前设定；之后任何变化均拒绝运行，不静默换模型或端点。
+
+三个模型均请求 temperature=0。DeepSeek/Qwen使用非思考模式；Kimi按专用模型文档启用思考，用 max_completion_tokens=8192 限制思考+回答（文档允许最多10 token误差）。其余两模型上限8192。通用阿里云参数文档与Kimi专页关于能否关闭思考存在冲突，因此保留Kimi思考，不用关闭思考的假定降估费用。不同思考模式是额外混杂因素，B/C在同一模型内参数相同。请求参数全部记录；服务端实际温度若未返回则标unknown，不把请求值当已验证生效值。不通过提前真实调用探测账号或参数。
+
+RUN_PLAN.json / RUN_PLAN.sha256 固定输入白名单、版本、模型、参数、提示、重复数、修复重试、A映射、原规则身份、实现代码哈希及计分合同。首次mock前用 `python bench/run_plan.py --create` 创建，已有计划只校验，不能覆盖。标准答案和原FROZEN不变。原仓库规则身份仅统一CRLF→LF后校验，避免跨平台Git换行差异；题目本身继续逐字节LF校验。
+
+本地入口：`python bench/run.py --mode mock`，随后 `python bench/mock_report.py`。B/C执行3模型×16题×3重复×2组=288次随机合法JSON；A另产生48个明确simulated、parsed=null的运输槽位，不能作为真实规则结果。原始attempt及最终observation分别记录；计分只取observation，计费只取attempt，避免双计重试或usage。mock没有真实usage，保留null并报告输入代理估算。
+
+A适配只调用 scripts/run_pitfall_checks.py 的原检查与 scripts/check_baselines.py 的原evaluate：
+
+| 可见输入条件 | 原检查 | 已有缺口的映射 |
+|---|---|---|
+| FAA蛋白 | PIT-004内部字符 | block / protein_internal_ambiguity |
+| GFF3 | PIT-005编码内容残留 | rollback / noncoding_residue |
+| 重复注释任务明确要求软屏蔽，提供FASTA | PIT-006小写/N计数 | rollback / masking_mode_error |
+| task声明植物/线虫/酵母背景，当前统计可提取原注册指标 | check_baselines类群带 | within→pass；out_of_range→warn；根因none（基线不能识别机制） |
+
+映射由通用规则定义，禁止用case ID、expected/meta或注入类别路由。PIT脚本成功标志仅用于区分环境执行失败；缺口判定沿用原脚本。多个检查取最严重判定；任何适用检查执行失败则execution_error；没有可执行覆盖则not_covered。advisory不会被升级成强制rollback。只提供比例/库版本JSON时，不伪造FASTA或Dfam库来补覆盖；不新增gzip、AGP、hints、ID连接或历史基因差值诊断。A的pass只表示已适用检查未发现缺口，报告同时列实际检查范围。此策略在首次mock前锁定。
+
+第二轮A包由 `python bench/make_rules_package.py` 生成 bench/rules_package.zip。包仅含task/artifacts、原规则身份和适配代码，不含expected/meta、C知识、models.yaml或凭据。上传并执行命令见 server/README.md；脚本可重复执行，固定输出替换旧槽位而不追加，输出版本、日志及完整SHA清单。本地 `python bench/import_rules.py <回传bundle目录>` 验收48个唯一观测、所有输入身份、结构判定与脚本版本后保存A_RECEIPT.json。真实A只在服务器执行。
+
+费用见 MOCK_REPORT.md / .json。输入UTF-8字节/3为代理，字节数加消息包装为保守计划额度，均不冒充真实token；默认输出情景1000 token/调用，另给完整输出上限及全修复上限。估价用未缓存公开单价，忽略促销及免费额度。真实运行仍需单独用户批准，API_APPROVAL.json绑定用户批准原文、RUN_PLAN SHA、FROZEN SHA、三模型、B/C、max_calls及max_cost_cny；当前不创建该批准文件。
+
+真实入口 `python bench/run.py --mode api` 在任何环境key读取/网络前检查批准。单进程文件锁和持久预留账本控制全局调用/费用上限，发送前按输入保守额度和完整输出额度预留；未知是否已扣费的失败也占额度，不自动再次发送已预留槽位。不跟随HTTP重定向，不记录Authorization、错误响应体或环境内容。若日志因崩溃不完整，保留账本及锁以人工核对；不得用删除账本重跑来扩大预算。供应商usage缺失保持null；原响应仅在必要的凭据脱敏后落盘。
+
+模型只接收冻结schema、通用提示及公开packet；C加同一冻结skill_context.md，不附build_record或任何逐题资料。evidence执行schema和文件白名单检查，字段/行是否真实支持由逐题报告人工复核；不把字符串匹配当证据正确率。v1不自行查文件或调用工具。
+
 B/C harness 在本地 Windows 用 Python 执行，随后阶段 4 的 score.py 也在本地运行。A 在答案冻结后由第二轮服务器脚本调用既有规则；该脚本只接收模型可见输入、适配映射和冻结身份哈希，不接收 expected/meta/REVIEW_SHEET。执行环境、工具版本、状态和三次规则结果写固定目录及 SHA 清单，通过 scp 回传、本地重算验收后计分。适配层不增加诊断规则；harness 可导入服务器 A 结果，不在 Windows 假设 Bash 可用。第二轮脚本与导入合同在阶段 3 实现，第一轮不提前跑 A。
 
 API key 仅在本地环境变量，不写 models.yaml、日志、请求摘要或任何服务器包；服务器不接收 .env、Authorization 或本地模型配置中的凭据。运行日志与来源/答案/上下文分别显式白名单打包。首次 mock 前必须有完整冻结和不可变运行计划；真实 B/C 调用仍需费用与范围批准。
