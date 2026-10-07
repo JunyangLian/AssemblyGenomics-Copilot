@@ -33,7 +33,7 @@ def test_private_controls_never_reach_requests_and_context_identical():
 
 
 def test_request_ids_use_exact_official_mapping_while_display_names_remain():
-    official = {m['name']: m['id'] for m in read_json(V2 / 'PROVIDER_MODELS.json')['models']}
+    official = {m['name']: m['id'] for m in read_json(V2 / 'PROVIDER_MODELS_ROSTER2.json')['models']}
     for m in models():
         body = request(CASE, 'B', m)
         assert body['model'] == official[m['name']] == m['requested_model_id']

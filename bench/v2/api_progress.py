@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from collections import Counter
 import json
+import os
 from bench.v2.runtime import V2, canonical, digest, read_json, write_json
 
 
@@ -32,13 +33,28 @@ def progress(root=V2):
                 'planned': 72, 'completed': len(selected), 'counts': dict(Counter(r['status'] for r in selected))})
     used = [r for r in attempts if isinstance(r.get('usage'), dict)]
     wanted = 720
-    active = (root / 'runs/API_ACTIVE.lock').exists()
+    lock = root / 'runs/API_ACTIVE.lock'
+    active = False
+    if lock.exists():
+        pid = int(lock.read_text())
+        if os.name == 'nt':
+            import ctypes
+            handle = ctypes.windll.kernel32.OpenProcess(0x1000, False, pid)
+            if handle:
+                code = ctypes.c_ulong()
+                active = bool(ctypes.windll.kernel32.GetExitCodeProcess(handle, ctypes.byref(code))) and code.value == 259
+                ctypes.windll.kernel32.CloseHandle(handle)
+        else:
+            try: os.kill(pid, 0); active = True
+            except ProcessLookupError: pass
     result = {'status': 'running' if active else ('complete' if len(observations) == wanted else 'incomplete'),
         'date': '2026-10-07', 'plan_version': plan['version'], 'plan_sha256': plan_sha,
         'key_env': 'INTERN_DISCOVERY_API_KEY', 'credential_setup': 'local user environment; hidden input',
         'planned_current_observations': wanted, 'completed_current_observations': len(observations),
         'current_status_counts': dict(Counter(r['status'] for r in observations)), 'groups': groups,
         'current_logged_called_attempts': sum(r.get('called') is True for r in attempts),
+        'called_attempts_carried_from_parent': sum(r.get('called') is True and bool(r.get('reused_from')) for r in attempts),
+        'called_attempts_executed_this_plan': sum(r.get('called') is True and not r.get('reused_from') for r in attempts),
         'cumulative_reserved_calls': ledger['calls'], 'input_reserved': ledger['input_reserved'],
         'output_reserved': ledger['output_reserved'], 'max_calls': 1440,
         'max_input_tokens': 28706760, 'max_output_tokens': 11796480,
@@ -48,6 +64,8 @@ def progress(root=V2):
         'provider_usage_exceeded_reservation': ledger.get('provider_usage_exceeded_reservation', False),
         'fee': None, 'fee_note': 'provider price unknown; reservations are not billed token usage',
         'transient_incomplete_jsonl_lines': incomplete_lines, 'hypotheses_scored': False,
+        'orphan_lock_present': lock.exists() and not active,
+        'roster_revision': plan.get('roster_revision'),
         'prior_cohorts': ['history/v2-run-1/TRANSPORT_FAILURE.json', 'history/v2-run-2/TRANSPORT_FAILURE.json']}
     write_json(root / 'API_START_STATUS.json', result)
     print(json.dumps({k: result[k] for k in ('status','plan_version','completed_current_observations',

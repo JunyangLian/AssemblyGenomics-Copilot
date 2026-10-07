@@ -67,10 +67,7 @@ class Budget:
         self.authorized = approval(self.root, self.locked)
         key = self.locked['plan']['version'] + ':' + slot
         input_upper, output_upper = token_estimate(body)['upper'], body['max_tokens']
-        protected_versions = {self.locked['plan']['version']}
-        if self.locked['plan'].get('resume'):
-            protected_versions.add(self.locked['plan']['resume']['parent_version'])
-        if any(r['slot'] == version + ':' + slot for r in self.state['slots'] for version in protected_versions):
+        if key in {r['slot'] for r in self.state['slots']}:
             raise ApprovalError('slot already reserved; never resend without a registered revision')
         proposed = {'calls': self.state['calls'] + 1,
                     'max_input_tokens': self.state['input_reserved'] + input_upper,

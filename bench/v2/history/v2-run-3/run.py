@@ -10,7 +10,6 @@ from bench.v2.runtime import V2, REPO, canonical, digest, read_json, write_json,
 from bench.v2.plan import verify
 from bench.v2.adapter import Mock, Budget, OpenAICompatible, ApprovalError, approval, exclusive
 from rule_adapter import evaluate_case
-from bench.v2.resume import prepare_api, rows as read_rows
 
 
 def run_id(model, group, frozen):
@@ -58,28 +57,19 @@ def execute(mode='mock', root=V2):
     with exclusive(root) if mode == 'api' else nullcontext():
         budget = Budget(root, locked) if mode == 'api' else None
         schema = read_json(root / 'schemas/model_output.schema.json')
-        paths, paused_models, existing = [], set(), {}
-        directories = {}
-        if mode == 'api':
-            directories, existing, paused_models = prepare_api(root, locked, run_id)
+        paths, paused_models = [], set()
         for group in (['A', 'B', 'C2'] if mode == 'mock' else ['B', 'C2']):
             for model in ([{'name': 'rules'}] if group == 'A' else locked['plan']['models']):
-                if mode == 'api':
-                    directory = directories[group, model['name']]; rid = directory.name
-                    rows = read_rows(directory / 'records.jsonl')
-                else:
-                    rid = run_id('mock-' + model['name'], group, locked['frozen_md_sha256'])
-                    directory = root / 'runs' / rid; directory.mkdir(parents=True, exist_ok=False)
-                    rows = []
-                client = None
-                with (directory / 'records.jsonl').open('ab' if mode == 'api' else 'xb') as stream:
+                rid = run_id(('mock-' if mode == 'mock' else '') + model['name'], group, locked['frozen_md_sha256'])
+                directory = root / 'runs' / rid; directory.mkdir(parents=True, exist_ok=False)
+                client = None if group == 'A' else (Mock(schema, locked['plan']['mock_seed']) if mode == 'mock' else OpenAICompatible(model, budget))
+                rows = []
+                with (directory / 'records.jsonl').open('xb') as stream:
                     def emit(row):
                         row['run_id'] = rid; stream.write(canonical(row)); stream.flush(); rows.append(row)
                     for c in locked['plan']['cases']:
                         case = root / 'cases' / c['case_id']
                         for repeat in range(1, 4):
-                            if (model['name'], group, case.name, repeat) in existing:
-                                continue
                             if group == 'A':
                                 emit({'record_type': 'observation', 'mode': 'mock', 'group': 'A', 'model': 'rules',
                                     'case_id': case.name, 'repetition': repeat, 'plan_sha256': locked['plan_sha256'],
@@ -92,8 +82,6 @@ def execute(mode='mock', root=V2):
                                     'frozen_md_sha256': locked['frozen_md_sha256'], 'status': 'identity_paused',
                                     'parsed': None, 'usage': None, 'attempts': 0, 'error': 'prior model identity mismatch'})
                             else:
-                                if client is None:
-                                    client = Mock(schema, locked['plan']['mock_seed']) if mode == 'mock' else OpenAICompatible(model, budget)
                                 result = observe(case, group, model, client, repeat, locked, emit, root)
                                 if result['status'] == 'identity_error':
                                     paused_models.add(model['name'])
@@ -102,8 +90,6 @@ def execute(mode='mock', root=V2):
                 write_json(directory / 'summary.json', {'mode': mode, 'run_id': rid, 'group': group, 'model': model['name'],
                     'plan_sha256': locked['plan_sha256'], 'frozen_md_sha256': locked['frozen_md_sha256'],
                     'observations': len(observations), 'calls': len(attempts), 'api_calls': len(attempts) if mode == 'api' else 0,
-                    'calls_reused_from_parent': sum(bool(r.get('reused_from')) for r in attempts),
-                    'calls_executed_this_plan': sum(not r.get('reused_from') for r in attempts),
                     'parse_errors': sum(r['status'] == 'parse_error' for r in observations),
                     'input_proxy_sum': sum(r['request_summary']['input_estimate']['proxy'] for r in attempts),
                     'input_byte_bound_sum': sum(r['request_summary']['input_estimate']['upper'] for r in attempts),

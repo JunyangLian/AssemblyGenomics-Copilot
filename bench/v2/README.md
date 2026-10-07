@@ -106,3 +106,11 @@ FROZEN.md逐题列24个expected SHA-256，FROZEN.json保护195个本版文件及
 v2-run-3重新验证720次mock并通过282项完整测试；正式队列已收到DeepSeek Pro有效响应。Flash返回dsv4-flash-vision，当前identity_error/其余槽位identity_paused，待官方版本映射证据；其它模型继续。没有计分或宣称全部完成。动态进度由api_progress.py读取原始记录更新API_START_STATUS，来源及失败摘要见API_START_REPORT。旧MOCK_REPORT中的等待批准描述是对应mock时点，真实状态以API_APPROVAL和当前启动检查点为准。
 
 当前rules_package.zip也绑定v2-run-3，请使用这个版本上传执行新增24条A；不重做源数据准备或题库复现。所有旧包、实现、mock与日志继续保留。剩余预算依旧归属同一累计账本，费用unknown，达到上限即阻止新请求；不扩充批准额度。
+
+## 模型名单纠正与断点续跑（2026-10-07）
+
+用户纠正五个精确请求 ID，当前 v2-run-4 依次为 deepseek-v4-flash-0731、deepseek-v4-pro-0813、minimax-m3、glm-5.3、qwen3.8-27b。GLM 替换未调用的 Kimi，另四个模型参数和版本绑定不变。原授权和预注册作为冻结历史保留，运行后的名单修订单独登记 MODEL_ROSTER_REVISION.json 与 PREREGISTRATION_AMENDMENT_20261007.md；报告必须披露名单调整发生在 Pro 已有 24 条有效结果之后，不能称完整五模型均事前预注册。答案、C2、材料、门槛及至少 2/5 模型同方向要求不变。
+
+父计划的 98 条观测全部承接：Pro 24 条有效、1 条超时、1 条中断；Flash 1 条身份错误及 71 条暂停。承接记录带原日志、记录、父计划哈希；未知中断不重发。Flash 的返回身份尚未核实，C2 也继续暂停。固定分母 720 不缩减；新 API_RUNS 在调用前登记 10 个目录，再启动只追加未尝试槽位，不重复旧记录。累计 478 次预留不退还，原调用和 token 预算保持不变。
+
+720 次新名单 mock 全部解析通过，报告是本次协议检查而非能力评分。服务器新增 A 包只更新计划身份，请使用当前 v2/rules_package.zip；无需再次准备来源、复现题库或重跑原 48 条 A。实时进度入口仍为 api_progress.py；已承接调用与本计划新增调用另列。

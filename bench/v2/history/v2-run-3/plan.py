@@ -20,29 +20,11 @@ def models(root=V2):
     if set(doc) != {'models'}:
         raise ValueError('model configuration cannot contain credentials or unregistered fields')
     result = doc['models']
-    original_names = read_json(root / 'MODEL_AUTHORIZATION.json')['authorized_model_names']
-    names = original_names
-    provider_file = 'PROVIDER_MODELS.json'
-    amendment_path = root / 'MODEL_ROSTER_REVISION.json'
-    if amendment_path.exists():
-        amendment = read_json(amendment_path)
-        if (amendment.get('user_authorized') is not True or not amendment.get('user_quote')
-            or amendment.get('previous_model_names') != original_names
-            or amendment.get('frozen_md_sha256') != digest((root / 'FROZEN.md').read_bytes())
-            or amendment.get('preregistration_sha256') != digest((root / 'preregistration.json').read_bytes())
-            or amendment.get('post_start') is not True
-            or amendment.get('thresholds_changed') is not False
-            or amendment.get('provider_metadata_file') != 'PROVIDER_MODELS_ROSTER2.json'):
-            raise ValueError('invalid explicit roster amendment; frozen authorization cannot be overwritten')
-        names = amendment['model_names']
-        if (set(original_names) - set(names) != {'Kimi-K2.6'}
-            or set(names) - set(original_names) != {'GLM-5.3'} or len(names) != 5):
-            raise ValueError('only the human-requested Kimi to GLM substitution is authorized')
-        provider_file = amendment['provider_metadata_file']
+    names = read_json(root / 'MODEL_AUTHORIZATION.json')['authorized_model_names']
     # The authorization stores the display names as strings.
     if [m['name'] for m in result] != names:
         raise ValueError('model roster differs from human authorization')
-    provider = read_json(root / provider_file)
+    provider = read_json(root / 'PROVIDER_MODELS.json')
     if provider['source'] != 'https://discovery-api.intern-ai.org.cn/v1/models':
         raise ValueError('provider mapping must come from the authorized model-list endpoint')
     official = {m['name']: m['id'] for m in provider['models']}

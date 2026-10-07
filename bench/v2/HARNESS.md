@@ -40,3 +40,9 @@ scp回传bundle整目录后，在本地运行python bench/v2/import_rules.py <bu
 后续用户要求agent直接设置，已用隐藏输入设置本机用户环境，正式入口现在为powershell -NoProfile -ExecutionPolicy Bypass -File .\bench\v2\start_api.ps1。它读取本地环境并仅为授权平台添加进程范围NO_PROXY，结束时恢复；该域名的本地代理TLS已证实失败，证书校验不降低。当前v2-run-3采用官方小写请求ID，原展示名、题目、参数和分析不改。前两次失败队列保留720+720全部计划槽位及451次预留，累计预算不增加。来源/修订/暂停Flash的原因见API_START_REPORT，进度命令python bench/v2/api_progress.py不读取key，也不计分。
 
 当前rules_package.zip绑定v2-run-3，请使用当前包传服务器。任务与规则本身不改，输出位置/命令仍相同；旧包只归档、不用来覆盖当前包。规则结果回传仍须严格核对身份，mock和基础设施诊断不当作真实A。
+
+2026-10-07 用户纠正名单：v2-run-4 的官方请求 ID 为 deepseek-v4-flash-0731、deepseek-v4-pro-0813、minimax-m3、glm-5.3、qwen3.8-27b。GLM 替换 Kimi；官方只读元数据另存 PROVIDER_MODELS_ROSTER2.json。原冻结名单和答案不覆盖，运行后修订的时间顺序及分析影响见 PREREGISTRATION_AMENDMENT_20261007.md。
+
+续跑由 resume.py 读取锁定的 history/v2-run-3/RESUME_RECEIPT 与原始记录；98 条已有观测（含 24 条有效 Pro、超时、中断和 Flash 暂停）全部原样承接。API_RUNS.json 在请求前固定唯一目录索引，再运行使用原目录并跳过所有已完成槽位。账本已预留但无最终结果的请求记 interrupted，不补发；保留 identity_error 引起的跨组暂停。父计划同一语义槽位的重复预留也会拒绝。禁止依据标准答案选择补跑；标准答案不用于恢复判断。
+
+启动命令仍为 powershell -NoProfile -ExecutionPolicy Bypass -File .\bench\v2\start_api.ps1。本地环境 key 无需重设；统一预算上限不扩充。当前 A 包绑定 v2-run-4，服务器操作与回传目录不变。费用/账户墨点尚未确认；官方模型元数据的 pricing 仅是平台公布值，不能冒充余额或实际账单。
