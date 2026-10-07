@@ -34,3 +34,5 @@ python v2/rules_package/server/run_rules.py
 scp回传bundle整目录后，在本地运行python bench/v2/import_rules.py <bundle目录>。验收运输清单、24个新A槽位、公共输入与规则/适配身份、结构化输出及计数，保存新增运行并与48条真实复用合成72条A入口记录。mock A和单元测试的服务器演练不得作为这个真实A回传。
 
 平台公开页：https://discovery.intern-ai.org.cn/token-plan/home。无五模型计费权重，按用户回复“没有，先看 token 估算”仅给代理和字节规划上界；不套原厂价格。当前止于mock与报告，等待阶段3批准。
+
+2026-10-07用户随后回复“确认，继续开启”：API_APPROVAL.json已采用报告全修复情景的1440调用/28706760输入预留/11796480输出预留上限，绑定mock及运行锁。启动检查发现本地进程与用户环境都没有INTERN_DISCOVERY_API_KEY，真实请求仍0；当前待设置环境变量。用set_api_key.ps1的隐藏提示在本机输入，再由agent启动正式runner；聊天中的凭据不复制到命令、文件或日志。证明见API_START_REPORT.md及API_START_STATUS.json。
