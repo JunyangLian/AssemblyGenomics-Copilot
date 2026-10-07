@@ -1,0 +1,235 @@
+{
+  "files": [
+    {
+      "path": "STATUS.json",
+      "sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "size_bytes": 34575
+    },
+    {
+      "path": "config.json",
+      "sha256": "cd5b6c80ed986a2f1a70cb6965fc9d702e5464b7c37e0ed8acc86cba7fb832c9",
+      "size_bytes": 15727
+    },
+    {
+      "path": "inventory.json",
+      "sha256": "3cc2bb80cfd77382682b9694e3203aae96945306f4e3c37352460dc256b9fe6f",
+      "size_bytes": 47292
+    },
+    {
+      "path": "logs/prepare.log",
+      "sha256": "08f73ce9328a68acc1744c8f566a57ff8006c0c1a1b70929c5e7b6a475871ddf",
+      "size_bytes": 301
+    },
+    {
+      "path": "python_version.json",
+      "sha256": "8350698e1063460f7babbc00ef03b2905a92c3667618ebb0a38ca4809b93f91c",
+      "size_bytes": 183
+    },
+    {
+      "path": "scripts/prepare_sources.py",
+      "sha256": "4604934dba7ea70abbc0772a5888829779e718793960e6abceb1ad2501cb4686",
+      "size_bytes": 27607
+    },
+    {
+      "path": "scripts/transfer.py",
+      "sha256": "0ce92c78c5cd0e9517ade7f55d8f833fd0ba2be699a609d9346aac8c80f7c4b2",
+      "size_bytes": 3727
+    },
+    {
+      "path": "snapshot_manifest.txt",
+      "sha256": "88b46b28af7433fa05a18b57b1ac68dfcdc4d805c2ed8cb4f42a01a73c040820",
+      "size_bytes": 6562
+    },
+    {
+      "path": "snapshot_record.json",
+      "sha256": "585b85a69fb333df4a2c0d2f47eaf300f355efdf4385295a62ba5fc9e9c6259a",
+      "size_bytes": 739
+    },
+    {
+      "path": "sources/arab_final_busco.txt",
+      "sha256": "ff9290f3ff64ce37da0f945e065e8e075fa1a97d773ed1ce6b7a81dc2ede751a",
+      "size_bytes": 703
+    },
+    {
+      "path": "sources/arab_final_models.gtf",
+      "sha256": "4b4d440d09f7a5254d114c702e9c8d2c9d3c7cbc4f4aaf08069ca3deb69ff5af",
+      "size_bytes": 81293
+    },
+    {
+      "path": "sources/arab_final_provenance.json",
+      "sha256": "ed7b4aca6c2b6cb558a78a507baf36236280565774243cdc0e651d321fecfce1",
+      "size_bytes": 2019
+    },
+    {
+      "path": "sources/arab_functional_provenance.json",
+      "sha256": "a17f7e9b954f8bc7bd35de286ea8b17a5655a3179fcae64b64270221e582b024",
+      "size_bytes": 2787
+    },
+    {
+      "path": "sources/arab_functional_statistics.tsv",
+      "sha256": "e6ec9da23cfce6cbb4896693da90453c8d0181237cb6f78fc4f4d33563ccf27a",
+      "size_bytes": 416
+    },
+    {
+      "path": "sources/arab_functional_table.tsv",
+      "sha256": "3c07df0cf68befeba87e191e564fe6d12c8bd5f03dd19066e3bbd64462182dca",
+      "size_bytes": 90097
+    },
+    {
+      "path": "sources/arab_functional_validation.json",
+      "sha256": "bfe341bf2e54bd1c7d82e719823fd69098f1d9a0170856e3d62fb0749f971a8c",
+      "size_bytes": 865
+    },
+    {
+      "path": "sources/arab_gene_models.gff3",
+      "sha256": "dbe095b68c3f4bef8afc63bff3fcd16f077bd51167377c0ef176d0c76dc38601",
+      "size_bytes": 106046
+    },
+    {
+      "path": "sources/arab_hints.gff",
+      "sha256": "aa2ec64bddff026e8ff55a526de9fe0cf7695acef2b4f0363b39c1cdf90b940f",
+      "size_bytes": 62292
+    },
+    {
+      "path": "sources/arab_prior_busco.txt",
+      "sha256": "3740d86587b0be6b09f0415619bdf636985f821d4044ab180c6f5312c793f952",
+      "size_bytes": 705
+    },
+    {
+      "path": "sources/arab_prior_models.gtf",
+      "sha256": "3a7ed86ecca0c7d57c3bff7979eea66ed467616f095392adaf2845e738ec9216",
+      "size_bytes": 95336
+    },
+    {
+      "path": "sources/arab_query_proteins.faa",
+      "sha256": "3359bb24a13420f8e8fa105d9a07147b440a2352cc4876b081dc7e7f9f1e2224",
+      "size_bytes": 474822
+    },
+    {
+      "path": "sources/arab_repeat_genome.fa",
+      "sha256": "0a00329ea11293ff36be8b85e22a02971b66a9e93eedfcba9e89eebdc9806c8d",
+      "size_bytes": 204056
+    },
+    {
+      "path": "sources/arab_repeat_qc.json",
+      "sha256": "75199f1eb216113c6286b3a0539661b311b3e6b5127426f8b60e148838279f02",
+      "size_bytes": 494
+    },
+    {
+      "path": "sources/arab_repeat_run_record.json",
+      "sha256": "d1dfea3e466789f0e1ae783eb45455dd4db2ca062bf105b06938df994763a925",
+      "size_bytes": 2139
+    },
+    {
+      "path": "sources/celegans_coding_validation.json",
+      "sha256": "06d2e29d096832d724861c082101f3aa41cbba116e80f30961d460beff9a61ef",
+      "size_bytes": 1174
+    },
+    {
+      "path": "sources/celegans_final_busco.txt",
+      "sha256": "f76e7775c4775a11c585081794c526f49450d46bb753073eeb0b52bbfe6cac55",
+      "size_bytes": 708
+    },
+    {
+      "path": "sources/celegans_final_gff.gff3",
+      "sha256": "50c8fde018063d0fd6520d965170a9c30b66eb1dd47190b9e0be32470f4136ce",
+      "size_bytes": 105817
+    },
+    {
+      "path": "sources/celegans_final_models.gtf",
+      "sha256": "f7718d7930f872e685b839c251b1bff214cdb9a9ccc87d97c81ba854db406225",
+      "size_bytes": 83226
+    },
+    {
+      "path": "sources/celegans_final_proteins.faa",
+      "sha256": "ac4beb7bb62b1c27a2895752b2040e61ad08c2171f7357c914d6b99f97db1509",
+      "size_bytes": 32404
+    },
+    {
+      "path": "sources/celegans_final_provenance.json",
+      "sha256": "57da8620ba4783d2baa9f0db17eb124089a8c6be9bd7156c6a4d46c2d5571ce1",
+      "size_bytes": 2060
+    },
+    {
+      "path": "sources/t3_gff.gff3.gz",
+      "sha256": "ea1a13928163800fb63453588ae79327fc10b6c7f44f4bc0f8624b209c84a6ad",
+      "size_bytes": 706994
+    },
+    {
+      "path": "sources/t3_proteins.faa.gz",
+      "sha256": "14dc3835b0609a754f26c3e8adb4889a8c6ff18f6a696053985fc6357f0ba6b1",
+      "size_bytes": 1690895
+    },
+    {
+      "path": "sources/t3_report.tsv",
+      "sha256": "0f210758cf2bca29aa8f3f3c6f86c149fa7511f13d31d4d359d69da47851b506",
+      "size_bytes": 3474
+    },
+    {
+      "path": "sources/t3_summary.json",
+      "sha256": "8ac3b0995582be5ea59f4671782004246574716a7ed230f9c34f5922e9d8cc8a",
+      "size_bytes": 2078
+    },
+    {
+      "path": "sources/yeast_rep1_r1.fastq",
+      "sha256": "a24d7644bdd66efc6023b2d85f111edca661b82119840478e1ed1cd35277f2e0",
+      "size_bytes": 13374
+    },
+    {
+      "path": "sources/yeast_rep1_r2.fastq",
+      "sha256": "7aeff17bfb3fcee170c1536de7c4d4d7d5a8ff56c06850fc0bcf38915b7699a7",
+      "size_bytes": 13372
+    },
+    {
+      "path": "sources/yeast_rep2_r1.fastq",
+      "sha256": "a269f86f076fdfbe3444a3c98b8283aebf2cb01db47eb862ee45694f9a411b17",
+      "size_bytes": 13358
+    },
+    {
+      "path": "sources/yeast_rep2_r2.fastq",
+      "sha256": "e704685404bcd08f96d1b12059e0e77163f3b60076066dc621993685b575cd11",
+      "size_bytes": 13350
+    },
+    {
+      "path": "sources/yeast_repeat_genome.fa",
+      "sha256": "445ca4ac76c44dc69995a0bd564bf868bb6fbd375650e247b619036e4bd9062a",
+      "size_bytes": 204076
+    },
+    {
+      "path": "sources/yeast_repeat_qc.json",
+      "sha256": "ddb9496f88d0817ce52337f69a8cb007adf15b10786673b9a012f7f5f195d065",
+      "size_bytes": 491
+    },
+    {
+      "path": "sources/yeast_repeat_run_record.json",
+      "sha256": "84a38c95688b01215ef23bc9241dcf3afb42a36c1e96006504384c391a9f5ea2",
+      "size_bytes": 2127
+    },
+    {
+      "path": "sources/yeast_rnaseq_checksums.txt",
+      "sha256": "5c707c665f772ad9ba11c2f5bef661e7496f20c8d67646c6561459e71ec39435",
+      "size_bytes": 328
+    },
+    {
+      "path": "sources/yeast_rnaseq_record.json",
+      "sha256": "add4b6da59bb78919ef474328b389c82bd03a3c49d6ae0e31675746833077936",
+      "size_bytes": 1896
+    },
+    {
+      "path": "t1_read_pairing.json",
+      "sha256": "8270a40c08e912637878ce1dafe20693efac0af44288c97d9d67872f51277226",
+      "size_bytes": 237
+    },
+    {
+      "path": "t3_locations.json",
+      "sha256": "325d30623958f0f3ae5714cac75d106dbeecd20090200a7b0a6f0d9f7255d7f8",
+      "size_bytes": 13036
+    },
+    {
+      "path": "t3_selection.json",
+      "sha256": "cd08d6b755309849c7c6e6be97324d90fc8a2e74503d13b47678d28a1e0f4b0f",
+      "size_bytes": 1104
+    }
+  ],
+  "format": 1
+}

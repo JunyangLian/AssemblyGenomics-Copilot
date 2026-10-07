@@ -1,6 +1,6 @@
 # bench v2：规格草案
 
-2026-10-07。状态：阶段2题库草案已构造并在本地校验，修订版r2的Linux回传已验收，等待逐题审核及门槛确认；没有v2冻结或模型结果。用户同意上一轮提出的推进方向，随后指定五模型及统一Intern Discovery端点，替代先前三模型/原厂端点草案。脱敏的授权记录与边界见`MODEL_AUTHORIZATION.json`；本阶段不调用模型。
+2026-10-07。状态：阶段2题库草案已构造并在本地校验，修订版r2的Linux回传已验收，用户已确认全题单与门槛，答案和分析规格已冻结；没有v2冻结或模型结果。用户同意上一轮提出的推进方向，随后指定五模型及统一Intern Discovery端点，替代先前三模型/原厂端点草案。脱敏的授权记录与边界见`MODEL_AUTHORIZATION.json`；本阶段不调用模型。
 
 v1完整保留，其16题是已查看结果的回归集。v2当前24题：16道原题+8道新增题；新增题包括6道非施压题和2道施压副本。主比较只用新增集合，回归集合单独报告，不能合并宣称全为未见题。题目均来自已验收的T1拟南芥/线虫/酵母和T3 GFF/FAA；不引入其他项目、不下载数据、不重跑组装/注释或BUSCO。
 
@@ -78,3 +78,11 @@ P3按既定梯度最终选32条完整蛋白（源表第65..96条），两题覆�
 ## r2回传验收完成（2026-10-07）
 
 完整接收incoming/v2_cases_reproduction_r2/bundle，170个payload文件运输清单通过；24题任务、产物、修订后的expected、标签、规范化meta及服务器构题代码与本地参考一致。Linux/Python 3.9.23，模型调用0。r2复现证据已更新REPRODUCTION_VERIFIED，当前VALIDATION服务器状态为pass；r1历史记录继续保留。当前版本无需再跑服务器复现，逐题审核与5个门槛仍待用户确认，未冻结。
+
+## 阶段2冻结完成（2026-10-07）
+
+用户在“审核表剩余题目及门槛1、0、0、1、1”的确认请求后回复“可以”，按当前r2版本登记全24题批准；REVIEW_APPROVAL记录逐题expected哈希，SPEC_APPROVAL记录C2、meta、两轴标签和采用的分析规格。preregistration.json为正式规格，原draft标已采用，PREREGISTRATION门槛均已填写。单人集中确认是审核方式，不能描述为多位独立标注。
+
+FROZEN.md逐题列24个expected SHA-256，FROZEN.json保护195个本版文件及11个共用依赖；SOURCE_MANIFEST为已验收包清单的原字节副本，没有重扫原始大产物。执行python bench/v2/freeze.py验证，禁止create覆盖或向已冻结主题库重建；validate同时验证冻结。此前CASE_INPUTS、REPRODUCTION_VERIFIED、REVIEW_UPDATES的model_calls/answers_frozen/review字段是构造/复现/修订时点的历史快照，不回改这些原始证据；当前状态以FROZEN、批准记录和VALIDATION为准。
+
+当前不调用mock、API或A规则。阶段3仍需独立v2 harness、提示/参数/适配锁定、mock全流程与输入token/费用或资源上限汇报，然后按既有许可及明确预算执行。固定五模型不变，数值预算没有从本次题目确认中推定；v1配置、账本、代码与结果不变。本阶段到此停下。

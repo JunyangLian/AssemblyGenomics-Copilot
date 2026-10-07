@@ -1,0 +1,10 @@
+{
+  "answers_frozen": true,
+  "case_count": 24,
+  "frozen_md_sha256": "b30dee32bf94c9c36ebe8f55b4f177205021685ce60623500dbecb92fd393188",
+  "model_calls_at_freeze": 0,
+  "protected_dependencies": 11,
+  "protected_files": 195,
+  "run_plan_frozen": false,
+  "status": "pass"
+}

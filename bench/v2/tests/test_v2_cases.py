@@ -27,7 +27,8 @@ def test_current_cases_reconstruct_from_real_sources():
     result = validate()
     assert result['status'] == 'pass', result['errors']
     assert result['case_count'] == 24 and result['reproduction_checked']
-    assert result['model_calls'] == 0 and not result['answers_frozen']
+    assert result['model_calls'] == 0
+    assert result['answers_frozen'] == (V2 / 'FROZEN.md').exists()
 
 
 def test_build_refuses_v1_output():

@@ -70,7 +70,7 @@
   "repetitions": 3,
   "skill_exposure_status": "approved_C2_labels",
   "spec_version": "v2-spec-1",
-  "status": "adopted_from_draft; canonical_spec=preregistration.json",
+  "status": "user_confirmed",
   "threshold_confirmation_date": "2026-10-07",
   "threshold_confirmation_reply": "可以",
   "thresholds_user_confirmed": true,

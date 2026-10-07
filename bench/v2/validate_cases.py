@@ -75,6 +75,14 @@ def validate(cases=None, bundle=DEFAULT_BUNDLE, receipt=DEFAULT_RECEIPT, reprodu
     if roots != schemas['model_output']['$defs']['root_cause']['enum']:
         raise ValueError('output/answer root categories differ')
     errors, maximum = [], 0
+    frozen = (V2 / 'FROZEN.md').exists() or (V2 / 'FROZEN.json').exists()
+    if frozen:
+        from v2.freeze import verify as verify_freeze
+        try: verify_freeze()
+        except (OSError, ValueError, KeyError, TypeError) as error: errors.append('freeze verification: ' + str(error))
+    approval_path = V2 / 'REVIEW_APPROVAL.json'
+    approved = (approval_path.exists() and read(approval_path).get('all_answers_approved') is True
+                and read(approval_path).get('case_inputs_sha256') == digest((V2 / 'CASE_INPUTS.json').read_bytes()))
     if reference['context_sha256'] != digest(context_bytes()) or (V2 / 'context/skill_context.md').read_bytes() != context_bytes():
         errors.append('common C2 differs from registered construction')
     if reference['source_manifest_sha256'] != digest((src.root / 'MANIFEST.json').read_bytes()):
@@ -172,7 +180,7 @@ def validate(cases=None, bundle=DEFAULT_BUNDLE, receipt=DEFAULT_RECEIPT, reprodu
             'source_manifest_sha256': reference['source_manifest_sha256'], 'context_sha256':reference['context_sha256'],
             'functional_query_count':reference['functional_query_count'], 'max_visible_token_upper_bound':maximum,
             'reproduction_checked':checked, 'server_reproduction_status':'pass' if receipt_current() else 'pending', 'errors':errors,
-            'model_calls':0, 'answers_frozen':False, 'human_review_status':'pending'}
+            'model_calls':0, 'answers_frozen':frozen and not errors, 'human_review_status':'approved' if approved else 'pending'}
 
 
 def main():
