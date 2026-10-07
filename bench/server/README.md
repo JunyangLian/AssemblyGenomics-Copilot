@@ -117,3 +117,19 @@ python bench/import_rules.py 'bench/incoming/v1_rules_run_1/bundle'
 ```
 
 验收通过才准计分；标准答案不发送给服务器A。所有脚本和Python文件都在bench内，原仓库行为不改。
+
+## 原规则代码不在服务器项目根目录时
+
+如果旧入口报 `run package must be inside the server repository bench directory`，说明 `~/AssemblyGenomics-Skill/scripts/run_pitfall_checks.py` 未找到。来源数据目录不等于已安装的规则仓库。无需寻找或移动其他项目，也不在现有scripts/knowledge下补文件。
+
+保留已解压的rules_package/，把本地rules_support.zip上传到服务器bench/server/，执行：
+
+```bash
+cd ~/AssemblyGenomics-Skill/bench
+python -m zipfile -e server/rules_support.zip rules_support
+python rules_support/run.py
+```
+
+支持包只含18个已冻结原规则源文件和路径包装器，不含expected/meta、API key、模型响应或新增生物学检查。原脚本和判定映射逐字保持（仅按已注册方式统一LF）。包装器把同一原规则定位到bench/rules_support_work/original_rules/，用原入口既有bench参数执行，输出仍发布到bench/bench_transfer/v1_rules_run_1/bundle/。包内输入不写入运行产物，因此可以重复执行。工具版本和原入口输出保留，另附execution_layout.json记录实际规则根目录与包装器身份。
+
+末尾应显示 `COMPLETE: 48 A observations; 0 API calls` 和 `Final bundle`。回传完整bundle目录；仍然blocked或出现execution_error时保留结果并回传，不修改原规则。

@@ -314,3 +314,5 @@ API完成或预算守卫停下后，运行 `python bench/seal_api.py`。回执�
 原聊天终端进程已不存在但保留活动锁时，`powershell -NoProfile -File bench/start_api_detached.ps1` 先验证同一批准计划，再用PID存在性确认锁确已失去主人，记录PROCESS_RECOVERY后清除单个失效锁。它不删除或重置账本，已有请求依旧由resume_api按原命名空间去重。用Start-Process隐藏窗口独立启动同一harness及完成后处理器，PROCESS_LAUNCH记录PID、启动器SHA与日志路径。密钥仅经隐藏输入进入API子进程环境，父环境随后恢复；完成后处理器不接收密钥。RUN_PLAN、模型参数、解析合同、题目和答案均保持不变。
 
 阶段3三模型B/C于2026-10-07 13:23:57完成，288个计划观测均有记录（269有效JSON/19 API错误）；阶段汇总见STAGE3_REPORT.md。真实A待回传，阶段4未开始。
+
+服务器数据目录未带完整规则仓库时，改用rules_support.zip路径支持包（server/README.md末节）。其中18个规则源文件保持原冻结身份，原适配器/入口/题目未改；只在bench内定位副本并保留原输出目录，不新增A规则，不调用API。
