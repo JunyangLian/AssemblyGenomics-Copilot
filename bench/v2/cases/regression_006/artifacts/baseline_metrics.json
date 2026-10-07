@@ -1,0 +1,13 @@
+{
+  "busco": {
+    "complete_pct": 97.9,
+    "duplicated_pct": 1.1,
+    "fragmented_pct": 0.7,
+    "lineage": "eudicots_odb10",
+    "missing_pct": 1.4,
+    "mode": "proteins",
+    "n": 2326,
+    "single_pct": 96.9
+  },
+  "gene_count": 27645
+}

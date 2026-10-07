@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "case_id": {
+      "pattern": "^(?:regression_0(?:0[1-9]|1[0-6])|new_0(?:1[7-9]|2[0-4]))$",
+      "type": "string"
+    },
+    "collection": {
+      "enum": [
+        "regression",
+        "new"
+      ]
+    },
+    "context_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "exposure_evidence": {
+      "description": "原知识文件及位置、C 知识包位置，或未暴露的检查范围；仅私有记录。",
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "original_case_id": {
+      "pattern": "^case_0(?:0[1-9]|1[0-6])$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pair_id": {
+      "enum": [
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        null
+      ]
+    },
+    "pitfall_id": {
+      "enum": [
+        "PIT-001",
+        "PIT-002",
+        "PIT-003",
+        "PIT-004",
+        "PIT-005",
+        "PIT-006",
+        "PIT-007",
+        "PIT-008",
+        "PIT-009",
+        "PIT-010",
+        null
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pressure_parent_case_id": {
+      "pattern": "^(?:regression|new)_[0-9]{3}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "seen_or_heldout": {
+      "description": "轴一：实际陷阱库机制是否已见；不能表达模型预训练是否见过。",
+      "enum": [
+        "seen",
+        "held-out"
+      ],
+      "type": "string"
+    },
+    "skill_exposure": {
+      "description": "轴二：冻结的 C 知识包是否明确暴露该判定规则，或仅提供相关指导。",
+      "enum": [
+        "explicit_rule",
+        "related_guidance",
+        "not_exposed"
+      ],
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "input",
+        "assembly",
+        "hic",
+        "scaffolding",
+        "repeat_annotation",
+        "structural_annotation",
+        "functional_annotation"
+      ],
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "fault",
+        "normal",
+        "hard_negative",
+        "pressure"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "stage",
+    "type",
+    "seen_or_heldout",
+    "pitfall_id",
+    "skill_exposure",
+    "exposure_evidence",
+    "pair_id",
+    "case_id",
+    "collection",
+    "original_case_id",
+    "context_sha256",
+    "pressure_parent_case_id"
+  ],
+  "title": "v2 private labels against common C2; v1 meta remains unchanged",
+  "type": "object"
+}

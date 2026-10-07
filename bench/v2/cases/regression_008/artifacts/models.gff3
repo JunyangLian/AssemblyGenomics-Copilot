@@ -1,0 +1,22 @@
+##gff-version 3
+NC_003070.9.v2	AUGUSTUS	gene	3760	5630	.	+	.	ID=g41
+NC_003070.9.v2	AUGUSTUS	transcript	3760	5630	0.97	+	.	ID=g41.t1;Parent=g41
+NC_003070.9.v2	AUGUSTUS	exon	3760	3913	.	+	.	ID=agat-exon-67532;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	exon	3996	4276	.	+	.	ID=agat-exon-67533;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	exon	4486	4605	.	+	.	ID=agat-exon-67534;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	exon	4706	5095	.	+	.	ID=agat-exon-67535;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	exon	5174	5326	.	+	.	ID=agat-exon-67536;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	exon	5439	5630	.	+	.	ID=agat-exon-67537;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	CDS	3760	3913	1	+	0	ID=agat-cds-60885;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	CDS	3996	4276	1	+	2	ID=agat-cds-60885;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	CDS	4486	4605	1	+	0	ID=agat-cds-60885;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	CDS	4706	5095	1	+	0	ID=agat-cds-60885;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	CDS	5174	5326	1	+	0	ID=agat-cds-60885;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	CDS	5439	5630	0.97	+	0	ID=agat-cds-60885;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	intron	3914	3995	1	+	.	ID=agat-intron-54748;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	intron	4277	4485	1	+	.	ID=agat-intron-54749;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	intron	4606	4705	1	+	.	ID=agat-intron-54750;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	intron	5096	5173	1	+	.	ID=agat-intron-54751;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	intron	5327	5438	0.99	+	.	ID=agat-intron-54752;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	start_codon	3760	3762	.	+	0	ID=agat-start_codon-12785;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1
+NC_003070.9.v2	AUGUSTUS	stop_codon	5628	5630	.	+	0	ID=agat-stop_codon-12787;Parent=g41.t1;gene_id=g41;transcript_id=g41.t1

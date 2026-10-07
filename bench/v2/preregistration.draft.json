@@ -1,7 +1,7 @@
 {
   "action_coding_seed": 20261007,
   "benchmark_version": "v2",
-  "case_plan_status": "candidate_not_constructed",
+  "case_plan_status": "constructed_pending_human_review",
   "frozen": false,
   "h1_max_increase_false_positive_cases": null,
   "h1_metric": "joint_verdict_and_root_case_success",
@@ -68,7 +68,7 @@
     "case_016"
   ],
   "repetitions": 3,
-  "skill_exposure_status": "pending_final_C2",
+  "skill_exposure_status": "draft_C2_labels_assigned_pending_review",
   "spec_version": "v2-spec-draft-1",
   "status": "draft_requires_user_review",
   "thresholds_user_confirmed": false,

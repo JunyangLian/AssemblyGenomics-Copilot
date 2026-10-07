@@ -1,0 +1,11 @@
+{
+  "acceptable_verdicts": [
+    "block"
+  ],
+  "key_evidence": [
+    "models.gff3:protein_id",
+    "proteins.faa:1"
+  ],
+  "pair_id": null,
+  "root_cause": "id_mismatch"
+}

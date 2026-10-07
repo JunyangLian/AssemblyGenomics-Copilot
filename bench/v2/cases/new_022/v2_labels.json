@@ -1,0 +1,17 @@
+{
+  "case_id": "new_022",
+  "collection": "new",
+  "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+  "exposure_evidence": [
+    "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+    "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+  ],
+  "original_case_id": null,
+  "pair_id": "P5",
+  "pitfall_id": "PIT-006",
+  "pressure_parent_case_id": null,
+  "seen_or_heldout": "seen",
+  "skill_exposure": "explicit_rule",
+  "stage": "repeat_annotation",
+  "type": "fault"
+}

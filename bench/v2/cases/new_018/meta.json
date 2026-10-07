@@ -1,0 +1,90 @@
+{
+  "benchmark_version": "v2",
+  "case_id": "new_018",
+  "exposure_evidence": [
+    "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+    "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/annotation_statistics.json",
+      "content_sha256": "1fe181b7710ccee4601ecc60c8a2f11cc46987baecf942f1bc3bce47fb50ef83",
+      "method": "derived_summary",
+      "selection": "recompute exact-ID joined coverage from delivered table and selected FAA; not whole-run statistics",
+      "size_bytes": 120,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_functional_table.tsv",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_query_proteins.faa"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/functional.tsv",
+      "content_sha256": "35acb61792708261445dd694b97f6c60e0c6e879cc0ab5cfcebfe5ab1e4ce9d2",
+      "method": "line_ranges",
+      "selection": "skip first 64 source table records; next 32 annotated complete FAA-linked queries in original order; IDs=g65.t1,g66.t1,g67.t1,g68.t1,g69.t1,g70.t1,g71.t1,g72.t1,g73.t1,g74.t1,g75.t2,g76.t1,g77.t1,g78.t1,g79.t1,g80.t1,g81.t1,g82.t1,g83.t1,g84.t1,g85.t1,g86.t1,g87.t1,g88.t1,g89.t1,g90.t1,g91.t2,g92.t1,g93.t1,g94.t1,g95.t1,g96.t1; retain first 2 exact joins; change terminal .tN to .transcriptN after retained prefix, preserve annotation values",
+      "size_bytes": 3178,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_functional_table.tsv"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/query.faa",
+      "content_sha256": "fe529a63d5d1704b0c407a9db67659672d0af09254edf34bac1886bb18f084ce",
+      "method": "fasta_records",
+      "selection": "skip first 64 source table records; next 32 annotated complete FAA-linked queries in original order; IDs=g65.t1,g66.t1,g67.t1,g68.t1,g69.t1,g70.t1,g71.t1,g72.t1,g73.t1,g74.t1,g75.t2,g76.t1,g77.t1,g78.t1,g79.t1,g80.t1,g81.t1,g82.t1,g83.t1,g84.t1,g85.t1,g86.t1,g87.t1,g88.t1,g89.t1,g90.t1,g91.t2,g92.t1,g93.t1,g94.t1,g95.t1,g96.t1; retain first 2 exact joins",
+      "size_bytes": 14296,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_query_proteins.faa"
+      ],
+      "text_origin": "derived"
+    }
+  ],
+  "injection_script": "bench/v2/inject/functional.py",
+  "input_budget": {
+    "estimated_tokens": 18940,
+    "estimator": "UTF-8 byte upper bound of visible JSON packet (v1 visible_input)",
+    "limit_tokens": 30000
+  },
+  "pair_id": "P3",
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "seed": 0,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "explicit_rule",
+  "source_files": [
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_functional_table.tsv",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_functional_table",
+      "sha256": "3c07df0cf68befeba87e191e564fe6d12c8bd5f03dd19066e3bbd64462182dca",
+      "size_bytes": 90097,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/Integration/functional_annotation.tsv",
+      "source_origin_sha256": "b56c7acdfeaf1ec7d9ac50c81076b7f676227ac7b5685ece86837492f81c6f04"
+    },
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_query_proteins.faa",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_query_proteins",
+      "sha256": "3359bb24a13420f8e8fa105d9a07147b440a2352cc4876b081dc7e7f9f1e2224",
+      "size_bytes": 474822,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/0.Query/query.faa",
+      "source_origin_sha256": "4a9a2a936a5cd5911c5db09d5c38bbb5567213a8c64cc8c26f447b007174bf21"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "2.0",
+  "stage": "functional_annotation",
+  "synthetic": true,
+  "type": "fault"
+}

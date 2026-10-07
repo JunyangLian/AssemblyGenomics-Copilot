@@ -1,0 +1,16 @@
+{
+  "case_id": "regression_013",
+  "collection": "regression",
+  "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+  "exposure_evidence": [
+    "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+  ],
+  "original_case_id": "case_013",
+  "pair_id": null,
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "explicit_rule",
+  "stage": "structural_annotation",
+  "type": "normal"
+}

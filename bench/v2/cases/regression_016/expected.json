@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "rollback"
+  ],
+  "key_evidence": [
+    "annotation_statistics.json:annotation_coverage_pct",
+    "functional.tsv:2",
+    "functional.tsv:3"
+  ],
+  "pair_id": null,
+  "root_cause": "low_annotation_quality"
+}

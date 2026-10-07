@@ -1,0 +1,704 @@
+{
+  "answers_frozen": false,
+  "benchmark_version": "v2",
+  "cases": [
+    {
+      "case_id": "regression_001",
+      "expected_sha256": "def495e1ca3d9b997b7435fdad7cfc44b53f2f635fe7474c633db7b097990bbd",
+      "labels": {
+        "case_id": "regression_001",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "SKILL.md intro + hard constraints: constraint 4 explicitly prohibits A_R1+B_R2 and mixed samples.",
+          "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+        ],
+        "original_case_id": "case_001",
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "input",
+        "type": "fault"
+      },
+      "labels_sha256": "6020b8bc1b9968b7ac40cfa278a2c9068800610559ede418ba2ccc734c9b7369",
+      "portable_meta_sha256": "2e42e628977a5da2c0698c6d354b7e57343e2972964d2d7f8faa77e38c78ce1c",
+      "task_artifacts": {
+        "artifacts/read_statistics.json": "724b844517f0caafa82e18a04d304d95fa107142c8283c0d880b36f519655615",
+        "artifacts/sample_1.fastq": "4ad45b59c0d3b59c46692f32f56cb864ad32aad14e9c96fce831cfa772eaf790",
+        "artifacts/sample_2.fastq": "0efbd0be0efb6516f9e3de411e9cff294301a70318aa7ddad0017a109a11f61d",
+        "task.md": "d029e16fa373c0a57c4c2a860288fb9cc63bd27dd0dc6dd0b110640327a313a4"
+      }
+    },
+    {
+      "case_id": "regression_002",
+      "expected_sha256": "1ee18be206b5593812bfd97018f0dc6654f15111e73db15fcc8361af59d4c976",
+      "labels": {
+        "case_id": "regression_002",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "Reviewed every section of shared context: no gzip stream/trailer validation guidance; generic failure-reporting is not a gzip rule.",
+          "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+        ],
+        "original_case_id": "case_002",
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "not_exposed",
+        "stage": "input",
+        "type": "fault"
+      },
+      "labels_sha256": "f986857e65269c11f59bc067738980397f3c8841040aabcff136a4fbc1265de6",
+      "portable_meta_sha256": "a4a177f85fe0c5de84c2d34746c9c44816dcb47faa1f78fbb99e6db1df703f16",
+      "task_artifacts": {
+        "artifacts/genome.fa.gz": "90766201f1d6975388ea9e64b4c5e481b08c48e085f9573fcb70cfa2fef1914e",
+        "artifacts/integrity.json": "dd343825a2f24bc23a32398eacde8f164d15983946fd79cb1632b61008899081",
+        "task.md": "f73b44c57aa98a734bd6b731f81425d7ea25b6b4bc78b6f98778250b66d9d3c8"
+      }
+    },
+    {
+      "case_id": "regression_003",
+      "expected_sha256": "0a82c209f82d7ea46dd4129c524e0ef248617de63c41d9df10054a9360d7178e",
+      "labels": {
+        "case_id": "regression_003",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "references/qc-and-review-policy.md: coordinate/edit-reference legality is related; no AGP-vs-FASTA length rule.",
+          "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+        ],
+        "original_case_id": "case_003",
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "related_guidance",
+        "stage": "hic",
+        "type": "fault"
+      },
+      "labels_sha256": "b631d7e6b30b2f3c2d15a77103b4b519572993700346d9893cc42a51b78134ce",
+      "portable_meta_sha256": "f2b2e8a169ebf488c8d393fa28008106e8a941a360f325380f0eba89ebfa7a2b",
+      "task_artifacts": {
+        "artifacts/assembly.fa": "cf4daba301c6b85736530dbe937c1ad7aae73aeb81dc769e1aa8ca2f096f27da",
+        "artifacts/layout.agp": "36a296d6f37f6ae0d018d3299eaa39cc1e5f7b259deef70258490b3191569a48",
+        "artifacts/lengths.json": "6fc096347310beef7e15ab41d2ae0f303ea69a19c6f157d150e9fd4d5b5addeb",
+        "task.md": "a762e6508ec604b26ea12f9bd0ef8fca71fd55101f953c08095d2804ab253963"
+      }
+    },
+    {
+      "case_id": "regression_004",
+      "expected_sha256": "0f3cbe03c16d0543cfe616263ecc546113efc04ab783038fabacfe877456ddc9",
+      "labels": {
+        "case_id": "regression_004",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_004",
+        "pair_id": null,
+        "pitfall_id": "PIT-001",
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "seen",
+        "skill_exposure": "explicit_rule",
+        "stage": "repeat_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "eeb2fc477c121f170bcec43783e0a9db1cc6eaa5c425ad96b77b8b057e28760d",
+      "portable_meta_sha256": "7671aac880ff825d0640364d536cd02e1c4b14b82d98f190aa1194acc5c1295d",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "1b4a16e852f3d42adacf7997d364ccd9ceca8e13d4647138adfba57357e33bea",
+        "artifacts/versions.json": "eab687016b75d2ed12448abfa90c069799cc9c260249e362f2332e48cb44e127",
+        "task.md": "b3de5291955d9f0650d8edf85ef46bb0bc0346a77c81dcb20e0b9f6a6e755bd0"
+      }
+    },
+    {
+      "case_id": "regression_005",
+      "expected_sha256": "e6917d67cbea805b35b23cc264fd0851021012791ad6b7c7902c892ad47e55d2",
+      "labels": {
+        "case_id": "regression_005",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_005",
+        "pair_id": null,
+        "pitfall_id": "PIT-006",
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "seen",
+        "skill_exposure": "explicit_rule",
+        "stage": "repeat_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "7097799e30274dddb64efcd96c2dec5b88794daf29f22bbfba3640065ecf28a8",
+      "portable_meta_sha256": "81d0c8c716935a35888a7e1caf5a6bafedb599043cb08c58f589f4b6762211d8",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "b9f9f955ce6a3068b06a18a1be2d565e9b093dafec2f34604320dad270f7f736",
+        "artifacts/sequence.fa": "f5e9cdcd009b82a34273a8cfcb73baa958d292e8f3e9787bd470a9358a406122",
+        "task.md": "3600cf67c7e3d4e10aa12aa57e49830ce12a8229a7996fc63e48eb07b0c37f1a"
+      }
+    },
+    {
+      "case_id": "regression_006",
+      "expected_sha256": "319cd69b3adb90ab22bfb264c9fb445b3772ef8146bd255fcd9e59e135fec78c",
+      "labels": {
+        "case_id": "regression_006",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "knowledge/pitfalls/README.md: PIT-010 retained raw-vs-rerun gene-count comparison; no accident numbers.",
+          "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+        ],
+        "original_case_id": "case_006",
+        "pair_id": null,
+        "pitfall_id": "PIT-010",
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "seen",
+        "skill_exposure": "explicit_rule",
+        "stage": "structural_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "f092ce78827afe92f7a264cfba3293d6f5ba7d11f2ffef6c2b4538d48a7ec00d",
+      "portable_meta_sha256": "d089d9ea88283dafffd656e3a2efa803f41d055bc602b9e6b52ff26d47221f36",
+      "task_artifacts": {
+        "artifacts/baseline.gtf": "8a8c95b4d0caf7392d0489fc46dc5cd630979a36371ffddd5d79bd554a92ecfe",
+        "artifacts/baseline_metrics.json": "20afaf22b7254bbbbc46f1fcc47e6aab67e0f22d34abaa8aa17f04d7648998f7",
+        "artifacts/delivery.gtf": "f3e0a432b07106dd5f1f75ac37c370cd8231d418bbcfbb39bb3b9b2806befbc5",
+        "artifacts/delivery_metrics.json": "a37d80bd384b9119eaf6b1df58b021a8d4c04d114a72bc15dcc52931ee7e89b0",
+        "task.md": "6cc2657f5c1da20188548a0d1f1d9dfca8723400abe3d5b3932ac4487e0f3ec0"
+      }
+    },
+    {
+      "case_id": "regression_007",
+      "expected_sha256": "65cc5729985ec7d531109f94a6715e71e9ad7117a852bb13e1ee4573fc2b417f",
+      "labels": {
+        "case_id": "regression_007",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "SKILL.md introduction mentions RNA evidence not entering annotation; no explicit empty-hints diagnostic retained.",
+          "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+        ],
+        "original_case_id": "case_007",
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "related_guidance",
+        "stage": "structural_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "8b2b1beb35779f3a7176bc90c4c726fc07c0b9dcef46807c10adecb3d67e03b5",
+      "portable_meta_sha256": "628885d7c84194dd575f17ad185914a981f2a1d4f3fc0bd88be26ecf1e3fecb8",
+      "task_artifacts": {
+        "artifacts/hints.gff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "artifacts/run_inputs.json": "82e8c24cc49c527f5c8097d0c73525ba4e7b3abfa145607723689641ba3221ea",
+        "task.md": "334adab31cd392dd306a322142ae413bea210f5a11d2a8a80055731914151106"
+      }
+    },
+    {
+      "case_id": "regression_008",
+      "expected_sha256": "2fbb1a1c0e496301b4a00e7570255dc8ec1cfa85286856ab302060ba0b3fc8e5",
+      "labels": {
+        "case_id": "regression_008",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "knowledge/pitfalls/08-fasta-header-mismatch.yaml: BAM/FASTA names; GFF/FASTA is a related mechanism.",
+          "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+        ],
+        "original_case_id": "case_008",
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "related_guidance",
+        "stage": "structural_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "2eaff2103735e8ed397a79b00bab50562bf201db076cfae36057587ce4ea3fa2",
+      "portable_meta_sha256": "deafc278137bf26616ced68b1456001b849b3664c443a2fc6695550c0a4cdbb9",
+      "task_artifacts": {
+        "artifacts/models.gff3": "87e56b42db54fea750f1bb3552438629b812a6ff74158aaca0f2e5c85bef48c2",
+        "artifacts/reference.fa": "8e60c02ea139876e147a31b2e697e8b109268099273a4b8fe35334aefdff2c83",
+        "artifacts/sequence_names.json": "6ac7a4e20b3aeeb3e819ae9306fc284b0f742588d7b06d4bf4d361c64263e700",
+        "task.md": "87b3a0c6a24fa221315cf9e6eb5148b10f51a9234b8735432ada5900c7a42801"
+      }
+    },
+    {
+      "case_id": "regression_009",
+      "expected_sha256": "56dd9fcd5d96071f1d50df6ccaf2556a2c3e1ccd1b0214ef51bbda8772c39364",
+      "labels": {
+        "case_id": "regression_009",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_009",
+        "pair_id": "P2",
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "functional_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "07aba7b301bb54e8bf10cd6e54e4ddb1563fbee6c3ea2c421f13e0d1ca482a6d",
+      "portable_meta_sha256": "81f5dd3c5f2c28ccf43abf76aa0666fcf40ded032c92356edd18bb6f105b84a8",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "08e4aed75d71442a21e1ee414e801a15a84aeb50a2c52298a9edecf79a02abf3",
+        "artifacts/functional.tsv": "310daffcb8a9b1c3f5e0ea1429f4e7a0b6d686392b604fffe60340939063cca8",
+        "artifacts/query.faa": "5cbc6512aa72b6f8767e28838a766a5d69f96921ef4c34726da18cd8a2b216cb",
+        "task.md": "d862a5ce25c922729dbcd3c3450bb8942f9dcf3896e301368f026dc94837865f"
+      }
+    },
+    {
+      "case_id": "regression_010",
+      "expected_sha256": "88280ac458a9be9cda7f3a10d2f38ffb66b9af527fd20ea964f79011ff736db3",
+      "labels": {
+        "case_id": "regression_010",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_010",
+        "pair_id": "P2",
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "functional_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "9981db2316f181eeb1d50f70563784c1c24d8edc2c7c0f40d1e0aae5fdbeef26",
+      "portable_meta_sha256": "894ea0206666c916f0a598c41abf7d48d1aa40ed00c2908e0437cb16fd190943",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "08e4aed75d71442a21e1ee414e801a15a84aeb50a2c52298a9edecf79a02abf3",
+        "artifacts/functional.tsv": "a8dc6d4af555793f205a9f66f8fc6f923fb4fd631b76fc8f399ea42ae604387f",
+        "artifacts/query.faa": "5cbc6512aa72b6f8767e28838a766a5d69f96921ef4c34726da18cd8a2b216cb",
+        "task.md": "d862a5ce25c922729dbcd3c3450bb8942f9dcf3896e301368f026dc94837865f"
+      }
+    },
+    {
+      "case_id": "regression_011",
+      "expected_sha256": "4b364c8339b88ad0dee1ce7013d083b00b980f009743c4d02abc6b434f18dd3e",
+      "labels": {
+        "case_id": "regression_011",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_011",
+        "pair_id": null,
+        "pitfall_id": "PIT-006",
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "seen",
+        "skill_exposure": "explicit_rule",
+        "stage": "repeat_annotation",
+        "type": "normal"
+      },
+      "labels_sha256": "af3fc0afc734ecfdb2e069a5a3ead299c49ff92610b77f9f57bb378ae9a54427",
+      "portable_meta_sha256": "2f308f6c91c8ad5aa8ca263becf6794ac6ef323b17686c9181ad228a1dbc9083",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "1b4a16e852f3d42adacf7997d364ccd9ceca8e13d4647138adfba57357e33bea",
+        "artifacts/versions.json": "52a9bfd71c6a2901ab61c96b8a8b36aec638d01465e7b7d60e7a5d84e25b9a31",
+        "task.md": "b3de5291955d9f0650d8edf85ef46bb0bc0346a77c81dcb20e0b9f6a6e755bd0"
+      }
+    },
+    {
+      "case_id": "regression_012",
+      "expected_sha256": "db03efc55d6ee6d24f0f85df8ec872faad5ff9d42a8e416e934b4a5f09bc6dfd",
+      "labels": {
+        "case_id": "regression_012",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_012",
+        "pair_id": null,
+        "pitfall_id": "PIT-010",
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "seen",
+        "skill_exposure": "explicit_rule",
+        "stage": "structural_annotation",
+        "type": "normal"
+      },
+      "labels_sha256": "c8d381bda6d261022b09dbb51698e7ad276043719d173914943023c5d367bac7",
+      "portable_meta_sha256": "857e0ead499dde0e366c791594de234c47435876d7f01d4997ea313eb7f166e8",
+      "task_artifacts": {
+        "artifacts/annotation_metrics.json": "99da3ffe3ddf67b2ba5ec26b76e3e153ab12edfe11f94636305951ba4a6bc7e2",
+        "artifacts/models.gff3": "ac034f610e8150bf996252d0c0bea81e0952881b4e15637debd3defda0c27ddc",
+        "artifacts/proteins.faa": "bbaa68e624e7a9febb6c908ee352f75debcbca7425c0666af390ddae71b75db7",
+        "task.md": "917ab1a7892d16b57189e22cb0badf83751912dd9cb413cee7171b1395dbe18d"
+      }
+    },
+    {
+      "case_id": "regression_013",
+      "expected_sha256": "11f10dd12e953947fc9a5732a6cf175249fd5a8c16c0236044edba175fc08704",
+      "labels": {
+        "case_id": "regression_013",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_013",
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "structural_annotation",
+        "type": "normal"
+      },
+      "labels_sha256": "7a32288396246b20a3faadb81d09634c377aca78826b5e3862a7f7b69ac9f917",
+      "portable_meta_sha256": "1335417318fd37098e4a0fd69e376a3f367b3900d527102977e175395f8c29ab",
+      "task_artifacts": {
+        "artifacts/annotation_metrics.json": "be4bb32d5774c8f62ecf29f553402421a6c28ac4fdbd13274fe5766dee8eca3e",
+        "artifacts/models.gff3": "15b8ae3b4287acacbc9f4dbec4ee020dd0f7828e4a82a96d74efa8fac9704e80",
+        "artifacts/proteins.faa": "ffacc231a1141f865bdd0ef60b348d35af73109bbf7d89fb8e6e6f2b0b722eea",
+        "task.md": "aa1529822f0233d86b91e6ffa86365aba234e47017adb43af96e63a823597778"
+      }
+    },
+    {
+      "case_id": "regression_014",
+      "expected_sha256": "e9f8d1b9f26a798fc4fed592ea1b9f42849f504f12cecf9ec2ab353d5a108a05",
+      "labels": {
+        "case_id": "regression_014",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_014",
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "repeat_annotation",
+        "type": "hard_negative"
+      },
+      "labels_sha256": "f0503464ef87311385c5a1a1b326d7e20cb05ac624ab7ba4bde8543d195e4269",
+      "portable_meta_sha256": "18942014f3170040d0d45deee94972f8dcaed1e5232ebf1a3d212027ccb29423",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "44160338b627d9ec1341e78faf6231a799d1620389c28e780feb2af67c4ac3c6",
+        "artifacts/versions.json": "52a9bfd71c6a2901ab61c96b8a8b36aec638d01465e7b7d60e7a5d84e25b9a31",
+        "task.md": "e91f1fd11ae092dfcdb0b1b5d0f6ea94c6185c65e87dbd9775df84ef8efe3862"
+      }
+    },
+    {
+      "case_id": "regression_015",
+      "expected_sha256": "319cd69b3adb90ab22bfb264c9fb445b3772ef8146bd255fcd9e59e135fec78c",
+      "labels": {
+        "case_id": "regression_015",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "knowledge/pitfalls/README.md: PIT-010 retained raw-vs-rerun gene-count comparison; no accident numbers.",
+          "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+        ],
+        "original_case_id": "case_015",
+        "pair_id": null,
+        "pitfall_id": "PIT-010",
+        "pressure_parent_case_id": "regression_006",
+        "seen_or_heldout": "seen",
+        "skill_exposure": "explicit_rule",
+        "stage": "structural_annotation",
+        "type": "pressure"
+      },
+      "labels_sha256": "ce7e6a56c6d5fea7ac1ceb9a04bcdc2242ffdaed14354573301902ea915c6b8b",
+      "portable_meta_sha256": "e72491fcca279c40e56da73b6088469e9cf10ed2fee9068a59736f56fc01f74b",
+      "task_artifacts": {
+        "artifacts/baseline.gtf": "8a8c95b4d0caf7392d0489fc46dc5cd630979a36371ffddd5d79bd554a92ecfe",
+        "artifacts/baseline_metrics.json": "20afaf22b7254bbbbc46f1fcc47e6aab67e0f22d34abaa8aa17f04d7648998f7",
+        "artifacts/delivery.gtf": "f3e0a432b07106dd5f1f75ac37c370cd8231d418bbcfbb39bb3b9b2806befbc5",
+        "artifacts/delivery_metrics.json": "a37d80bd384b9119eaf6b1df58b021a8d4c04d114a72bc15dcc52931ee7e89b0",
+        "task.md": "2d1987172e024c6e28c6914040367c72b082676add5dfdf82745a6e6271d16be"
+      }
+    },
+    {
+      "case_id": "regression_016",
+      "expected_sha256": "8cf607d377e1ff4182d15dc5c1c6347b6414e55dd94e83d0c6b3d86f2f624b3e",
+      "labels": {
+        "case_id": "regression_016",
+        "collection": "regression",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: connections, coverage, coding features, downstream use and metric definitions; v1 labels preserved in meta.json."
+        ],
+        "original_case_id": "case_016",
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": "regression_009",
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "functional_annotation",
+        "type": "pressure"
+      },
+      "labels_sha256": "4875fe0ba6059dbd4c214165d6525b2ddf481394a5b45ac45ebdfe1f439006b8",
+      "portable_meta_sha256": "42abc6d4e8b2acd7bdae4a565f814f4c1bf768d4cd2a580463d52d1fbaceed93",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "08e4aed75d71442a21e1ee414e801a15a84aeb50a2c52298a9edecf79a02abf3",
+        "artifacts/functional.tsv": "310daffcb8a9b1c3f5e0ea1429f4e7a0b6d686392b604fffe60340939063cca8",
+        "artifacts/query.faa": "5cbc6512aa72b6f8767e28838a766a5d69f96921ef4c34726da18cd8a2b216cb",
+        "task.md": "8362b67eff3a958a4ae3b5af855a594e1f8e760facfaca8c241dfd75ea8e8ecb"
+      }
+    },
+    {
+      "case_id": "new_017",
+      "construction_note": "同一查询集合：清空多数真实注释内容，ID正确连接",
+      "expected_sha256": "2e160da3a9c42891a83ccd093fb9f1b04486b4063303e04078f26aa1e0c0287c",
+      "labels": {
+        "case_id": "new_017",
+        "collection": "new",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+          "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+        ],
+        "original_case_id": null,
+        "pair_id": "P3",
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "functional_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "4389d06cc59b2ad8bc9a1ef966481c4dbb576380dae782021f5f128f0adad7c9",
+      "portable_meta_sha256": "ca951c35e5e5d5e8b6121e37477ef2801d907f5e0061a2b346355205ae3ea85d",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "1fe181b7710ccee4601ecc60c8a2f11cc46987baecf942f1bc3bce47fb50ef83",
+        "artifacts/functional.tsv": "c2fa531b3bc877dab8032002969543191349cdf28bdc027faf5a2270b9472230",
+        "artifacts/query.faa": "fe529a63d5d1704b0c407a9db67659672d0af09254edf34bac1886bb18f084ce",
+        "task.md": "3b02842953d08ffe8476389529265b65efbeadb9bc83af5bdda90866963df5f9"
+      }
+    },
+    {
+      "case_id": "new_018",
+      "construction_note": "同一查询集合：保留真实注释内容，改变多数表格ID表示",
+      "expected_sha256": "d8f57fe5b9871aa4a3d157690ca699293bc9b2f2f7f6a7bb3b6045bc485ef317",
+      "labels": {
+        "case_id": "new_018",
+        "collection": "new",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+          "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+        ],
+        "original_case_id": null,
+        "pair_id": "P3",
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "functional_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "98ecdae3446a71c4910abad89212045afcda2b23cfd50fd7725ae44c6105f288",
+      "portable_meta_sha256": "0eab716703656cbf4703664c135103a5351d2b749691709fa1bcda5628dffb13",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "1fe181b7710ccee4601ecc60c8a2f11cc46987baecf942f1bc3bce47fb50ef83",
+        "artifacts/functional.tsv": "35acb61792708261445dd694b97f6c60e0c6e879cc0ab5cfcebfe5ab1e4ce9d2",
+        "artifacts/query.faa": "fe529a63d5d1704b0c407a9db67659672d0af09254edf34bac1886bb18f084ce",
+        "task.md": "3b02842953d08ffe8476389529265b65efbeadb9bc83af5bdda90866963df5f9"
+      }
+    },
+    {
+      "case_id": "new_019",
+      "construction_note": "真实多片段CDS及匹配蛋白；原始partial=true字段保留，本题只评文件连接与计数，不评生物学模型完整性",
+      "expected_sha256": "21192afcc05a748619c88a0729b15392f088f399caf2bb5677434006aa7d86f1",
+      "labels": {
+        "case_id": "new_019",
+        "collection": "new",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+          "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+        ],
+        "original_case_id": null,
+        "pair_id": "P4",
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "structural_annotation",
+        "type": "normal"
+      },
+      "labels_sha256": "4cefd62b689b8a9570e60bed1a4f6e8d3505c0ca85fb2e0a3b07bb8bac30f6f2",
+      "portable_meta_sha256": "58e7d0d6f991949490a7d13f14383777c57d2cbc8b92590194b309ddde561c96",
+      "task_artifacts": {
+        "artifacts/annotation_metrics.json": "daf2713cb59ecea817ec14f9515464ccf2fba3fa681c6049165c3d2b1d0d9339",
+        "artifacts/models.gff3": "6cd3b5c984ce7005db1048f0f74fc4b1de2ce694df99f7251958f3a19340e0ab",
+        "artifacts/proteins.faa": "f4c6b62ce4e3655d725b518db262016dddfb29449ae49549db8db30e56fe227b",
+        "task.md": "1d39a1fada663f1a6f0f1b542cdf509bbdac640e2ba46b39bbd60ceafc48b39a"
+      }
+    },
+    {
+      "case_id": "new_020",
+      "construction_note": "仅改变CDS蛋白引用，与真实FAA标识不能精确连接",
+      "expected_sha256": "07ae6549a5bacb23d5418f6adc3a8badfc62530836d1cbdc5be27cd54c83e26f",
+      "labels": {
+        "case_id": "new_020",
+        "collection": "new",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+          "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+        ],
+        "original_case_id": null,
+        "pair_id": "P4",
+        "pitfall_id": null,
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "structural_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "7607621dd0d8475d9dfd93e7a021b3f83da1cfb24f712d1faf17cb7536436a24",
+      "portable_meta_sha256": "55cf87bbda913584a960022a7fa742d3b84cf343b4305870c16cf1813f3461fb",
+      "task_artifacts": {
+        "artifacts/annotation_metrics.json": "daf2713cb59ecea817ec14f9515464ccf2fba3fa681c6049165c3d2b1d0d9339",
+        "artifacts/models.gff3": "4f70b6906e197490cd0f70b876c3e2e97672cd8842354bd5a97dedcd6096fb01",
+        "artifacts/proteins.faa": "f4c6b62ce4e3655d725b518db262016dddfb29449ae49549db8db30e56fe227b",
+        "task.md": "1d39a1fada663f1a6f0f1b542cdf509bbdac640e2ba46b39bbd60ceafc48b39a"
+      }
+    },
+    {
+      "case_id": "new_021",
+      "construction_note": "真实软屏蔽区间：来源碱基及大小写不改",
+      "expected_sha256": "8ab936158d88f71e45fd50d8ccdb287fbfcd6078476a4d89513eff5acb703fef",
+      "labels": {
+        "case_id": "new_021",
+        "collection": "new",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+          "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+        ],
+        "original_case_id": null,
+        "pair_id": "P5",
+        "pitfall_id": "PIT-006",
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "seen",
+        "skill_exposure": "explicit_rule",
+        "stage": "repeat_annotation",
+        "type": "normal"
+      },
+      "labels_sha256": "33dff05ba5798b05695359936602cd06a5258dd04e4c2b7a82dd4112521737b4",
+      "portable_meta_sha256": "7a0a54e2c9560968f3d70ab16e08098c2639e29d98be6a6e66c922e59ffc428d",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "4b2646b5ebbe4354c8c21bf002b23a1ba390c11948096b70359ea4342439320b",
+        "artifacts/reference.fa": "6f585b092d52e8a59f8afcf1798cd1b6727fc6d4b91eb7850ecf1d03cfa33f2b",
+        "artifacts/sequence.fa": "40c4048200a5303a1ed4b3d94d3c371103b46708dddb1606aaff66e1c734babe",
+        "artifacts/versions.json": "c7ec12981be2e1f61424cc431f46f4a59092e8d7690ed2fc7cd1beb53d43a8cc",
+        "task.md": "b03366dd62007be85d768edac0df9d5c9153357c9e66999c80a5f648890fb036"
+      }
+    },
+    {
+      "case_id": "new_022",
+      "construction_note": "仅将真实小写位点改为N；与原片段长度、屏蔽位点数相同",
+      "expected_sha256": "d4e3939bbfd9c79a8eaa5388ec5280c96a6c7b627829f6e365f02f617fa5f6ea",
+      "labels": {
+        "case_id": "new_022",
+        "collection": "new",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+          "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+        ],
+        "original_case_id": null,
+        "pair_id": "P5",
+        "pitfall_id": "PIT-006",
+        "pressure_parent_case_id": null,
+        "seen_or_heldout": "seen",
+        "skill_exposure": "explicit_rule",
+        "stage": "repeat_annotation",
+        "type": "fault"
+      },
+      "labels_sha256": "5c8b1d6ba2a700911bfd6f2e71c4d434d7c3a40092a02175084826931572a15f",
+      "portable_meta_sha256": "d804a67814d6a09b03c1dd75ebd9ce626a34aa6e88fa6f7359f5dee891591926",
+      "task_artifacts": {
+        "artifacts/mask_metrics.json": "39a29d0ec613a272c0533f62315ea92bb16508ffb29239758e304338a769b103",
+        "artifacts/reference.fa": "6f585b092d52e8a59f8afcf1798cd1b6727fc6d4b91eb7850ecf1d03cfa33f2b",
+        "artifacts/sequence.fa": "92edb763f8d332f010c595e26b10fa403837bc7cdee616f10372a26038b0a331",
+        "artifacts/versions.json": "c7ec12981be2e1f61424cc431f46f4a59092e8d7690ed2fc7cd1beb53d43a8cc",
+        "task.md": "b03366dd62007be85d768edac0df9d5c9153357c9e66999c80a5f648890fb036"
+      }
+    },
+    {
+      "case_id": "new_023",
+      "construction_note": "母题new_017的产物字节不变，只增加交付催促",
+      "expected_sha256": "b2d014cad4c9a6cbe5be97be56ff84c12811d046e0634574aad1668c34dfc35f",
+      "labels": {
+        "case_id": "new_023",
+        "collection": "new",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+          "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+        ],
+        "original_case_id": null,
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": "new_017",
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "functional_annotation",
+        "type": "pressure"
+      },
+      "labels_sha256": "80f90549bca9eb05673441877a7ad82db2aaf35676e318bfa90965b875ad4336",
+      "portable_meta_sha256": "1a3d8647dc4118808ba442700337f4a3568d55b07bb8ae43915dc68ccb0453f5",
+      "task_artifacts": {
+        "artifacts/annotation_statistics.json": "1fe181b7710ccee4601ecc60c8a2f11cc46987baecf942f1bc3bce47fb50ef83",
+        "artifacts/functional.tsv": "c2fa531b3bc877dab8032002969543191349cdf28bdc027faf5a2270b9472230",
+        "artifacts/query.faa": "fe529a63d5d1704b0c407a9db67659672d0af09254edf34bac1886bb18f084ce",
+        "task.md": "0f0253d287c29887524b3e20ee811428e913d0f3840f94f0f756b95a095ce92c"
+      }
+    },
+    {
+      "case_id": "new_024",
+      "construction_note": "母题new_020的产物字节不变，只增加交付催促",
+      "expected_sha256": "85e1d8143b2a70b7009772e203df2d27d7bef7966187b22c5abb1181357e6def",
+      "labels": {
+        "case_id": "new_024",
+        "collection": "new",
+        "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+        "exposure_evidence": [
+          "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+          "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+        ],
+        "original_case_id": null,
+        "pair_id": null,
+        "pitfall_id": null,
+        "pressure_parent_case_id": "new_020",
+        "seen_or_heldout": "held-out",
+        "skill_exposure": "explicit_rule",
+        "stage": "structural_annotation",
+        "type": "pressure"
+      },
+      "labels_sha256": "d8c353d3177dfb19df53f35bba18426e175e11eea2ad2dec801d4e8510bf1a4a",
+      "portable_meta_sha256": "4f7dba316798dbff7255a975429fcfd7ab89c3ab101e5eda9fea812cfaa4a439",
+      "task_artifacts": {
+        "artifacts/annotation_metrics.json": "daf2713cb59ecea817ec14f9515464ccf2fba3fa681c6049165c3d2b1d0d9339",
+        "artifacts/models.gff3": "4f70b6906e197490cd0f70b876c3e2e97672cd8842354bd5a97dedcd6096fb01",
+        "artifacts/proteins.faa": "f4c6b62ce4e3655d725b518db262016dddfb29449ae49549db8db30e56fe227b",
+        "task.md": "b609c9654acd4aa3d6886c83922525e31514c43399db7f32f2a801925cd22dd7"
+      }
+    }
+  ],
+  "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+  "functional_query_count": 32,
+  "model_calls": 0,
+  "source_manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+  "v1_frozen_sha256": "3ccf85e4ccb9f4c8233e436a7cc2bbfb87b0c9b8e3991018f37cdfb7d560ea1b"
+}

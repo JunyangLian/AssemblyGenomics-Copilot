@@ -1,0 +1,17 @@
+{
+  "case_id": "regression_002",
+  "collection": "regression",
+  "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+  "exposure_evidence": [
+    "Reviewed every section of shared context: no gzip stream/trailer validation guidance; generic failure-reporting is not a gzip rule.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "original_case_id": "case_002",
+  "pair_id": null,
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "not_exposed",
+  "stage": "input",
+  "type": "fault"
+}

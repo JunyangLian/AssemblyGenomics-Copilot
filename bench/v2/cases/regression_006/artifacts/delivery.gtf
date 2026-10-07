@@ -1,0 +1,30 @@
+NC_000932.1	AUGUSTUS	gene	69910	70865	.	-	.	g_26914
+NC_000932.1	AUGUSTUS	transcript	69910	70865	0.7	-	.	anno1.g27504.t1
+NC_000932.1	AUGUSTUS	stop_codon	69910	69912	.	-	0	transcript_id "anno1.g27504.t1"; gene_id "g_26914";
+NC_000932.1	AUGUSTUS	CDS	69910	70135	1	-	1	transcript_id "anno1.g27504.t1"; gene_id "g_26914";
+NC_000932.1	AUGUSTUS	exon	69910	70135	.	-	.	transcript_id "anno1.g27504.t1"; gene_id "g_26914";
+NC_000932.1	AUGUSTUS	intron	70136	70650	1	-	.	transcript_id "anno1.g27504.t1"; gene_id "g_26914";
+NC_000932.1	AUGUSTUS	CDS	70651	70865	0.7	-	0	transcript_id "anno1.g27504.t1"; gene_id "g_26914";
+NC_000932.1	AUGUSTUS	exon	70651	70865	.	-	.	transcript_id "anno1.g27504.t1"; gene_id "g_26914";
+NC_000932.1	AUGUSTUS	start_codon	70863	70865	.	-	0	transcript_id "anno1.g27504.t1"; gene_id "g_26914";
+NC_003070.9	AUGUSTUS	gene	3760	5630	.	+	.	g_11618
+NC_003070.9	AUGUSTUS	transcript	3760	5630	0.97	+	.	anno1.g11861.t1
+NC_003070.9	AUGUSTUS	start_codon	3760	3762	.	+	0	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	CDS	3760	3913	1	+	0	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	exon	3760	3913	.	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	intron	3914	3995	1	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	CDS	3996	4276	1	+	2	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	exon	3996	4276	.	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	intron	4277	4485	1	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	CDS	4486	4605	1	+	0	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	exon	4486	4605	.	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	intron	4606	4705	1	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	CDS	4706	5095	1	+	0	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	exon	4706	5095	.	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	intron	5096	5173	1	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	CDS	5174	5326	1	+	0	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	exon	5174	5326	.	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	intron	5327	5438	0.99	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	CDS	5439	5630	0.97	+	0	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	exon	5439	5630	.	+	.	transcript_id "anno1.g11861.t1"; gene_id "g_11618";
+NC_003070.9	AUGUSTUS	stop_codon	5628	5630	.	+	0	transcript_id "anno1.g11861.t1"; gene_id "g_11618";

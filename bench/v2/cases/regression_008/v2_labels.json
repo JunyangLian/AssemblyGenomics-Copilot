@@ -1,0 +1,17 @@
+{
+  "case_id": "regression_008",
+  "collection": "regression",
+  "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+  "exposure_evidence": [
+    "knowledge/pitfalls/08-fasta-header-mismatch.yaml: BAM/FASTA names; GFF/FASTA is a related mechanism.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "original_case_id": "case_008",
+  "pair_id": null,
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "related_guidance",
+  "stage": "structural_annotation",
+  "type": "fault"
+}

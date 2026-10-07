@@ -324,3 +324,7 @@ API完成或预算守卫停下后，运行 `python bench/seal_api.py`。回执�
 服务器数据目录未带完整规则仓库时，改用rules_support.zip路径支持包（server/README.md末节）。其中18个规则源文件保持原冻结身份，原适配器/入口/题目未改；只在bench内定位副本并保留原输出目录，不新增A规则，不调用API。
 
 阶段3全部结果已接纳：真实A48（27有判定/21未覆盖，无环境错误），B/C288（269有效JSON/19 API错误）。当前完整状态见STAGE3_COMPLETION.json及STAGE3_REPORT.md；尚未进行阶段4计分，等待用户阶段确认。API_COMPLETION中的A=pending保留其生成时的历史状态。
+
+### v2阶段2题库草案（2026-10-07）
+
+24题已构造、校验，本地256测试通过；v1回归字节保持冻结。新增题审核、Linux复现和门槛确认仍待完成，0模型调用、尚无v2 FROZEN。阶段汇报见[v2/PHASE2_REPORT.md](v2/PHASE2_REPORT.md)，人工审核表见[v2/REVIEW_SHEET.csv](v2/REVIEW_SHEET.csv)，服务器复现说明见[v2/server/README.md](v2/server/README.md)。

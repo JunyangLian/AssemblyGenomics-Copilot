@@ -1,0 +1,80 @@
+{
+  "benchmark_version": "v1",
+  "case_id": "case_007",
+  "exposure_evidence": [
+    "SKILL.md introduction mentions RNA evidence not entering annotation; no explicit empty-hints diagnostic retained.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/hints.gff",
+      "content_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "method": "feature_subset",
+      "selection": "remove all entries from a nonempty real hints excerpt",
+      "size_bytes": 0,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_hints.gff"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/run_inputs.json",
+      "content_sha256": "82e8c24cc49c527f5c8097d0c73525ba4e7b3abfa145607723689641ba3221ea",
+      "method": "derived_summary",
+      "selection": "RNA sample count/mode from actual provenance; recount the visible emptied hint file, not a simulated BRAKER execution log",
+      "size_bytes": 99,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_hints.gff",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_final_provenance.json"
+      ],
+      "text_origin": "derived"
+    }
+  ],
+  "injection_script": "bench/inject/rna_evidence.py",
+  "input_budget": {
+    "estimated_tokens": 596,
+    "estimator": "visible_packet_utf8_bytes_v1 (conservative upper bound)",
+    "limit_tokens": 30000
+  },
+  "legacy_case_number": 10,
+  "pair_id": null,
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "seed": 0,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "related_guidance",
+  "source_files": [
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_final_provenance.json",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_final_provenance",
+      "sha256": "ed7b4aca6c2b6cb558a78a507baf36236280565774243cdc0e651d321fecfce1",
+      "size_bytes": 2019,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/provenance.json",
+      "source_origin_sha256": "ed7b4aca6c2b6cb558a78a507baf36236280565774243cdc0e651d321fecfce1"
+    },
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_hints.gff",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_hints",
+      "sha256": "aa2ec64bddff026e8ff55a526de9fe0cf7695acef2b4f0363b39c1cdf90b940f",
+      "size_bytes": 62292,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/run_ETP/hintsfile.gff",
+      "source_origin_sha256": "e702b094d65ceeed78c1ebbe1ef7255ae42da45ffae157f8511bd6bd7654fe2b"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "1.2",
+  "stage": "structural_annotation",
+  "synthetic": true,
+  "type": "fault"
+}

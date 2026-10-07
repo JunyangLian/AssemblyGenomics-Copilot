@@ -1,0 +1,12 @@
+{
+  "cds_rows": 4,
+  "feature_rows": 12,
+  "gene_rows": 2,
+  "mrna_rows": 2,
+  "protein_lengths_aa": [
+    869,
+    120
+  ],
+  "protein_records": 2,
+  "protein_total_aa": 989
+}

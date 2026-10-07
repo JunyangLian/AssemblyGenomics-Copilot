@@ -1,0 +1,8 @@
+{
+  "annotated_queries": 1,
+  "annotation_coverage_pct": 6.25,
+  "denominator": "query proteins",
+  "total_queries": 16,
+  "unannotated_queries": 15,
+  "unit": "percent"
+}

@@ -1,0 +1,9 @@
+{
+  "lowercase_bases": 0,
+  "masked_pct": 3.483333,
+  "masked_sites": 418,
+  "n_bases": 418,
+  "reference_n_bases": 0,
+  "sequence_equal_ignorecase": false,
+  "sequence_length": 12000
+}

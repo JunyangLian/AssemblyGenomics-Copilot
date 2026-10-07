@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "rollback"
+  ],
+  "key_evidence": [
+    "annotation_statistics.json:annotation_coverage_pct",
+    "functional.tsv:query",
+    "functional.tsv:IPR"
+  ],
+  "pair_id": "P3",
+  "root_cause": "low_annotation_quality"
+}

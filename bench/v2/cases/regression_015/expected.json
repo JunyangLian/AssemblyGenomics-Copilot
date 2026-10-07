@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "rollback"
+  ],
+  "key_evidence": [
+    "baseline_metrics.json:gene_count",
+    "delivery_metrics.json:gene_count",
+    "delivery_metrics.json:busco.complete_pct"
+  ],
+  "pair_id": null,
+  "root_cause": "gene_loss"
+}

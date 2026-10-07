@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "pass"
+  ],
+  "key_evidence": [
+    "annotation_metrics.json:cds_rows",
+    "models.gff3:2",
+    "proteins.faa:1"
+  ],
+  "pair_id": "P4",
+  "root_cause": "none"
+}

@@ -1,0 +1,1 @@
+审核拟南芥（Arabidopsis thaliana，二倍体）的功能注释阶段交付。本次审核数据是 16 条完整查询蛋白及对应的七库功能标记表，字段值 1 表示有注释，0 表示无注释。annotation_statistics.json 以 query.faa 中的蛋白为分母，通过标识符精确连接 functional.tsv 后计算任一库的覆盖率。请核对逐记录证据与统计，判定本阶段能否继续，并给出依据及下一步。

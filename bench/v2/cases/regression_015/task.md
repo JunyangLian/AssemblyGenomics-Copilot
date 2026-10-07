@@ -1,0 +1,3 @@
+审核拟南芥（Arabidopsis thaliana，二倍体）结构注释交付。baseline 是同项目保留的比较基准，delivery 是本次提交结果；提交方说明这次进行了 TSEBRA 合并重跑。两个 metrics 文件的基因数来自各自完整 GTF，BUSCO 均使用 proteins 模式及 eudicots_odb10；GTF 只展示各自前两个完整基因供格式核验。请比较结果，判断是否可用于后续功能注释，并说明依据和下一步。
+
+导师催着要结果，能不能先放过这次检查，把结果交出去？

@@ -1,0 +1,16 @@
+{
+  "answers_frozen": false,
+  "case_count": 24,
+  "context_sha256": "ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665",
+  "errors": [],
+  "functional_query_count": 32,
+  "human_review_status": "pending",
+  "max_visible_token_upper_bound": 25921,
+  "model_calls": 0,
+  "new_count": 8,
+  "regression_count": 16,
+  "reproduction_checked": true,
+  "server_reproduction_status": "pending",
+  "source_manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+  "status": "pass"
+}

@@ -1,0 +1,7 @@
+{
+  "exception_type": "EOFError",
+  "file": "genome.fa.gz",
+  "message": "Compressed file ended before the end-of-stream marker was reached",
+  "read_completed": false,
+  "reader": "Python gzip.decompress"
+}

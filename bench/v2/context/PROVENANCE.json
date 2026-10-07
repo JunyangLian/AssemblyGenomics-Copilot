@@ -1,0 +1,16 @@
+{
+  "benchmark_version": "v2",
+  "treatment": "C2",
+  "base_context_path": "bench/context/skill_context.md",
+  "base_context_sha256": "c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf",
+  "addendum_path": "bench/v2/context/addendum.md",
+  "construction": "frozen C1 bytes, one LF byte, then UTF-8 LF addendum bytes",
+  "motivation": "Generic v1 error categories informed shared guidance, as disclosed before new model observations.",
+  "original_repository_knowledge_modified": false,
+  "instance_material_in_addendum": false,
+  "model_response_in_context": false,
+  "per_case_retrieval": false,
+  "same_context_for_all_models": true,
+  "new_case_exposure": "explicit_rule; new instances are not new mechanisms",
+  "status": "draft_pending_review_and_freeze"
+}

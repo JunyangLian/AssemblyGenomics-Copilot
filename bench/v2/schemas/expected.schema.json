@@ -1,0 +1,89 @@
+{
+  "$defs": {
+    "evidence_pointer": {
+      "description": "模型可见的相对文件名:字段、记录键或一基行号；只定位 task.md 或 artifacts 内文本，不允许绝对路径、..、meta.json、expected.json。文件存在性及定位有效性由 validate_cases/harness 检查。",
+      "minLength": 3,
+      "pattern": "^[^:\\r\\n]+:[^\\r\\n]+$",
+      "type": "string"
+    },
+    "root_cause": {
+      "enum": [
+        "contamination",
+        "config_taxid_error",
+        "id_mismatch",
+        "seqid_mismatch",
+        "masking_mode_error",
+        "truncated_input",
+        "pairing_error",
+        "outdated_database",
+        "evidence_not_used",
+        "gene_loss",
+        "low_anchoring",
+        "agp_inconsistent",
+        "low_annotation_quality",
+        "busco_parser_error",
+        "protein_internal_ambiguity",
+        "noncoding_residue",
+        "unconfirmed_resource_budget",
+        "none"
+      ],
+      "type": "string"
+    },
+    "verdict": {
+      "enum": [
+        "pass",
+        "warn",
+        "rollback",
+        "block"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "私有标准答案；必须逐题经人类确认并冻结。禁止进入模型或 A 组判定输入。",
+  "properties": {
+    "acceptable_verdicts": {
+      "items": {
+        "$ref": "#/$defs/verdict"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "key_evidence": {
+      "description": "可从可见文件核验的关键依据定位；解释和审核意见保留在 REVIEW_SHEET，不能成为模型输入。",
+      "items": {
+        "$ref": "#/$defs/evidence_pointer"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "pair_id": {
+      "description": "P2回归；P3/P4/P5新增；施压副本不构成独立配对。",
+      "enum": [
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        null
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "root_cause": {
+      "$ref": "#/$defs/root_cause"
+    }
+  },
+  "required": [
+    "acceptable_verdicts",
+    "root_cause",
+    "key_evidence"
+  ],
+  "title": "AssemblyGenomics bench v2 expected answer",
+  "type": "object"
+}

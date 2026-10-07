@@ -1,0 +1,93 @@
+{
+  "benchmark_version": "v1",
+  "case_id": "case_001",
+  "exposure_evidence": [
+    "SKILL.md intro + hard constraints: constraint 4 explicitly prohibits A_R1+B_R2 and mixed samples.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/read_statistics.json",
+      "content_sha256": "724b844517f0caafa82e18a04d304d95fa107142c8283c0d880b36f519655615",
+      "method": "derived_summary",
+      "selection": "count records and compare first header field, ignoring terminal /1 or /2",
+      "size_bytes": 88,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_rep1_r1.fastq",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_rep2_r2.fastq"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/sample_1.fastq",
+      "content_sha256": "4ad45b59c0d3b59c46692f32f56cb864ad32aad14e9c96fce831cfa772eaf790",
+      "method": "fastq_records",
+      "selection": "first 8 complete R1 records of WT_Rep1",
+      "size_bytes": 1670,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_rep1_r1.fastq"
+      ],
+      "text_origin": "tool_verbatim",
+      "verbatim_selection": "lines 1-32, LF only"
+    },
+    {
+      "artifact_path": "artifacts/sample_2.fastq",
+      "content_sha256": "0efbd0be0efb6516f9e3de411e9cff294301a70318aa7ddad0017a109a11f61d",
+      "method": "fastq_records",
+      "selection": "first 8 complete R2 records of WT_Rep2; neutral sample filename",
+      "size_bytes": 1670,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_rep2_r2.fastq"
+      ],
+      "text_origin": "tool_verbatim",
+      "verbatim_selection": "lines 1-32, LF only"
+    }
+  ],
+  "injection_script": "bench/inject/input_reads.py",
+  "input_budget": {
+    "estimated_tokens": 4061,
+    "estimator": "visible_packet_utf8_bytes_v1 (conservative upper bound)",
+    "limit_tokens": 30000
+  },
+  "legacy_case_number": 1,
+  "pair_id": null,
+  "pitfall_id": null,
+  "pressure_parent_case_id": null,
+  "seed": 0,
+  "seen_or_heldout": "held-out",
+  "skill_exposure": "explicit_rule",
+  "source_files": [
+    {
+      "cohort": "T1_yeast",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_rep1_r1.fastq",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "yeast_rep1_r1",
+      "sha256": "a24d7644bdd66efc6023b2d85f111edca661b82119840478e1ed1cd35277f2e0",
+      "size_bytes": 13374,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/yeast_test/0.Raw_Data/rnaseq/WT_Rep1_1.fq.gz",
+      "source_origin_sha256": "fe354cdf60bfba1237c48b4076c6b60b6ee2312b4b892e533ab7ede3f49911bc"
+    },
+    {
+      "cohort": "T1_yeast",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/yeast_rep2_r2.fastq",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "yeast_rep2_r2",
+      "sha256": "e704685404bcd08f96d1b12059e0e77163f3b60076066dc621993685b575cd11",
+      "size_bytes": 13350,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/yeast_test/0.Raw_Data/rnaseq/WT_Rep2_2.fq.gz",
+      "source_origin_sha256": "ccc8d918c7f8a166d728939fcb1f7fe56fa4dc80c89395861a660daa9f62b451"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "1.2",
+  "stage": "input",
+  "synthetic": true,
+  "type": "fault"
+}

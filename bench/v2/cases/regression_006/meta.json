@@ -1,0 +1,131 @@
+{
+  "benchmark_version": "v1",
+  "case_id": "case_006",
+  "exposure_evidence": [
+    "knowledge/pitfalls/README.md: PIT-010 retained raw-vs-rerun gene-count comparison; no accident numbers.",
+    "bench/context/skill_context.md SHA-256 c446bdbd8ad5d3f70932d28515e870f7bb547e33d10cdb1a0c9230884b9c9abf"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/baseline.gtf",
+      "content_sha256": "8a8c95b4d0caf7392d0489fc46dc5cd630979a36371ffddd5d79bd554a92ecfe",
+      "method": "feature_subset",
+      "selection": "first 2 complete gene blocks from the real prepared GTF",
+      "size_bytes": 854,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_final_models.gtf"
+      ],
+      "text_origin": "tool_verbatim",
+      "verbatim_selection": "first 2 complete gene blocks; exact rows with LF only"
+    },
+    {
+      "artifact_path": "artifacts/baseline_metrics.json",
+      "content_sha256": "20afaf22b7254bbbbc46f1fcc47e6aab67e0f22d34abaa8aa17f04d7648998f7",
+      "method": "derived_summary",
+      "selection": "gene_count from full original scan receipt; BUSCO from real matching summary; repaired final serves as comparison reference and real archive as delivery, not claimed historical adjacency",
+      "size_bytes": 243,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_final_models.gtf",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_final_busco.txt"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/delivery.gtf",
+      "content_sha256": "f3e0a432b07106dd5f1f75ac37c370cd8231d418bbcfbb39bb3b9b2806befbc5",
+      "method": "feature_subset",
+      "selection": "first 2 complete gene blocks from the real prepared GTF",
+      "size_bytes": 2733,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_prior_models.gtf"
+      ],
+      "text_origin": "tool_verbatim",
+      "verbatim_selection": "first 2 complete gene blocks; exact rows with LF only"
+    },
+    {
+      "artifact_path": "artifacts/delivery_metrics.json",
+      "content_sha256": "a37d80bd384b9119eaf6b1df58b021a8d4c04d114a72bc15dcc52931ee7e89b0",
+      "method": "derived_summary",
+      "selection": "gene_count from full original scan receipt; BUSCO from real matching summary; repaired final serves as comparison reference and real archive as delivery, not claimed historical adjacency",
+      "size_bytes": 244,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_prior_models.gtf",
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_prior_busco.txt"
+      ],
+      "text_origin": "derived"
+    }
+  ],
+  "injection_script": "bench/inject/gene_models.py",
+  "input_budget": {
+    "estimated_tokens": 5450,
+    "estimator": "visible_packet_utf8_bytes_v1 (conservative upper bound)",
+    "limit_tokens": 30000
+  },
+  "legacy_case_number": 9,
+  "pair_id": null,
+  "pitfall_id": "PIT-010",
+  "pressure_parent_case_id": null,
+  "related_pitfall_ids": [
+    "PIT-002",
+    "PIT-009"
+  ],
+  "seed": 0,
+  "seen_or_heldout": "seen",
+  "skill_exposure": "explicit_rule",
+  "source_files": [
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_final_busco.txt",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_final_busco",
+      "sha256": "ff9290f3ff64ce37da0f945e065e8e075fa1a97d773ed1ce6b7a81dc2ede751a",
+      "size_bytes": 703,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/5.BUSCO/BUSCO_longest/short_summary.specific.eudicots_odb10.BUSCO_longest.txt",
+      "source_origin_sha256": "ff9290f3ff64ce37da0f945e065e8e075fa1a97d773ed1ce6b7a81dc2ede751a"
+    },
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_final_models.gtf",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_final_models",
+      "sha256": "4b4d440d09f7a5254d114c702e9c8d2c9d3c7cbc4f4aaf08069ca3deb69ff5af",
+      "size_bytes": 81293,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/5.TSEBRA_intron08/models.gtf",
+      "source_origin_sha256": "f336b6e5ab962e82466240a82039b2a3d083be408ae446481e2e55cf6496dd8f"
+    },
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_prior_busco.txt",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_prior_busco",
+      "sha256": "3740d86587b0be6b09f0415619bdf636985f821d4044ab180c6f5312c793f952",
+      "size_bytes": 705,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/_archive_1002_filteroff/5.BUSCO/BUSCO_longest/short_summary.specific.eudicots_odb10.BUSCO_longest.txt",
+      "source_origin_sha256": "3740d86587b0be6b09f0415619bdf636985f821d4044ab180c6f5312c793f952"
+    },
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_prior_models.gtf",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_prior_models",
+      "sha256": "3a7ed86ecca0c7d57c3bff7979eea66ed467616f095392adaf2845e738ec9216",
+      "size_bytes": 95336,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/_archive_1002_filteroff/5.TSEBRA_intron08/models.gtf",
+      "source_origin_sha256": "719e5eb0dc306ee2e15d65b6fe13e7882144574bff41e4b1d939b51354c2a3fd"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "1.2",
+  "stage": "structural_annotation",
+  "synthetic": false,
+  "type": "fault"
+}

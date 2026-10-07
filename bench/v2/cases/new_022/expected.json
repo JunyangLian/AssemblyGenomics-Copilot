@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "rollback"
+  ],
+  "key_evidence": [
+    "mask_metrics.json:lowercase_bases",
+    "mask_metrics.json:n_bases",
+    "mask_metrics.json:sequence_equal_ignorecase"
+  ],
+  "pair_id": "P5",
+  "root_cause": "masking_mode_error"
+}

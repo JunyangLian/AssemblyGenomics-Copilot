@@ -1,0 +1,100 @@
+{
+  "benchmark_version": "v2",
+  "case_id": "new_021",
+  "exposure_evidence": [
+    "C2 shared QC interpretation guidance: coverage and identifier connections (P3), coding features (P4), species/metric definitions and downstream soft masking (P5).",
+    "C2 context SHA-256 ad97fd54f538d92c2dec55080d998ab2b40d132d2e038cb0e35c175d3b644665"
+  ],
+  "extractions": [
+    {
+      "artifact_path": "artifacts/mask_metrics.json",
+      "content_sha256": "4b2646b5ebbe4354c8c21bf002b23a1ba390c11948096b70359ea4342439320b",
+      "method": "derived_summary",
+      "selection": "recompute delivered window counts and case-insensitive equality to reference; not full genome",
+      "size_bytes": 185,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_repeat_genome.fa"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/reference.fa",
+      "content_sha256": "6f585b092d52e8a59f8afcf1798cd1b6727fc6d4b91eb7850ecf1d03cfa33f2b",
+      "method": "fasta_records",
+      "selection": "NC_003070.9:100001..112000 one-based inclusive from real softmasked source; v1 first 6000 bp excluded; uppercase source sequence to expose original base identities; original N retained",
+      "size_bytes": 12163,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_repeat_genome.fa"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/sequence.fa",
+      "content_sha256": "40c4048200a5303a1ed4b3d94d3c371103b46708dddb1606aaff66e1c734babe",
+      "method": "fasta_records",
+      "selection": "NC_003070.9:100001..112000 one-based inclusive from real softmasked source; v1 first 6000 bp excluded; original source bases and case unchanged",
+      "size_bytes": 12163,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_repeat_genome.fa"
+      ],
+      "text_origin": "derived"
+    },
+    {
+      "artifact_path": "artifacts/versions.json",
+      "content_sha256": "c7ec12981be2e1f61424cc431f46f4a59092e8d7690ed2fc7cd1beb53d43a8cc",
+      "method": "derived_summary",
+      "selection": "project actual tool/database versions and actual provenance run date only",
+      "size_bytes": 180,
+      "source_paths": [
+        "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_repeat_run_record.json"
+      ],
+      "text_origin": "derived"
+    }
+  ],
+  "injection_script": null,
+  "input_budget": {
+    "estimated_tokens": 25920,
+    "estimator": "UTF-8 byte upper bound of visible JSON packet (v1 visible_input)",
+    "limit_tokens": 30000
+  },
+  "pair_id": "P5",
+  "pitfall_id": "PIT-006",
+  "pressure_parent_case_id": null,
+  "seed": 0,
+  "seen_or_heldout": "seen",
+  "skill_exposure": "explicit_rule",
+  "source_files": [
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_repeat_genome.fa",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_repeat_genome",
+      "sha256": "0a00329ea11293ff36be8b85e22a02971b66a9e93eedfcba9e89eebdc9806c8d",
+      "size_bytes": 204056,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/genome.softmasked.fa",
+      "source_origin_sha256": "aaf046110ee3e91294d1388e3546587a20bd5e82b09ac0cae2d670fa76524d67"
+    },
+    {
+      "cohort": "T1_arabidopsis",
+      "path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/sources/arab_repeat_run_record.json",
+      "preparation_record_sha256": "d4343a834e0cf5553a195b770f5f8784892e927ed51448a4c82511502fc82fdc",
+      "role": "arab_repeat_run_record",
+      "sha256": "d1dfea3e466789f0e1ae783eb45455dd4db2ca062bf105b06938df994763a925",
+      "size_bytes": 2139,
+      "source_kind": "prepared_subset",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/provenance.json",
+      "source_origin_sha256": "d1dfea3e466789f0e1ae783eb45455dd4db2ca062bf105b06938df994763a925"
+    }
+  ],
+  "source_scope": "T1_T3",
+  "source_snapshot": {
+    "manifest_path": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle/MANIFEST.json",
+    "manifest_sha256": "2f2c567d222273e6a8baa8741ebaba0c9d8a99837d6e2551e8b91de3adeb7e65",
+    "root": "D:/1_yanjiusheng/GenomeAssembly Copilot/bench/v1_prepare_t1t3_r3/bundle"
+  },
+  "spec_version": "2.0",
+  "stage": "repeat_annotation",
+  "synthetic": false,
+  "type": "normal"
+}

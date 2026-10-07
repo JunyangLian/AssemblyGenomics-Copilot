@@ -1,0 +1,12 @@
+NC_000932.1	AUGUSTUS	gene	383	1444	.	-	.	g1
+NC_000932.1	AUGUSTUS	transcript	383	1444	1	-	.	g1.t1
+NC_000932.1	AUGUSTUS	stop_codon	383	385	.	-	0	transcript_id "g1.t1"; gene_id "g1";
+NC_000932.1	AUGUSTUS	CDS	383	1444	1	-	0	transcript_id "g1.t1"; gene_id "g1";
+NC_000932.1	AUGUSTUS	exon	383	1444	.	-	.	transcript_id "g1.t1"; gene_id "g1";
+NC_000932.1	AUGUSTUS	start_codon	1442	1444	.	-	0	transcript_id "g1.t1"; gene_id "g1";
+NC_000932.1	AUGUSTUS	gene	9938	11461	.	-	.	g2
+NC_000932.1	AUGUSTUS	transcript	9938	11461	1	-	.	g2.t1
+NC_000932.1	AUGUSTUS	stop_codon	9938	9940	.	-	0	transcript_id "g2.t1"; gene_id "g2";
+NC_000932.1	AUGUSTUS	CDS	9938	11461	1	-	0	transcript_id "g2.t1"; gene_id "g2";
+NC_000932.1	AUGUSTUS	exon	9938	11461	.	-	.	transcript_id "g2.t1"; gene_id "g2";
+NC_000932.1	AUGUSTUS	start_codon	11459	11461	.	-	0	transcript_id "g2.t1"; gene_id "g2";

@@ -1,0 +1,12 @@
+{
+  "acceptable_verdicts": [
+    "block"
+  ],
+  "key_evidence": [
+    "sample_1.fastq:1",
+    "sample_2.fastq:1",
+    "read_statistics.json:matching_identifiers_by_position"
+  ],
+  "pair_id": null,
+  "root_cause": "pairing_error"
+}
