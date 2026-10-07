@@ -1,0 +1,11 @@
+{
+    "timestamp_utc":  "2026-10-07T04:10:02.7081973Z",
+    "worker_pid":  20852,
+    "finisher_pid":  30828,
+    "plan_sha256":  "e33d885fa1815d510066b39a27a1909bd571cd3485728f480b0a3808c9199005",
+    "launcher_sha256":  "6edd28fde0a94d6af9968022a69ff90e4e52fd709255581474b0f6047f0af8e9",
+    "output_prefix":  "D:\\1_yanjiusheng\\GenomeAssembly Copilot\\bench\\runs\\api_worker_20261007T040932949Z",
+    "credentials":  "Temporary inherited process environment only; no key values or Authorization in this record",
+    "model_parameters_changed":  false,
+    "existing_reservations_retained":  true
+}

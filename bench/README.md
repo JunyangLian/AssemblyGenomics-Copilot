@@ -308,3 +308,7 @@ v1 模型不能自行查文件，A 的工具依赖和覆盖范围独立报告。
 API完成或预算守卫停下后，运行 `python bench/seal_api.py`。回执只验证请求身份、唯一观测、公开输入与token/格式状态，不读取标准答案进行计分。恢复索引可能列入同版本mock目录；封存时按mode=api与允许的父版本显式过滤，原索引备份为runs/API_RUNS.unsealed.json，不删除任何原始日志。API_RECEIPT.json绑定各JSONL字节及回执脚本身份，列出全部缺失槽位，API_RUNS.json只引用获准真实目录。失败、中断、无usage和历史TLS失败各保留原样。只有收到真实A回传并完成阶段3确认后才开始阶段4。
 
 已启动队列可由 `python bench/finish_api.py` 在独立本地进程等待完成，随后自动生成API_RECEIPT/API_STATUS/API_COMPLETION、重跑全套pytest并打包api_logs.zip及逐文件SHA清单。该进程不读取key、不调用模型、不重试、不给答案计分、不进入阶段4；6小时仍在运行则记录needs_attention并保持原队列。A服务器结果仍须用户回传。
+
+## 本地进程恢复 — 2026-10-07
+
+原聊天终端进程已不存在但保留活动锁时，`powershell -NoProfile -File bench/start_api_detached.ps1` 先验证同一批准计划，再用PID存在性确认锁确已失去主人，记录PROCESS_RECOVERY后清除单个失效锁。它不删除或重置账本，已有请求依旧由resume_api按原命名空间去重。用Start-Process隐藏窗口独立启动同一harness及完成后处理器，PROCESS_LAUNCH记录PID、启动器SHA与日志路径。密钥仅经隐藏输入进入API子进程环境，父环境随后恢复；完成后处理器不接收密钥。RUN_PLAN、模型参数、解析合同、题目和答案均保持不变。

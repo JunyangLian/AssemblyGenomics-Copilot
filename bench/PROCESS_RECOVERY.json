@@ -1,0 +1,8 @@
+{
+    "timestamp_utc":  "2026-10-07T04:08:18.7544708Z",
+    "absent_previous_pid":  29756,
+    "plan_sha256":  "e33d885fa1815d510066b39a27a1909bd571cd3485728f480b0a3808c9199005",
+    "launcher_sha256":  "af611e1b122a513949e73fc821d4a8a9739c4eb6723b72a10f262207654c83ae",
+    "reason":  "Previous lock owner is absent. Retain ledger and all responses; resume same plan. Reserved requests are never resent.",
+    "parameters_changed":  false
+}
