@@ -185,3 +185,5 @@ python v2/rules_package/server/run_rules.py
 用户明确决定后续不使用Kimi/GLM，另登记`FOLLOWUP_SCOPE.json`和`FOLLOWUP_SCOPE_AMENDMENT.md`。score默认验证这个新增授权，把其余四模型放在主表；退出模型70条日志及原六模型864计划完整保留，218条未执行取消，不再当待补模型任务。旧运行配置与原报告不覆盖，服务器A包仍绑定同一v2-run-10，既有盲审40条task/action、顺序和review_id保持一致。
 
 当前四模型576/576最终槽位齐全，0/4达到H1/H3改善门槛；这是看过结果后缩减范围的描述性收尾，原冻结五模型整体H1仍不可判定。后续版本默认使用Vision、Pro、MiniMax、Qwen FP8，两个退出模型不再消耗API。收尾仅待新增A与人工action编码。
+
+2026-10-08新增A已回传并验收，总A72/72观测（51 ok、21 not_covered），不用再执行服务器。最新报告`reports/v2-run-10_four-models_A-admitted/`的A_DIAGNOSTICS说明判对5/24以及new_021适配层检查原始对照造成的误报；原脚本/适配不事后改动。当前仅待40条人工action编码，新旧盲审表相同。

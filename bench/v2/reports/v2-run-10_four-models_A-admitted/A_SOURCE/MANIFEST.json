@@ -1,0 +1,30 @@
+{
+  "files": [
+    {
+      "path": "STATUS.json",
+      "sha256": "6e21927f9e272bbf367da722e47a0c88c87f83f46eb57d5cbd7522f25e6ef942",
+      "size_bytes": 337
+    },
+    {
+      "path": "identity.json",
+      "sha256": "f2d0222dc3a1594af08842708af0e8b0f2065a2a280b37ed2cf9b49dea0b989f",
+      "size_bytes": 2760
+    },
+    {
+      "path": "records.jsonl",
+      "sha256": "886e99a83ebdfb450bbe6a2000dc28cbdeba16b39c06b66ab2f16c249c1d3ae3",
+      "size_bytes": 27205
+    },
+    {
+      "path": "run.log",
+      "sha256": "01a3731ac93d1a866272f2153170703368d605cff845998d04f09f568d7665dc",
+      "size_bytes": 299
+    },
+    {
+      "path": "versions.json",
+      "sha256": "a7a0677fc8bae38e546ca6f5e37271393901f1053e59f1d5299edcfc175904b4",
+      "size_bytes": 1115
+    }
+  ],
+  "format": 1
+}

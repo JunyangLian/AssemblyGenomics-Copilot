@@ -1,0 +1,38 @@
+{
+  "awk": {
+    "available": true,
+    "path": "/usr/bin/awk",
+    "version_output": [
+      "GNU Awk 5.2.1, API 3.2, PMA Avon 8-g1, (GNU MPFR 4.2.1, GNU MP 6.3.0)",
+      "Copyright (C) 1989, 1991-2022 Free Software Foundation.",
+      ""
+    ]
+  },
+  "bash": {
+    "available": true,
+    "path": "/usr/bin/bash",
+    "version_output": [
+      "GNU bash, version 5.2.21(1)-release (x86_64-pc-linux-gnu)",
+      "Copyright (C) 2022 Free Software Foundation, Inc.",
+      "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>"
+    ]
+  },
+  "diamond": {
+    "available": true,
+    "path": "/home/user/.conda/envs/braker3/bin/diamond",
+    "version_output": [
+      "diamond version 2.1.24"
+    ]
+  },
+  "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.39",
+  "python": "3.9.23 | packaged by conda-forge | (main, Jun  4 2025, 17:57:12) \n[GCC 13.3.0]",
+  "samtools": {
+    "available": true,
+    "path": "/home/user/.conda/envs/braker3/bin/samtools",
+    "version_output": [
+      "samtools 1.24",
+      "Using htslib 1.24",
+      "Copyright (C) 2026 Genome Research Ltd."
+    ]
+  }
+}
