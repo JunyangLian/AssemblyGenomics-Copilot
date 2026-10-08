@@ -11,7 +11,11 @@ from bench.v2.credential_recovery import registered,duplicate_allowed,slot
 def test_priority_retains_both_deferred_models_and_only_opens_four_429_queues():
     from bench.v2.plan import verify
     from bench.v2.resume import parent_records,rows
-    locked=verify();doc,allowed=registered(V2,locked)
+    from bench.v2.runtime import digest
+    archived=read_json(V2/'history/v2-run-9/RUN_PLAN.json')
+    locked={'plan':archived,'plan_sha256':digest((V2/'history/v2-run-9/RUN_PLAN.json').read_bytes()),
+        'frozen_md_sha256':archived['frozen_md_sha256']}
+    doc,allowed=registered(V2,locked)
     assert len(allowed)==271
     assert not any(k[0] in ('GLM-5.3','Kimi-K2.6') for k in allowed)
     carried=[r for r in parent_records(V2,locked) if r['record_type']=='observation']
@@ -29,6 +33,26 @@ def test_priority_retains_both_deferred_models_and_only_opens_four_429_queues():
     assert duplicate_allowed(doc,allowed,'v2-run-8',semantic)
     assert not duplicate_allowed(doc,allowed,'v2-run-9',semantic)
     assert not duplicate_allowed(doc,allowed,'v2-run-7','MiniMax-M3:B:new_019:1:0')
+
+
+def test_fourth_credential_carries_finished_models_and_only_opens_38_remaining_slots():
+    from bench.v2.plan import verify
+    from bench.v2.resume import parent_records,rows
+    locked=verify();doc,allowed=registered(V2,locked)
+    assert len(allowed)==38
+    assert {key[0] for key in allowed}=={'DeepSeek-V4-Flash-Vision','MiniMax-M3'}
+    old=[r for r in rows(V2/'history/v2-run-9/resume_records.jsonl') if r['record_type']=='observation']
+    assert len(old)==609
+    carried=[r for r in parent_records(V2,locked) if r['record_type']=='observation']
+    assert len(carried)==608
+    assert Counter(r['status'] for r in carried)=={'ok':509,'api_error':55,'parse_error':42,'interrupted':2}
+    assert Counter(r['model'] for r in carried if r['model'] in ('DeepSeek-V4-Pro-0813','Qwen3.8-27B-FP8'))=={
+        'DeepSeek-V4-Pro-0813':144,'Qwen3.8-27B-FP8':144}
+    assert Counter(r['model'] for r in carried if r['model'] in ('GLM-5.3','Kimi-K2.6'))=={'GLM-5.3':31,'Kimi-K2.6':39}
+    semantic='MiniMax-M3:C2:new_020:3:0'
+    assert duplicate_allowed(doc,allowed,'v2-run-7',semantic)
+    assert duplicate_allowed(doc,allowed,'v2-run-9',semantic)
+    assert not duplicate_allowed(doc,allowed,'v2-run-10',semantic)
 
 
 def test_api_priority_never_creates_clients_or_calls_for_deferred_models(tmp_path,monkeypatch):
