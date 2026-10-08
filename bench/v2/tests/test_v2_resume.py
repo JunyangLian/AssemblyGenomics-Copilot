@@ -91,7 +91,6 @@ def test_actual_parent_resume_preserves_all_results_and_unknown_call():
     for status in ['ok', 'api_error', 'interrupted']:
         assert sum(r['status'] == status for r in observations) == counts[status]
     assert all(r.get('reused_from') for r in rows)
-    assert not any(r['model'] == 'Kimi-K2.6' for r in rows)
     assert not any(r['model'] in locked['plan']['resume'].get('audit_only_models', []) for r in rows)
 
 
@@ -115,7 +114,11 @@ def test_old_qwen_identity_failure_is_audit_only_not_promoted_to_fp8():
     assert sum(r['status'] == 'identity_error' for r in old) == 1
     assert sum(r['status'] == 'identity_paused' for r in old) == 143
     assert all(r['parsed'] is None for r in old)
-    carried = resume.parent_records(V2, verify())
+    from bench.v2.runtime import digest
+    archived_plan = read_json(V2 / 'history/v2-run-7/RUN_PLAN.json')
+    carried = resume.parent_records(V2, {'plan': archived_plan,
+        'plan_sha256': digest((V2 / 'history/v2-run-7/RUN_PLAN.json').read_bytes()),
+        'frozen_md_sha256': archived_plan['frozen_md_sha256']})
     assert not any(r['model'] in ('Qwen3.8-27B', 'Qwen3.8-27B-FP8') for r in carried)
 
 

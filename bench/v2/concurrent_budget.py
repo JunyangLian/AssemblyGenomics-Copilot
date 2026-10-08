@@ -40,6 +40,8 @@ class ConcurrentBudget:
     def __init__(self, root, locked):
         self.root, self.locked = root, locked
         self.authorized = approval(root, locked)
+        from bench.v2.credential_recovery import registered
+        self.recovery, self.recovery_slots = registered(root, locked)
         self.path = root / 'runs/API_LEDGER.json'
         with _MUTEX_GUARD:
             self.mutex = _MUTEXES.setdefault(self.path.resolve(), threading.RLock())
@@ -59,7 +61,9 @@ class ConcurrentBudget:
             if resume:
                 versions.add(resume['parent_version'])
                 versions.update(resume.get('protected_versions', []))
-            if any(row['slot'] == v + ':' + slot for row in self.state['slots'] for v in versions):
+            from bench.v2.credential_recovery import duplicate_allowed
+            duplicates = [(v, row) for row in self.state['slots'] for v in versions if row['slot'] == v + ':' + slot]
+            if any(not duplicate_allowed(self.recovery, self.recovery_slots, v, slot) for v, row in duplicates):
                 raise ApprovalError('slot already reserved; never resend without a registered revision')
             input_upper, output_upper = token_estimate(body)['upper'], body['max_tokens']
             proposed = {'calls': self.state['calls'] + 1,

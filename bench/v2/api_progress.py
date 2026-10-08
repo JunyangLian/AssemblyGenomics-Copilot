@@ -58,8 +58,8 @@ def progress(root=V2):
         'called_attempts_carried_from_parent': sum(r.get('called') is True and bool(r.get('reused_from')) for r in attempts),
         'called_attempts_executed_this_plan': sum(r.get('called') is True and not r.get('reused_from') for r in attempts),
         'cumulative_reserved_calls': ledger['calls'], 'input_reserved': ledger['input_reserved'],
-        'output_reserved': ledger['output_reserved'], 'max_calls': 1440,
-        'max_input_tokens': 28706760, 'max_output_tokens': 11796480,
+        'output_reserved': ledger['output_reserved'],
+        **{k: read_json(root / 'API_APPROVAL.json')[k] for k in ('max_calls','max_input_tokens','max_output_tokens')},
         'provider_usage_recorded_attempts': len(used),
         'provider_prompt_tokens_reported': sum(r['usage'].get('prompt_tokens') or 0 for r in used),
         'provider_completion_tokens_reported': sum(r['usage'].get('completion_tokens') or 0 for r in used),
@@ -70,6 +70,7 @@ def progress(root=V2):
         'roster_revision': plan.get('roster_revision'),
         'vision_revision': plan.get('vision_revision'),
         'six_model_revision': plan.get('six_model_revision'),
+        'credential_recovery': plan.get('credential_recovery'),
         'audit_only_model_records': plan.get('resume', {}).get('audit_only_models', []),
         'prior_cohorts': ['history/v2-run-1/TRANSPORT_FAILURE.json', 'history/v2-run-2/TRANSPORT_FAILURE.json']}
     scheduler = root / 'runs/SCHEDULER_STATUS.json'

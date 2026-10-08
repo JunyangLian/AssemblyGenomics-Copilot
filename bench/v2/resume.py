@@ -41,11 +41,15 @@ def parent_records(root, locked):
     audit_only = registered.get('audit_only_models', [])
     if audit_only != receipt.get('audit_only_models', []):
         raise ValueError('audit-only model removal must be explicitly registered')
+    from bench.v2.credential_recovery import registered as recovery_registration
+    recovery, recovered_slots = recovery_registration(root, locked, source_rows)
     for row in source_rows:
         if row['plan_sha256'] != receipt['parent_plan_sha256'] or row['frozen_md_sha256'] != locked['frozen_md_sha256']:
             raise ValueError('unexpected source observation identity')
         if row['model'] in audit_only:
             continue  # preserved in immutable parent archive, never relabelled as the replacement
+        if slot(row) in recovered_slots:
+            continue  # explicitly registered HTTP429 retry; original failure remains in parent audit
         if row['model'] not in selected:
             raise ValueError('cannot discard an already attempted removed model')
         if selected[row['model']] != previous[row['model']]:

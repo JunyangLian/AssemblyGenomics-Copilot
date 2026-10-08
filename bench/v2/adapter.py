@@ -28,7 +28,15 @@ def approval(root, locked):
     for field in ('max_calls', 'max_input_tokens', 'max_output_tokens'):
         if type(data.get(field)) is not int or data[field] <= 0:
             raise ApprovalError('positive integer resource cap required: ' + field)
-    if data['max_calls'] > 1440:
+    if locked['plan'].get('credential_recovery'):
+        from bench.v2.credential_recovery import approved_caps
+        try: recovery, caps = approved_caps(root, locked)
+        except (ValueError, KeyError):
+            raise ApprovalError('explicit credential recovery cap registration required') from None
+        if (any(data[k] != caps[k] for k in caps)
+            or data.get('user_credential_recovery_authorization_quote') != recovery['budget_authorization_quote']):
+            raise ApprovalError('budget differs from explicitly approved credential recovery caps')
+    elif data['max_calls'] > 1440:
         raise ApprovalError('call cap exceeds the preregistered slots plus format repair')
     mock_path = root / 'MOCK_REPORT.json'
     if (not mock_path.is_file() or digest(mock_path.read_bytes()) != data.get('mock_report_sha256')

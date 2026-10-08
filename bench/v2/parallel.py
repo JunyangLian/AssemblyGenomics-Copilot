@@ -85,8 +85,14 @@ def execute(mode, root, locked, budget, schema, make_id, observe):
     def work(name, job):
         if name not in clients:
             clients[name] = Mock(schema, plan['mock_seed']) if mode == 'mock' else OpenAICompatible(models[name], budget)
-        return observe(root / 'cases' / job['case_id'], job['group'], models[name], clients[name],
+        result = observe(root / 'cases' / job['case_id'], job['group'], models[name], clients[name],
             job['repetition'], locked, lambda row: emit(name, job['group'], row), root)
+        if mode == 'api' and plan.get('credential_recovery') and result.get('error') == 'HTTP 429':
+            # Replacement credentials may also lack quota or hit a shared limit.
+            # Preserve pending slots and wait for the existing requests to finish.
+            (root / 'runs/STOP_AFTER_CURRENT_REQUEST').write_bytes(
+                b'HTTP429 in credential-recovery cohort; review before further dispatch\n')
+        return result
     def emit_paused(name, job):
         emit(name, job['group'], {'record_type': 'observation', 'mode': mode, 'model': name,
             **job, 'plan_sha256': locked['plan_sha256'], 'frozen_md_sha256': locked['frozen_md_sha256'],
