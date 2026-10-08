@@ -187,3 +187,5 @@ python v2/rules_package/server/run_rules.py
 当前四模型576/576最终槽位齐全，0/4达到H1/H3改善门槛；这是看过结果后缩减范围的描述性收尾，原冻结五模型整体H1仍不可判定。后续版本默认使用Vision、Pro、MiniMax、Qwen FP8，两个退出模型不再消耗API。收尾仅待新增A与人工action编码。
 
 2026-10-08新增A已回传并验收，总A72/72观测（51 ok、21 not_covered），不用再执行服务器。最新报告`reports/v2-run-10_four-models_A-admitted/`的A_DIAGNOSTICS说明判对5/24以及new_021适配层检查原始对照造成的误报；原脚本/适配不事后改动。当前仅待40条人工action编码，新旧盲审表相同。
+
+为减少CSV录入负担，新增本机`review_ui.py`与`review_page.html`：逐条显示原task/action，用户选分类并填理由，自动保存草稿、明确导出CSV。`python bench/v2/review_ui.py`会打印页面地址，原表不改写；无预选或AI编码，不读PRIVATE/答案/模型身份，不调用API。恢复/导出说明见REVIEW_UI_README；这是录入工具，H2口径仍按冻结人工规则。

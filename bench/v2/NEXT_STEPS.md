@@ -23,6 +23,8 @@ python -m zipfile -c bench_transfer/v2_rules_run_1.zip bench_transfer/v2_rules_r
 
 ## 再填人工action盲审
 
+也可使用新增本机审核页面：运行`python bench/v2/review_ui.py`，打开打印的地址，逐条选择分类、填写理由，再点击“导出 CSV”。草稿自动保存，原表不变；详见REVIEW_UI_README。完成后在聊天回复“盲审已保存”，agent可从本地导出目录接续验收。
+
 只打开`reports/v2-run-10_four-models_closeout/ACTION_REVIEW_README.md`与`ACTION_REVIEW.csv`。40条有效回答按说明填写coding/reason，保留task/action、review_id和行数。8条无效输出已留作未知，不需要编造action。原阶段性报告的CSV也可继续填写：同一40条、同一顺序、同一review_id，不必重做。
 
 暂时不要看PRIVATE映射或完整报告里的逐模型action附录；那会破坏盲审。编码完成后告诉本对话CSV的本地路径，agent会生成新报告，并独立保留模型自报flags。未编码前H2不可判定。
