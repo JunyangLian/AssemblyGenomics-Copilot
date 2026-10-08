@@ -56,3 +56,8 @@ scp回传bundle整目录后，在本地运行python bench/v2/import_rules.py <bu
 ConcurrentBudget在共享互斥锁内重新读取同一API_LEDGER，检查祖先/当前槽位防重复、累计调用和token上限，原子替换完整账本后才能POST。usage同样在锁内更新，不能覆盖另一线程的预留/usage；超出规划用量阻止随后新预留，已经在途的最多四请求等待结束。Windows临时共享错误采用有限重试，损坏JSON仍报错。独占进程锁不取消，不启动四个独立runner。
 
 旧75条观测与527次预留全部承接，平缓切换未新增中断；新主体题尚未观察，调度修订登记SCHEDULING_REVISION。实际运行信息在runs/SCHEDULER_STATUS及API_START_STATUS.concurrency，包括最多/峰值线程、在途题目和等待数。若创建STOP_AFTER_CURRENT_REQUEST，将停止派发并等待所有已在途观测结束，不伪造剩余失败；正式恢复前清除这个已审核标记。入口命令仍start_api.ps1，无需重新设置key或批准预算。
+## 当前执行版本 v2-run-7（2026-10-08）
+
+六模型六线程，每模型最多一个在途观测，共864模型槽位。用户接受Qwen FP8并要求独立标注；新FP8与Kimi各144槽位，旧Qwen144条身份错误/暂停留在历史审计。其它四模型85条承接。register_six登记授权、名单附录、官方映射及新运行锁，revision_snapshot在旧队列平缓停止后归档。
+
+六并发继续共用原累计预算与互斥账本，不启动六个独立runner、不重发旧成功或失败槽位。六模型全格式修复情景1728次高于原1440次上限，实际以累计余额为准。启动前新mock须864条全部通过并绑定API_APPROVAL；API key仍只读本地环境。最新动态状态见API_START_STATUS，预注册数字阈值不变而模型分母变化另行披露。

@@ -25,3 +25,10 @@
 
 运行计划SHA-256：84fab8e1221048662e61349d788ba7e858be1e9432fa955206d2f2b93f42b417。
 答案冻结SHA-256：b30dee32bf94c9c36ebe8f55b4f177205021685ce60623500dbecb92fd393188。
+## 六模型修订阶段汇报（2026-10-08）
+
+完成：SIX_MODELS_REVISION.json、PROVIDER_MODELS_SIX.json、预注册修订附录、register_six.py、revision_snapshot.py；plan/parallel支持六模型六请求并发，mock_report/api_progress动态864槽位，README/HARNESS/CHANGELOG更新。父运行history/v2-run-6保留全部229条观测；旧Qwen144条仅审计，四模型85条承接。Qwen FP8按用户确认独立标注，Kimi加入，数字门槛及冻结题库不覆盖。
+
+验证：完整python -m pytest -q为300 passed in122.88s；mock864次全部解析成功、峰值6；冻结195文件/11依赖通过；本机环境凭据泄漏扫描通过。原48条A身份复用，新24条A包更新计划绑定。
+
+真实队列按已批准授权启动，六不同模型同时在途。预算仍1440调用/28706760输入预留/11796480输出预留，旧543次预留保留；全修复1728次超过原上限，实际按余额停止。不把未知费用当0；暂未全部完成或开始阶段4计分。新主体实际调用前的名单/并发修订及模型分母变化另行披露，无新增待批准事项。

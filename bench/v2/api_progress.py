@@ -5,6 +5,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from collections import Counter
 import json
 import os
+from datetime import datetime, timezone, timedelta
 from bench.v2.runtime import V2, canonical, digest, read_json, write_json
 from bench.v2.concurrent_budget import atomic_read_json
 
@@ -33,7 +34,7 @@ def progress(root=V2):
             groups.append({'model': m['name'], 'requested_model_id': m['requested_model_id'], 'group': group,
                 'planned': 72, 'completed': len(selected), 'counts': dict(Counter(r['status'] for r in selected))})
     used = [r for r in attempts if isinstance(r.get('usage'), dict)]
-    wanted = 720
+    wanted = len(plan['models']) * len(plan['cases']) * len(plan['groups']) * 3
     lock = root / 'runs/API_ACTIVE.lock'
     active = False
     if lock.exists():
@@ -49,7 +50,7 @@ def progress(root=V2):
             try: os.kill(pid, 0); active = True
             except ProcessLookupError: pass
     result = {'status': 'running' if active else ('complete' if len(observations) == wanted else 'incomplete'),
-        'date': '2026-10-07', 'plan_version': plan['version'], 'plan_sha256': plan_sha,
+        'date': datetime.now(timezone(timedelta(hours=8))).date().isoformat(), 'plan_version': plan['version'], 'plan_sha256': plan_sha,
         'key_env': 'INTERN_DISCOVERY_API_KEY', 'credential_setup': 'local user environment; hidden input',
         'planned_current_observations': wanted, 'completed_current_observations': len(observations),
         'current_status_counts': dict(Counter(r['status'] for r in observations)), 'groups': groups,
@@ -68,6 +69,7 @@ def progress(root=V2):
         'orphan_lock_present': lock.exists() and not active,
         'roster_revision': plan.get('roster_revision'),
         'vision_revision': plan.get('vision_revision'),
+        'six_model_revision': plan.get('six_model_revision'),
         'audit_only_model_records': plan.get('resume', {}).get('audit_only_models', []),
         'prior_cohorts': ['history/v2-run-1/TRANSPORT_FAILURE.json', 'history/v2-run-2/TRANSPORT_FAILURE.json']}
     scheduler = root / 'runs/SCHEDULER_STATUS.json'

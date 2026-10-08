@@ -66,15 +66,17 @@ def test_parent_budget_slot_cannot_be_resent_under_a_new_plan(tmp_path, monkeypa
 def test_roster_requires_explicit_post_start_amendment_and_preserves_thresholds(tmp_path):
     for name in ['models.yaml', 'MODEL_AUTHORIZATION.json', 'FROZEN.md', 'preregistration.json',
                  'PROVIDER_MODELS_ROSTER2.json', 'PROVIDER_MODELS.json', 'MODEL_ROSTER_REVISION.json',
-                 'VISION_MODEL_REVISION.json', 'PROVIDER_MODELS_VISION.json']:
+                 'VISION_MODEL_REVISION.json', 'PROVIDER_MODELS_VISION.json',
+                 'SIX_MODELS_REVISION.json', 'PROVIDER_MODELS_SIX.json']:
         (tmp_path / name).write_bytes((V2 / name).read_bytes())
     assert [m['requested_model_id'] for m in models(tmp_path)] == [
-        'deepseek-v4-flash-vision', 'deepseek-v4-pro-0813', 'minimax-m3', 'glm-5.3', 'qwen3.8-27b']
+        'deepseek-v4-flash-vision', 'deepseek-v4-pro-0813', 'minimax-m3', 'glm-5.3', 'qwen3.8-27b', 'kimi-k2.6']
     doc = read_json(tmp_path / 'MODEL_ROSTER_REVISION.json'); doc['thresholds_changed'] = True
     write_json(tmp_path / 'MODEL_ROSTER_REVISION.json', doc)
     with pytest.raises(ValueError, match='invalid explicit roster amendment'): models(tmp_path)
     (tmp_path / 'MODEL_ROSTER_REVISION.json').unlink()
     (tmp_path / 'VISION_MODEL_REVISION.json').unlink()
+    (tmp_path / 'SIX_MODELS_REVISION.json').unlink()
     with pytest.raises(ValueError, match='roster differs'): models(tmp_path)
 
 
@@ -103,6 +105,18 @@ def test_replacement_does_not_reclassify_the_previous_flash_response():
     assert sum(r['status'] == 'identity_error' for r in old) == 1
     assert all(r['parsed'] is None for r in old)
     assert all(r['model'] != 'DeepSeek-V4-Flash-0731' for r in resume.parent_records(V2, locked))
+
+
+def test_old_qwen_identity_failure_is_audit_only_not_promoted_to_fp8():
+    from bench.v2.plan import verify
+    old = [r for r in resume.rows(V2 / 'history/v2-run-6/resume_records.jsonl')
+           if r['record_type'] == 'observation' and r['model'] == 'Qwen3.8-27B']
+    assert len(old) == 144
+    assert sum(r['status'] == 'identity_error' for r in old) == 1
+    assert sum(r['status'] == 'identity_paused' for r in old) == 143
+    assert all(r['parsed'] is None for r in old)
+    carried = resume.parent_records(V2, verify())
+    assert not any(r['model'] in ('Qwen3.8-27B', 'Qwen3.8-27B-FP8') for r in carried)
 
 
 def test_operator_stop_finishes_without_any_new_request_or_fake_failures(tmp_path, monkeypatch):

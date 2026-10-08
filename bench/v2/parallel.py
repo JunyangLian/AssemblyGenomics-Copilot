@@ -1,4 +1,4 @@
-"""Four request workers, fair rotation across models, at most one request per model."""
+"""Registered request workers, fair rotation, at most one request per model."""
 from collections import deque
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from datetime import datetime, timezone
@@ -11,8 +11,8 @@ from rule_adapter import evaluate_case
 
 
 def schedule(queues, work, paused, emit_paused, should_stop, snapshot=lambda **state: None, max_workers=4):
-    if type(max_workers) is not int or not 1 <= max_workers <= 4:
-        raise ValueError('worker limit must be between1 and4')
+    if type(max_workers) is not int or not 1 <= max_workers <= 6:
+        raise ValueError('worker limit must be between1 and6')
     queues = {name: deque(jobs) for name, jobs in queues.items()}
     ready = deque(name for name, jobs in queues.items() if jobs)
     active, completed, peak = {}, 0, 0

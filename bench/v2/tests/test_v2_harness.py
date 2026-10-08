@@ -33,10 +33,10 @@ def test_private_controls_never_reach_requests_and_context_identical():
 
 
 def test_request_ids_use_exact_official_mapping_while_display_names_remain():
-    official = {m['name']: m['id'] for m in read_json(V2 / 'PROVIDER_MODELS_VISION.json')['models']}
+    official = {m['name']: m['id'] for m in read_json(V2 / 'PROVIDER_MODELS_SIX.json')['models']}
     for m in models():
         body = request(CASE, 'B', m)
-        assert body['model'] == official[m['name']] == m['requested_model_id']
+        assert body['model'] == official[m.get('provider_model_name', m['name'])] == m['requested_model_id']
         assert m['name'] != body['model']
 
 
@@ -139,6 +139,16 @@ def test_explicit_vision_returned_id_is_allowed_only_for_the_replacement():
     pro = next(m for m in models() if m['requested_model_id'] == 'deepseek-v4-pro-0813')
     final = observe(CASE, 'B', pro, Replies([(raw, None)]), 1, LOCK, lambda row: None)
     assert final['status'] == 'identity_error' and final['parsed'] is None
+
+
+def test_explicit_fp8_identity_is_allowed_only_in_labelled_qwen_cohort():
+    raw = valid_raw(); raw['model'] = 'qwen3.8-27b-fp8'
+    qwen = next(m for m in models() if m['name'] == 'Qwen3.8-27B-FP8')
+    result = observe(CASE, 'B', qwen, Replies([(raw, None)]), 1, LOCK, lambda row: None)
+    assert result['status'] == 'ok'
+    pro = next(m for m in models() if m['name'] == 'DeepSeek-V4-Pro-0813')
+    result = observe(CASE, 'B', pro, Replies([(raw, None)]), 1, LOCK, lambda row: None)
+    assert result['status'] == 'identity_error' and result['parsed'] is None
 
 
 def test_a_reuse_only_when_original_bytes_and_rule_identity_match():

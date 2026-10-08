@@ -112,6 +112,23 @@ def test_identity_error_pauses_its_remaining_jobs_without_affecting_others():
     assert result['completed_new_observations'] == 6
 
 
+def test_six_workers_run_together_without_same_model_overlap():
+    barrier = threading.Barrier(6); guard = threading.Lock(); active = Counter(); peak = 0
+    def work(name, job):
+        nonlocal peak
+        with guard:
+            active[name] += 1
+            assert active[name] == 1
+            peak = max(peak, sum(active.values()))
+        barrier.wait(timeout=5)
+        with guard: active[name] -= 1
+        return {'status': 'ok'}
+    queues = {str(n): [{'case_id': str(i)} for i in range(2)] for n in range(6)}
+    result = schedule(queues, work, set(), lambda *args: pytest.fail('unexpected pause'), lambda: False, max_workers=6)
+    assert peak == result['peak_active'] == 6
+    assert result['completed_new_observations'] == 12
+
+
 def test_graceful_stop_drains_existing_workers_without_starting_remaining_jobs():
     stop = threading.Event(); called = []; guard = threading.Lock(); barrier = threading.Barrier(4)
     def work(name, job):

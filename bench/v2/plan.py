@@ -55,6 +55,26 @@ def models(root=V2):
         if vision.get('model_names') != replacements:
             raise ValueError('only the human-requested Flash Vision replacement is authorized')
         names, provider_file = replacements, vision['provider_metadata_file']
+    six_path = root / 'SIX_MODELS_REVISION.json'
+    six = read_json(six_path) if six_path.exists() else None
+    if six:
+        if (six.get('user_authorized') is not True or not six.get('user_quote')
+            or six.get('previous_model_names') != names
+            or six.get('frozen_md_sha256') != digest((root / 'FROZEN.md').read_bytes())
+            or six.get('preregistration_sha256') != digest((root / 'preregistration.json').read_bytes())
+            or six.get('post_start') is not True or six.get('thresholds_changed') is not False
+            or six.get('model_count') != 6 or six.get('max_workers') != 6
+            or six.get('provider_metadata_file') != 'PROVIDER_MODELS_SIX.json'):
+            raise ValueError('invalid explicit six-model revision')
+        revised = list(names)
+        if six.get('qwen_fp8_user_authorized') is True:
+            if not six.get('qwen_fp8_user_quote'):
+                raise ValueError('Qwen FP8 needs explicit human acceptance')
+            revised = ['Qwen3.8-27B-FP8' if n == 'Qwen3.8-27B' else n for n in revised]
+        revised.append('Kimi-K2.6')
+        if six.get('model_names') != revised:
+            raise ValueError('only Kimi addition and explicitly accepted Qwen FP8 are authorized')
+        names, provider_file = revised, six['provider_metadata_file']
     # The authorization stores the display names as strings.
     if [m['name'] for m in result] != names:
         raise ValueError('model roster differs from human authorization')
@@ -68,9 +88,14 @@ def models(root=V2):
             fields.add('accepted_response_ids')
             if m.get('accepted_response_ids') != vision['accepted_response_ids']:
                 raise ValueError('Vision response identities differ from explicit human replacement')
+        if six and six.get('qwen_fp8_user_authorized') and m['name'] == 'Qwen3.8-27B-FP8':
+            fields.update(['accepted_response_ids', 'provider_model_name'])
+            if (m.get('provider_model_name') != 'Qwen3.8-27B' or m['requested_model_id'] != 'qwen3.8-27b'
+                or m.get('accepted_response_ids') != ['qwen3.8-27b', 'Qwen3.8-27B', 'qwen3.8-27b-fp8']):
+                raise ValueError('Qwen FP8 identity binding differs from accepted deployment')
         if set(m) != fields:
             raise ValueError('unsupported configuration field; keys must stay in environment')
-        if m['requested_model_id'] != official.get(m['name']):
+        if m['requested_model_id'] != official.get(m.get('provider_model_name', m['name'])):
             raise ValueError('request ID does not match exact official display-name mapping')
         if not re.fullmatch(r'[A-Za-z0-9_.-]+', m['name']):
             raise ValueError('invalid model ID')
