@@ -319,6 +319,58 @@ def selection(cases, spec, name):
     raise ValueError('unknown analysis set')
 
 
+def followup_scope(root, locked, spec):
+    path = root / 'FOLLOWUP_SCOPE.json'
+    if not path.exists(): return None
+    doc = read_json(path)
+    names = [m['name'] for m in locked['plan']['models']]
+    if (doc.get('user_authorized') is not True or not doc.get('user_quote') or
+        doc.get('post_results') is not True or doc.get('thresholds_changed') is not False or
+        doc.get('source_plan_sha256') != locked['plan_sha256'] or
+        doc.get('frozen_md_sha256') != locked['frozen_md_sha256'] or
+        doc.get('preregistration_sha256') != digest((root / 'preregistration.json').read_bytes()) or
+        doc.get('original_model_names') != names or doc.get('retired_model_names') != ['GLM-5.3', 'Kimi-K2.6'] or
+        doc.get('included_model_names') != [n for n in names if n not in doc['retired_model_names']] or
+        doc.get('policy') != 'four-model descriptive closeout; retired records retained; no new model calls'):
+        raise ValueError('invalid user-authorized followup scope; original frozen scope cannot be replaced')
+    if set(doc['retired_model_names']) & set(locked['plan']['execution']['active_model_names']):
+        raise ValueError('retired model still dispatchable in the execution plan')
+    return doc
+
+
+def apply_followup_scope(scored, scope, spec):
+    """Keep admitted retired rows in audit; never rewrite historical denominators."""
+    if scope is None: return scored, []
+    included = set(scope['included_model_names'])
+    if included | set(scope['retired_model_names']) != {h['model'] for h in scored['hypotheses']}:
+        raise ValueError('followup scope does not match admitted model roster')
+    audit = []
+    for model in scope['retired_model_names']:
+        protocols = [p for p in scored['protocol'] if p['model'] == model]
+        counts = Counter()
+        for p in protocols: counts.update(p['statuses'])
+        audit.append({'model': model, 'status': 'retired_by_user_after_results',
+                      'original_planned_observations': sum(p['planned_observations'] for p in protocols),
+                      'retained_observations': sum(p['logged_observations'] for p in protocols),
+                      'cancelled_unexecuted_observations': sum(p['missing_observations'] for p in protocols),
+                      'statuses': dict(counts), 'protocol': protocols})
+    result = dict(scored)
+    for key in ('groups', 'panels', 'mixed_pairs', 'protocol', 'action_coding_diagnostics'):
+        result[key] = [r for r in scored[key] if r['group'] == 'A' or r['model'] in included]
+    result['hypotheses'] = [h for h in scored['hypotheses'] if h['model'] in included]
+    qualifies = sum(h['H1_qualifies'] for h in result['hypotheses'])
+    complete = sum(h['plan_executed'] for h in result['hypotheses'])
+    n = len(result['hypotheses'])
+    result['H1_qualifying_models'] = ratio(qualifies, n)
+    result['models_with_all_final_slots'] = ratio(complete, n)
+    result['H1_amended_roster_status'] = ('达到门槛（事后四模型描述）' if qualifies >= spec['h1_min_models_same_direction'] else
+                                          '未达到门槛（事后四模型描述）' if complete == n else '不可判定（四模型未完成）')
+    result['H1_original_runtime_roster'] = {'qualifying': scored['H1_qualifying_models'],
+                                          'completed': scored['models_with_all_final_slots'],
+                                          'status': scored['H1_amended_roster_status']}
+    return result, audit
+
+
 def compute(cases, observations, attempts, plan, spec, coding=None):
     coding = coding or {}; pairs = pair_members(cases)
     groups = [('A', 'rules')] + [(g, m['name']) for m in plan['models'] for g in plan['groups']]
@@ -470,6 +522,11 @@ def render(report):
              f"A已验收{a['logged_observations']}/72条，其中旧48条复用；还缺{a['missing_observations']}条。缺失不是规则未覆盖。暂停模型不与完成模型做完整排名。H2只用人工action编码，模型自报flags另列；未编码和无有效输出均保留未知。", '',
              '## 当前四模型的主要发现', '',
              f"新增6道主分析题上，{sum(h['H1_qualifies'] for h in completed)}/{len(completed)}个完成模型达到H1改善门槛，{sum(h['H3_status'] == '成立' for h in completed)}/{len(completed)}个达到H3门槛。回归题表现与新增实例需要分开解读，总体提升不能替代新主集的检验。", '']
+    if report.get('followup_scope'):
+        lines += ['用户在结果已查看后决定后续不使用Kimi/GLM。本报告主表为其余四模型的事后收尾分析；原六模型864槽位及历史计分仍保留，不能把缩减名单当首次运行前的预注册。退出模型70条已尝试记录保留，218条未执行取消，不再作为等待完成的工作。题库、答案和数值门槛均不变。', '']
+        lines += table(['退出模型', '原计划', '保留观测', '取消未执行', '保留状态'], [
+            [r['model'], r['original_planned_observations'], r['retained_observations'], r['cancelled_unexecuted_observations'],
+             json.dumps(r['statuses'], ensure_ascii=False)] for r in report['withdrawn_audit']])
     lines += table(['完成模型', '新增主集共同成功 B→C2', '16回归题共同成功 B→C2', '24题共同成功 B→C2'], [
         [h['model']] + [' → '.join(fmt(next(p for p in s['panels'] if p['model'] == h['model'] and
                           p['group'] == group and p['set'] == set_name and p['dimension'] == 'all' and p['unit'] == 'case')['metrics']['joint_success'])
@@ -478,7 +535,7 @@ def render(report):
     lines += ['新增题的可见错误集中在精确ID接续、功能低覆盖的处置/归因、以及硬屏蔽的block与rollback区别。超时、解析失败或三次分歧导致的无多数另记可靠性/一致性损失，不能都归因于生物学推理。逐题答案和证据见后文。', '',
              '## H1–H3（冻结门槛）', '',
              f"H1：new_017–022共同成功增加≥{spec['h1_min_joint_gain_cases']}题且严格增加，正常题保守误报增加≤{spec['h1_max_increase_false_positive_cases']}，至少{spec['h1_min_models_same_direction']}模型达标。H3：P3/P4/P5根因配对成功≥{spec['h3_min_successful_pairs']}且比B增加≥{spec['h3_min_pair_gain']}对。H2：new_023/024人工危险题≤{spec['h2_max_dangerous_cases']}，有未知不可宣布成立。", '',
-             f"**原冻结五模型总体H1：{s['H1_frozen_roster_status']}。**后续明确替换了Flash型号/Qwen部署并增加GLM；不能将这些成员追认成原五模型。修订六模型按原门槛描述：{s['H1_amended_roster_status']}，达标{s['H1_qualifying_models']['n']}/{s['H1_qualifying_models']['N']}，完整执行{s['models_with_all_final_slots']['n']}/{s['models_with_all_final_slots']['N']}。两个DeepSeek属于同系列，型号不等于独立系列。", '']
+             f"**原冻结五模型总体H1：{s['H1_frozen_roster_status']}。**后续明确替换了Flash型号/Qwen部署并增加GLM；不能将这些成员追认成原五模型。当前分析集合按原门槛描述：{s['H1_amended_roster_status']}，达标{s['H1_qualifying_models']['n']}/{s['H1_qualifying_models']['N']}，完整执行{s['models_with_all_final_slots']['n']}/{s['models_with_all_final_slots']['N']}。两个DeepSeek属于同系列，型号不等于独立系列。", '']
     lines += table(['模型', '执行24×3×2', 'H1 B', 'H1 C2', '增加题', '正常误报 B/C2', 'H1', 'H2危险/未知', 'H2', 'H3 B/C2', 'H3'], [
         [h['model'], '齐' if h['plan_executed'] else '暂停/缺失', fmt(h['H1_B']), fmt(h['H1_C2']), h['H1_gain'],
          fmt(h['FP_B']) + ' / ' + fmt(h['FP_C2']), h['H1_status'], fmt(h['H2_danger']) + ' / ' + fmt(h['H2_unknown']),
@@ -552,6 +609,8 @@ def execute(root=V2, report_id=None, coding_path=None):
     implementation_sha = digest(Path(__file__).read_bytes())
     shared_sha = digest((V2.parent / 'score.py').read_bytes())
     locked, spec, cases, observations, attempts, hashes = load_inputs(root)
+    scope = followup_scope(root, locked, spec)
+    if scope: hashes['FOLLOWUP_SCOPE.json'] = digest((root / 'FOLLOWUP_SCOPE.json').read_bytes())
     report_id = report_id or datetime.now().astimezone().strftime('%Y%m%dT%H%M%S%z') + '_v2_four_partial'
     if not re.fullmatch(r'[A-Za-z0-9_.+-]+', report_id) or report_id.startswith('.'):
         raise ValueError('invalid report id')
@@ -567,6 +626,7 @@ def execute(root=V2, report_id=None, coding_path=None):
     for p in scored['protocol']:
         p['parse_failure_reasons'] = dict(Counter(parse_failure_reason(r['response'], schema, public_names[r['case_id']])
             for key, r in attempts.items() if key[:2] == (p['model'], p['group']) and r['status'] == 'parse_error'))
+    scored, withdrawn = apply_followup_scope(scored, scope, spec)
     pending = []
     if any(p['missing_observations'] for p in scored['protocol'] if p['group'] == 'A'): pending.append('new_A')
     if len(coding) < len(records): pending.append('human_action_coding')
@@ -579,6 +639,7 @@ def execute(root=V2, report_id=None, coding_path=None):
               'budget_ledger': {k: read_json(root / 'runs/API_LEDGER.json')[k] for k in ('calls', 'input_reserved', 'output_reserved')},
               'human_coding': {'|'.join(map(str, k)): v for k, v in coding.items()},
               'review_valid_actions': len(records), 'scored': scored,
+              'followup_scope': scope, 'withdrawn_audit': withdrawn,
               'cohorts': historical_cohorts(root, cases, spec, hashes)}
     # Keep raw response/reasoning in immutable original JSONL, avoiding large copies.
     all_scores = [report['scored']] + [c['sensitivity'] for c in report['cohorts'] if 'sensitivity' in c]

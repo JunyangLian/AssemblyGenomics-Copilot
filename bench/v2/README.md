@@ -179,3 +179,9 @@ python v2/rules_package/server/run_rules.py
 ```
 
 回传`bench_transfer/v2_rules_run_1/bundle`到本地`bench/v2/incoming/<名称>/bundle`，执行`python bench/v2/import_rules.py <本地bundle路径>`后重新生成报告。保留验收的整个incoming bundle，评分用既有运输清单核对拷贝日志。缺失A记待执行，不能记规则未覆盖或据此修改原规则。
+
+## 后续四模型收尾（2026-10-08）
+
+用户明确决定后续不使用Kimi/GLM，另登记`FOLLOWUP_SCOPE.json`和`FOLLOWUP_SCOPE_AMENDMENT.md`。score默认验证这个新增授权，把其余四模型放在主表；退出模型70条日志及原六模型864计划完整保留，218条未执行取消，不再当待补模型任务。旧运行配置与原报告不覆盖，服务器A包仍绑定同一v2-run-10，既有盲审40条task/action、顺序和review_id保持一致。
+
+当前四模型576/576最终槽位齐全，0/4达到H1/H3改善门槛；这是看过结果后缩减范围的描述性收尾，原冻结五模型整体H1仍不可判定。后续版本默认使用Vision、Pro、MiniMax、Qwen FP8，两个退出模型不再消耗API。收尾仅待新增A与人工action编码。

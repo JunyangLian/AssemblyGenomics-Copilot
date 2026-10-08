@@ -9,7 +9,8 @@ import shutil
 import pytest
 from bench.v2.runtime import V2, canonical, digest, read_json, write_json
 from bench.v2.score import (compute, case_result, human_danger, review_packet,
-                             load_coding, validate_spec, admit_api, parse_failure_reason)
+                             load_coding, validate_spec, admit_api, parse_failure_reason,
+                             followup_scope, apply_followup_scope)
 
 
 @pytest.fixture
@@ -220,3 +221,54 @@ def test_format_diagnostics_do_not_repair_or_reclassify_observations(api_fixture
     raw['choices'][0]['message']['content'] = canonical(parsed).decode()
     assert parse_failure_reason(raw, schema, {'artifacts/models.gff3'}) == 'evidence_filename'
     assert attempt['status'] == 'ok' and attempt['parsed']['evidence'] == ['artifacts/models.gff3:2']
+
+
+def test_retirement_is_bound_to_human_decision_and_original_plan(tmp_path):
+    plan = read_json(V2 / 'RUN_PLAN.json'); spec = read_json(V2 / 'preregistration.json')
+    locked = {'plan': plan, 'plan_sha256': digest((V2 / 'RUN_PLAN.json').read_bytes()),
+              'frozen_md_sha256': plan['frozen_md_sha256']}
+    shutil.copyfile(V2 / 'preregistration.json', tmp_path / 'preregistration.json')
+    doc = read_json(V2 / 'FOLLOWUP_SCOPE.json')
+    assert followup_scope(tmp_path, locked, spec) is None
+    write_json(tmp_path / 'FOLLOWUP_SCOPE.json', doc)
+    assert followup_scope(tmp_path, locked, spec) == doc
+    for change in ({'post_results': False}, {'user_authorized': False}, {'thresholds_changed': True},
+                   {'source_plan_sha256': 'different'}, {'included_model_names': doc['included_model_names'][:-1]}):
+        write_json(tmp_path / 'FOLLOWUP_SCOPE.json', {**doc, **change})
+        with pytest.raises(ValueError, match='followup scope'): followup_scope(tmp_path, locked, spec)
+
+
+def test_retired_models_cannot_remain_dispatchable(tmp_path):
+    plan = read_json(V2 / 'RUN_PLAN.json'); spec = read_json(V2 / 'preregistration.json')
+    locked = {'plan': plan, 'plan_sha256': digest((V2 / 'RUN_PLAN.json').read_bytes()),
+              'frozen_md_sha256': plan['frozen_md_sha256']}
+    shutil.copyfile(V2 / 'preregistration.json', tmp_path / 'preregistration.json')
+    write_json(tmp_path / 'FOLLOWUP_SCOPE.json', read_json(V2 / 'FOLLOWUP_SCOPE.json'))
+    plan['execution']['active_model_names'].append('GLM-5.3')
+    with pytest.raises(ValueError, match='still dispatchable'): followup_scope(tmp_path, locked, spec)
+
+
+def test_four_model_view_preserves_failed_and_cancelled_retired_records(sample):
+    cases, rows, _, spec = sample
+    scope = read_json(V2 / 'FOLLOWUP_SCOPE.json')
+    plan = {'models': [{'name': n} for n in scope['original_model_names']], 'groups': ['B', 'C2']}
+    expanded = {}
+    for m in plan['models']:
+        for k, r in rows.items():
+            if m['name'] in scope['retired_model_names'] and k[1] == 'C2': continue
+            expanded[(m['name'], *k[1:])] = {**copy.deepcopy(r), 'model': m['name']}
+    expanded['Kimi-K2.6', 'B', 'new_017', 1].update(status='api_error', parsed=None)
+    all_scores = compute(cases, expanded, {}, plan, spec)
+    before = copy.deepcopy(all_scores)
+    scored, audit = apply_followup_scope(all_scores, scope, spec)
+    assert all_scores == before  # no old rows or historical denominator rewritten
+    assert scored['H1_qualifying_models']['N'] == 4
+    assert scored['models_with_all_final_slots']['n'] == 4
+    assert scored['H1_original_runtime_roster']['completed']['N'] == 6
+    assert scored['H1_frozen_roster_status'] == '不可判定'
+    assert all(g['model'] in scope['included_model_names'] or g['group'] == 'A' for g in scored['groups'])
+    assert sum(r['retained_observations'] for r in audit) == 48
+    assert sum(r['cancelled_unexecuted_observations'] for r in audit) == 48
+    assert next(r for r in audit if r['model'] == 'Kimi-K2.6')['statuses']['api_error'] == 1
+    original, no_audit = apply_followup_scope(all_scores, None, spec)
+    assert original is all_scores and no_audit == []
