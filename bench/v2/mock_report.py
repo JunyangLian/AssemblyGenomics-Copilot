@@ -84,6 +84,7 @@ def report(root=V2):
             'output_requested_limit_per_call': 8192, 'initial_output_requested_limit': initial_calls * 8192,
             'all_repair_output_requested_limit': repair_calls * 8192},
         'hypotheses_scored': False, 'numeric_live_budget_approved': False,
+        'execution': plan.get('execution'), 'credential_recovery': plan.get('credential_recovery'),
         'token_method': 'ceil(UTF8 message bytes / 3) + 64 + 16/message; planning byte bound = bytes + same overhead',
         'limitations': 'Not a provider tokenizer or billed bound; hidden reasoning, cache pricing and resource weights unknown.'}
     write_json(root / 'MOCK_REPORT.json', result)
@@ -103,7 +104,7 @@ def report(root=V2):
         '代理按UTF-8消息字节数除3向上取整，加64+16×消息数；字节规划上界为消息字节数加同一开销。没有供应商tokenizer，二者不是实测usage，字节开销也不保证覆盖平台隐藏包装或思考token。1000输出只是费用敏感性情景，不是mock输出长度或真实输出预测。', '',
         '用户回复“没有，先看 token 估算”：账户费用/墨点换算未确认，不沿用原厂价格，也不把未知当0。平台模型元数据价格不能替代最终账单。未来费用公式为各模型输入×输入单价+输出×输出单价（按百万token换算）；缓存、思考计量、权重均待实际资料。', '',
         '提出共用temperature=0、max_tokens=8192、stream=false，不发送供应商thinking扩展；实际生效及默认思考模式未知，B/C2同模型参数一致。请求ID按用户原文，平台可用性未认证；返回不同ID暂停该模型，不静默换别名。格式重试1次，网络重试0次，300秒超时。', '',
-        '真实运行采用API_APPROVAL.json中明确批准的累计上限及未知价格/默认思考条件，必须绑定本次mock。完整题库全修复情景1728次；若为登记的凭据恢复队列，仅补跑另列的HTTP429槽位，预算见CREDENTIAL_RECOVERY.json，不重复承接结果。实际按剩余额度执行，到达上限保留未完成分母。累计账本不返还旧预留、不重置费用。供应商usage超过预留则暂停。']
+        '真实运行采用API_APPROVAL.json中明确批准的累计上限及未知价格/默认思考条件，必须绑定本次mock。完整题库全修复情景1728次；登记的凭据恢复队列仅补跑另列HTTP429槽位，范围/预算见RUN_PLAN.credential_recovery指定文件，不重复承接结果。若登记了active_model_names，API仅派发这些模型；mock仍验证全部六模型配置且不调用API。实际按剩余额度执行，到达上限保留未完成分母。累计账本不返还旧预留、不重置费用。供应商usage超过预留则暂停。']
     (root / 'MOCK_REPORT.md').write_bytes(('\n'.join(lines) + '\n').encode('utf-8'))
     template = {'approved': False, 'user_approval_quote': None, 'plan_sha256': locked['plan_sha256'],
         'frozen_md_sha256': locked['frozen_md_sha256'], 'mock_report_sha256': digest((root / 'MOCK_REPORT.json').read_bytes()),

@@ -153,6 +153,20 @@ def verify(root=V2):
                 raise ValueError('implementation changed after plan lock: ' + name)
     if models(root) != plan['models'] or public_cases(root) != plan['cases']:
         raise ValueError('configuration or public cases changed after lock')
+    priority = plan.get('priority_revision')
+    if priority:
+        doc = read_json(root / priority['file'])
+        active = plan['execution'].get('active_model_names')
+        names = [m['name'] for m in plan['models']]
+        if (digest((root / priority['file']).read_bytes()) != priority['sha256']
+            or doc.get('user_authorized') is not True or not doc.get('user_quote')
+            or doc.get('frozen_md_sha256') != plan['frozen_md_sha256']
+            or doc.get('parent_plan_sha256') != plan['parent_plan_sha256']
+            or active != doc.get('active_model_names')
+            or active != [n for n in names if n not in ('GLM-5.3','Kimi-K2.6')]
+            or doc.get('deferred_model_names') != ['GLM-5.3','Kimi-K2.6']
+            or plan['execution']['max_workers'] != 4):
+            raise ValueError('invalid explicit four-model priority registration')
     if rules() != plan['rule_sources'] or RULE_MAP != plan['rule_mapping']:
         raise ValueError('original rules or mapping changed')
     from bench.v2.import_rules import reuse_identity

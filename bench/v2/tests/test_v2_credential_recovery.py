@@ -73,12 +73,13 @@ def test_one_new_reservation_allowed_only_for_registered_parent_429(tmp_path,mon
 def test_actual_recovery_retains_original864_and_only_defers623_429():
     from bench.v2.plan import verify
     from bench.v2.resume import parent_records,rows
-    locked=verify(); doc,allowed=registered(V2,locked)
+    locked=verify()
     old=rows(V2/'history/v2-run-7/resume_records.jsonl')
     original=[r for r in old if r['record_type']=='observation']
-    assert len(original)==864 and len(allowed)==623
+    assert len(original)==864 and len(eligible(old))==623
     assert sum(r['status']=='ok' for r in original)==202
-    carried=[r for r in parent_records(V2,locked) if r['record_type']=='observation']
+    archived=rows(V2/'history/v2-run-8/resume_records.jsonl')
+    carried=[r for r in archived if r['record_type']=='observation' and r.get('reused_from')]
     assert len(carried)==241
     assert sum(r['status']=='ok' for r in carried)==202
     assert sum(r['status']=='api_error' for r in carried)==24
@@ -90,8 +91,13 @@ def test_increased_budget_requires_exact_registered_recovery_caps(tmp_path):
     from bench.v2.plan import verify
     from bench.v2.adapter import approval
     locked=verify()
-    for name in ('CREDENTIAL_RECOVERY.json','MOCK_REPORT.json','API_APPROVAL.json'):
+    recovery_file=locked['plan']['credential_recovery']['file']
+    for name in (recovery_file,'MOCK_REPORT.json','API_APPROVAL.json'):
         (tmp_path/name).write_bytes((V2/name).read_bytes())
+    doc=read_json(tmp_path/recovery_file)
+    if doc.get('inherited_approval'):
+        inherited=doc['inherited_approval']['file'];p=tmp_path/inherited;p.parent.mkdir(parents=True)
+        p.write_bytes((V2/inherited).read_bytes())
     write_json(tmp_path/'MOCK_REPORT.json',{'status':'pass','plan_sha256':locked['plan_sha256'],'fixture_only':True})
     a=read_json(tmp_path/'API_APPROVAL.json')
     a['mock_report_sha256']=digest((tmp_path/'MOCK_REPORT.json').read_bytes())

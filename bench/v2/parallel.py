@@ -100,7 +100,8 @@ def execute(mode, root, locked, budget, schema, make_id, observe):
             'attempts': 0, 'error': 'prior model identity mismatch'})
     queues = {m['name']: [{'group': g, 'case_id': c['case_id'], 'repetition': repetition}
         for g in plan['groups'] for c in plan['cases'] for repetition in range(1, 4)
-        if (m['name'], g, c['case_id'], repetition) not in existing] for m in plan['models']}
+        if (m['name'], g, c['case_id'], repetition) not in existing
+        and (mode != 'api' or m['name'] in plan['execution'].get('active_model_names', models))] for m in plan['models']}
     def snapshot(**state):
         atomic_json(root / 'runs/SCHEDULER_STATUS.json', {'mode': mode, 'pid': os.getpid(),
             'plan_sha256': locked['plan_sha256'], 'updated_at_utc': datetime.now(timezone.utc).isoformat(),
