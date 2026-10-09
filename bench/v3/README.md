@@ -1,6 +1,6 @@
 # bench v3：设计与来源隔离阶段
 
-2026-10-09。用户批准的 T3 七类群来源已回传并验收：14 个原始 GFF/FAA gzip 文件，共 116.58 MiB。目前有 48 个本地来源角色、七套未用于 bench 构题的新 T3 配对，18 项私有候选设计。已起草 v3 输出/答案/元数据 schema 和证据评分规格，尚无 v3 cases、expected 实例、FROZEN、C3、harness、mock 或 API 记录；本目录设计/审计材料不能成为模型题目输入。
+2026-10-09。用户批准的 T3 七类群来源已回传并验收：14 个原始 GFF/FAA gzip 文件，共 116.58 MiB。目前有 48 个本地来源角色、七套未用于 bench 构题的新 T3 配对，18 项私有候选设计。已起草 v3 输出/答案/元数据 schema 和证据评分规格，已有四道 T1 开发草题和未批准的 expected 实例，尚无测试题、FROZEN、C3、harness、mock 或 API 记录；本目录设计/审计材料不能成为模型题目输入。
 
 | 文件 | 用途 |
 |---|---|
@@ -23,6 +23,12 @@
 
 七个 accession 整体拟保留为测试来源，同源变体不得跨开发/测试。下一阶段先确定消费契约、输出 schema、证据评分和 C3 通用指导，冻结相应规格后构造审核材料。最终题数、门槛、标准答案、来源角色和新 API 预算尚未冻结；需独立审题与用户确认。当前阶段停下。
 
-## 当前推进：规格审核稿 1
+## 已完成的规格审核稿 1
 
 CASE_CONTRACT、EVIDENCE_SCORING、三个 schemas、PREREGISTRATION 与 BUILD_PLAN 明确观察/根因分离、完整可接受判定组合、证据支持评分、题级重复及失败处理。SPEC_REVIEW 记录待审事项；目标暂为 28 题，未构题或确认最终题数。门槛留空由用户填写，C3/暴露/来源角色尚未冻结。本阶段汇报见 SPECIFICATION_REPORT.md。下一阶段先构造开发材料，完善通用指导并锁定后才选择封存记录；本阶段停在规格审核。
+
+## 当前阶段：四道开发草题
+
+用户选择先构造四题，两项执行证据缺口保留。development/cases/dev_001..004 是开发来源材料，不是封存测试题；expected 均未批准。development/REVIEW_SHEET.csv 是私有作者审核表，不能给独立盲审者。只发送 development_blind_review.zip 给审核者：包仅含中性题面、产物、共享 schema、说明和空答案表；BLIND_REVIEW_MAP、来源/注入材料与答案不在包内。
+
+本地 validate_development --reproduce 已通过；这只是草题一致性和本地复现，不是独立人类审核或 Linux 复现。Linux 检验、C3/模板锁定、七来源封存构造与最终冻结还未完成。BUILD_PLAN 的28题仍是临时目标，缺口若最终不补需另登记最终题数；不会自动改为26题。

@@ -1,0 +1,10 @@
+{
+  "mapping": {
+    "R001": "dev_003",
+    "R002": "dev_001",
+    "R003": "dev_002",
+    "R004": "dev_004"
+  },
+  "private_do_not_send_to_reviewer": true,
+  "seed": 0
+}

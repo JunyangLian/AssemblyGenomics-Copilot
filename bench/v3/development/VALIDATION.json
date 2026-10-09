@@ -1,0 +1,52 @@
+{
+  "api_calls": 0,
+  "cases": 4,
+  "details": {
+    "dev_001": {
+      "answer_status": "draft",
+      "visible_files": [
+        "artifacts/annotation.tsv",
+        "artifacts/annotation_metrics.json",
+        "artifacts/query.faa",
+        "task.md"
+      ],
+      "visible_utf8_bytes": 13806
+    },
+    "dev_002": {
+      "answer_status": "draft",
+      "visible_files": [
+        "artifacts/hints.gff",
+        "artifacts/input_metrics.json",
+        "task.md"
+      ],
+      "visible_utf8_bytes": 739
+    },
+    "dev_003": {
+      "answer_status": "draft",
+      "visible_files": [
+        "artifacts/reference.fa",
+        "artifacts/regions.tsv",
+        "artifacts/sequence.fa",
+        "artifacts/sequence_metrics.json",
+        "task.md"
+      ],
+      "visible_utf8_bytes": 9389
+    },
+    "dev_004": {
+      "answer_status": "draft",
+      "visible_files": [
+        "artifacts/reference.fa",
+        "artifacts/regions.tsv",
+        "artifacts/sequence.fa",
+        "artifacts/sequence_metrics.json",
+        "task.md"
+      ],
+      "visible_utf8_bytes": 9389
+    }
+  },
+  "linux_reproduction": "pending",
+  "local_byte_reproduction": "passed",
+  "mode": "draft_development_only_not_freeze_ready",
+  "original_source_hash_rescans": 0,
+  "status": "pass"
+}

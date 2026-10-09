@@ -1,7 +1,7 @@
 {
   "answer_freeze": false,
   "api_calls": 0,
-  "cases_built": 0,
+  "cases_built": 4,
   "documents": [
     "CASE_CONTRACT.md",
     "EVIDENCE_SCORING.md",
@@ -25,7 +25,7 @@
     "schemas/case_meta.schema.json"
   ],
   "source_split_frozen": false,
-  "status": "pending_user_review",
+  "status": "user_accepted_for_development_prototyping_not_frozen",
   "unresolved": [
     "user_schema_and_rubric_review",
     "independent_reviewer_assignment",

@@ -1,0 +1,43 @@
+{
+  "case_id": "dev_002",
+  "excerpt_policy": "从真实hints子集确定性移除全部特征记录；空文件只模拟当前输入，不制造运行日志。",
+  "guidance_exposure": "unassigned",
+  "guidance_version_sha256": null,
+  "injection_script": "bench/v3/inject/build_development.py",
+  "mechanism_family": "input_evidence_observability",
+  "pair_id": null,
+  "pitfall_exposure": "held_out",
+  "pitfall_ids": [],
+  "pressure_parent": null,
+  "review_status": "draft",
+  "schema_version": "v3-spec-draft-1",
+  "seed": 0,
+  "source_files": [
+    {
+      "path": "bench/v1_prepare_t1t3_r3/bundle/sources/arab_hints.gff",
+      "selection": "{\"development_selection\": \"从真实hints子集确定性移除全部特征记录；空文件只模拟当前输入，不制造运行日志。\", \"original_sha256\": \"e702b094d65ceeed78c1ebbe1ef7255ae42da45ffae157f8511bd6bd7654fe2b\", \"received_selection\": {\"first_line\": 1, \"last_line\": 1000, \"method\": \"line_ranges\", \"newline\": \"LF\", \"source_hash_policy\": \"original_recorded_once\"}}",
+      "sha256": "aa2ec64bddff026e8ff55a526de9fe0cf7695acef2b4f0363b39c1cdf90b940f",
+      "source_group": "T1_arabidopsis",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/run_ETP/hintsfile.gff"
+    }
+  ],
+  "source_group": "T1_arabidopsis",
+  "split": "development",
+  "stage": "structural_annotation",
+  "synthetic": true,
+  "type": "uncertainty",
+  "verbatim_tool_exceptions": [],
+  "visible_contract": {
+    "allowed_id_mapping": "不涉及ID映射",
+    "artifact_roles": {
+      "delivery": [
+        "artifacts/hints.gff"
+      ],
+      "reference": []
+    },
+    "consumer_contract": "启动前 hints 至少包含一条 intron",
+    "review_target": "input",
+    "scope": "declared_subset",
+    "usable_previous_result": false
+  }
+}

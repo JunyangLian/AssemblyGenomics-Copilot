@@ -1,0 +1,22 @@
+{
+  "decision": "user_selected_build_four_and_defer_two",
+  "gaps": [
+    {
+      "available": "真实逐条表、蛋白、统计和provenance；当前四题仅提供重算统计和ID连接",
+      "candidate_family": "V3C01",
+      "missing": "真实检索/筛选/整合执行记录，足以从可见材料确证低覆盖上游原因",
+      "reason": "现有正常流程provenance不能证明构造低覆盖的实际上游机制；不能补造日志",
+      "status": "deferred_not_built",
+      "variant": "known_upstream_cause"
+    },
+    {
+      "available": "真实非空hints子集和正常流程provenance；空输入仅为当前准备模拟",
+      "candidate_family": "V3C02",
+      "missing": "真实作业日志/配置/输入绑定，能证明此份空证据实际进入已完成流程",
+      "reason": "不能把删空hints当作历史流程未用RNA的消费证据",
+      "status": "deferred_not_built",
+      "variant": "completed_delivery_consumed_empty_hints"
+    }
+  ],
+  "required_for_current_four": false
+}

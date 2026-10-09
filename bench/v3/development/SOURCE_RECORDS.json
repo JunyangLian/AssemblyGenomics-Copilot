@@ -1,0 +1,76 @@
+{
+  "sources": {
+    "arab_functional_table": {
+      "existing_selection": {
+        "first_line": 1,
+        "last_line": 1025,
+        "method": "line_ranges",
+        "newline": "LF",
+        "source_hash_policy": "original_recorded_once"
+      },
+      "filename": "arab_functional_table.tsv",
+      "original_sha256": "b56c7acdfeaf1ec7d9ac50c81076b7f676227ac7b5685ece86837492f81c6f04",
+      "original_size_bytes": 2219342,
+      "path": "bench/v1_prepare_t1t3_r3/bundle/sources/arab_functional_table.tsv",
+      "sha256": "3c07df0cf68befeba87e191e564fe6d12c8bd5f03dd19066e3bbd64462182dca",
+      "size_bytes": 90097,
+      "source_group": "T1_arabidopsis",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/Integration/functional_annotation.tsv"
+    },
+    "arab_hints": {
+      "existing_selection": {
+        "first_line": 1,
+        "last_line": 1000,
+        "method": "line_ranges",
+        "newline": "LF",
+        "source_hash_policy": "original_recorded_once"
+      },
+      "filename": "arab_hints.gff",
+      "original_sha256": "e702b094d65ceeed78c1ebbe1ef7255ae42da45ffae157f8511bd6bd7654fe2b",
+      "original_size_bytes": 7719081,
+      "path": "bench/v1_prepare_t1t3_r3/bundle/sources/arab_hints.gff",
+      "sha256": "aa2ec64bddff026e8ff55a526de9fe0cf7695acef2b4f0363b39c1cdf90b940f",
+      "size_bytes": 62292,
+      "source_group": "T1_arabidopsis",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage3_braker/runs/arab_batch01/4.BRAKER3/run_ETP/hintsfile.gff"
+    },
+    "arab_query_proteins": {
+      "existing_selection": {
+        "method": "fasta_records",
+        "newline": "LF",
+        "query_file_sha256": "3c07df0cf68befeba87e191e564fe6d12c8bd5f03dd19066e3bbd64462182dca",
+        "records": 1024,
+        "selection": "complete FASTA records matching selected functional query column",
+        "source_hash_policy": "original_recorded_once"
+      },
+      "filename": "arab_query_proteins.faa",
+      "original_sha256": "4a9a2a936a5cd5911c5db09d5c38bbb5567213a8c64cc8c26f447b007174bf21",
+      "original_size_bytes": 11634873,
+      "path": "bench/v1_prepare_t1t3_r3/bundle/sources/arab_query_proteins.faa",
+      "sha256": "3359bb24a13420f8e8fa105d9a07147b440a2352cc4876b081dc7e7f9f1e2224",
+      "size_bytes": 474822,
+      "source_group": "T1_arabidopsis",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/0.Query/query.faa"
+    },
+    "arab_repeat_genome": {
+      "existing_selection": {
+        "bases": 200000,
+        "method": "fasta_records",
+        "newline": "LF",
+        "partial_last_record_possible": true,
+        "records": 1,
+        "selection": "first records/prefix; no coordinate renaming",
+        "source_hash_policy": "original_recorded_once"
+      },
+      "filename": "arab_repeat_genome.fa",
+      "original_sha256": "aaf046110ee3e91294d1388e3546587a20bd5e82b09ac0cae2d670fa76524d67",
+      "original_size_bytes": 122062469,
+      "path": "bench/v1_prepare_t1t3_r3/bundle/sources/arab_repeat_genome.fa",
+      "sha256": "0a00329ea11293ff36be8b85e22a02971b66a9e93eedfcba9e89eebdc9806c8d",
+      "size_bytes": 204056,
+      "source_group": "T1_arabidopsis",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/genome.softmasked.fa"
+    }
+  },
+  "status": "previously_verified_source_receipts_reused_no_original_hash_rescan"
+}

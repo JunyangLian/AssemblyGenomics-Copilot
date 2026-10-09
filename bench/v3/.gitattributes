@@ -1,0 +1,2 @@
+# TSV terminal tabs encode empty fields; preserve them instead of trimming columns.
+development/cases/*/artifacts/*.tsv whitespace=-blank-at-eol

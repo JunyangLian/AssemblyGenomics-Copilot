@@ -1,0 +1,5 @@
+﻿case_id,summary,private_construction,proposed_verdict,observed_defect,root_cause,key_evidence,user_opinion
+dev_001,32蛋白功能注释交付，低覆盖但原因资料不足,真实首32条中的后30条功能标记置0，ID和完整蛋白不变；覆盖率重算为2/32,rollback,low_functional_coverage,insufficient_evidence,32条中仅2条有任一标记，覆盖率6.25%，小于题面80%要求。; 两文件32个ID精确相接，不支持ID不一致解释。; 题面限定未提供执行与检索材料，不能确认上游机制。,
+dev_002,启动前RNA接续证据输入,移除真实hints子集全部记录，仅模拟待启动输入，不模拟历史执行,block,empty_hints,insufficient_evidence,给定输入0字节、0条intron，不满足启动条件。; 这是启动前输入审核，没有消费日志，不能确认历史RNA是否使用。,
+dev_003,交付保留小写，参考仅用于定位,真实4096碱基窗口作为交付；N表示作为非消费参考,pass,none,none,两个窗口ID和长度相同。; 全部声明区间的交付碱基为真实小写acgt，首个区间1..115可直接核对。; 消费的是sequence.fa；reference只用于窗口定位。,
+dev_004,相同合同下交付区间为N,交换同一对表示的消费/参考角色，交付小写acgt逐位成为N,rollback,masking_mode_incompatible,masking_mode_error,两个窗口ID和长度相同。; 全部声明区间的交付碱基为N，首个区间1..115可直接核对。; 消费的是sequence.fa；reference只用于窗口定位。,

@@ -1,0 +1,48 @@
+{
+  "case_id": "dev_003",
+  "excerpt_policy": "取真实基因组首记录前4096碱基；导出原小写区间；另一表示仅将acgt小写逐位转N；按题号交换delivery/reference角色。",
+  "guidance_exposure": "unassigned",
+  "guidance_version_sha256": null,
+  "injection_script": "bench/v3/inject/build_development.py",
+  "mechanism_family": "masking_delivery_role",
+  "pair_id": "D-MASK-01",
+  "pitfall_exposure": "seen",
+  "pitfall_ids": [
+    "PIT-006"
+  ],
+  "pressure_parent": null,
+  "review_status": "draft",
+  "schema_version": "v3-spec-draft-1",
+  "seed": 0,
+  "source_files": [
+    {
+      "path": "bench/v1_prepare_t1t3_r3/bundle/sources/arab_repeat_genome.fa",
+      "selection": "{\"development_selection\": \"取真实基因组首记录前4096碱基；导出原小写区间；另一表示仅将acgt小写逐位转N；按题号交换delivery/reference角色。\", \"original_sha256\": \"aaf046110ee3e91294d1388e3546587a20bd5e82b09ac0cae2d670fa76524d67\", \"received_selection\": {\"bases\": 200000, \"method\": \"fasta_records\", \"newline\": \"LF\", \"partial_last_record_possible\": true, \"records\": 1, \"selection\": \"first records/prefix; no coordinate renaming\", \"source_hash_policy\": \"original_recorded_once\"}}",
+      "sha256": "0a00329ea11293ff36be8b85e22a02971b66a9e93eedfcba9e89eebdc9806c8d",
+      "source_group": "T1_arabidopsis",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/runs/arab_batch01/1.Repeat_Annotation/genome.softmasked.fa"
+    }
+  ],
+  "source_group": "T1_arabidopsis",
+  "split": "development",
+  "stage": "repeat_annotation",
+  "synthetic": true,
+  "type": "normal",
+  "verbatim_tool_exceptions": [],
+  "visible_contract": {
+    "allowed_id_mapping": "仅精确ID，坐标一基闭区间",
+    "artifact_roles": {
+      "delivery": [
+        "artifacts/sequence.fa"
+      ],
+      "reference": [
+        "artifacts/reference.fa",
+        "artifacts/regions.tsv"
+      ]
+    },
+    "consumer_contract": "同ID/长度窗口；交付在声明区间保留小写acgt",
+    "review_target": "completed_delivery",
+    "scope": "declared_subset",
+    "usable_previous_result": false
+  }
+}

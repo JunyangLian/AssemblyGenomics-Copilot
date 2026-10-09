@@ -1,0 +1,51 @@
+{
+  "acceptable_decisions": [
+    {
+      "observed_defect": "masking_mode_incompatible",
+      "root_cause": "masking_mode_error",
+      "verdict": "rollback"
+    }
+  ],
+  "case_id": "dev_004",
+  "independent_review_status": "pending",
+  "key_evidence": [
+    {
+      "acceptable_pointers": [
+        "artifacts/sequence_metrics.json:ids_equal",
+        "artifacts/sequence_metrics.json:delivery_length"
+      ],
+      "claim_id": "E01",
+      "required_for_joint": true,
+      "review_note": "拟定关键事实，待人类独立审核与用户确认。",
+      "statement": "两个窗口ID和长度相同。",
+      "verification_method": "exact_value"
+    },
+    {
+      "acceptable_pointers": [
+        "artifacts/regions.tsv:2",
+        "artifacts/sequence.fa:NC_003070.9"
+      ],
+      "claim_id": "E02",
+      "required_for_joint": true,
+      "review_note": "拟定关键事实，待人类独立审核与用户确认。",
+      "statement": "全部声明区间的交付碱基为N，首个区间1..115可直接核对。",
+      "verification_method": "record_connection"
+    },
+    {
+      "acceptable_pointers": [
+        "task.md:5",
+        "task.md:7"
+      ],
+      "claim_id": "E03",
+      "required_for_joint": true,
+      "review_note": "拟定关键事实，待人类独立审核与用户确认。",
+      "statement": "消费的是sequence.fa；reference只用于窗口定位。",
+      "verification_method": "scope_or_role"
+    }
+  ],
+  "pair_id": "D-MASK-01",
+  "rationale": "只判交付角色：参考为N不导致误报；交付区间变N则违反可见契约，需要撤回并从保留碱基信息的来源重建。",
+  "root_identifiability": "confirmed",
+  "schema_version": "v3-spec-draft-1",
+  "user_approved": false
+}

@@ -1,0 +1,52 @@
+{
+  "acceptable_decisions": [
+    {
+      "observed_defect": "low_functional_coverage",
+      "root_cause": "insufficient_evidence",
+      "verdict": "rollback"
+    }
+  ],
+  "case_id": "dev_001",
+  "independent_review_status": "pending",
+  "key_evidence": [
+    {
+      "acceptable_pointers": [
+        "artifacts/annotation_metrics.json:annotated_records",
+        "artifacts/annotation_metrics.json:coverage_percent",
+        "task.md:5"
+      ],
+      "claim_id": "E01",
+      "required_for_joint": true,
+      "review_note": "拟定关键事实，待人类独立审核与用户确认。",
+      "statement": "32条中仅2条有任一标记，覆盖率6.25%，小于题面80%要求。",
+      "verification_method": "exact_value"
+    },
+    {
+      "acceptable_pointers": [
+        "artifacts/annotation_metrics.json:matched_ids",
+        "artifacts/annotation.tsv:query",
+        "artifacts/query.faa:g1.t1"
+      ],
+      "claim_id": "E02",
+      "required_for_joint": true,
+      "review_note": "拟定关键事实，待人类独立审核与用户确认。",
+      "statement": "两文件32个ID精确相接，不支持ID不一致解释。",
+      "verification_method": "record_connection"
+    },
+    {
+      "acceptable_pointers": [
+        "task.md:7"
+      ],
+      "claim_id": "E03",
+      "required_for_joint": true,
+      "review_note": "拟定关键事实，待人类独立审核与用户确认。",
+      "statement": "题面限定未提供执行与检索材料，不能确认上游机制。",
+      "verification_method": "visible_absence"
+    }
+  ],
+  "pair_id": null,
+  "rationale": "交付覆盖不足可确证，应撤回当前表并核查/重建；不能从标记缺失唯一推断低生物学质量、数据库或检索配置错误。",
+  "root_identifiability": "insufficient_evidence",
+  "schema_version": "v3-spec-draft-1",
+  "user_approved": false
+}

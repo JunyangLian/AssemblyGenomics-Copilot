@@ -3,20 +3,26 @@
   "T3_report_species": 27,
   "actual_real_sources_collected": 14,
   "api_calls": 0,
-  "cases_built": 0,
+  "cases_built": 4,
   "client_date": "2026-10-09",
-  "expected_files": 0,
+  "deferred_development_candidates": 2,
+  "development_cases_built": 4,
+  "development_validation": "schema_leakage_evidence_reference_calculation_and_local_reproduction_passed",
+  "expected_files": 4,
   "final_case_count": null,
+  "independent_review_completed": false,
+  "linux_case_reproduction": "pending",
   "local_T3_complete_pairs": 8,
   "local_sources": 48,
   "local_unused_T3_pairs": 7,
   "mock_calls": 0,
   "original_source_hash_rescans": 0,
   "pending": [
-    "user_schema_and_rubric_review",
+    "development_case_human_review",
     "independent_reviewer_assignment",
-    "development_case_review_and_C3_lock",
-    "final_case_ids_and_thresholds"
+    "Linux_case_reproduction_before_freeze",
+    "C3_development_and_lock",
+    "final_case_ids_exposure_and_thresholds"
   ],
   "private_candidate_design_rows": 18,
   "proposed_case_count": 28,
@@ -32,8 +38,8 @@
   ],
   "pytest": {
     "command": "python -m pytest -q",
-    "elapsed_seconds": 194.12,
-    "passed": 341
+    "elapsed_seconds": 219.68,
+    "passed": 347
   },
   "rules_calls": 0,
   "schema_validation": {
@@ -41,13 +47,14 @@
     "schemas": 3,
     "toy_positive_negative_checks": 24
   },
+  "sealed_test_cases_built": 0,
   "server_execution": "complete_received_and_verified",
   "source_receipt": "SOURCE_RECEIPT.json",
   "source_split_authorized": true,
   "source_split_frozen": false,
   "spec_version": "v3-spec-draft-1",
   "specification_frozen": false,
-  "stage": "v3_phase3_specification_draft",
-  "status": "specification_ready_pending_user_review",
+  "stage": "v3_phase4_development_drafts",
+  "status": "four_development_drafts_ready_pending_review",
   "thresholds": null
 }

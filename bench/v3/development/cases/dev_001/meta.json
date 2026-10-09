@@ -1,0 +1,51 @@
+{
+  "case_id": "dev_001",
+  "excerpt_policy": "保留已验收表首32个query及匹配的完整蛋白；保留前2行真实标记，后30行七个标记置0并清空IPR/GO；重算统计。",
+  "guidance_exposure": "unassigned",
+  "guidance_version_sha256": null,
+  "injection_script": "bench/v3/inject/build_development.py",
+  "mechanism_family": "coverage_observability",
+  "pair_id": null,
+  "pitfall_exposure": "held_out",
+  "pitfall_ids": [],
+  "pressure_parent": null,
+  "review_status": "draft",
+  "schema_version": "v3-spec-draft-1",
+  "seed": 0,
+  "source_files": [
+    {
+      "path": "bench/v1_prepare_t1t3_r3/bundle/sources/arab_functional_table.tsv",
+      "selection": "{\"development_selection\": \"保留已验收表首32个query及匹配的完整蛋白；保留前2行真实标记，后30行七个标记置0并清空IPR/GO；重算统计。\", \"original_sha256\": \"b56c7acdfeaf1ec7d9ac50c81076b7f676227ac7b5685ece86837492f81c6f04\", \"received_selection\": {\"first_line\": 1, \"last_line\": 1025, \"method\": \"line_ranges\", \"newline\": \"LF\", \"source_hash_policy\": \"original_recorded_once\"}}",
+      "sha256": "3c07df0cf68befeba87e191e564fe6d12c8bd5f03dd19066e3bbd64462182dca",
+      "source_group": "T1_arabidopsis",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/Integration/functional_annotation.tsv"
+    },
+    {
+      "path": "bench/v1_prepare_t1t3_r3/bundle/sources/arab_query_proteins.faa",
+      "selection": "{\"development_selection\": \"保留已验收表首32个query及匹配的完整蛋白；保留前2行真实标记，后30行七个标记置0并清空IPR/GO；重算统计。\", \"original_sha256\": \"4a9a2a936a5cd5911c5db09d5c38bbb5567213a8c64cc8c26f447b007174bf21\", \"received_selection\": {\"method\": \"fasta_records\", \"newline\": \"LF\", \"query_file_sha256\": \"3c07df0cf68befeba87e191e564fe6d12c8bd5f03dd19066e3bbd64462182dca\", \"records\": 1024, \"selection\": \"complete FASTA records matching selected functional query column\", \"source_hash_policy\": \"original_recorded_once\"}}",
+      "sha256": "3359bb24a13420f8e8fa105d9a07147b440a2352cc4876b081dc7e7f9f1e2224",
+      "source_group": "T1_arabidopsis",
+      "source_origin": "/home/Lianjunyang/AssemblyGenomics-Skill/arabidopsis/run/stage4_functional/runs/arab_batch01/6.Functional/0.Query/query.faa"
+    }
+  ],
+  "source_group": "T1_arabidopsis",
+  "split": "development",
+  "stage": "functional_annotation",
+  "synthetic": false,
+  "type": "uncertainty",
+  "verbatim_tool_exceptions": [],
+  "visible_contract": {
+    "allowed_id_mapping": "仅精确匹配，未声明其它映射",
+    "artifact_roles": {
+      "delivery": [
+        "artifacts/query.faa",
+        "artifacts/annotation.tsv"
+      ],
+      "reference": []
+    },
+    "consumer_contract": "query 精确连接且至少80%具有任一功能标记",
+    "review_target": "completed_delivery",
+    "scope": "declared_subset",
+    "usable_previous_result": false
+  }
+}
