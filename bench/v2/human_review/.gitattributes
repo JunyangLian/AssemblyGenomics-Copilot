@@ -1,0 +1,2 @@
+# Preserve exact submitted bytes; raw archives are not authored CSV.
+**/SUBMITTED.csv -text -diff
