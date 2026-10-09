@@ -1,0 +1,136 @@
+{
+  "approved_selection": "user 2026-10-09: seven clades, one representative each; no external projects",
+  "files": [
+    {
+      "clade": "fungi",
+      "filename": "GCF_036370985.1_Kaz3_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_036370985.1_Kaz3_genomic.gff.gz",
+      "recorded_size_bytes": 807040,
+      "source_group": "GCF_036370985.1",
+      "species": "Arxiozyma_heterogenica"
+    },
+    {
+      "clade": "fungi",
+      "filename": "GCF_036370985.1_Kaz3_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_036370985.1_Kaz3_protein.faa.gz",
+      "recorded_size_bytes": 1742216,
+      "source_group": "GCF_036370985.1",
+      "species": "Arxiozyma_heterogenica"
+    },
+    {
+      "clade": "nematoda",
+      "filename": "GCF_001040885.1_S_ratti_ED321_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_001040885.1_S_ratti_ED321_genomic.gff.gz",
+      "recorded_size_bytes": 2369625,
+      "source_group": "GCF_001040885.1",
+      "species": "Strongyloides_ratti"
+    },
+    {
+      "clade": "nematoda",
+      "filename": "GCF_001040885.1_S_ratti_ED321_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_001040885.1_S_ratti_ED321_protein.faa.gz",
+      "recorded_size_bytes": 3795565,
+      "source_group": "GCF_001040885.1",
+      "species": "Strongyloides_ratti"
+    },
+    {
+      "clade": "insecta",
+      "filename": "GCF_943734735.2_idAnoGambNW_F1_1_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_943734735.2_idAnoGambNW_F1_1_genomic.gff.gz",
+      "recorded_size_bytes": 6339705,
+      "source_group": "GCF_943734735.2",
+      "species": "Anopheles_gambiae"
+    },
+    {
+      "clade": "insecta",
+      "filename": "GCF_943734735.2_idAnoGambNW_F1_1_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_943734735.2_idAnoGambNW_F1_1_protein.faa.gz",
+      "recorded_size_bytes": 6390660,
+      "source_group": "GCF_943734735.2",
+      "species": "Anopheles_gambiae"
+    },
+    {
+      "clade": "viridiplantae",
+      "filename": "GCF_054855325.1_ASM5485532v1_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_054855325.1_ASM5485532v1_genomic.gff.gz",
+      "recorded_size_bytes": 9582586,
+      "source_group": "GCF_054855325.1",
+      "species": "Carica_papaya"
+    },
+    {
+      "clade": "viridiplantae",
+      "filename": "GCF_054855325.1_ASM5485532v1_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_054855325.1_ASM5485532v1_protein.faa.gz",
+      "recorded_size_bytes": 6538257,
+      "source_group": "GCF_054855325.1",
+      "species": "Carica_papaya"
+    },
+    {
+      "clade": "mammalia",
+      "filename": "GCF_004115215.2_mOrnAna1.pri.v4_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_004115215.2_mOrnAna1.pri.v4_genomic.gff.gz",
+      "recorded_size_bytes": 14277328,
+      "source_group": "GCF_004115215.2",
+      "species": "Ornithorhynchus_anatinus"
+    },
+    {
+      "clade": "mammalia",
+      "filename": "GCF_004115215.2_mOrnAna1.pri.v4_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_004115215.2_mOrnAna1.pri.v4_protein.faa.gz",
+      "recorded_size_bytes": 9325089,
+      "source_group": "GCF_004115215.2",
+      "species": "Ornithorhynchus_anatinus"
+    },
+    {
+      "clade": "aves",
+      "filename": "GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_genomic.gff.gz",
+      "recorded_size_bytes": 25161571,
+      "source_group": "GCF_016699485.2",
+      "species": "Gallus_gallus"
+    },
+    {
+      "clade": "aves",
+      "filename": "GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_protein.faa.gz",
+      "recorded_size_bytes": 15843242,
+      "source_group": "GCF_016699485.2",
+      "species": "Gallus_gallus"
+    },
+    {
+      "clade": "actinopterygii",
+      "filename": "GCF_960531495.2_fZeuFab8.2_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_960531495.2_fZeuFab8.2_genomic.gff.gz",
+      "recorded_size_bytes": 11594748,
+      "source_group": "GCF_960531495.2",
+      "species": "Zeus_faber"
+    },
+    {
+      "clade": "actinopterygii",
+      "filename": "GCF_960531495.2_fZeuFab8.2_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_960531495.2_fZeuFab8.2_protein.faa.gz",
+      "recorded_size_bytes": 8473165,
+      "source_group": "GCF_960531495.2",
+      "species": "Zeus_faber"
+    }
+  ],
+  "historical_report_notice": "user CLI excerpt warned check_baselines unavailable/no_band but final table showed in_band; do not use band verdict as gold",
+  "output_root": "bench_transfer/v3_prepare_t3_r1",
+  "source_root": "~/临时",
+  "source_scope": "T3",
+  "spec_version": "v3-source-prepare-1"
+}

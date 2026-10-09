@@ -1,7 +1,6 @@
 {
   "T3_complete_pairs_server_recorded": 25,
   "T3_report_species": 27,
-  "actual_real_sources_collected": 0,
   "api_calls": 0,
   "cases_built": 0,
   "client_date": "2026-10-09",
@@ -13,31 +12,25 @@
   "mock_calls": 0,
   "original_source_hash_rescans": 0,
   "pending": [
-    "server_source_preparation_and_transfer",
-    "local_transport_verification",
+    "user_source_split_confirmation",
+    "new_T3_source_transfer",
     "independent_reviewer_assignment"
   ],
-  "private_candidate_design_rows": 18,
-  "proposed_new_source_files": 14,
+  "private_candidate_design_rows": 16,
+  "proposed_new_source_files": 6,
   "proposed_new_source_groups": [
     "GCF_036370985.1",
     "GCF_001040885.1",
-    "GCF_943734735.2",
-    "GCF_054855325.1",
-    "GCF_004115215.2",
-    "GCF_016699485.2",
-    "GCF_960531495.2"
+    "GCF_943734735.2"
   ],
   "pytest": {
     "command": "python -m pytest -q",
-    "elapsed_seconds": 189.08,
-    "passed": 341
+    "elapsed_seconds": 197.33,
+    "passed": 333
   },
   "rules_calls": 0,
-  "server_execution": "pending",
-  "source_split_authorized": true,
   "source_split_frozen": false,
-  "stage": "v3_phase2_source_preparation_package",
-  "status": "local_tools_ready_pending_server_execution",
+  "stage": "v3_phase1_design_audit",
+  "status": "phase1_complete_pending_user_source_and_reviewer_decisions",
   "thresholds": null
 }

@@ -2,17 +2,24 @@
   "all_T3_report_already_rule_validated": true,
   "api_calls": 0,
   "date": "2026-10-09",
-  "files": 6,
+  "files": 14,
+  "historical_three_group_proposal": "history/phase1_three_sources/SOURCE_SPLIT_PROPOSAL.json",
   "local_new_pairs_available": 0,
   "metadata_source": "bench/v1_prepare_t1t3_r3/bundle/t3_locations.json",
   "no_raw_candidate_contents_read": true,
-  "policy": "one smallest recorded complete pair in each of fungi/nematoda/insecta; exclude existing bench T3 accession and T1 species; selection only uses recorded paths/sizes/clade, never model score",
+  "policy": "one representative in each of all seven T3 clades; smallest recorded complete pair per clade after excluding used bench accession and T1 species; user chose seven representatives instead of all25pairs",
   "pretraining_exposure_unknown": true,
-  "recorded_pair_total_bytes": 21444811,
+  "recorded_pair_total_bytes": 122240797,
   "source_groups": [
     "GCF_036370985.1",
     "GCF_001040885.1",
-    "GCF_943734735.2"
+    "GCF_943734735.2",
+    "GCF_054855325.1",
+    "GCF_004115215.2",
+    "GCF_016699485.2",
+    "GCF_960531495.2"
   ],
-  "status": "proposal_only_not_frozen"
+  "source_split_authorized": true,
+  "source_split_frozen": false,
+  "status": "user_confirmed_seven_clades_pending_intake"
 }

@@ -1,17 +1,22 @@
 {
+  "api_calls": 0,
   "client_date": "2026-10-09",
   "files": {
+    ".gitignore": {
+      "sha256": "67a4b8048830db5cd3421d9d94ad30aa5bbcee67d8df8c65917f3987853cf841",
+      "size_bytes": 50
+    },
     "CANDIDATE_REVIEW.csv": {
-      "sha256": "46222f5222725b68e889b8dd19fda7101be690a9018e7a5c0744f40e3b8c6d0b",
-      "size_bytes": 4767
+      "sha256": "465d8cd923a3a6bc0d85ac50fdb294d497d83ba65508d4c17d2f0cfda39f5281",
+      "size_bytes": 5866
     },
     "CHANGELOG.md": {
-      "sha256": "3e20c9a55c889149168f824d78deeca9cb5d06b8d9b78f3d8c93955ab5011827",
-      "size_bytes": 497
+      "sha256": "97b03f8d597c0ad4c481d48274e2e398e193326b5768f67503f55118db52a667",
+      "size_bytes": 1044
     },
     "DESIGN_DRAFT.md": {
-      "sha256": "35220d9952bd2b21023ac5eda6340499a63f79cdc5255159cdbf56201d30c2c3",
-      "size_bytes": 5851
+      "sha256": "5bc29cdc3b0e305a2ff3f9f035ee03aa698a3b1d06212a5ac8002578c82d0c3d",
+      "size_bytes": 6122
     },
     "ERROR_TAXONOMY.md": {
       "sha256": "c5cdc16af00c45534158474182584da09f4e16cd032bc7fd4177d871f96e3f70",
@@ -21,37 +26,49 @@
       "sha256": "f77748ba2535a702003034b573933960b1fb25496938caf2671c69e5afdd1933",
       "size_bytes": 1451
     },
+    "PACKAGE_RECEIPT.json": {
+      "sha256": "869078bb537ae35cf17490becc39f3deb561d63115efe8a3c44c718e2bb0c608",
+      "size_bytes": 922
+    },
     "PHASE1_REPORT.md": {
       "sha256": "3375ce601284b3627b0af97ad320006f2b86f9c99f06aa131fc3fa40ed221faa",
       "size_bytes": 2374
     },
+    "PHASE2_REPORT.md": {
+      "sha256": "13d5b883bd5731b3f8031e3c9dc446333cc8336d6585c6a38f2a9e58fa2e9427",
+      "size_bytes": 2217
+    },
     "README.md": {
-      "sha256": "1dd2624cbfebd9028bbdd9451115c91d75d08e7c7885f4351506280c31f4bbb2",
-      "size_bytes": 1621
+      "sha256": "ea984d1676d8a5d41eb8755a478d826686ea3f2cf8358485c0bab4d628011f2d",
+      "size_bytes": 2169
     },
     "SOURCE_AUDIT.md": {
-      "sha256": "088c86115a5b71eb452bb1dc5a554f6c36825e1473a23d223c011a15d6fff47a",
-      "size_bytes": 3343
+      "sha256": "bd4ec076b821d6fe81269f1cb7cc8c52f56fafa4c2da62a1ca9d9b1dc0c299c4",
+      "size_bytes": 3833
     },
     "SOURCE_INVENTORY.csv": {
       "sha256": "9200297afaaf36612dd9e9e40b29d1c66aff8da84642b6d36f55d0ae895b0da8",
       "size_bytes": 22234
     },
+    "SOURCE_SCOPE_REVISION.md": {
+      "sha256": "707b929d7deb135882ab61b934433978461409767f56a96a251cdb89cc675ff4",
+      "size_bytes": 1863
+    },
     "SOURCE_SPLIT_PROPOSAL.json": {
-      "sha256": "3c01beb0373d5c6929d4ad9d4b2e43d9f44da8642e538807954498ca009017c8",
-      "size_bytes": 676
+      "sha256": "6aa9287bc3539a58bcef1a5517e3a36047c4aaa133e9a8bdea1e419849946463",
+      "size_bytes": 963
     },
     "STAGE_STATUS.json": {
-      "sha256": "ebaf61d849e5a75d4fc08fdf0315d7f094f446cf85507a373133d86ca89588ad",
-      "size_bytes": 931
+      "sha256": "5add6d70650e7d85fe060b8937a37851309eb378d52a1f712fa5ceb6a4df2d60",
+      "size_bytes": 1142
     },
     "T3_CANDIDATES.csv": {
-      "sha256": "2cccdab904c08ffdf3c8306df2d349c342f90b7f9b811fced26342950c2e0bba",
-      "size_bytes": 11796
+      "sha256": "d759ef5d0a967da16469e73a73c67c41e3b35a280ca0e64b251c4ecaabd394cf",
+      "size_bytes": 11918
     },
     "T3_TRANSFER_REQUEST.csv": {
-      "sha256": "1925b82143d5977af17f1ff490978cab4e8310a1425cd1989b5b0d4325bef976",
-      "size_bytes": 1748
+      "sha256": "0ef21a84ccd0bb9f1686bd04e6614cb4ff1258f1abc28554e573e1445d07dd7c",
+      "size_bytes": 3830
     },
     "V2_AUDIT_SUMMARY.json": {
       "sha256": "6267994426bfd4c8827dcb425a2c66baedfb8da67e4ea30bf18dceb7a08ee795",
@@ -60,10 +77,93 @@
     "V2_OBSERVATION_AUDIT.csv": {
       "sha256": "e8478be8e903bfb9685a09171ad64ff41bcd6d174ce095d0ec1cc8a573ac230f",
       "size_bytes": 207306
+    },
+    "history/phase1_three_sources/AUDIT_MANIFEST.json": {
+      "sha256": "cc1312954b51821f0010908932092e22ac989678c1823e94c48bb2a92c166e7a",
+      "size_bytes": 2570
+    },
+    "history/phase1_three_sources/CANDIDATE_REVIEW.csv": {
+      "sha256": "46222f5222725b68e889b8dd19fda7101be690a9018e7a5c0744f40e3b8c6d0b",
+      "size_bytes": 4767
+    },
+    "history/phase1_three_sources/CHANGELOG.md": {
+      "sha256": "3e20c9a55c889149168f824d78deeca9cb5d06b8d9b78f3d8c93955ab5011827",
+      "size_bytes": 497
+    },
+    "history/phase1_three_sources/DESIGN_DRAFT.md": {
+      "sha256": "35220d9952bd2b21023ac5eda6340499a63f79cdc5255159cdbf56201d30c2c3",
+      "size_bytes": 5851
+    },
+    "history/phase1_three_sources/ERROR_TAXONOMY.md": {
+      "sha256": "c5cdc16af00c45534158474182584da09f4e16cd032bc7fd4177d871f96e3f70",
+      "size_bytes": 4254
+    },
+    "history/phase1_three_sources/INDEPENDENT_REVIEW_PROTOCOL.md": {
+      "sha256": "f77748ba2535a702003034b573933960b1fb25496938caf2671c69e5afdd1933",
+      "size_bytes": 1451
+    },
+    "history/phase1_three_sources/PHASE1_REPORT.md": {
+      "sha256": "3375ce601284b3627b0af97ad320006f2b86f9c99f06aa131fc3fa40ed221faa",
+      "size_bytes": 2374
+    },
+    "history/phase1_three_sources/README.md": {
+      "sha256": "1dd2624cbfebd9028bbdd9451115c91d75d08e7c7885f4351506280c31f4bbb2",
+      "size_bytes": 1621
+    },
+    "history/phase1_three_sources/SOURCE_AUDIT.md": {
+      "sha256": "088c86115a5b71eb452bb1dc5a554f6c36825e1473a23d223c011a15d6fff47a",
+      "size_bytes": 3343
+    },
+    "history/phase1_three_sources/SOURCE_INVENTORY.csv": {
+      "sha256": "9200297afaaf36612dd9e9e40b29d1c66aff8da84642b6d36f55d0ae895b0da8",
+      "size_bytes": 22234
+    },
+    "history/phase1_three_sources/SOURCE_SPLIT_PROPOSAL.json": {
+      "sha256": "3c01beb0373d5c6929d4ad9d4b2e43d9f44da8642e538807954498ca009017c8",
+      "size_bytes": 676
+    },
+    "history/phase1_three_sources/STAGE_STATUS.json": {
+      "sha256": "ebaf61d849e5a75d4fc08fdf0315d7f094f446cf85507a373133d86ca89588ad",
+      "size_bytes": 931
+    },
+    "history/phase1_three_sources/T3_CANDIDATES.csv": {
+      "sha256": "2cccdab904c08ffdf3c8306df2d349c342f90b7f9b811fced26342950c2e0bba",
+      "size_bytes": 11796
+    },
+    "history/phase1_three_sources/T3_TRANSFER_REQUEST.csv": {
+      "sha256": "1925b82143d5977af17f1ff490978cab4e8310a1425cd1989b5b0d4325bef976",
+      "size_bytes": 1748
+    },
+    "history/phase1_three_sources/V2_AUDIT_SUMMARY.json": {
+      "sha256": "6267994426bfd4c8827dcb425a2c66baedfb8da67e4ea30bf18dceb7a08ee795",
+      "size_bytes": 3494
+    },
+    "history/phase1_three_sources/V2_OBSERVATION_AUDIT.csv": {
+      "sha256": "e8478be8e903bfb9685a09171ad64ff41bcd6d174ce095d0ec1cc8a573ac230f",
+      "size_bytes": 207306
+    },
+    "server/README.md": {
+      "sha256": "9492c6245991657ea38dbf3b0985d1a0e4e75fb964a17ebfa72f11090b1d7265",
+      "size_bytes": 2630
+    },
+    "server/prepare_config.json": {
+      "sha256": "7ad424aa84a4254050834c72d1e2623dc1249406362135ad28b9dd9217ffef58",
+      "size_bytes": 5232
+    },
+    "server/prepare_sources.py": {
+      "sha256": "edb1fd1f146ddd30ecbf425d8b0d97c63633c647e4cb4f54839925f9990304c4",
+      "size_bytes": 11671
+    },
+    "tests/test_source_intake.py": {
+      "sha256": "7994e2baa939cbdb4c6921e7d1a5cf0f6d91083ed7dcd3a4d68cbab0602f4f77",
+      "size_bytes": 5969
+    },
+    "verify_sources.py": {
+      "sha256": "6e2f38008dd8ba9055e3fbde211bf1a8a52b46d2ffabd4d95af28f3e0dca0fba",
+      "size_bytes": 5581
     }
   },
-  "kind": "design_document_inventory_not_answer_freeze",
-  "original_source_hash_policy": "reuse recorded STATUS/MANIFEST values; no original-source hash rescan",
-  "source_report": "bench/v2/reports/v2-run-10_four-models_human-reviewed/results.json",
-  "source_report_sha256": "b93e78aadfb5b078f6be1188d3c48c317ae68f2aaf65612cee13b9853b81fc0d"
+  "kind": "stage2_source_preparation_document_and_tool_inventory_not_answer_freeze",
+  "real_server_execution": "pending",
+  "source_original_hash_rescans": 0
 }

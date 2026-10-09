@@ -1,0 +1,22 @@
+{
+  "allowed_package_members": {
+    "v3/server/README.md": "9492c6245991657ea38dbf3b0985d1a0e4e75fb964a17ebfa72f11090b1d7265",
+    "v3/server/prepare_config.json": "7ad424aa84a4254050834c72d1e2623dc1249406362135ad28b9dd9217ffef58",
+    "v3/server/prepare_sources.py": "edb1fd1f146ddd30ecbf425d8b0d97c63633c647e4cb4f54839925f9990304c4"
+  },
+  "answers_in_package": false,
+  "api_calls": 0,
+  "client_date": "2026-10-09",
+  "credentials_in_package": false,
+  "deterministic_package_rebuild": true,
+  "package_path": "bench/v3/source_preparation_package.zip",
+  "package_sha256": "3d7c02d2cdb1bb93bd178460665ce4d495e18c5f77e5099580958c6ee05ecb52",
+  "package_size_bytes": 6719,
+  "python39_syntax_check": "pass; actual Linux execution pending",
+  "real_sources_received": 0,
+  "recorded_source_bytes": 122240797,
+  "required_source_files": 14,
+  "server_execution": "pending",
+  "source_groups": 7,
+  "source_scope": "T3"
+}

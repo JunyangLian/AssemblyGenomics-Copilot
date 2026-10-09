@@ -1,0 +1,18 @@
+{
+  "all_T3_report_already_rule_validated": true,
+  "api_calls": 0,
+  "date": "2026-10-09",
+  "files": 6,
+  "local_new_pairs_available": 0,
+  "metadata_source": "bench/v1_prepare_t1t3_r3/bundle/t3_locations.json",
+  "no_raw_candidate_contents_read": true,
+  "policy": "one smallest recorded complete pair in each of fungi/nematoda/insecta; exclude existing bench T3 accession and T1 species; selection only uses recorded paths/sizes/clade, never model score",
+  "pretraining_exposure_unknown": true,
+  "recorded_pair_total_bytes": 21444811,
+  "source_groups": [
+    "GCF_036370985.1",
+    "GCF_001040885.1",
+    "GCF_943734735.2"
+  ],
+  "status": "proposal_only_not_frozen"
+}
