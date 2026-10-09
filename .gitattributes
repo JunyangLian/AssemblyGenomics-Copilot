@@ -1,0 +1,4 @@
+# Keep publication entry documents stable across Windows and Linux checkouts.
+/README.md text eol=lf
+/ASSEMBLYGENOMICS_SKILL.md text eol=lf
+/ASSEMBLYGENOMICS_BENCH.md text eol=lf

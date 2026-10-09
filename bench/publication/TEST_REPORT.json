@@ -1,0 +1,19 @@
+{
+  "client_date": "2026-10-09",
+  "pytest": {
+    "command": "python -m pytest -q",
+    "passed": 347,
+    "elapsed_seconds": 208.18
+  },
+  "entry_checks": [
+    {"command": "python bench/freeze.py", "exit_code": 0},
+    {"command": "python bench/v2/freeze.py", "exit_code": 0},
+    {"command": "python bench/v3/validate_development.py", "exit_code": 0}
+  ],
+  "startup_local_links": "verified",
+  "frozen_files_changed": false,
+  "new_model_api_calls": 0,
+  "source_original_hash_rescans": 0,
+  "git_push_dry_run": "passed",
+  "publication_branches": ["main", "codex/assemblygenomics-skill", "codex/assemblygenomics-bench"]
+}
