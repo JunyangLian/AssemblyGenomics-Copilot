@@ -1,0 +1,36 @@
+{
+  "actual_inference_tokens": 0,
+  "cost": 0,
+  "excluded_from_parity": [
+    "HTTP attempts",
+    "token usage",
+    "timing",
+    "retired-model audit",
+    "global original-roster H1 status"
+  ],
+  "group_case_checks": 216,
+  "historical_cases": 24,
+  "historical_status_counts": {
+    "api_error": 55,
+    "interrupted": 2,
+    "not_covered": 21,
+    "ok": 530,
+    "parse_error": 40
+  },
+  "inspect_ai_version": "0.3.277",
+  "inspect_log": "logs\\2026-10-09T13-15-44-00-00_assemblygenomics-v2-offline-replay_eqk9jLYeY6WhtyCMbNp87d.json",
+  "limitations": [
+    "replays archived final parsed outputs, not raw HTTP responses",
+    "aggregation reuses unchanged legacy functions; not an independent scoring implementation",
+    "no new model evidence or biological validation"
+  ],
+  "majority_policy": "legacy v2: verdict and root independently need 2/3",
+  "mixed_pair_panels_checked": 108,
+  "per_observation_scorer_checked": 648,
+  "provider_calls": 0,
+  "reference_report": "bench/v2/reports/v2-run-10_four-models_human-reviewed/results.json",
+  "reference_report_sha256": "b93e78aadfb5b078f6be1188d3c48c317ae68f2aaf65612cee13b9853b81fc0d",
+  "replayed_observations": 648,
+  "status": "pass",
+  "stratified_panels_checked": 810
+}

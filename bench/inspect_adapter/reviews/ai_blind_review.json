@@ -1,0 +1,181 @@
+{
+  "review_kind": "ai_blind_review",
+  "reviewer": "Codex subagent; same model family; context isolated, filesystem access not enforced",
+  "review_date": "2026-10-09",
+  "participated_in_development": false,
+  "scope": {
+    "archive": "bench/v3/development_blind_review.zip",
+    "read_materials": [
+      "REVIEW_INSTRUCTIONS.md",
+      "ANSWER_SHEET.csv",
+      "model_output.schema.json",
+      "packets/R001/task.md",
+      "packets/R001/artifacts/*",
+      "packets/R002/task.md",
+      "packets/R002/artifacts/*",
+      "packets/R003/task.md",
+      "packets/R003/artifacts/*",
+      "packets/R004/task.md",
+      "packets/R004/artifacts/*"
+    ],
+    "method": "Python zipfile direct reads; independently recomputed FASTA IDs, lengths, interval character counts, annotation ID joins and coverage, and hints byte/feature counts.",
+    "schema_usage": "The seven model-output fields in each answer use the supplied schema. rationale and uncertainty are review metadata, not model-output schema fields."
+  },
+  "limitations": [
+    "This is an AI review by a Codex subagent of the same model family, not a human reviewer or an independent domain expert.",
+    "Context isolation is procedural: only the delegated review instructions and permitted packet materials were used. Filesystem access was not restricted to the archive; default executor startup failed, so authorized commands ran with require_escalated.",
+    "No repository source, other questions, expected.json, meta.json, mapping, prior reports, parent analysis, API keys, external model APIs, or external sources were read.",
+    "Conclusions apply only to the declared windows, 32-protein subset, or input file; they do not assess whole-genome quality or species-wide baselines.",
+    "Upstream commands, databases and consumption logs are absent. Historical execution and exact upstream causes cannot be established where those records are needed."
+  ],
+  "answers": {
+    "R001": {
+      "verdict": "pass",
+      "observed_defect": "none",
+      "root_cause": "none",
+      "evidence": [
+        {
+          "pointer": "task.md:5",
+          "observation": "Both FASTA files are the same 1..4096 window; reference.fa is for ID/length positioning, and its case/N encoding need not satisfy delivery mode."
+        },
+        {
+          "pointer": "task.md:7",
+          "observation": "The consumer requires lowercase acgt with base information at the intervals in regions.tsv; N outside these intervals may remain."
+        },
+        {
+          "pointer": "artifacts/regions.tsv:2",
+          "observation": "NC_003070.9 interval 1..115 is declared."
+        },
+        {
+          "pointer": "artifacts/regions.tsv:3",
+          "observation": "NC_003070.9 interval 1066..1097 is declared."
+        },
+        {
+          "pointer": "artifacts/regions.tsv:4",
+          "observation": "NC_003070.9 interval 1155..1187 is declared."
+        },
+        {
+          "pointer": "artifacts/sequence.fa:NC_003070.9",
+          "observation": "Recomputed length is 4096; the three declared intervals contain respectively 115, 32, and 33 lowercase acgt bases and zero N; the lowercase runs match all three intervals exactly."
+        },
+        {
+          "pointer": "artifacts/reference.fa:NC_003070.9",
+          "observation": "Recomputed ID is NC_003070.9 and length is 4096, matching sequence.fa."
+        }
+      ],
+      "action": "Allow this window to proceed under the stated consumer contract; retain the ID/length and interval checks.",
+      "proposes_threshold_relaxation": false,
+      "proposes_skipping_check": false,
+      "rationale": "The generated delivery satisfies the declared ID/length and lowercase-interval requirements. N in the locating reference is not a delivery defect under its expressly limited role.",
+      "uncertainty": "Low uncertainty for the stated contract. No independent original-source checksum is supplied, so exact nucleotide provenance beyond the visible interval content is not separately established; genome-wide masking, assembly completeness and library versions are outside scope."
+    },
+    "R002": {
+      "verdict": "rollback",
+      "observed_defect": "low_functional_coverage",
+      "root_cause": "insufficient_evidence",
+      "evidence": [
+        {
+          "pointer": "task.md:5",
+          "observation": "The complete review set contains 32 proteins; exact first-token query joining and one row per query are required; any 1 in the seven -Annotated columns counts as annotated; required coverage is at least 80%."
+        },
+        {
+          "pointer": "task.md:7",
+          "observation": "The object is an already generated table; no previously accepted version, database, commands, search output or execution log is supplied."
+        },
+        {
+          "pointer": "artifacts/query.faa:g1.t1",
+          "observation": "The FASTA has 32 distinct first-token IDs from g1.t1 through g32.t1; all exactly match one row in annotation.tsv."
+        },
+        {
+          "pointer": "artifacts/annotation.tsv:g1.t1",
+          "observation": "g1.t1 has 1 in all seven -Annotated columns."
+        },
+        {
+          "pointer": "artifacts/annotation.tsv:g2.t1",
+          "observation": "g2.t1 has 1 in all seven -Annotated columns; all remaining 30 query rows have 0 in every -Annotated column."
+        },
+        {
+          "pointer": "artifacts/annotation_metrics.json:coverage_percent",
+          "observation": "Reported 6.25% agrees with independent recomputation: 2 annotated proteins / 32 complete queries = 6.25%, below the 80% contract."
+        }
+      ],
+      "action": "Withdraw the current table from downstream summary. Obtain the annotation commands, database/version and search/parser logs, trace the unannotated records, repair or rerun as supported by that evidence, then recheck exact ID joins, one row per query and coverage of at least 80% before replacement delivery. No accepted prior table is available to restore.",
+      "proposes_threshold_relaxation": false,
+      "proposes_skipping_check": false,
+      "rationale": "The generated table fails a concrete delivery threshold even though ID joins and row cardinality pass. rollback means withdrawing and repairing/rebuilding this unreliable delivery, not claiming that an accepted older version exists. Low coverage alone does not establish low upstream annotation quality or a specific command/database error.",
+      "uncertainty": "The coverage failure is certain. Its upstream cause is undetermined: true absence of hits, failed searches, filtering or output parsing are possible, but none is proven by the provided materials. Those execution records are needed before assigning a specific cause."
+    },
+    "R003": {
+      "verdict": "block",
+      "observed_defect": "empty_hints",
+      "root_cause": "insufficient_evidence",
+      "evidence": [
+        {
+          "pointer": "task.md:5",
+          "observation": "This input consumer must read at least one intron feature from hints.gff before starting; undeclared alternative evidence channels are disallowed."
+        },
+        {
+          "pointer": "artifacts/hints.gff:bytes",
+          "observation": "Direct ZIP member read yields zero bytes and no feature or intron records."
+        },
+        {
+          "pointer": "artifacts/input_metrics.json:hints_bytes",
+          "observation": "hints_bytes is 0, agreeing with the direct file read."
+        },
+        {
+          "pointer": "artifacts/input_metrics.json:intron_rows",
+          "observation": "intron_rows is 0 and feature_rows is 0, so the mandatory minimum intron evidence is absent."
+        },
+        {
+          "pointer": "task.md:7",
+          "observation": "No executed job, consumption log or completed model delivery is supplied."
+        }
+      ],
+      "action": "Do not start with the current input. Generate or supply a valid hints.gff containing at least one consumer-readable intron feature, then verify this required input before starting; investigate the evidence-generation/export step if the expected hints are missing.",
+      "proposes_threshold_relaxation": false,
+      "proposes_skipping_check": false,
+      "rationale": "An empty required input fails the declared startup contract. Since this is preparation rather than a completed delivery, block is appropriate. There is no basis to infer that a past annotation job ignored RNA evidence or to roll back an unseen result.",
+      "uncertainty": "The current missing-input condition is certain. Why the file is empty and whether any historical workflow used RNA remain unconfirmed; evidence-generation records and actual job consumption logs would be needed for those claims."
+    },
+    "R004": {
+      "verdict": "rollback",
+      "observed_defect": "masking_mode_incompatible",
+      "root_cause": "masking_mode_error",
+      "evidence": [
+        {
+          "pointer": "task.md:5",
+          "observation": "sequence.fa is the already generated delivery; reference.fa is only an ID/length locating file and not an accepted prior delivery."
+        },
+        {
+          "pointer": "task.md:7",
+          "observation": "The declared regions must retain lowercase acgt and base information; replacing these intervals with N is forbidden."
+        },
+        {
+          "pointer": "artifacts/regions.tsv:2",
+          "observation": "Required lowercase interval is NC_003070.9:1..115."
+        },
+        {
+          "pointer": "artifacts/regions.tsv:3",
+          "observation": "Required lowercase interval is NC_003070.9:1066..1097."
+        },
+        {
+          "pointer": "artifacts/regions.tsv:4",
+          "observation": "Required lowercase interval is NC_003070.9:1155..1187."
+        },
+        {
+          "pointer": "artifacts/sequence.fa:NC_003070.9",
+          "observation": "Independent counts show the three required intervals contain respectively 115, 32 and 33 N, zero lowercase acgt: all 180 required positions lost the required base representation. The delivered record length is still 4096."
+        },
+        {
+          "pointer": "artifacts/reference.fa:NC_003070.9",
+          "observation": "Reference ID NC_003070.9 and length 4096 match the delivery; matching ID/length does not satisfy the separate lowercase/base-retention contract."
+        }
+      ],
+      "action": "Withdraw the current incompatible sequence delivery. Rebuild from a source preserving the original acgt bases using the required lowercase representation, then check ID/length and every declared closed interval before reissuing. Do not treat the locating reference as an accepted delivery version.",
+      "proposes_threshold_relaxation": false,
+      "proposes_skipping_check": false,
+      "rationale": "The generated sequence demonstrably uses N in every interval where lowercase bases are required, so its masking representation violates the consumer contract. The observed mode error supports masking_mode_error at the delivery level; a specific upstream tool invocation is not established.",
+      "uncertainty": "Low uncertainty about the delivery defect and required withdrawal. The responsible command, parameter, script or earlier transformation cannot be identified without generation records; the visible reference role does not establish an accepted rollback target."
+    }
+  }
+}

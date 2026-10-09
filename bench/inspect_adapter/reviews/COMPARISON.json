@@ -1,0 +1,55 @@
+{
+  "review_kind": "ai_blind_review_comparison_after_review",
+  "review_sha256": "c07992867bc1bc72dcb9321c6a8789957b0851e9f4e626390bad19476363885a",
+  "formal_human_or_expert_validation": false,
+  "expected_files_modified": false,
+  "cases_frozen": false,
+  "rows": [
+    {
+      "review_id": "R001",
+      "case_id": "dev_003",
+      "ai_decision": {
+        "verdict": "pass",
+        "observed_defect": "none",
+        "root_cause": "none"
+      },
+      "agrees_with_proposed_decision": true,
+      "expected_sha256": "f598ee8adcbd1e2441390396712e43456510dda5148cc9d01eaae85a9b99bf16"
+    },
+    {
+      "review_id": "R002",
+      "case_id": "dev_001",
+      "ai_decision": {
+        "verdict": "rollback",
+        "observed_defect": "low_functional_coverage",
+        "root_cause": "insufficient_evidence"
+      },
+      "agrees_with_proposed_decision": true,
+      "expected_sha256": "00ec01611e01b6a752b0320a27b1fa0d4ba8e0962e66b44ed9331b4b83317066"
+    },
+    {
+      "review_id": "R003",
+      "case_id": "dev_002",
+      "ai_decision": {
+        "verdict": "block",
+        "observed_defect": "empty_hints",
+        "root_cause": "insufficient_evidence"
+      },
+      "agrees_with_proposed_decision": true,
+      "expected_sha256": "48b1213494927c96b0dadd1e11506b8997c461780a60ae2daae21d4af139a040"
+    },
+    {
+      "review_id": "R004",
+      "case_id": "dev_004",
+      "ai_decision": {
+        "verdict": "rollback",
+        "observed_defect": "masking_mode_incompatible",
+        "root_cause": "masking_mode_error"
+      },
+      "agrees_with_proposed_decision": true,
+      "expected_sha256": "da783b23f418efead24dfe5994e1d67993821070c9a3a6254431c25e3b8ffa30"
+    }
+  ],
+  "limitation": "Four development questions; same-model context-isolated reviewer; not an independent test result.",
+  "review_packet_sha256": "36a5eb8ea517c3ad00f2063ed949986f5b3ce3b09265f4f970741b472b23a53d"
+}
