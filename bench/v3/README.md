@@ -1,6 +1,6 @@
 # bench v3：设计与来源隔离阶段
 
-2026-10-09。用户批准的 T3 七类群来源已回传并验收：14 个原始 GFF/FAA gzip 文件，共 116.58 MiB。目前有 48 个本地来源角色、七套未用于 bench 构题的新 T3 配对，18 项私有候选设计。尚无 v3 cases、expected、FROZEN、C3、schema、harness、mock 或 API 记录；本目录设计/审计材料不能成为模型题目输入。
+2026-10-09。用户批准的 T3 七类群来源已回传并验收：14 个原始 GFF/FAA gzip 文件，共 116.58 MiB。目前有 48 个本地来源角色、七套未用于 bench 构题的新 T3 配对，18 项私有候选设计。已起草 v3 输出/答案/元数据 schema 和证据评分规格，尚无 v3 cases、expected 实例、FROZEN、C3、harness、mock 或 API 记录；本目录设计/审计材料不能成为模型题目输入。
 
 | 文件 | 用途 |
 |---|---|
@@ -17,8 +17,12 @@
 
 本阶段不改现有 scripts、knowledge、references、schemas、sop、templates 或 v1/v2 冻结内容。只用已验收 T1 三物种与 T3；未下载或重跑原分析。本地完成一次新运输包核验，没有重复扫描其它原始源。
 
-## 当前阶段：来源验收完成，待规格与独立审题
+## 上一阶段：来源验收完成
 
 来源包位于 incoming/v3_prepare_t3_r1/bundle（本地保留，不提交大文件）；实际 Linux Python 3.9.23 标准库收集已完成，版本/回执保留在包中。SOURCE_RECEIPT 的运输核验与格式检查不代表正常题 gold，历史 no_band / in_band 矛盾仍不作为答案。
 
 七个 accession 整体拟保留为测试来源，同源变体不得跨开发/测试。下一阶段先确定消费契约、输出 schema、证据评分和 C3 通用指导，冻结相应规格后构造审核材料。最终题数、门槛、标准答案、来源角色和新 API 预算尚未冻结；需独立审题与用户确认。当前阶段停下。
+
+## 当前推进：规格审核稿 1
+
+CASE_CONTRACT、EVIDENCE_SCORING、三个 schemas、PREREGISTRATION 与 BUILD_PLAN 明确观察/根因分离、完整可接受判定组合、证据支持评分、题级重复及失败处理。SPEC_REVIEW 记录待审事项；目标暂为 28 题，未构题或确认最终题数。门槛留空由用户填写，C3/暴露/来源角色尚未冻结。本阶段汇报见 SPECIFICATION_REPORT.md。下一阶段先构造开发材料，完善通用指导并锁定后才选择封存记录；本阶段停在规格审核。

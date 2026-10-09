@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "root_identifiability": {
+            "const": "insufficient_evidence"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "acceptable_decisions": {
+            "items": {
+              "properties": {
+                "root_cause": {
+                  "const": "insufficient_evidence"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "root_identifiability": {
+            "const": "no_defect"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "acceptable_decisions": {
+            "items": {
+              "properties": {
+                "observed_defect": {
+                  "const": "none"
+                },
+                "root_cause": {
+                  "const": "none"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "root_identifiability": {
+            "const": "confirmed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "acceptable_decisions": {
+            "items": {
+              "properties": {
+                "root_cause": {
+                  "not": {
+                    "enum": [
+                      "none",
+                      "insufficient_evidence"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "acceptable_decisions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "observed_defect": {
+            "enum": [
+              "none",
+              "gff_faa_link_missing",
+              "gff_reference_unresolved",
+              "gff_hierarchy_inconsistent",
+              "seqid_connection_missing",
+              "masking_mode_incompatible",
+              "empty_hints",
+              "gene_count_drop",
+              "low_functional_coverage",
+              "insufficient_material"
+            ],
+            "type": "string"
+          },
+          "root_cause": {
+            "enum": [
+              "id_mismatch",
+              "seqid_mismatch",
+              "gff_hierarchy_error",
+              "masking_mode_error",
+              "evidence_not_used",
+              "gene_loss",
+              "low_annotation_quality",
+              "insufficient_evidence",
+              "none"
+            ],
+            "type": "string"
+          },
+          "verdict": {
+            "enum": [
+              "pass",
+              "warn",
+              "rollback",
+              "block"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "verdict",
+          "observed_defect",
+          "root_cause"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "case_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "independent_review_status": {
+      "enum": [
+        "pending",
+        "completed",
+        "internal_review_only"
+      ],
+      "type": "string"
+    },
+    "key_evidence": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptable_pointers": {
+            "items": {
+              "description": "只指向模型可见 task.md 或 artifacts 内相对文件，冒号后为字段、记录键或一基行号。实际路径、存在性和定位有效性需运行层校验。",
+              "pattern": "^(?:task\\.md|artifacts/(?![^:]*\\.\\.)(?![^:]*\\\\)[A-Za-z0-9_.\\-/]+):[^\\r\\n]+$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "claim_id": {
+            "pattern": "^E[0-9]{2,}$",
+            "type": "string"
+          },
+          "required_for_joint": {
+            "type": "boolean"
+          },
+          "review_note": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "statement": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "verification_method": {
+            "enum": [
+              "exact_value",
+              "record_connection",
+              "scope_or_role",
+              "visible_absence"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "claim_id",
+          "statement",
+          "acceptable_pointers",
+          "verification_method",
+          "required_for_joint",
+          "review_note"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "pair_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rationale": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "root_identifiability": {
+      "enum": [
+        "confirmed",
+        "insufficient_evidence",
+        "no_defect"
+      ],
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "v3-spec-draft-1"
+    },
+    "user_approved": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "acceptable_decisions",
+    "key_evidence",
+    "root_identifiability",
+    "rationale",
+    "pair_id",
+    "independent_review_status",
+    "user_approved"
+  ],
+  "title": "AssemblyGenomics bench v3 expected — private review draft 1",
+  "type": "object"
+}

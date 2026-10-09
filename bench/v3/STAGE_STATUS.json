@@ -13,11 +13,13 @@
   "mock_calls": 0,
   "original_source_hash_rescans": 0,
   "pending": [
-    "user_confirmation_of_intake_phase",
-    "case_specification_and_source_split_freeze",
-    "independent_reviewer_assignment"
+    "user_schema_and_rubric_review",
+    "independent_reviewer_assignment",
+    "development_case_review_and_C3_lock",
+    "final_case_ids_and_thresholds"
   ],
   "private_candidate_design_rows": 18,
+  "proposed_case_count": 28,
   "proposed_new_source_files": 14,
   "proposed_new_source_groups": [
     "GCF_036370985.1",
@@ -30,15 +32,22 @@
   ],
   "pytest": {
     "command": "python -m pytest -q",
-    "elapsed_seconds": 212.09,
+    "elapsed_seconds": 194.12,
     "passed": 341
   },
   "rules_calls": 0,
+  "schema_validation": {
+    "dialect": "Draft 2020-12",
+    "schemas": 3,
+    "toy_positive_negative_checks": 24
+  },
   "server_execution": "complete_received_and_verified",
   "source_receipt": "SOURCE_RECEIPT.json",
   "source_split_authorized": true,
   "source_split_frozen": false,
-  "stage": "v3_phase2_source_intake",
-  "status": "sources_verified_pending_spec_and_independent_review",
+  "spec_version": "v3-spec-draft-1",
+  "specification_frozen": false,
+  "stage": "v3_phase3_specification_draft",
+  "status": "specification_ready_pending_user_review",
   "thresholds": null
 }

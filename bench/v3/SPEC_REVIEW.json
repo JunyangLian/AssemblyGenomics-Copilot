@@ -1,0 +1,37 @@
+{
+  "answer_freeze": false,
+  "api_calls": 0,
+  "cases_built": 0,
+  "documents": [
+    "CASE_CONTRACT.md",
+    "EVIDENCE_SCORING.md",
+    "PREREGISTRATION.md",
+    "BUILD_PLAN.md"
+  ],
+  "final_case_count": null,
+  "proposed_case_count": 28,
+  "review_snapshot_sha256_not_freeze": {
+    "BUILD_PLAN.md": "25be13c7a8b1d5657cc2b6069b47122fa37230971df4b699d9f99efaeaa5dba9",
+    "CASE_CONTRACT.md": "13a988c6e41c23a825ff510deee91cae880d2bf9cb93e916dd894929f54c7d1e",
+    "EVIDENCE_SCORING.md": "81f946a3da7907beb055d800360e86215f18ea43d2f2af9086685ee08f7f7648",
+    "PREREGISTRATION.md": "b8c41615bf723cb1079e82739d81fd0918ebbc96207004c6c0d5553adc4b9c26",
+    "schemas/case_meta.schema.json": "31853f89795bf3a4e031aa7aac7db69e54cc9867f593ab520345f281a2312edd",
+    "schemas/expected.schema.json": "14d52838e4a69ab314e818ceb89022cf2b36d7ddaaba02ab80030fdefd730ff0",
+    "schemas/model_output.schema.json": "2430a0f4bbb8f865332315304b67c09b602c068fef0942ed4979fe0af498de1b"
+  },
+  "schemas": [
+    "schemas/model_output.schema.json",
+    "schemas/expected.schema.json",
+    "schemas/case_meta.schema.json"
+  ],
+  "source_split_frozen": false,
+  "status": "pending_user_review",
+  "unresolved": [
+    "user_schema_and_rubric_review",
+    "independent_reviewer_assignment",
+    "C3_content_and_exposure_labels",
+    "final_case_ids_and_thresholds",
+    "models_L_and_new_budget"
+  ],
+  "version": "v3-spec-draft-1"
+}
