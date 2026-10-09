@@ -1,0 +1,131 @@
+{
+  "blocked_private_probes": 4,
+  "cost": 0,
+  "inspect_log": "logs/2026-10-09T13-42-30-00-00_assemblygenomics-readonly-tools-mock_J3wmmkpHYg8MdDUeqBvty5.json",
+  "isolation": "immutable public bytes, not an OS/container sandbox",
+  "mode": "scripted_mock_tool_smoke",
+  "packets": 4,
+  "per_packet": {
+    "dev_001": {
+      "blocked_private_probes": 1,
+      "successful_calls": 8,
+      "tool_calls": 9
+    },
+    "dev_002": {
+      "blocked_private_probes": 1,
+      "successful_calls": 5,
+      "tool_calls": 6
+    },
+    "dev_003": {
+      "blocked_private_probes": 1,
+      "successful_calls": 10,
+      "tool_calls": 11
+    },
+    "dev_004": {
+      "blocked_private_probes": 1,
+      "successful_calls": 10,
+      "tool_calls": 11
+    }
+  },
+  "provider_calls": 0,
+  "public_files": {
+    "dev_001": [
+      {
+        "bytes": 1140,
+        "path": "artifacts/annotation.tsv",
+        "sha256": "dc00d3462729100aeff8d138e273d45b0ed2f8c497bf4460188a1c2be4ac3347"
+      },
+      {
+        "bytes": 126,
+        "path": "artifacts/annotation_metrics.json",
+        "sha256": "c99c4e391d16eea3ef40f4ac2c9855be370f58ef270aaad92ec5cb9cd012cf31"
+      },
+      {
+        "bytes": 11620,
+        "path": "artifacts/query.faa",
+        "sha256": "368ec849d406deba266a0ca7b5aa6197fe1bf1ea01df2fa2d88d382aad7b5c64"
+      },
+      {
+        "bytes": 920,
+        "path": "task.md",
+        "sha256": "faabfe22923b03c66c27b82487063f6581b21411e3fc274f979d47964d75fbc3"
+      }
+    ],
+    "dev_002": [
+      {
+        "bytes": 0,
+        "path": "artifacts/hints.gff",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 64,
+        "path": "artifacts/input_metrics.json",
+        "sha256": "efd74464e80b4f2e3eea62e312fd9f5ec90a35b7eb475b49aca31c4aaf869459"
+      },
+      {
+        "bytes": 675,
+        "path": "task.md",
+        "sha256": "8bd1d22fdeb313dda1a4e0afa8140bb2f4a9593df9dfdb6b79138766ad096d21"
+      }
+    ],
+    "dev_003": [
+      {
+        "bytes": 4178,
+        "path": "artifacts/reference.fa",
+        "sha256": "a1b88e09955a97d1ed54bd6abceb3c21ba19307381e834b950023ae0f0375274"
+      },
+      {
+        "bytes": 78,
+        "path": "artifacts/regions.tsv",
+        "sha256": "5a5d1ea7f5740ec7e644aacf1f5fb0a6992c6a70f2c390a7a964f3301397bfe2"
+      },
+      {
+        "bytes": 4178,
+        "path": "artifacts/sequence.fa",
+        "sha256": "2d60663ccaba478fcee6c0a4c228a6bf5e94e9a874b57fbdf020963f91f20408"
+      },
+      {
+        "bytes": 95,
+        "path": "artifacts/sequence_metrics.json",
+        "sha256": "69ccd6ea2a1277e11e84cd5a9d30daeadba089435766f08a1c10ade76cee028e"
+      },
+      {
+        "bytes": 860,
+        "path": "task.md",
+        "sha256": "c7ba2af9201ed6d8ddcef1192b7f52de1df2a7fd9412309b12d9cdf6009e544a"
+      }
+    ],
+    "dev_004": [
+      {
+        "bytes": 4178,
+        "path": "artifacts/reference.fa",
+        "sha256": "2d60663ccaba478fcee6c0a4c228a6bf5e94e9a874b57fbdf020963f91f20408"
+      },
+      {
+        "bytes": 78,
+        "path": "artifacts/regions.tsv",
+        "sha256": "5a5d1ea7f5740ec7e644aacf1f5fb0a6992c6a70f2c390a7a964f3301397bfe2"
+      },
+      {
+        "bytes": 4178,
+        "path": "artifacts/sequence.fa",
+        "sha256": "a1b88e09955a97d1ed54bd6abceb3c21ba19307381e834b950023ae0f0375274"
+      },
+      {
+        "bytes": 95,
+        "path": "artifacts/sequence_metrics.json",
+        "sha256": "69ccd6ea2a1277e11e84cd5a9d30daeadba089435766f08a1c10ade76cee028e"
+      },
+      {
+        "bytes": 860,
+        "path": "task.md",
+        "sha256": "c7ba2af9201ed6d8ddcef1192b7f52de1df2a7fd9412309b12d9cdf6009e544a"
+      }
+    ]
+  },
+  "qc_accuracy_measured": false,
+  "standard_answers_loaded": false,
+  "status": "pass",
+  "tool_calls": 37,
+  "usage_note": "Inspect mock usage is synthetic; no paid inference or real-provider token estimate."
+}
