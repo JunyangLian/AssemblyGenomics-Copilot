@@ -1,0 +1,454 @@
+{
+  "analysis_runs": 0,
+  "api_calls": 0,
+  "bundle_path": "D:\\1_yanjiusheng\\GenomeAssembly Copilot\\bench\\v3\\incoming\\v3_prepare_t3_r1\\bundle",
+  "config_sha256": "7ad424aa84a4254050834c72d1e2623dc1249406362135ad28b9dd9217ffef58",
+  "historical_report_notice": "user CLI excerpt warned check_baselines unavailable/no_band but final table showed in_band; do not use band verdict as gold",
+  "manifest_sha256": "f423b5e8e355d19cf09ff1fea31c8c1d614713f02f9e767d45ab7266bfadaa8b",
+  "quality_scope": "transport/gzip/file format only; no cases built, answers assigned or baseline PASS inferred",
+  "source_files": 14,
+  "source_groups": [
+    "GCF_001040885.1",
+    "GCF_004115215.2",
+    "GCF_016699485.2",
+    "GCF_036370985.1",
+    "GCF_054855325.1",
+    "GCF_943734735.2",
+    "GCF_960531495.2"
+  ],
+  "sources": [
+    {
+      "clade": "fungi",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533382404756552,
+        "size_bytes": 807040
+      },
+      "inspection": {
+        "CDS_rows": 5357,
+        "exon_rows": 5600,
+        "feature_rows": 21877,
+        "gene_rows": 5434,
+        "mRNA_rows": 5205,
+        "pseudogene_rows": 7,
+        "rRNA_rows": 6,
+        "region_rows": 33,
+        "sequence_feature_rows": 12,
+        "tRNA_rows": 223
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_036370985.1_Kaz3_genomic.gff.gz",
+      "recorded_historical_size_bytes": 807040,
+      "sha256": "7fe0e77c8756d447ecb8dcac21b26c99632a00641ad940468bdc545dbe138085",
+      "source_group": "GCF_036370985.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_036370985.1_Kaz3_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563016672583991,
+        "size_bytes": 807040
+      },
+      "species": "Arxiozyma_heterogenica"
+    },
+    {
+      "clade": "fungi",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533382704754758,
+        "size_bytes": 1742216
+      },
+      "inspection": {
+        "protein_records": 5205,
+        "residues": 2727865
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_036370985.1_Kaz3_protein.faa.gz",
+      "recorded_historical_size_bytes": 1742216,
+      "sha256": "a7a018b8e3903fa1295cd8c2aa56305b3da9e9a7c8dd9624c7751428cd40bdf2",
+      "source_group": "GCF_036370985.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_036370985.1_Kaz3_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563016679583935,
+        "size_bytes": 1742216
+      },
+      "species": "Arxiozyma_heterogenica"
+    },
+    {
+      "clade": "nematoda",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533383143752154,
+        "size_bytes": 2369625
+      },
+      "inspection": {
+        "CDS_rows": 33782,
+        "exon_rows": 33782,
+        "feature_rows": 92599,
+        "gene_rows": 12445,
+        "mRNA_rows": 12445,
+        "pseudogene_rows": 1,
+        "region_rows": 135,
+        "sequence_feature_rows": 9
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_001040885.1_S_ratti_ED321_genomic.gff.gz",
+      "recorded_historical_size_bytes": 2369625,
+      "sha256": "bd93c704c09c4eef5e28e55915ec027faa682124bb30692420294392c3bb3c7c",
+      "source_group": "GCF_001040885.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_001040885.1_S_ratti_ED321_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563015699591836,
+        "size_bytes": 2369625
+      },
+      "species": "Strongyloides_ratti"
+    },
+    {
+      "clade": "nematoda",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533384675743016,
+        "size_bytes": 3795565
+      },
+      "inspection": {
+        "protein_records": 12445,
+        "residues": 5826422
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_001040885.1_S_ratti_ED321_protein.faa.gz",
+      "recorded_historical_size_bytes": 3795565,
+      "sha256": "2195b04fed3274b271132a0915dca3fabc29d26d049a60c6ff3d0515caa2d447",
+      "source_group": "GCF_001040885.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_001040885.1_S_ratti_ED321_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563015785591143,
+        "size_bytes": 3795565
+      },
+      "species": "Strongyloides_ratti"
+    },
+    {
+      "clade": "insecta",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533385528737920,
+        "size_bytes": 6339705
+      },
+      "inspection": {
+        "CDS_rows": 206438,
+        "cDNA_match_rows": 75,
+        "exon_rows": 244331,
+        "feature_rows": 499862,
+        "gene_rows": 14803,
+        "lnc_RNA_rows": 1498,
+        "mRNA_rows": 30505,
+        "pseudogene_rows": 362,
+        "rRNA_rows": 615,
+        "region_rows": 191,
+        "snRNA_rows": 27,
+        "snoRNA_rows": 11,
+        "tRNA_rows": 422,
+        "transcript_rows": 584
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_943734735.2_idAnoGambNW_F1_1_genomic.gff.gz",
+      "recorded_historical_size_bytes": 6339705,
+      "sha256": "df9274cf1dbe4c16fa24fbc7ff6dc60f8f98f3efe9573693733b8aca5e859237",
+      "source_group": "GCF_943734735.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_943734735.2_idAnoGambNW_F1_1_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563013077612949,
+        "size_bytes": 6339705
+      },
+      "species": "Anopheles_gambiae"
+    },
+    {
+      "clade": "insecta",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533390964705504,
+        "size_bytes": 6390660
+      },
+      "inspection": {
+        "protein_records": 30505,
+        "residues": 25895024
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_943734735.2_idAnoGambNW_F1_1_protein.faa.gz",
+      "recorded_historical_size_bytes": 6390660,
+      "sha256": "d313068722798d8158691f6490754ca5986eac8c3d7f3659ab786b37c515b60e",
+      "source_group": "GCF_943734735.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_943734735.2_idAnoGambNW_F1_1_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563004505681785,
+        "size_bytes": 6390660
+      },
+      "species": "Anopheles_gambiae"
+    },
+    {
+      "clade": "viridiplantae",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533393230692135,
+        "size_bytes": 9582586
+      },
+      "inspection": {
+        "CDS_rows": 231299,
+        "RNase_MRP_RNA_rows": 1,
+        "SRP_RNA_rows": 17,
+        "cDNA_match_rows": 566,
+        "direct_repeat_rows": 8,
+        "exon_rows": 327605,
+        "feature_rows": 652223,
+        "gene_rows": 23452,
+        "intron_rows": 19,
+        "inverted_repeat_rows": 19,
+        "lncRNA_rows": 2710,
+        "mRNA_rows": 33226,
+        "pseudogene_rows": 25371,
+        "rRNA_rows": 3346,
+        "region_rows": 24,
+        "sequence_feature_rows": 22,
+        "snRNA_rows": 87,
+        "snoRNA_rows": 276,
+        "tRNA_rows": 425,
+        "transcript_rows": 3750
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_054855325.1_ASM5485532v1_genomic.gff.gz",
+      "recorded_historical_size_bytes": 9582586,
+      "sha256": "9bbd90f562ef3ff762ab1defa0312e3905289015931b16b863203554789fc4f3",
+      "source_group": "GCF_054855325.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_054855325.1_ASM5485532v1_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563018213571558,
+        "size_bytes": 9582586
+      },
+      "species": "Carica_papaya"
+    },
+    {
+      "clade": "viridiplantae",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533400372653675,
+        "size_bytes": 6538257
+      },
+      "inspection": {
+        "protein_records": 33226,
+        "residues": 16512413
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_054855325.1_ASM5485532v1_protein.faa.gz",
+      "recorded_historical_size_bytes": 6538257,
+      "sha256": "9dbb2d2bd531d014f3e456e2f229d1a6516a980fff3f8445634ce6efd752f8c0",
+      "source_group": "GCF_054855325.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_054855325.1_ASM5485532v1_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563017960573600,
+        "size_bytes": 6538257
+      },
+      "species": "Carica_papaya"
+    },
+    {
+      "clade": "mammalia",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533402613640795,
+        "size_bytes": 14277328
+      },
+      "inspection": {
+        "CDS_rows": 504850,
+        "C_gene_segment_rows": 14,
+        "V_gene_segment_rows": 86,
+        "cDNA_match_rows": 11807,
+        "exon_rows": 569123,
+        "feature_rows": 1169978,
+        "gene_rows": 29634,
+        "guide_RNA_rows": 13,
+        "lnc_RNA_rows": 4750,
+        "mRNA_rows": 38747,
+        "match_rows": 543,
+        "miRNA_rows": 668,
+        "origin_of_replication_rows": 1,
+        "primary_transcript_rows": 376,
+        "pseudogene_rows": 863,
+        "rRNA_rows": 15,
+        "region_rows": 322,
+        "sequence_feature_rows": 2,
+        "snRNA_rows": 342,
+        "snoRNA_rows": 6283,
+        "tRNA_rows": 671,
+        "transcript_rows": 868
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_004115215.2_mOrnAna1.pri.v4_genomic.gff.gz",
+      "recorded_historical_size_bytes": 14277328,
+      "sha256": "d72c3b17daeae11f1ae5e8a27061cc72887188b14b1bf584fc18af4c6fdfb977",
+      "source_group": "GCF_004115215.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_004115215.2_mOrnAna1.pri.v4_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563007539657223,
+        "size_bytes": 14277328
+      },
+      "species": "Ornithorhynchus_anatinus"
+    },
+    {
+      "clade": "mammalia",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533413902575116,
+        "size_bytes": 9325089
+      },
+      "inspection": {
+        "protein_records": 38747,
+        "residues": 26905326
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_004115215.2_mOrnAna1.pri.v4_protein.faa.gz",
+      "recorded_historical_size_bytes": 9325089,
+      "sha256": "7dc9f2a949ba76fcdd3068311c344ff67ad3c652880c44105936b4fc4fb3d0b2",
+      "source_group": "GCF_004115215.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_004115215.2_mOrnAna1.pri.v4_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563009458641924,
+        "size_bytes": 9325089
+      },
+      "species": "Ornithorhynchus_anatinus"
+    },
+    {
+      "clade": "aves",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533417335555093,
+        "size_bytes": 25161571
+      },
+      "inspection": {
+        "CDS_rows": 932726,
+        "C_gene_segment_rows": 2,
+        "D_loop_rows": 1,
+        "SRP_RNA_rows": 1,
+        "V_gene_segment_rows": 68,
+        "cDNA_match_rows": 7487,
+        "exon_rows": 1116171,
+        "feature_rows": 2167964,
+        "gene_rows": 25440,
+        "lnc_RNA_rows": 10062,
+        "mRNA_rows": 68684,
+        "match_rows": 23,
+        "miRNA_rows": 1209,
+        "ncRNA_rows": 13,
+        "primary_transcript_rows": 800,
+        "pseudogene_rows": 198,
+        "rRNA_rows": 94,
+        "region_rows": 214,
+        "snRNA_rows": 67,
+        "snoRNA_rows": 186,
+        "tRNA_rows": 303,
+        "telomerase_RNA_rows": 1,
+        "transcript_rows": 4214
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_genomic.gff.gz",
+      "recorded_historical_size_bytes": 25161571,
+      "sha256": "d298f52807d16a467068a18dcf384b331b823d0861837731cc77a331e07fef72",
+      "source_group": "GCF_016699485.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563011716623876,
+        "size_bytes": 25161571
+      },
+      "species": "Gallus_gallus"
+    },
+    {
+      "clade": "aves",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533439865423489,
+        "size_bytes": 15843242
+      },
+      "inspection": {
+        "protein_records": 68683,
+        "residues": 50355184
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_protein.faa.gz",
+      "recorded_historical_size_bytes": 15843242,
+      "sha256": "ca63162dd573363343fe77689f3fe81b56270086fde7e9c395966d65076e4607",
+      "source_group": "GCF_016699485.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563012363618685,
+        "size_bytes": 15843242
+      },
+      "species": "Gallus_gallus"
+    },
+    {
+      "clade": "actinopterygii",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533444085398851,
+        "size_bytes": 11594748
+      },
+      "inspection": {
+        "CDS_rows": 338487,
+        "C_gene_segment_rows": 9,
+        "V_gene_segment_rows": 11,
+        "exon_rows": 356731,
+        "feature_rows": 745525,
+        "gene_rows": 20894,
+        "lncRNA_rows": 370,
+        "mRNA_rows": 28185,
+        "pseudogene_rows": 153,
+        "region_rows": 178,
+        "sequence_feature_rows": 4,
+        "transcript_rows": 503
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_960531495.2_fZeuFab8.2_genomic.gff.gz",
+      "recorded_historical_size_bytes": 11594748,
+      "sha256": "c5f51369265dd0dea92ee6b425cef4c1fa82b22a784c4fde60a7068e54a03e8d",
+      "source_group": "GCF_960531495.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_960531495.2_fZeuFab8.2_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563023819526288,
+        "size_bytes": 11594748
+      },
+      "species": "Zeus_faber"
+    },
+    {
+      "clade": "actinopterygii",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791533452728348373,
+        "size_bytes": 8473165
+      },
+      "inspection": {
+        "protein_records": 28185,
+        "residues": 18264826
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_960531495.2_fZeuFab8.2_protein.faa.gz",
+      "recorded_historical_size_bytes": 8473165,
+      "sha256": "1c59618d59cb1d65e46b454eb9527889abc6cfd735bae76cc24b674deb164f9a",
+      "source_group": "GCF_960531495.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_960531495.2_fZeuFab8.2_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563022880533873,
+        "size_bytes": 8473165
+      },
+      "species": "Zeus_faber"
+    }
+  ],
+  "status": "verified_transport_and_format",
+  "verified_payload_files": 34
+}

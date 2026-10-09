@@ -1,20 +1,20 @@
 {
   "T3_complete_pairs_server_recorded": 25,
   "T3_report_species": 27,
-  "actual_real_sources_collected": 0,
+  "actual_real_sources_collected": 14,
   "api_calls": 0,
   "cases_built": 0,
   "client_date": "2026-10-09",
   "expected_files": 0,
   "final_case_count": null,
-  "local_T3_complete_pairs": 1,
-  "local_sources": 34,
-  "local_unused_T3_pairs": 0,
+  "local_T3_complete_pairs": 8,
+  "local_sources": 48,
+  "local_unused_T3_pairs": 7,
   "mock_calls": 0,
   "original_source_hash_rescans": 0,
   "pending": [
-    "server_source_preparation_and_transfer",
-    "local_transport_verification",
+    "user_confirmation_of_intake_phase",
+    "case_specification_and_source_split_freeze",
     "independent_reviewer_assignment"
   ],
   "private_candidate_design_rows": 18,
@@ -30,14 +30,15 @@
   ],
   "pytest": {
     "command": "python -m pytest -q",
-    "elapsed_seconds": 189.08,
+    "elapsed_seconds": 212.09,
     "passed": 341
   },
   "rules_calls": 0,
-  "server_execution": "pending",
+  "server_execution": "complete_received_and_verified",
+  "source_receipt": "SOURCE_RECEIPT.json",
   "source_split_authorized": true,
   "source_split_frozen": false,
-  "stage": "v3_phase2_source_preparation_package",
-  "status": "local_tools_ready_pending_server_execution",
+  "stage": "v3_phase2_source_intake",
+  "status": "sources_verified_pending_spec_and_independent_review",
   "thresholds": null
 }

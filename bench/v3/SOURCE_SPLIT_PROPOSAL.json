@@ -4,11 +4,11 @@
   "date": "2026-10-09",
   "files": 14,
   "historical_three_group_proposal": "history/phase1_three_sources/SOURCE_SPLIT_PROPOSAL.json",
-  "local_new_pairs_available": 0,
+  "local_new_pairs_available": 7,
   "metadata_source": "bench/v1_prepare_t1t3_r3/bundle/t3_locations.json",
-  "no_raw_candidate_contents_read": true,
   "policy": "one representative in each of all seven T3 clades; smallest recorded complete pair per clade after excluding used bench accession and T1 species; user chose seven representatives instead of all25pairs",
   "pretraining_exposure_unknown": true,
+  "raw_candidate_read_scope": "server gzip/format/literal counts; local transport verification; no case selection or answer assignment",
   "recorded_pair_total_bytes": 122240797,
   "source_groups": [
     "GCF_036370985.1",
@@ -19,7 +19,9 @@
     "GCF_016699485.2",
     "GCF_960531495.2"
   ],
+  "source_receipt": "SOURCE_RECEIPT.json",
   "source_split_authorized": true,
   "source_split_frozen": false,
-  "status": "user_confirmed_seven_clades_pending_intake"
+  "status": "user_selected_sources_received_verified",
+  "transport_manifest_sha256": "f423b5e8e355d19cf09ff1fea31c8c1d614713f02f9e767d45ab7266bfadaa8b"
 }
