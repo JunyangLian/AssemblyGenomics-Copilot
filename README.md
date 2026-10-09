@@ -1,32 +1,61 @@
-# AssemblyGenomics Copilot
+# AssemblyGenomics Bench
 
-基因组流程可靠性与 QC 决策系统。项目包含两个入口：运行生信辅助工作流的 **AssemblyGenomics Skill**，以及检验规则与模型能力的 **AssemblyGenomics Bench**。
+AssemblyGenomics Copilot 的评测入口：用真实产物及确定性变体比较 A（已有规则）、B（裸模型）、C（模型 + 固定技能知识包），分别衡量处置、根因、证据、误报、配对区分和危险建议。
 
-| 你要做什么 | 启动文档 | 对应分支 |
+## 从这里开始
+
+```bash
+git clone --branch codex/assemblygenomics-bench https://github.com/JunyangLian/AssemblyGenomics-Copilot.git
+```
+
+进入克隆得到的仓库目录，在 Python 3.9 或更新环境安装基础依赖：
+
+```bash
+python -m pip install jsonschema PyYAML pytest
+```
+
+先阅读报告和冻结记录。下面命令只验证版本完整性及开发草题，不调用模型 API：
+
+```bash
+python bench/freeze.py
+python bench/v2/freeze.py
+python bench/v3/validate_development.py
+```
+
+从源文件重新构造或做完整来源核验需要已验收的来源包，不能只用 Git 克隆替代。v3 的 `--reproduce` 在有对应 T1 小来源时使用；不从汇总表伪造原文件。
+
+## 当前版本
+
+| 版本 | 状态 | 阅读入口 |
 |---|---|---|
-| 识别输入、制定路线、生成 SOP、审核阶段产物 | [AssemblyGenomics Skill](ASSEMBLYGENOMICS_SKILL.md) | [codex/assemblygenomics-skill](https://github.com/JunyangLian/AssemblyGenomics-Copilot/tree/codex/assemblygenomics-skill) |
-| 查看和复现规则/裸模型/技能包的 QC 对照评测 | [AssemblyGenomics Bench](ASSEMBLYGENOMICS_BENCH.md) | [codex/assemblygenomics-bench](https://github.com/JunyangLian/AssemblyGenomics-Copilot/tree/codex/assemblygenomics-bench) |
+| v1 | 16 题冻结，A/B/C 共 336 条最终观测已计分；失败保留分母 | [阶段4报告](bench/STAGE4_REPORT.md) |
+| v2 | 24 题冻结；四个完成模型 576 条最终观测，加 A 组 72 条；退出模型记录保留 | [人工审核后的报告](bench/v2/reports/v2-run-10_four-models_human-reviewed/report.md) |
+| v3 | 七类群来源已接收；四道 T1 开发草题待审，两项执行证据缺口延后；未冻结、未运行模型 | [开发阶段报告](bench/v3/DEVELOPMENT_REPORT.md) |
 
-main 保留完整共同代码基线。两个入口分支只调整首页，Bench 继续复用原规则；不会因为分支拆分而改变原 Skill 行为或冻结答案。
+v2 新增主集合并未达到预设的改善门槛，不能用总体或回归题改善替代主比较。后续四模型收尾集合是结果查看后的范围调整，原预注册名单与失败记录都在报告中保留。v3 用于完善可答性、证据约束和来源分组，当前没有正式能力结论。
 
-## 当前交付状态
+## 评测约束
 
-- **Skill**：完成酵母、拟南芥、线虫从参考组装起步的注释四段闭环，沉淀真实失败机制、基线、状态与人工审核门。
-- **Bench v1/v2**：已有冻结题库和计分报告，保留接口失败、解析失败及名单调整；不宣称所有模型使用 Skill 后都改善。
-- **Bench v3**：七类群来源验收完成，四道开发草题待审核，尚未冻结或调用模型。
-- **回归验证**：作者工作区 2026-10-09 的完整测试为 347 passed；来源复现类测试需要另行提供已验收的小来源包。
+- 模型只看题面的 task.md、白名单 artifacts 和统一输出 schema；C 额外看版本固定的公共知识包。
+- 作者答案、来源元数据、注入说明、审核表和运行结果不得进入模型请求。公开仓库可包含这些研究材料，输入构造必须继续使用白名单。
+- 标准答案由用户审核，冻结哈希后才能启动模型；变更另立版本。
+- 默认每题三次重复；API/解析失败、不覆盖和无多数保留计划分母，不能静默删除。
+- 来源、机制、指导暴露分开标记；同源变体不能跨开发与测试。统计只按相应集合/单位解释。
+- 所有 API key 仅从本地环境变量读取，不写入仓库、服务器包或模型日志。真实评测需要新的明确预算；此启动指南不启动 mock 或真实评测。
 
-三物种验证覆盖参考组装后的注释流程，不代表从原始读段组装、Hi-C 或多倍体/分相路线已经端到端验证。Bench 当前为整理好的静态证据包评测，不是让模型自行查文件执行分析的 Agent 评测。
+## 文件导航
 
-## 代码与研究材料
-
-| 路径 | 用途 |
+| 内容 | 位置 |
 |---|---|
-| [SKILL.md](SKILL.md) | 原技能定义与硬约束 |
-| [scripts/](scripts/)、[knowledge/](knowledge/)、[references/](references/) | 流程工具、领域知识与审核政策 |
-| [sop/](sop/)、[docs/](docs/) | 可复用 SOP、真实案例和能力边界 |
-| [bench/](bench/) | 冻结题库、运行/评分代码及版本化报告 |
+| v1 规格及历史阶段记录 | [bench/README.md](bench/README.md) |
+| v2 协议、运行和报告 | [bench/v2/](bench/v2/) |
+| v3 当前状态与后续阶段门 | [bench/v3/README.md](bench/v3/README.md) |
+| v3 处置/消费契约 | [CASE_CONTRACT.md](bench/v3/CASE_CONTRACT.md) |
+| v3 证据评分 | [EVIDENCE_SCORING.md](bench/v3/EVIDENCE_SCORING.md) |
+| v3 独立人类审题 | [INDEPENDENT_REVIEW_PROTOCOL.md](bench/v3/INDEPENDENT_REVIEW_PROTOCOL.md) |
 
-原始大文件、来源快照、incoming、运行缓存和 API key 不随源码发布。Bench 的作者答案和元数据只供构造/评分，不进入模型请求。
+完整回归命令为 `python -m pytest -q`；作者工作区当前 **347 passed**。部分测试需本地验收来源包，原始来源、incoming 目录、运行缓存和 API key 不随源码发布。独立审核者只接收专门的盲审材料，不接收作者答案和注入记录。
 
-项目采用 [MIT License](LICENSE)。详细安装与启动步骤请从上方两个入口选择。
+Bench 分支保留 Skill 的原规则及依赖，确保 A 组能力边界可追溯；不把评测验证器当作新增 A 组规则。需要运行生信辅助工作流，请走 [AssemblyGenomics Skill](ASSEMBLYGENOMICS_SKILL.md)。
+
+[项目主入口](https://github.com/JunyangLian/AssemblyGenomics-Copilot/tree/main)
