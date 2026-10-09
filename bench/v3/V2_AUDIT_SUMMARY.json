@@ -1,0 +1,141 @@
+{
+  "A_observations": 72,
+  "active_model_observations": 576,
+  "api_calls": 0,
+  "date": "2026-10-09",
+  "definitions": {
+    "error_counts_overlap": true,
+    "evidence_and_scope": "not newly scored; manual examples only",
+    "root_correct_verdict_error": "root correct AND verdict wrong",
+    "root_error": "valid root differs from frozen root",
+    "verdict_error": "valid verdict outside frozen acceptable_verdicts"
+  },
+  "groups": [
+    {
+      "counts": {
+        "joint_error": 36,
+        "not_covered": 21,
+        "ok": 51,
+        "root_correct_verdict_error": 0,
+        "root_error": 36,
+        "verdict_error": 36
+      },
+      "group": "A",
+      "model": "rules",
+      "planned_observations": 72
+    },
+    {
+      "counts": {
+        "api_error": 22,
+        "joint_error": 11,
+        "ok": 50,
+        "root_correct_verdict_error": 7,
+        "root_error": 4,
+        "verdict_error": 10
+      },
+      "group": "B",
+      "model": "DeepSeek-V4-Flash-Vision",
+      "planned_observations": 72
+    },
+    {
+      "counts": {
+        "api_error": 17,
+        "joint_error": 15,
+        "ok": 53,
+        "parse_error": 2,
+        "root_correct_verdict_error": 8,
+        "root_error": 7,
+        "verdict_error": 15
+      },
+      "group": "C2",
+      "model": "DeepSeek-V4-Flash-Vision",
+      "planned_observations": 72
+    },
+    {
+      "counts": {
+        "api_error": 5,
+        "interrupted": 2,
+        "joint_error": 35,
+        "ok": 65,
+        "root_correct_verdict_error": 16,
+        "root_error": 19,
+        "verdict_error": 29
+      },
+      "group": "B",
+      "model": "DeepSeek-V4-Pro-0813",
+      "planned_observations": 72
+    },
+    {
+      "counts": {
+        "api_error": 2,
+        "joint_error": 32,
+        "ok": 70,
+        "root_correct_verdict_error": 15,
+        "root_error": 17,
+        "verdict_error": 27
+      },
+      "group": "C2",
+      "model": "DeepSeek-V4-Pro-0813",
+      "planned_observations": 72
+    },
+    {
+      "counts": {
+        "api_error": 2,
+        "joint_error": 26,
+        "ok": 64,
+        "parse_error": 6,
+        "root_correct_verdict_error": 10,
+        "root_error": 16,
+        "verdict_error": 22
+      },
+      "group": "B",
+      "model": "MiniMax-M3",
+      "planned_observations": 72
+    },
+    {
+      "counts": {
+        "api_error": 4,
+        "joint_error": 26,
+        "ok": 66,
+        "parse_error": 2,
+        "root_correct_verdict_error": 14,
+        "root_error": 12,
+        "verdict_error": 23
+      },
+      "group": "C2",
+      "model": "MiniMax-M3",
+      "planned_observations": 72
+    },
+    {
+      "counts": {
+        "joint_error": 21,
+        "ok": 57,
+        "parse_error": 15,
+        "root_correct_verdict_error": 17,
+        "root_error": 4,
+        "verdict_error": 19
+      },
+      "group": "B",
+      "model": "Qwen3.8-27B-FP8",
+      "planned_observations": 72
+    },
+    {
+      "counts": {
+        "api_error": 3,
+        "joint_error": 6,
+        "ok": 54,
+        "parse_error": 15,
+        "root_correct_verdict_error": 4,
+        "root_error": 2,
+        "verdict_error": 4
+      },
+      "group": "C2",
+      "model": "Qwen3.8-27B-FP8",
+      "planned_observations": 72
+    }
+  ],
+  "kind": "post_result_development_audit_not_new_scoring",
+  "source_original_hash_rescans": 0,
+  "source_report": "bench/v2/reports/v2-run-10_four-models_human-reviewed/results.json",
+  "source_report_sha256": "b93e78aadfb5b078f6be1188d3c48c317ae68f2aaf65612cee13b9853b81fc0d"
+}

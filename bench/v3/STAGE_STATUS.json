@@ -1,0 +1,36 @@
+{
+  "T3_complete_pairs_server_recorded": 25,
+  "T3_report_species": 27,
+  "api_calls": 0,
+  "cases_built": 0,
+  "client_date": "2026-10-09",
+  "expected_files": 0,
+  "final_case_count": null,
+  "local_T3_complete_pairs": 1,
+  "local_sources": 34,
+  "local_unused_T3_pairs": 0,
+  "mock_calls": 0,
+  "original_source_hash_rescans": 0,
+  "pending": [
+    "user_source_split_confirmation",
+    "new_T3_source_transfer",
+    "independent_reviewer_assignment"
+  ],
+  "private_candidate_design_rows": 16,
+  "proposed_new_source_files": 6,
+  "proposed_new_source_groups": [
+    "GCF_036370985.1",
+    "GCF_001040885.1",
+    "GCF_943734735.2"
+  ],
+  "pytest": {
+    "command": "python -m pytest -q",
+    "elapsed_seconds": 197.33,
+    "passed": 333
+  },
+  "rules_calls": 0,
+  "source_split_frozen": false,
+  "stage": "v3_phase1_design_audit",
+  "status": "phase1_complete_pending_user_source_and_reviewer_decisions",
+  "thresholds": null
+}
