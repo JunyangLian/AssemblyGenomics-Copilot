@@ -37,9 +37,11 @@
       "type": "fault"
     }
   ],
-  "plan_sha256": "2782fdcaff2a183c8b5e67464611490b8700732c64c1aa91f69680b0022f3fa6",
+  "plan_sha256": "806ec77e063058e5ea9b8ad32bf7554fc2c622a9981f0c7a25ab0efcdc75e1c5",
+  "previous_preparation": "history/prepare_1.zip",
   "provider_calls": 0,
-  "pytest": "439 passed in 218.40s",
+  "pytest": "440 passed in 234.55s",
   "status": "pass",
-  "unique_eligible_cases": 19
+  "unique_eligible_cases": 19,
+  "validated_on": "2026-10-11"
 }

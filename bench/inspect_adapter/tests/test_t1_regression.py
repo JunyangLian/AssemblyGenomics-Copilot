@@ -89,3 +89,14 @@ def test_reviewed_draft_is_not_silently_overwritten(tmp_path):
     with pytest.raises(ValueError, match='new version'):
         regression.save_draft(path, b'replacement\n')
     assert path.read_bytes() == b'original\n'
+
+
+def test_preparation_is_byte_identical_and_has_one_terminal_lf(tmp_path, monkeypatch, plan):
+    monkeypatch.setattr(regression, 'DIRECTORY', tmp_path)
+    monkeypatch.setattr(regression, 'draft_plan', lambda: plan)
+    regression.prepare()
+    before = {p.name: p.read_bytes() for p in tmp_path.iterdir()}
+    regression.prepare()
+    assert before == {p.name: p.read_bytes() for p in tmp_path.iterdir()}
+    for name in ('PLAN.draft.json', 'LEGACY_TARGETS.json'):
+        assert before[name].endswith(b'\n') and not before[name].endswith(b'\n\n')

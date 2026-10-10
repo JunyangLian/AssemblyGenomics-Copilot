@@ -112,9 +112,9 @@ def save_draft(path, data):
 
 def prepare():
     plan = draft_plan()
-    save_draft(DIRECTORY / 'PLAN.draft.json', canonical(plan) + b'\n')
+    save_draft(DIRECTORY / 'PLAN.draft.json', canonical(plan))
     targets = {cid: read_json(V2 / 'cases' / cid / 'expected.json') for cid in CASE_IDS}
-    save_draft(DIRECTORY / 'LEGACY_TARGETS.json', canonical(targets) + b'\n')
+    save_draft(DIRECTORY / 'LEGACY_TARGETS.json', canonical(targets))
     buffer = io.StringIO(newline='')
     names = ['case_id', 'source_group', 'stage', 'type', 'pair_id', 'status', 'reason', 'expected_sha256']
     writer = csv.DictWriter(buffer, fieldnames=names, lineterminator='\n', extrasaction='ignore')
