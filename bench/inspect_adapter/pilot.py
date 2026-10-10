@@ -29,16 +29,21 @@ def sha(data):
 
 
 def draft_plan():
-    return {'version': 'inspect-development-pilot-1',
+    return {'version': 'inspect-development-pilot-1-siliconflow',
             'purpose': 'development demonstration, not held-out validation or H1-H3',
             'case_ids': list(CASE_IDS), 'repetitions': 1, 'condition': 'readonly_tools',
-            'model_id': 'deepseek-v4-pro-0813', 'accepted_response_ids': ['deepseek-v4-pro-0813'],
-            'base_url': 'https://discovery-api.intern-ai.org.cn/v1',
-            'key_env': 'INTERN_DISCOVERY_API_KEY',
+            'model_id': 'deepseek-ai/DeepSeek-V4-Flash',
+            'accepted_response_ids': ['deepseek-ai/DeepSeek-V4-Flash'],
+            'provider': 'siliconflow', 'base_url': 'https://api.siliconflow.cn/v1',
+            'key_env': 'SILICONFLOW_API_KEY', 'extra_body': {'enable_thinking': False},
             'temperature': 0, 'max_tokens': 2048, 'max_turns_per_case': 8,
             'max_http_requests': 32, 'max_input_proxy_tokens': 200000,
             'max_request_bytes': 80000, 'max_output_token_reservation': 65536,
-            'timeout_seconds': 60, 'price': None,
+            'timeout_seconds': 60,
+            'price': {'currency': 'CNY', 'per_tokens': 1000000,
+                      'input_peak': 3.0, 'output_peak': 9.0, 'cached_input_peak': 0.3,
+                      'source': 'https://www.siliconflow.cn/pricing', 'checked_date': '2026-10-10',
+                      'policy': 'peak uncached reference estimate; not a billing guarantee'},
             'sdk_retries': 0, 'inspect_retries': 0, 'format_retries': 0,
             'stop_http_statuses': [401, 403, 429],
             'concurrency': 1, 'tool_emulation': False,
@@ -91,8 +96,9 @@ def prepare():
         'initial_message_only_proxy': sum(math.ceil(n / 3) for n in prompt_bytes.values()),
         'method': 'UTF-8 bytes / 3 proxy; initial messages exclude tool schemas and later turns',
         'hard_request_count_cap': 32, 'input_proxy_reservation_cap': 200000,
-        'output_requested_token_ceiling': 65536, 'known_monetary_estimate': None,
-        'note': 'Input proxy is not provider usage or a guaranteed true-token bound; price unknown.'})
+        'output_requested_token_ceiling': 65536, 'peak_reference_estimate_cny': 1.189824,
+        'price_source': draft_plan()['price'],
+        'note': 'Input proxy is not provider usage or a guaranteed true-token bound; reference estimate is not a hard money cap.'})
     print('PREPARED: 4 candidate cases; no freeze, credentials or provider calls')
 
 
@@ -132,7 +138,7 @@ def freeze(quote):
         raise ValueError('schema differs from proposal')
     expected_hashes = answer_hashes(answers['cases'])
     hashes = draft_hashes()
-    approval = {'version': 'inspect-development-pilot-1', 'approved_by': 'user',
+    approval = {'version': draft_plan()['version'], 'approved_by': 'user',
                 'approval_quote': quote, 'candidate_hashes': hashes,
                 'timestamp_utc': datetime.now(timezone.utc).isoformat(),
                 'approval_scope': 'freeze these four development cases and this bounded one-model pilot',
@@ -237,7 +243,8 @@ class RequestBudget:
         body = strict_object(data.decode('utf-8'))
         proxy = math.ceil(len(data) / 3) + 256
         if (body.get('model') != self.plan['model_id'] or body.get('temperature') != self.plan['temperature'] or
-            body.get('stream', False) is not False or body.get('max_tokens') != self.plan['max_tokens']):
+            body.get('stream', False) is not False or body.get('max_tokens') != self.plan['max_tokens'] or
+            any(body.get(key) is not value for key, value in self.plan['extra_body'].items())):
             raise ValueError('request parameters differ from approved plan')
         if (len(data) > self.plan['max_request_bytes'] or self.calls >= self.plan['max_http_requests'] or
             self.input_proxy + proxy > self.plan['max_input_proxy_tokens'] or
@@ -326,6 +333,10 @@ def mock_smoke():
     print('PASS: native pilot mock; 4 real tools; 4 zero-scored mock completions; 0 provider calls')
 
 
+def safe_model_id(name):
+    return re.sub(r'[^A-Za-z0-9_.-]', '_', name)[:96]
+
+
 def execute():
     # These gates run before importing providers or reading any credential.
     plan, answers = approved()
@@ -341,7 +352,7 @@ def execute():
     key = os.environ[plan['key_env']]
     budget = RequestBudget(plan)
     frozen_hash = sha((PILOT / 'FROZEN.json').read_bytes())
-    run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '_' + plan['model_id'] + '_' + frozen_hash[:12]
+    run_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '_' + safe_model_id(plan['model_id']) + '_' + frozen_hash[:12]
     output = ROOT / 'work/pilot' / run_id
     if output.exists():
         raise ValueError('run id already exists; never replace observations')
@@ -374,13 +385,18 @@ def execute():
         if 200 <= response.status_code < 300 and body.get('model') not in plan['accepted_response_ids']:
             budget.stopped_reason = 'unapproved_returned_model_identity'
             raise ValueError('unapproved returned model identity; stop rather than alias silently')
+        usage = body.get('usage') or {}
+        if (usage.get('completion_tokens_details') or {}).get('reasoning_tokens', 0):
+            budget.stopped_reason = 'unexpected_reasoning_usage_in_nonthinking_mode'
+            raise ValueError('provider used reasoning tokens despite nonthinking request; stop')
 
     client = httpx2.AsyncClient(event_hooks={'request': [reserve], 'response': [observe]},
                                timeout=plan['timeout_seconds'], follow_redirects=False)
     config = GenerateConfig(temperature=plan['temperature'], max_tokens=plan['max_tokens'],
-                            max_retries=0, timeout=60, attempt_timeout=60, max_connections=1)
+                            max_retries=0, timeout=60, attempt_timeout=60, max_connections=1,
+                            extra_body=plan['extra_body'])
     try:
-        model = get_model('openai-api/intern/' + plan['model_id'], base_url=plan['base_url'],
+        model = get_model('openai-api/' + plan['provider'] + '/' + plan['model_id'], base_url=plan['base_url'],
                           api_key_var=plan['key_env'], http_client=client, config=config,
                           max_retries=0, stream=False, strict_tools=False, emulate_tools=False, memoize=False)
         logs = inspect_eval(make_task(plan, answers), model=model, display='none',
@@ -404,7 +420,7 @@ def execute():
                    'rows': rows, 'counts': {name: {'n': sum(r['labels'][name] for r in rows), 'N': 4}
                                          for name in rows[0]['labels']},
                    'calls': budget.calls, 'reserved_input_proxy': budget.input_proxy,
-                   'reserved_output_tokens': budget.output_reserved, 'price_unknown': True,
+                   'reserved_output_tokens': budget.output_reserved, 'price_reference': plan['price'],
                    'frozen_sha256': sha((PILOT / 'FROZEN.json').read_bytes())})
         print('PILOT recorded: 4 planned observations; inspect the local RESULTS.json and logs')
     finally:

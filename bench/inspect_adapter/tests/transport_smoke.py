@@ -33,7 +33,8 @@ def main():
     model = get_model('openai-api/unit/' + plan['model_id'], base_url=plan['base_url'],
                       api_key='unit-only-placeholder', http_client=client,
                       config=GenerateConfig(temperature=0, max_tokens=2048, max_retries=0,
-                                            timeout=60, attempt_timeout=60, max_connections=1),
+                                            timeout=60, attempt_timeout=60, max_connections=1,
+                                            extra_body=plan['extra_body']),
                       max_retries=0, stream=False, strict_tools=False, emulate_tools=False, memoize=False)
     answers, _ = pilot.candidates()
     logs = inspect_eval(pilot.make_task(plan, answers['cases']), model=model, display='none',

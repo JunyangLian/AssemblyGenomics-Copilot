@@ -1,4 +1,4 @@
-# 四题 Inspect 开发试跑：待批准方案
+# 四题 Inspect 开发试跑：SiliconFlow Flash
 
 本次只做一个模型、四道开发题、每题一次的只读工具演示。它验证从模型请求到文件工具、最终 JSON、评分和日志的完整链路，不作为新测试集验证，也不检验 H1–H3。四题来自已构造的拟南芥 T1 小片段；旧 v1/v2 和 v3 原草案不改动。
 
@@ -15,13 +15,13 @@
 
 ## 模型和预算
 
-建议使用此前确认过 ID 的 **deepseek-v4-pro-0813**，OpenAI 兼容接口为 `https://discovery-api.intern-ai.org.cn/v1`。本次尚未验证平台当前可用性与原生 function calling 支持；真实调用如不支持即保留失败，不切换模型或模拟工具。
+2026-10-10 用户指定改用 **deepseek-ai/DeepSeek-V4-Flash**，OpenAI 兼容接口为 `https://api.siliconflow.cn/v1`。候选方案沿用上轮四题答案和预算；明确批准冻结及调用前不执行。官网接口示例包含该 ID 与原生工具参数；实际运行仍须核对返回身份，不切换模型或模拟工具。
 
-- 单条件 `readonly_tools`，单并发，每题一次，temperature 0，每题最多 8 次生成。
+- 单条件 `readonly_tools`，单并发，每题一次，temperature 0，每题最多 8 次生成；显式发送 `enable_thinking: false`。官方说明 max_tokens 不含思考输出，因此本轮用非思考模式约束输出；若返回 usage 报非零 reasoning_tokens，停止后续请求。
 - 整次试跑最多 **32 个实际 HTTP 请求**，每个请求最多申请 2,048 个输出 token；总输出申请上限 **65,536 token**。
 - 累计输入代理预算上限 **200,000**：按每个完整请求的 UTF-8 字节数 / 3 向上取整，再加 256 估算。它是调度限制，**不是供应商实际 token 或保证的真实 token 上限**。
 - 四题初始消息合计代理估算 **4,787 token**，尚不含工具定义、工具返回和后续轮次；实际 token 以供应商返回 usage 为准。此数字不能当作完整试跑费用估计。
-- 价格未知，无法给出金额或承诺费用很低。若提前出现 401、403、429，停止后续实际请求；单请求超时 60 秒。
+- 按 2026-10-10 [官网定价](https://www.siliconflow.cn/pricing)中较高时段的输入 ¥3、输出 ¥9 / 百万 token，不计缓存折扣，按上述输入代理和输出申请额度参考估计约 **¥1.19**。输入代理不是实际 token，因此这不是硬金额保证；实际以供应商 usage 和账单为准。若提前出现 401、403、429，停止后续实际请求；单请求超时 60 秒。
 - SDK、Inspect、格式自动重试均为 0。模型返回身份必须为已批准的精确 ID，不接受静默别名或替换。
 - 同一冻结版本只允许启动一次。启动后即使失败也保留领取记录；重新运行或续跑需要重新确认范围与累计预算，不能通过重复启动重置额度。
 
@@ -48,7 +48,7 @@ mock 通过 Inspect 原生循环实际调用 `list_files`，最终只输出 mock
 
 `transport_smoke` 再用本地假 HTTP 传输检查真实 SDK 的请求形状与预算拦截，不联网、不读环境凭证；8 次模拟请求、4 次真实文件工具执行仍不是供应商推理或真实 token 用量。
 
-用户明确批准之后，操作者才运行 `--freeze --approval-quote <实际批准原话>`，写入 APPROVAL、FROZEN.json 和包含四个 expected.json 文件 SHA-256 的 FROZEN.md，并先提交冻结记录。随后通过本地环境变量 `INTERN_DISCOVERY_API_KEY` 提供 key，再运行 `--api`。key 不写入命令行、仓库或日志，不上传服务器。当前没有执行这两步。
+用户明确批准之后，操作者才运行 `--freeze --approval-quote <实际批准原话>`，写入 APPROVAL、FROZEN.json 和包含四个 expected.json 文件 SHA-256 的 FROZEN.md，并先提交冻结记录。随后通过本地环境变量 `SILICONFLOW_API_KEY` 提供 key，再运行 `--api`。key 不写入命令行、仓库或日志，不上传服务器。准备版本没有执行这两步，实际冻结和运行另有记录。
 
 真实运行的 Inspect 日志、请求摘要、完整四题 RESULTS 和预算记录保存在忽略的 `work/pilot/<run_id>/`。不记录请求头；若供应商响应正文原样回显 key，在进入 Inspect 日志前只替换该凭证并保留替换后正文身份。
 

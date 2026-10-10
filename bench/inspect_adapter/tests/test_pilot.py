@@ -17,7 +17,8 @@ def plan():
 def request(plan, **changes):
     return json.dumps({'model': plan['model_id'], 'temperature': 0,
                        'max_tokens': 2048, 'stream': False,
-                       'messages': [{'role': 'user', 'content': 'unit request'}], **changes}).encode()
+                       'messages': [{'role': 'user', 'content': 'unit request'}],
+                       **plan['extra_body'], **changes}).encode()
 
 
 def test_api_gate_precedes_credentials_and_imports(tmp_path, monkeypatch):
@@ -53,7 +54,7 @@ def test_http_request_ceiling_includes_every_reserved_attempt(plan):
 
 
 @pytest.mark.parametrize('changes', [{'model': 'other-model'}, {'temperature': 0.5},
-                                     {'max_tokens': 8192}, {'stream': True}])
+                                     {'max_tokens': 8192}, {'stream': True}, {'enable_thinking': True}])
 def test_parameter_drift_rejected_before_reservation(plan, changes):
     guard = pilot.RequestBudget(plan)
     with pytest.raises(ValueError, match='parameters differ'):
@@ -170,3 +171,9 @@ def test_one_approval_cannot_reset_budget_by_starting_a_second_run(tmp_path):
     with pytest.raises(ValueError, match='already claimed'):
         pilot.claim_run(tmp_path, frozen_hash, 'unit-run-2')
     assert pilot.read_json(path)['run_id'] == 'unit-run-1'
+
+
+def test_namespaced_model_has_single_safe_run_path_component():
+    name = pilot.safe_model_id(pilot.draft_plan()['model_id'])
+    assert name == 'deepseek-ai_DeepSeek-V4-Flash'
+    assert '/' not in name and '\\' not in name
