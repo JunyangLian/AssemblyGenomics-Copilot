@@ -1,0 +1,24 @@
+{
+  "actual_tool_calls": 1,
+  "inspect_log": "logs\\2026-10-10T13-38-43-00-00_addition-problem_VqizCNzdDP5r3LdxQCg9EC.json",
+  "mode": "scripted_native_mock",
+  "model_quality_measured": false,
+  "provider_calls": 0,
+  "samples": 1,
+  "source_files": {
+    "LICENSE": {
+      "bytes": 1081,
+      "origin": "LICENSE",
+      "sha256": "c593c2afc81388521eaeb03f0d1a4b01bc3e5147ed9cb16c1f129e5be353b6af"
+    },
+    "tool_use.py": {
+      "bytes": 3338,
+      "origin": "examples/tool_use.py",
+      "sha256": "a8d93bbf14f7d4cbf91948675da7eb00ae920d59125b114661dc6b52ee339e6a"
+    }
+  },
+  "status": "pass",
+  "task": "addition_problem",
+  "upstream_commit": "aa20052a65b13516f1ee79d10ccceda00c205cc6",
+  "upstream_task_solver_tools_scorer_modified": false
+}

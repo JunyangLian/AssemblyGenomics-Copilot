@@ -13,6 +13,14 @@ bench/inspect_adapter/.venv/Scripts/python.exe -m pip install --index-url https:
 
 ## 2. 依次运行四条离线链路
 
+按最新的“官方复现在前、领域扩展在后”路线，先运行原官方示例并阅读 [组件对照](official/README.md)：
+
+```powershell
+bench/inspect_adapter/.venv/Scripts/python.exe -m bench.inspect_adapter.official.run
+```
+
+这是固定版本官方 Task / use_tools / generate / match 的原始实现。模型使用本地 mock，实际执行一次官方 add 工具；不等于真实模型 benchmark 复现。随后再运行下列领域教学和归档链路。
+
 ```powershell
 bench/inspect_adapter/.venv/Scripts/python.exe -m bench.inspect_adapter.example
 bench/inspect_adapter/.venv/Scripts/python.exe -m bench.inspect_adapter.replay

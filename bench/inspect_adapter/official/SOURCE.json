@@ -1,0 +1,19 @@
+{
+  "commit": "aa20052a65b13516f1ee79d10ccceda00c205cc6",
+  "files": {
+    "LICENSE": {
+      "bytes": 1081,
+      "origin": "LICENSE",
+      "sha256": "c593c2afc81388521eaeb03f0d1a4b01bc3e5147ed9cb16c1f129e5be353b6af"
+    },
+    "tool_use.py": {
+      "bytes": 3338,
+      "origin": "examples/tool_use.py",
+      "sha256": "a8d93bbf14f7d4cbf91948675da7eb00ae920d59125b114661dc6b52ee339e6a"
+    }
+  },
+  "license": "MIT",
+  "repository": "https://github.com/UKGovernmentBEIS/inspect_ai",
+  "scope": "unmodified upstream task source; only addition_problem is executed",
+  "tag": "0.3.277"
+}

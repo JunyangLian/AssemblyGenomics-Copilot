@@ -4,6 +4,8 @@
 
 当前统一入口见 [无密钥复现与学习](REPRODUCE.md)，完成范围及求职表述见 [PROJECT_STATUS.md](PROJECT_STATUS.md)。
 
+2026-10-10 按用户最新要求，学习主线改为 [复现官方原始示例，再接入生信](official/README.md)。先运行固定版本、未修改的官方 Task/工具/评分器，再与现有领域 Task 并排对照；旧题审计归档，不继续作为扩展主线。官方示例当前仅完成 mock 工具链路验证，尚未进行官方任务的真实模型小规模评测。
+
 ## 从这里开始学
 
 先运行 `example.py`：一个明确标为教学用途的样例，使用 Inspect 的 `Sample`、`generate()`、`match()` 和本地 mock。它不属于真实来源题库。随后运行 `replay.py`，观察同样的链路如何接入真实历史观测。
