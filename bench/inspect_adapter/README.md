@@ -2,7 +2,7 @@
 
 本目录是第一条完整接入链路：公开题面 → Inspect Dataset → 离线 replay Solver → 领域 Scorer → Inspect 日志 → 旧评分一致性核验。使用 Inspect AI 0.3.277；v1/v2 的题目、答案、提示和评分器不改动。
 
-当前统一入口见 [无密钥复现与学习](REPRODUCE.md)，完成范围及求职表述见 [PROJECT_STATUS.md](PROJECT_STATUS.md)。
+当前统一入口见 [交付导航](DELIVERY.md)、[无密钥复现与学习](REPRODUCE.md)，完成范围及求职表述见 [PROJECT_STATUS.md](PROJECT_STATUS.md)，面试讲解见 [INTERVIEW.md](INTERVIEW.md)。
 
 2026-10-10 按用户最新要求，学习主线改为 [复现官方原始示例，再接入生信](official/README.md)。先运行固定版本、未修改的官方 Task/工具/评分器，再与现有领域 Task 并排对照；旧题审计归档，不继续作为扩展主线。已完成官方12样本真实小规模复现：两工具任务2/2、Theory of Mind官方同模型评分9/10，两轮累计26次请求；失败与预算内恢复保留。见 [真实结果与简历判断](official/REPORT.md)，本轮不继续100题。
 

@@ -1,0 +1,112 @@
+{
+  "api_keys_removed": true,
+  "blocked_network_attempts": 0,
+  "checked_on": "2026-10-10",
+  "checks": [
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "log_sha256": "3d91b44ba6d304c06c7c83234b07fc207344745f678fbb0553a6d9fbacc5e845",
+      "module": "bench.inspect_adapter.official.run"
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "log_sha256": "d4b643d079a051c05a11faf4660a6f22cb0ab16a601a67ddd070e935bf07c24c",
+      "module": "bench.inspect_adapter.example"
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "log_sha256": "1863c4a052e836b9e86d69174b2dc3253a5dfb61a2d708dd4a736249138e3f53",
+      "module": "bench.inspect_adapter.replay"
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "log_sha256": "2f10b822f2b640d244532e9b9fb4cdc9ee7eac3d11f70d61337a3c10e50abdc9",
+      "module": "bench.inspect_adapter.tests.structured_transport_smoke"
+    },
+    {
+      "arguments": [
+        "--verify"
+      ],
+      "exit_code": 0,
+      "log_sha256": "11dae83140693b29925c1d8f822a92a586c607643d7112f6da430b377471d7a0",
+      "module": "bench.inspect_adapter.evidence_audit"
+    }
+  ],
+  "copied_private_native_logs": false,
+  "copied_private_source_packages": false,
+  "environment_installation_retested": false,
+  "external_network_guard": true,
+  "installation_note": "Existing pinned Windows environment reused; no new pip install or Linux verification.",
+  "network_guard_mechanism": "sitecustomize patch of socket.socket.connect; not OS-level isolation or interception of every network API",
+  "os_level_network_isolation": false,
+  "platform": "win32",
+  "provider_calls": 0,
+  "public_evidence_verification": {
+    "author_ai_citation_fidelity_counts": {
+      "partial": 13,
+      "supported": 8,
+      "unsupported": 3
+    },
+    "calculation_traces": 10,
+    "evidence_items": 24,
+    "human_review": false,
+    "independent_review": false,
+    "meaning": "packet identities and calculations verified; not model quality success",
+    "official_counts": {
+      "decision_joint": {
+        "N": 4,
+        "n": 3
+      },
+      "evidence_locator_valid": {
+        "N": 4,
+        "n": 4
+      },
+      "schema_valid": {
+        "N": 4,
+        "n": 4
+      }
+    },
+    "official_score_changed": false,
+    "planned_cases": 4,
+    "private_artifacts_reverified": 0,
+    "private_native_logs_reverified": false,
+    "provider_calls": 0,
+    "status": "pass"
+  },
+  "pytest": {
+    "collection_config_modified": false,
+    "command": "python -m pytest -q",
+    "final_result": "432 passed in 218.34s",
+    "initial_collection_conflict": "Temporary extracted checkout caused duplicate test module collection; removed only that generated checkout and reran the unchanged command.",
+    "tests_skipped_to_resolve_conflict": false
+  },
+  "replay": {
+    "group_case_checks": 216,
+    "historical_cases": 24,
+    "historical_status_counts": {
+      "api_error": 55,
+      "interrupted": 2,
+      "not_covered": 21,
+      "ok": 530,
+      "parse_error": 40
+    },
+    "provider_calls": 0,
+    "replayed_observations": 648,
+    "status": "pass"
+  },
+  "source_archive_sha256": "2bd4fdde994ea34e4010a2503b552733c6b58a4429ded0cf7f156be6e3fc00b5",
+  "source_commit": "2c62db51b9308f6de2ae7394563d7a3c2c5a354d",
+  "status": "pass",
+  "transport_fixture": {
+    "actual_tool_calls": 28,
+    "fake_http_requests": 48,
+    "fixtures": 3,
+    "model_quality_measured": false,
+    "provider_calls": 0
+  },
+  "used_existing_locked_environment": true
+}

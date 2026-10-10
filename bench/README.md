@@ -1,6 +1,18 @@
-# AssemblyGenomics-Skill bench v1
+# AssemblyGenomics Bench
 
-下一轮v2目前仅为[规格草案](v2/README.md)，已登记用户指定的五模型及统一Intern Discovery端点。v1文件及结果继续独立保留；v2题单、主指标、门槛和新预算在自己的阶段门内审核，不通过修改此轮冻结配置运行新模型。
+2026-10-10 当前入口：已有静态 QC 对照评测，以及基于 Inspect AI 的受限工具扩展。优先从 [Inspect 交付与学习](inspect_adapter/DELIVERY.md) 开始；下面的 v1 规格保留其历史阶段口径，不代表当前项目仍停留在 v1。
+
+| 内容 | 入口 | 当前范围 |
+|---|---|---|
+| Inspect 官方流程与生信扩展 | [交付导航](inspect_adapter/DELIVERY.md) | 官方12样本真实小规模、四道开发题工具试跑、历史评分回放 |
+| 无密钥运行 | [复现说明](inspect_adapter/REPRODUCE.md) | 官方 mock、648条历史观测、协议 fixture、公开计算核验 |
+| 简历与面试 | [讲解提纲](inspect_adapter/INTERVIEW.md) | 框架贡献边界、代码阅读顺序、真实成功与失败案例 |
+| Bench v2 | [版本说明](v2/README.md)、[最终结果](v2/reports/v2-run-10_four-models_human-reviewed/results.json) | 24题；四模型 B/C 与 A 的648条归档观测，含失败与未覆盖 |
+| Bench v1 | [阶段4汇报](STAGE4_REPORT.md) | 16题、336个最终观测；版本独立冻结 |
+
+原规则与领域知识继续复用，未把 Inspect 工具条件混入历史 A/B/C 分数。v3 来源准备与四道开发题不自动构成新的独立测试集；AI 诊断不标成真人盲审。当前求职说明见 [PROJECT_STATUS.md](inspect_adapter/PROJECT_STATUS.md)。
+
+## v1 历史规格与结果
 
 规格 1.2，2026-10-07。阶段4已完成：16题、答案、C包、两轴及预注册门槛保持冻结，A/B/C的336个最终观测已离线计分。详见 [阶段4汇报](STAGE4_REPORT.md) 和 [完整计分报告](reports/20261007T152045+0800_all-models_ABC_3ccf85e4ccb9.md)。原始API/规则结果保留，失败不缩分母；本阶段新增模型调用为0。
 

@@ -1,5 +1,7 @@
 # 无密钥复现与学习入口
 
+当前交付导航见 [DELIVERY.md](DELIVERY.md)，代码阅读与面试提纲见 [INTERVIEW.md](INTERVIEW.md)。官方真实小规模结果已完成，见 [报告](official/REPORT.md)；下面的默认命令仅运行离线链路，不重新调用供应商。
+
 以下从仓库根目录执行，使用已验证的 Windows PowerShell / Python 3.10 环境。安装依赖需要联网；其后的示例、回放、mock 和证据核验均不访问供应商 API。Linux 的 Inspect 适配尚未实测，不能把来源题库的跨平台复现等同于框架全链路跨平台验证。
 
 ## 1. 准备环境
@@ -11,7 +13,7 @@ bench/inspect_adapter/.venv/Scripts/python.exe -m pip install --index-url https:
 
 此锁包含本项目实际验证的 Inspect AI 0.3.277 和真实试跑所用客户端依赖。虚拟环境、日志和本地源包不提交。无需设置 API key，也不要把 key 写入命令、配置或日志。
 
-## 2. 依次运行四条离线链路
+## 2. 依次运行五条离线链路
 
 按最新的“官方复现在前、领域扩展在后”路线，先运行原官方示例并阅读 [组件对照](official/README.md)：
 
