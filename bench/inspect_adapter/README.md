@@ -40,7 +40,7 @@ Linux 对应使用 `.venv/bin/python`。本轮已实际验证 Windows Python 3.1
 
 ## 目前完成到哪里
 
-已完成离线组件示例、归档最终解析结果回放、评分一致性核验、AI 开发题盲审，以及四题原生工具循环的只读 mock 原型，见 `TOOL_LESSON.md`。尚未实现新的在线 B/C 求解器、原规则的 Inspect 在线执行、真实模型工具操作评测或新测试集评测。
+已完成离线组件示例、归档最终解析结果回放、评分一致性核验、AI 开发题盲审，以及四题原生工具循环的只读 mock 原型，见 `TOOL_LESSON.md`。现已准备一个有冻结和一次性预算门槛的原生供应商试跑入口，见 [四题待批准方案](pilot/README.md)；真实调用尚未执行。尚未实现新的在线 B/C 比较、原规则的 Inspect 在线执行或新测试集评测。
 
 这次回放的输入是**最后一次已解析观测**，不会重新解析原 HTTP 原文，也不会恢复供应商思考内容、重试轨迹、耗时和 token 信息。这些仍以原始日志和报告为准。Inspect 的原生 `inspect score` 处理 Inspect 日志，不能直接读取我们原来的 JSONL，因此本目录显式提供回放适配。
 
@@ -50,4 +50,4 @@ Linux 对应使用 `.venv/bin/python`。本轮已实际验证 Windows Python 3.1
 
 四道开发题已接入不可变公开字节的只读工具，不提供任意 shell，也不是容器沙箱。先用 `TOOL_LESSON.md` 学懂工具循环。后续真实模型小试验需固定答案和条件，以及模型、参数、调用和 token 上限；不立即重跑六个模型或扩大题库。
 
-后续决策与审核身份规则见 `WORKFLOW.md`；本轮验证记录见 `VALIDATION.md`。
+后续决策与审核身份规则见 `WORKFLOW.md`；离线回放验证记录见 `VALIDATION.md`，当前试跑准备验证见 `PILOT_VALIDATION.md`。
