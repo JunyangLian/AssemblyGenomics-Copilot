@@ -1,4 +1,4 @@
-# Inspect development pilot 2：待批准的改进方案
+# Inspect development pilot 2：已批准的改进方案
 
 本版本根据第一轮四题失败改进共同提示和提交方式，仍是同四题、同模型、每题一次的开发调试，不能称为独立验证或泛化提升。原 pilot、pilot_recovery、答案、日志、评分函数和报告保持原样。
 
@@ -42,7 +42,7 @@ bench/inspect_adapter/.venv/Scripts/python.exe -m bench.inspect_adapter.structur
 bench/inspect_adapter/.venv/Scripts/python.exe -m bench.inspect_adapter.tests.structured_transport_smoke
 ```
 
-APPROVAL/FROZEN 尚未生成，真实请求为 0。`--api` 会先核验新冻结与一次性领取，再读取本地 SILICONFLOW_API_KEY；只有明确批准本方案后才生成冻结。密钥不写入文件、日志或服务器。
+用户于 2026-10-10 对“同一模型再跑四题，最多 24 次请求、输入代理 20 万、输出申请 18,432 token，费用参考约 ¥0.77”的确认问题回复“可以”。据此先生成 APPROVAL/FROZEN 并提交，再执行本次一次性试跑。`--api` 会先核验新冻结与一次性领取，再读取本地 SILICONFLOW_API_KEY。密钥不写入文件、日志或服务器。真实结果另记，本段为运行前授权记录。
 
 `bindings()` 在当前进程临时把新 Task、预算器和目录绑定到旧调用入口，并在返回/异常时恢复；不修改旧源文件。工具调用、消息、HTTP、日志仍由 Inspect 与其原生 OpenAI 兼容 provider 执行。新代码负责领域提示、阶段安排、限制及审计，未另写供应商调用框架。
 
