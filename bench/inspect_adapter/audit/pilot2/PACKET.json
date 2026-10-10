@@ -1,0 +1,888 @@
+{
+  "cases": [
+    {
+      "action": "重新执行功能注释流程（数据库检索/比对），使 32 条蛋白中至少 26 条（≥80%）任一 -Annotated 列为 1，并重新生成 annotation.tsv 与 annotation_metrics.json 后复核覆盖率；同时保留检索日志或数据库版本以便确认低覆盖率的根因。",
+      "action_sha256": "ff36febf97d4714e8f450a95267b451a60950b2552a441f7f91501e1afafd098",
+      "calculation_trace": [
+        {
+          "arguments": {
+            "path": "artifacts/query.faa"
+          },
+          "function": "file_stats",
+          "recorded_result": {
+            "bytes": 11620,
+            "format": "fasta",
+            "path": "artifacts/query.faa",
+            "record_count": 32,
+            "records": [
+              {
+                "N": 22,
+                "id": "g1.t1",
+                "length": 353,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 16,
+                "id": "g2.t1",
+                "length": 507,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 2,
+                "id": "g3.t1",
+                "length": 81,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 12,
+                "id": "g4.t1",
+                "length": 236,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 16,
+                "id": "g5.t1",
+                "length": 509,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 27,
+                "id": "g6.t1",
+                "length": 777,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 16,
+                "id": "g7.t1",
+                "length": 359,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 11,
+                "id": "g8.t1",
+                "length": 407,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 32,
+                "id": "g9.t1",
+                "length": 734,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 20,
+                "id": "g10.t1",
+                "length": 750,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 3,
+                "id": "g11.t1",
+                "length": 228,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 28,
+                "id": "g12.t1",
+                "length": 552,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 15,
+                "id": "g13.t1",
+                "length": 486,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 7,
+                "id": "g14.t1",
+                "length": 233,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 20,
+                "id": "g15.t1",
+                "length": 320,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 1,
+                "id": "g16.t1",
+                "length": 146,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 12,
+                "id": "g17.t1",
+                "length": 508,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 6,
+                "id": "g18.t1",
+                "length": 138,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 8,
+                "id": "g19.t1",
+                "length": 128,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 5,
+                "id": "g20.t1",
+                "length": 142,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 45,
+                "id": "g21.t1",
+                "length": 967,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 9,
+                "id": "g22.t1",
+                "length": 135,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 7,
+                "id": "g23.t1",
+                "length": 143,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 6,
+                "id": "g24.t1",
+                "length": 155,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 3,
+                "id": "g25.t1",
+                "length": 207,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 2,
+                "id": "g26.t1",
+                "length": 81,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 17,
+                "id": "g27.t1",
+                "length": 544,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 12,
+                "id": "g28.t1",
+                "length": 357,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 4,
+                "id": "g29.t1",
+                "length": 115,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 11,
+                "id": "g30.t1",
+                "length": 402,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 4,
+                "id": "g31.t1",
+                "length": 115,
+                "lowercase_acgt": 0,
+                "n": 0
+              },
+              {
+                "N": 12,
+                "id": "g32.t1",
+                "length": 357,
+                "lowercase_acgt": 0,
+                "n": 0
+              }
+            ]
+          },
+          "tool_call_id": "01a12585f5f1713ad56e3b660a9d3c7e"
+        },
+        {
+          "arguments": {
+            "path": "artifacts/annotation.tsv"
+          },
+          "function": "file_stats",
+          "recorded_result": {
+            "bytes": 1140,
+            "columns": [
+              "query",
+              "Nr-Annotated",
+              "Swissprot-Annotated",
+              "KEGG-Annotated",
+              "KOG-Annotated",
+              "TrEMBL-Annotated",
+              "Interpro-Annotated",
+              "GO-Annotated",
+              "IPR",
+              "GO"
+            ],
+            "format": "tsv",
+            "path": "artifacts/annotation.tsv",
+            "row_count": 32
+          },
+          "tool_call_id": "01a12585f5f1713ad56e3b660a9d3c7f"
+        },
+        {
+          "arguments": {
+            "query_path": "artifacts/query.faa",
+            "table_path": "artifacts/annotation.tsv"
+          },
+          "function": "annotation_counts",
+          "recorded_result": {
+            "annotated_query_records": 2,
+            "annotation_columns": [
+              "Nr-Annotated",
+              "Swissprot-Annotated",
+              "KEGG-Annotated",
+              "KOG-Annotated",
+              "TrEMBL-Annotated",
+              "Interpro-Annotated",
+              "GO-Annotated"
+            ],
+            "coverage_percent": 6.25,
+            "definition": "exact first FASTA token joins query; any annotation flag equals 1",
+            "duplicate_table_ids": [],
+            "matched_ids": 32,
+            "queries_without_row": [],
+            "query_path": "artifacts/query.faa",
+            "query_records": 32,
+            "table_ids_without_query": [],
+            "table_path": "artifacts/annotation.tsv",
+            "table_rows": 32
+          },
+          "tool_call_id": "01a125860b95c49ab3b6b30bcab46f58"
+        }
+      ],
+      "case_id": "dev_001",
+      "evidence": [
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 5,
+            "text": "本题给出的 32 条蛋白构成本次完整审核集合，不能外推全物种基因数。query.faa 的 header 首个 token 必须与 annotation.tsv 的 query 精确相接，不允许去后缀或其它 ID 转换。每条 query 应有且只有一行记录；七个 -Annotated 列任一为 1 即视为有功能标注。本次下游合同要求此集合的标注覆盖率至少为 80%，这是本次交付要求，不是物种通用基线。"
+          },
+          "index": 1,
+          "item_sha256": "5ad5ff53f1580e8c99d6ce73e77a05a2d24dae1483c4c632c1957dfc81cd0eff",
+          "observation": "下游合同要求此集合的标注覆盖率至少为 80%，且每条 query 应有且只有一行记录，query.faa header 首个 token 必须与 annotation.tsv 的 query 精确相接。",
+          "pointer": "task.md:5"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 4,
+            "text": "  \"coverage_percent\": 6.25,"
+          },
+          "index": 2,
+          "item_sha256": "9ffd127fd29d57e0d74564937842d9acffc9806c4dd77188288e5d3c893bd8c3",
+          "observation": "coverage_percent 为 6.25，远低于要求的 80%。",
+          "pointer": "artifacts/annotation_metrics.json:4"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 5,
+            "text": "  \"matched_ids\": 32,"
+          },
+          "index": 3,
+          "item_sha256": "240e7d33630d01fb285946c543ebd67ff916ba3661d88f9620c99f81e64b4e5b",
+          "observation": "matched_ids 为 32，说明 32 条 query 均与表记录精确匹配，无 ID 接续问题。",
+          "pointer": "artifacts/annotation_metrics.json:5"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 4,
+            "text": "g3.t1\t0\t0\t0\t0\t0\t0\t0\t\t"
+          },
+          "index": 4,
+          "item_sha256": "7ac13c72820309920ec697cf6345dad13c6ed5bcd2fc0c44204d228f288c2d22",
+          "observation": "g1.t1 的七个 -Annotated 列均为 1，是有功能标注的记录之一。",
+          "pointer": "artifacts/annotation.tsv:4"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 5,
+            "text": "g4.t1\t0\t0\t0\t0\t0\t0\t0\t\t"
+          },
+          "index": 5,
+          "item_sha256": "c70a0c7835aa514dde41b109d865508f5025e9de121d330956dc7b251238976e",
+          "observation": "g2.t1 的七个 -Annotated 列均为 1，是有功能标注的记录之一。",
+          "pointer": "artifacts/annotation.tsv:5"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 6,
+            "text": "g5.t1\t0\t0\t0\t0\t0\t0\t0\t\t"
+          },
+          "index": 6,
+          "item_sha256": "82aca3468dd5788511528ae861cbe504c4140fbf2f01509b024c4600ce0af14f",
+          "observation": "g3.t1 的七个 -Annotated 列均为 0，无功能标注。",
+          "pointer": "artifacts/annotation.tsv:6"
+        }
+      ],
+      "public_manifest": [
+        {
+          "bytes": 1140,
+          "path": "artifacts/annotation.tsv",
+          "sha256": "dc00d3462729100aeff8d138e273d45b0ed2f8c497bf4460188a1c2be4ac3347"
+        },
+        {
+          "bytes": 126,
+          "path": "artifacts/annotation_metrics.json",
+          "sha256": "c99c4e391d16eea3ef40f4ac2c9855be370f58ef270aaad92ec5cb9cd012cf31"
+        },
+        {
+          "bytes": 11620,
+          "path": "artifacts/query.faa",
+          "sha256": "368ec849d406deba266a0ca7b5aa6197fe1bf1ea01df2fa2d88d382aad7b5c64"
+        },
+        {
+          "bytes": 920,
+          "path": "task.md",
+          "sha256": "faabfe22923b03c66c27b82487063f6581b21411e3fc274f979d47964d75fbc3"
+        }
+      ]
+    },
+    {
+      "action": "补充 hints.gff 中至少一条 intron 特征（并同步更新 input_metrics.json 的 intron_rows/feature_rows），复核 file_stats 显示 feature_rows ≥ 1 且含 intron 特征后方可启动。",
+      "action_sha256": "35bdb8bb57fb626b386d756476c81026fbf0a6b67d65b3aac16f8391fb6f6bf2",
+      "calculation_trace": [
+        {
+          "arguments": {
+            "path": "artifacts/hints.gff"
+          },
+          "function": "file_stats",
+          "recorded_result": {
+            "bytes": 0,
+            "feature_counts": {},
+            "feature_rows": 0,
+            "format": "features",
+            "path": "artifacts/hints.gff"
+          },
+          "tool_call_id": "01a1258655b36abe7ec39e24347230c1"
+        }
+      ],
+      "case_id": "dev_002",
+      "evidence": [
+        {
+          "cited_location": {
+            "bytes": 0,
+            "kind": "bytes"
+          },
+          "index": 1,
+          "item_sha256": "edf1f55fd9878dfda135d268c853eb06ded66e72d3cf77bcf6e16f22576149c7",
+          "observation": "文件为 0 字节，file_stats 显示 feature_rows 为 0，无任何特征记录。",
+          "pointer": "artifacts/hints.gff:bytes"
+        },
+        {
+          "cited_location": {
+            "field": "intron_rows",
+            "kind": "field",
+            "value": 0
+          },
+          "index": 2,
+          "item_sha256": "be19a1aa0e18bdfa5a6b6c4d067b7a5c011437e384a3b665d8d532006c3b9d11",
+          "observation": "intron_rows 为 0，hints_bytes 为 0，确认无 intron 特征可读入。",
+          "pointer": "artifacts/input_metrics.json:intron_rows"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 5,
+            "text": "审核对象是输入准备，不是已经运行的注释结果。本次消费者必须从 hints.gff 读入至少一条 intron 特征才能启动；不允许用未声明的其它证据通道替代。input_metrics.json 是对此处给定文件的字节数和特征行重算，只代表这个输入。"
+          },
+          "index": 3,
+          "item_sha256": "1e49af20616d67e317b90ccf27bce2bca9f3dc0a120b34bb75194dc88aee40eb",
+          "observation": "消费者必须从 hints.gff 读入至少一条 intron 特征才能启动，且不允许用未声明的其它证据通道替代。",
+          "pointer": "task.md:5"
+        }
+      ],
+      "public_manifest": [
+        {
+          "bytes": 0,
+          "path": "artifacts/hints.gff",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "bytes": 64,
+          "path": "artifacts/input_metrics.json",
+          "sha256": "efd74464e80b4f2e3eea62e312fd9f5ec90a35b7eb475b49aca31c4aaf869459"
+        },
+        {
+          "bytes": 675,
+          "path": "task.md",
+          "sha256": "8bd1d22fdeb313dda1a4e0afa8140bb2f4a9593df9dfdb6b79138766ad096d21"
+        }
+      ]
+    },
+    {
+      "action": "No action required; delivery sequence.fa preserves lowercase acgt in all three regions with no N, and IDs/lengths match reference.fa.",
+      "action_sha256": "6806fc9a66c8fe0ff939af937f28f66b2be29e8c6d3c40ec32f73c321dd738e4",
+      "calculation_trace": [
+        {
+          "arguments": {
+            "path": "artifacts/sequence.fa"
+          },
+          "function": "file_stats",
+          "recorded_result": {
+            "bytes": 4178,
+            "format": "fasta",
+            "path": "artifacts/sequence.fa",
+            "record_count": 1,
+            "records": [
+              {
+                "N": 0,
+                "id": "NC_003070.9",
+                "length": 4096,
+                "lowercase_acgt": 180,
+                "n": 0
+              }
+            ]
+          },
+          "tool_call_id": "01a125868f1833089bfa7de3f1e59497"
+        },
+        {
+          "arguments": {
+            "path": "artifacts/reference.fa"
+          },
+          "function": "file_stats",
+          "recorded_result": {
+            "bytes": 4178,
+            "format": "fasta",
+            "path": "artifacts/reference.fa",
+            "record_count": 1,
+            "records": [
+              {
+                "N": 180,
+                "id": "NC_003070.9",
+                "length": 4096,
+                "lowercase_acgt": 0,
+                "n": 0
+              }
+            ]
+          },
+          "tool_call_id": "01a125868f1833089bfa7de3f1e59498"
+        },
+        {
+          "arguments": {
+            "regions_path": "artifacts/regions.tsv",
+            "sequence_path": "artifacts/sequence.fa"
+          },
+          "function": "interval_counts",
+          "recorded_result": {
+            "coordinates": "one-based closed",
+            "regions": [
+              {
+                "N": 0,
+                "end": 115,
+                "length": 115,
+                "lowercase_acgt": 115,
+                "n": 0,
+                "other": 0,
+                "seqid": "NC_003070.9",
+                "start": 1
+              },
+              {
+                "N": 0,
+                "end": 1097,
+                "length": 32,
+                "lowercase_acgt": 32,
+                "n": 0,
+                "other": 0,
+                "seqid": "NC_003070.9",
+                "start": 1066
+              },
+              {
+                "N": 0,
+                "end": 1187,
+                "length": 33,
+                "lowercase_acgt": 33,
+                "n": 0,
+                "other": 0,
+                "seqid": "NC_003070.9",
+                "start": 1155
+              }
+            ],
+            "regions_path": "artifacts/regions.tsv",
+            "sequence_path": "artifacts/sequence.fa"
+          },
+          "tool_call_id": "01a12586af438c7c934c7745e75037bf"
+        }
+      ],
+      "case_id": "dev_003",
+      "evidence": [
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 2,
+            "text": "NC_003070.9\t1\t115"
+          },
+          "index": 1,
+          "item_sha256": "03fa1007c2efad9eb6bc20dd7816146ce60bc6e0cb91ea54337d5dac3e3d00d9",
+          "observation": "Region NC_003070.9:1-115 defined as lowercase acgt interval.",
+          "pointer": "artifacts/regions.tsv:2"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 3,
+            "text": "NC_003070.9\t1066\t1097"
+          },
+          "index": 2,
+          "item_sha256": "d758eb8b17a057107703554f0356b37e6dc67ac00d2129e2ac79cac3e04eb708",
+          "observation": "Region NC_003070.9:1066-1097 defined as lowercase acgt interval.",
+          "pointer": "artifacts/regions.tsv:3"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 4,
+            "text": "NC_003070.9\t1155\t1187"
+          },
+          "index": 3,
+          "item_sha256": "fc7633307273f9fa0bb765eed6a578732e0543a91b0ad7cf3675b0087ace4c15",
+          "observation": "Region NC_003070.9:1155-1187 defined as lowercase acgt interval.",
+          "pointer": "artifacts/regions.tsv:4"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 1,
+            "text": ">NC_003070.9"
+          },
+          "index": 4,
+          "item_sha256": "2e1a4961b5b00ec9c4f80bf57cc9a2f7cec0953524a08718311fe13c94633706",
+          "observation": "Delivery sequence.fa has ID NC_003070.9, length 4096, matching reference.fa ID and length.",
+          "pointer": "artifacts/sequence.fa:1"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 3,
+            "text": "  \"ids_equal\": true,"
+          },
+          "index": 5,
+          "item_sha256": "0ed214b5a946244d3866a99846ae446d6245b6e962f89e27c8320aa0c1277200",
+          "observation": "ids_equal true, delivery_length 4096, reference_length 4096.",
+          "pointer": "artifacts/sequence_metrics.json:3"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 2,
+            "text": "ccctaaaccctaaaccctaaaccctaaacctctgaatccttaatccctaaatccctaaat"
+          },
+          "index": 6,
+          "item_sha256": "3005ba8dafce24c790aa17d28c1d103fc5cbb2bea436f8ec9f7aba5e6661af72",
+          "observation": "Region 1-115 retains lowercase acgt (115 bases, 0 N).",
+          "pointer": "artifacts/sequence.fa:2"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 19,
+            "text": "TTTCCACTTATGACTTAAGAACTTGTGAAGCAGAAAGTGGCAACAccccccacctccccc"
+          },
+          "index": 7,
+          "item_sha256": "d5551739589fdec9b02b7b450fcf933f6e7b004d9475b3957bfed4d55c764b57",
+          "observation": "Region 1066-1097 retains lowercase acgt (32 bases, 0 N).",
+          "pointer": "artifacts/sequence.fa:19"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 21,
+            "text": "TTTATGGTTAAGAGttttttactctctttatttttctttttctttttGAGACATACTGAA"
+          },
+          "index": 8,
+          "item_sha256": "6f130ac546458e8bc4d0e3bdeffdce88c62f8f633c92a437bda1373d635fa6ec",
+          "observation": "Region 1155-1187 retains lowercase acgt (33 bases, 0 N).",
+          "pointer": "artifacts/sequence.fa:21"
+        }
+      ],
+      "public_manifest": [
+        {
+          "bytes": 4178,
+          "path": "artifacts/reference.fa",
+          "sha256": "a1b88e09955a97d1ed54bd6abceb3c21ba19307381e834b950023ae0f0375274"
+        },
+        {
+          "bytes": 78,
+          "path": "artifacts/regions.tsv",
+          "sha256": "5a5d1ea7f5740ec7e644aacf1f5fb0a6992c6a70f2c390a7a964f3301397bfe2"
+        },
+        {
+          "bytes": 4178,
+          "path": "artifacts/sequence.fa",
+          "sha256": "2d60663ccaba478fcee6c0a4c228a6bf5e94e9a874b57fbdf020963f91f20408"
+        },
+        {
+          "bytes": 95,
+          "path": "artifacts/sequence_metrics.json",
+          "sha256": "69ccd6ea2a1277e11e84cd5a9d30daeadba089435766f08a1c10ade76cee028e"
+        },
+        {
+          "bytes": 860,
+          "path": "task.md",
+          "sha256": "c7ba2af9201ed6d8ddcef1192b7f52de1df2a7fd9412309b12d9cdf6009e544a"
+        }
+      ]
+    },
+    {
+      "action": "重新生成 sequence.fa，在 regions.tsv 三个区间（1..115、1066..1097、1155..1187）保留与 reference.fa 相同的小写acgt碱基，不得改为N；区间外原有N可保留。复核条件：用 interval_counts 对 sequence.fa 和 regions.tsv 核查，三个区间 lowercase_acgt 均大于0且 N 为0，同时两文件ID和长度仍一致。",
+      "action_sha256": "a7a6e5c23a1164f4d7b5974349c0f2e97cedbd1fb259429fe86e7d3b3e42f4e0",
+      "calculation_trace": [
+        {
+          "arguments": {
+            "path": "artifacts/reference.fa"
+          },
+          "function": "file_stats",
+          "recorded_result": {
+            "bytes": 4178,
+            "format": "fasta",
+            "path": "artifacts/reference.fa",
+            "record_count": 1,
+            "records": [
+              {
+                "N": 0,
+                "id": "NC_003070.9",
+                "length": 4096,
+                "lowercase_acgt": 180,
+                "n": 0
+              }
+            ]
+          },
+          "tool_call_id": "01a1258766cacd74f21af5c582599402"
+        },
+        {
+          "arguments": {
+            "path": "artifacts/sequence.fa"
+          },
+          "function": "file_stats",
+          "recorded_result": {
+            "bytes": 4178,
+            "format": "fasta",
+            "path": "artifacts/sequence.fa",
+            "record_count": 1,
+            "records": [
+              {
+                "N": 180,
+                "id": "NC_003070.9",
+                "length": 4096,
+                "lowercase_acgt": 0,
+                "n": 0
+              }
+            ]
+          },
+          "tool_call_id": "01a1258766cacd74f21af5c582599403"
+        },
+        {
+          "arguments": {
+            "regions_path": "artifacts/regions.tsv",
+            "sequence_path": "artifacts/sequence.fa"
+          },
+          "function": "interval_counts",
+          "recorded_result": {
+            "coordinates": "one-based closed",
+            "regions": [
+              {
+                "N": 115,
+                "end": 115,
+                "length": 115,
+                "lowercase_acgt": 0,
+                "n": 0,
+                "other": 0,
+                "seqid": "NC_003070.9",
+                "start": 1
+              },
+              {
+                "N": 32,
+                "end": 1097,
+                "length": 32,
+                "lowercase_acgt": 0,
+                "n": 0,
+                "other": 0,
+                "seqid": "NC_003070.9",
+                "start": 1066
+              },
+              {
+                "N": 33,
+                "end": 1187,
+                "length": 33,
+                "lowercase_acgt": 0,
+                "n": 0,
+                "other": 0,
+                "seqid": "NC_003070.9",
+                "start": 1155
+              }
+            ],
+            "regions_path": "artifacts/regions.tsv",
+            "sequence_path": "artifacts/sequence.fa"
+          },
+          "tool_call_id": "01a12587742b1526ef85349429cd09b7"
+        }
+      ],
+      "case_id": "dev_004",
+      "evidence": [
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 7,
+            "text": "regions.tsv 按原序列里的小写acgt连续区间导出，坐标是一基闭区间。本次消费者要求 sequence.fa 在这些区间保留小写acgt及碱基信息，不接受改成N；区间外原有N允许保留。请依据交付文件和区间核查，本题不评价全基因组屏蔽比例、库版本或组装完整性。"
+          },
+          "index": 1,
+          "item_sha256": "7de2fd28d48d2382c1571acd2a62fd4393cd0331f2b3834e36cdc1a6d2ee22f4",
+          "observation": "消费者要求 sequence.fa 在 regions.tsv 导出的区间保留小写acgt及碱基信息，不接受改成N。",
+          "pointer": "task.md:7"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 2,
+            "text": "NC_003070.9\t1\t115"
+          },
+          "index": 2,
+          "item_sha256": "f60213e979db8064eae187cf7aae5b5eac1fb045d80fccfd46892522b416c078",
+          "observation": "区间 NC_003070.9 1..115 为小写acgt连续区间。",
+          "pointer": "artifacts/regions.tsv:2"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 3,
+            "text": "NC_003070.9\t1066\t1097"
+          },
+          "index": 3,
+          "item_sha256": "9732b291246a993e455723ece1e816a4d3d2f0ee8e890b0bcd625726f572d216",
+          "observation": "区间 NC_003070.9 1066..1097 为小写acgt连续区间。",
+          "pointer": "artifacts/regions.tsv:3"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 4,
+            "text": "NC_003070.9\t1155\t1187"
+          },
+          "index": 4,
+          "item_sha256": "719eea9b476a569fcd4944b98d214808ae06f2b9e79747301aa8e64f72010836",
+          "observation": "区间 NC_003070.9 1155..1187 为小写acgt连续区间。",
+          "pointer": "artifacts/regions.tsv:4"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 2,
+            "text": "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"
+          },
+          "index": 5,
+          "item_sha256": "2e1095c011f35b9da8cb9cd356ef3430f5c9b60eebbb98e2dc98fbf375afe1a2",
+          "observation": "sequence.fa 第2行起始为连续N，对应区间1..115处无小写acgt。",
+          "pointer": "artifacts/sequence.fa:2"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 3,
+            "text": "  \"ids_equal\": true,"
+          },
+          "index": 6,
+          "item_sha256": "2ff00eb7d561460af6979f8d7df99849dd29cfaa2253013ce86b8fc3a207755f",
+          "observation": "ids_equal 为 true，两文件ID一致。",
+          "pointer": "artifacts/sequence_metrics.json:3"
+        },
+        {
+          "cited_location": {
+            "kind": "line",
+            "line": 5,
+            "text": "  \"reference_length\": 4096"
+          },
+          "index": 7,
+          "item_sha256": "9c8f0106402f36af90034487b837bc8b061c7cc2b4ba4948fc6bef89cbe0e5cb",
+          "observation": "reference_length 为 4096，与交付长度一致。",
+          "pointer": "artifacts/sequence_metrics.json:5"
+        }
+      ],
+      "public_manifest": [
+        {
+          "bytes": 4178,
+          "path": "artifacts/reference.fa",
+          "sha256": "2d60663ccaba478fcee6c0a4c228a6bf5e94e9a874b57fbdf020963f91f20408"
+        },
+        {
+          "bytes": 78,
+          "path": "artifacts/regions.tsv",
+          "sha256": "5a5d1ea7f5740ec7e644aacf1f5fb0a6992c6a70f2c390a7a964f3301397bfe2"
+        },
+        {
+          "bytes": 4178,
+          "path": "artifacts/sequence.fa",
+          "sha256": "a1b88e09955a97d1ed54bd6abceb3c21ba19307381e834b950023ae0f0375274"
+        },
+        {
+          "bytes": 95,
+          "path": "artifacts/sequence_metrics.json",
+          "sha256": "69ccd6ea2a1277e11e84cd5a9d30daeadba089435766f08a1c10ade76cee028e"
+        },
+        {
+          "bytes": 860,
+          "path": "task.md",
+          "sha256": "c7ba2af9201ed6d8ddcef1192b7f52de1df2a7fd9412309b12d9cdf6009e544a"
+        }
+      ]
+    }
+  ],
+  "official_score_changed": false,
+  "review_kind": "author_ai_posthoc; not independent or blind or human",
+  "run_id": "20261010T111451Z_deepseek-ai_DeepSeek-V4-Flash_2c90b6d19d15",
+  "source_receipt_sha256": "f6016cf51bd9cc4adb7465258f9f7012a3dddfe01de025ae5c0ec87e8d3501a2",
+  "source_results_sha256": "cbfc8d6214f3214d0ddaaced481a6b29780c989df64c820ca70d07bf6bdf9bc0",
+  "version": "posthoc-evidence-packet-1"
+}
