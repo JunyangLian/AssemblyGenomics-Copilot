@@ -1,10 +1,10 @@
 # AssemblyGenomics Bench
 
-2026-10-10 当前入口：已有静态 QC 对照评测，以及基于 Inspect AI 的受限工具扩展。优先从 [Inspect 交付与学习](inspect_adapter/DELIVERY.md) 开始；下面的 v1 规格保留其历史阶段口径，不代表当前项目仍停留在 v1。
+2026-10-11 当前入口：已有静态 QC 对照评测，以及基于 Inspect AI 的受限工具扩展。优先从 [Inspect 交付与学习](inspect_adapter/DELIVERY.md) 开始；下面的 v1 规格保留其历史阶段口径，不代表当前项目仍停留在 v1。
 
 | 内容 | 入口 | 当前范围 |
 |---|---|---|
-| Inspect 官方流程与生信扩展 | [交付导航](inspect_adapter/DELIVERY.md) | 官方12样本真实小规模、四道开发题工具试跑、历史评分回放 |
+| Inspect 官方流程与生信扩展 | [交付导航](inspect_adapter/DELIVERY.md) | 官方12样本真实小规模、四道开发题、19题T1/114观测真实工具回归、历史评分回放 |
 | 无密钥运行 | [复现说明](inspect_adapter/REPRODUCE.md) | 官方 mock、648条历史观测、协议 fixture、公开计算核验 |
 | 简历与面试 | [讲解提纲](inspect_adapter/INTERVIEW.md) | 框架贡献边界、代码阅读顺序、真实成功与失败案例 |
 | Bench v2 | [版本说明](v2/README.md)、[最终结果](v2/reports/v2-run-10_four-models_human-reviewed/results.json) | 24题；四模型 B/C 与 A 的648条归档观测，含失败与未覆盖 |

@@ -29,6 +29,18 @@ def export(output):
     inventory = {r['case_id']: r for r in setup['inventory']}
     targets = pilot.read_json(live.regression.DIRECTORY / 'LEGACY_TARGETS.json')
     records = budget['records']
+    tool_functions = Counter()
+    native_limits = []
+    for path in sorted((output / 'logs').glob('*.json')):
+        native = pilot.read_json(path)
+        for sample in native.get('samples') or []:
+            tool_functions.update(m.get('function', 'unknown') for m in sample.get('messages', []) if m['role']=='tool')
+            if sample.get('limit'):
+                native_limits.append({'condition':native['eval']['task'].removeprefix('t1_regression_'),
+                    'sample_id':sample['id'], 'limit':sample['limit'],
+                    'final_submission_scheduled':sample['metadata'].get('final_submission_scheduled',False)})
+    if sum(tool_functions.values()) != sum(r['tool_calls'] for r in rows):
+        raise ValueError('native tool traces disagree with result counts')
     prompt = sum((r.get('usage') or {}).get('prompt_tokens', 0) for r in records)
     completion = sum((r.get('usage') or {}).get('completion_tokens', 0) for r in records)
     total = sum((r.get('usage') or {}).get('total_tokens', 0) for r in records)
@@ -46,6 +58,10 @@ def export(output):
         'budget_stopped_reason': budget['stopped_reason'], 'fatal_error_class': result['fatal_error_class'],
         'observations': dict(Counter(r['status'] for r in rows)),
         'tool_calls': sum(r['tool_calls'] for r in rows), 'tool_errors': sum(r['tool_errors'] for r in rows),
+        'tool_functions': dict(tool_functions),
+        'native_limits': native_limits,
+        'request_phase_counts': dict(Counter(r['condition']+'/'+r['phase'] for r in records)),
+        'reporter_sha256': pilot.sha(Path(__file__).read_bytes()),
         'conditions': result['summary'],
         'artifacts': {str(p.relative_to(output)).replace('\\', '/'): pilot.sha(p.read_bytes())
                       for p in [output / 'RESULTS.json', output / 'REQUEST_BUDGET.json',
@@ -59,6 +75,8 @@ def export(output):
         f"物理请求预留 {budget['calls']}/399；HTTP状态 `{receipt['http_status_counts']}`；输入代理 {budget['input_proxy']:,}/2,000,000；输出申请 {budget['output_reserved']:,}/379,392。",
         f"已返回usage：输入 {prompt:,}、输出 {completion:,}、total {total:,}，其中缓存输入 {cached:,}。按2026-10-10价格快照参考 ¥{cost:.4f}；不是账单，无响应/无usage收费未知。",
         f"停止原因：`{budget['stopped_reason']}`；顶层错误类：`{result['fatal_error_class']}`。", '',
+        f"原生工具调用：`{dict(tool_functions)}`；请求阶段：`{receipt['request_phase_counts']}`。", '',
+        f"原生限制终止 {len(native_limits)} 条，详见 RUN_RECEIPT 的 native_limits。运行者设置的 message_limit=16 偏低：多工具回复累积后，3条工具观测在最终JSON请求前达到消息上限。原11条parse_error中包含这3条配置限制，不应全部归因模型格式能力；原分数和分母保留，不做事后补跑。", '',
         '## 题级主报告', '', 'verdict与root分别取2/3多数；无多数、缺失、错误均不获匹配分。两个多数可以来自不同重复，联合匹配表示两个多数标签都正确。', '',
         '| 条件 | 判定匹配 | 根因匹配 | 联合匹配 | 判定不一致 | 工具调用/错误 |', '|---|---|---|---|---|---|']
     for c, group in result['summary'].items():
