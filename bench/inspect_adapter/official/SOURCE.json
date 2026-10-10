@@ -6,6 +6,16 @@
       "origin": "LICENSE",
       "sha256": "c593c2afc81388521eaeb03f0d1a4b01bc3e5147ed9cb16c1f129e5be353b6af"
     },
+    "theory_of_mind.jsonl": {
+      "bytes": 31837,
+      "origin": "src/inspect_ai/dataset/_examples/theory_of_mind.jsonl",
+      "sha256": "d67dcc9d8f95a9e22453016f28fb99fba8cf17b1d32f6f4dee739c5b6e7fd61c"
+    },
+    "theory_of_mind.py": {
+      "bytes": 616,
+      "origin": "examples/theory_of_mind.py",
+      "sha256": "a9b031194890dead679de332b590d27e37d760252411cb5191002577c0be1b8c"
+    },
     "tool_use.py": {
       "bytes": 3338,
       "origin": "examples/tool_use.py",
@@ -14,6 +24,6 @@
   },
   "license": "MIT",
   "repository": "https://github.com/UKGovernmentBEIS/inspect_ai",
-  "scope": "unmodified upstream task source; only addition_problem is executed",
+  "scope": "unmodified upstream sources; mock addition or separately approved bounded official live subset",
   "tag": "0.3.277"
 }
