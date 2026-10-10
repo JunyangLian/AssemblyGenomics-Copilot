@@ -1,0 +1,117 @@
+{
+  "action_safety": "unadjudicated",
+  "actual_tool_calls": 29,
+  "artifact_sha256": {
+    "work/pilot/20261010T094801Z_deepseek-ai_DeepSeek-V4-Flash_33e92693dc16/REQUEST_BUDGET.json": "f6cef44376b775cc6745734031b0d7babf36991481e407b1ff336f56e5db7f70",
+    "work/pilot/20261010T094801Z_deepseek-ai_DeepSeek-V4-Flash_33e92693dc16/RESULTS.json": "249783761292812426454bafb56b7203ef0dfdb85d50e2b8b6b0e13c89e9d075",
+    "work/pilot/20261010T094801Z_deepseek-ai_DeepSeek-V4-Flash_33e92693dc16/logs/2026-10-10T09-48-06-00-00_assemblygenomics-development-tool-pilot_Lqg6RGCXaFgVXvHZeadA4X.json": "0ad4c4cd81bcdf2a6bae96967c509bc4c5cef84d4936751b0e287b66871cfe27"
+  },
+  "completed_at": "2026-10-10T09:50:31+00:00",
+  "condition": "readonly_tools",
+  "cost_note": "reference pricing, not bill; previous no-response attempt has unknown billing",
+  "credential_pattern_findings": 0,
+  "cumulative_caps": {
+    "calls": 32,
+    "input_proxy": 200000,
+    "output_reserved": 65536
+  },
+  "cumulative_reservations": {
+    "calls": 18,
+    "input_proxy": 80714,
+    "output_reserved": 36864
+  },
+  "evidence_support": "unadjudicated",
+  "frozen_sha256": "33e92693dc16ce45c9c67fa8e80f270793512934fea1cf2d7d63036f82020495",
+  "http_requests": 14,
+  "http_status_counts": {
+    "200": 14
+  },
+  "model_id": "deepseek-ai/DeepSeek-V4-Flash",
+  "native_inspect_status": "success",
+  "planned_observations": 4,
+  "provider_usage": {
+    "completion_tokens": 6488,
+    "prompt_cache_hit_tokens": 12032,
+    "prompt_cache_miss_tokens": 58584,
+    "prompt_tokens": 70616,
+    "total_tokens": 77104
+  },
+  "pytest": "394 passed in 216.36s",
+  "reference_cost_cny_peak_with_reported_cache": 0.2377536,
+  "reference_cost_cny_peak_without_cache": 0.27024,
+  "returned_model_ids": [
+    "deepseek-ai/DeepSeek-V4-Flash"
+  ],
+  "run_id": "20261010T094801Z_deepseek-ai_DeepSeek-V4-Flash_33e92693dc16",
+  "samples": [
+    {
+      "case_id": "dev_001",
+      "execution_error": false,
+      "stop_reason": "stop",
+      "tool_calls": 8,
+      "tool_errors": 0,
+      "tool_functions": {
+        "annotation_counts": 1,
+        "file_stats": 2,
+        "list_files": 1,
+        "read_file": 4
+      }
+    },
+    {
+      "case_id": "dev_002",
+      "execution_error": false,
+      "stop_reason": "stop",
+      "tool_calls": 4,
+      "tool_errors": 0,
+      "tool_functions": {
+        "file_stats": 1,
+        "list_files": 1,
+        "read_file": 2
+      }
+    },
+    {
+      "case_id": "dev_003",
+      "execution_error": false,
+      "stop_reason": "max_tokens",
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_functions": {
+        "list_files": 1,
+        "read_file": 5
+      }
+    },
+    {
+      "case_id": "dev_004",
+      "execution_error": false,
+      "stop_reason": "stop",
+      "tool_calls": 11,
+      "tool_errors": 0,
+      "tool_functions": {
+        "file_stats": 2,
+        "interval_counts": 2,
+        "list_files": 1,
+        "read_file": 6
+      }
+    }
+  ],
+  "scope": "four development cases; one repetition; no held-out or H1-H3 claim",
+  "started_at": "2026-10-10T09:48:06+00:00",
+  "statuses": {
+    "parse_error": 4
+  },
+  "strict_counts": {
+    "decision_joint": {
+      "N": 4,
+      "n": 0
+    },
+    "evidence_locator_valid": {
+      "N": 4,
+      "n": 0
+    },
+    "schema_valid": {
+      "N": 4,
+      "n": 0
+    }
+  },
+  "windows_shutdown_note": "process exit 0; after results, asyncio Proactor destructor reported Event loop is closed; preserved console note, not a sample error"
+}
