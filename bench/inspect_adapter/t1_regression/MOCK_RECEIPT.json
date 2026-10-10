@@ -1,0 +1,45 @@
+{
+  "actual_public_format_count_checks": 33,
+  "candidate_case_coverage": "19/20",
+  "conditions": [
+    {
+      "actual_tool_calls": 0,
+      "condition": "inline",
+      "errors": 0,
+      "samples": 57,
+      "schema_filename_valid": 57
+    },
+    {
+      "actual_tool_calls": 114,
+      "condition": "tools",
+      "errors": 0,
+      "samples": 57,
+      "schema_filename_valid": 57
+    }
+  ],
+  "legacy_observations_checked": 513,
+  "mock_estimate_scope": "text plus tool descriptions proxy; not provider usage or live call prediction",
+  "mock_input_proxy_sum": 514611,
+  "mock_output_reservations": 291840,
+  "mock_responses_are_scripted": true,
+  "model_quality_measured": false,
+  "native_mock_generate_calls": 228,
+  "not_supported": [
+    {
+      "case_id": "regression_002",
+      "expected_sha256": "1ee18be206b5593812bfd97018f0dc6654f15111e73db15fcc8361af59d4c976",
+      "meta_sha256": "cc35ab19206b5f69836391180b28b53a61886c52be55e52676df4b2fe05a83a5",
+      "pair_id": null,
+      "reason": "binary gzip; existing tools accept UTF-8 only",
+      "source_group": "T1_arabidopsis",
+      "stage": "input",
+      "status": "not_supported",
+      "type": "fault"
+    }
+  ],
+  "plan_sha256": "2782fdcaff2a183c8b5e67464611490b8700732c64c1aa91f69680b0022f3fa6",
+  "provider_calls": 0,
+  "pytest": "439 passed in 218.40s",
+  "status": "pass",
+  "unique_eligible_cases": 19
+}

@@ -4,6 +4,8 @@
 
 当前统一入口见 [交付导航](DELIVERY.md)、[无密钥复现与学习](REPRODUCE.md)，完成范围及求职表述见 [PROJECT_STATUS.md](PROJECT_STATUS.md)，面试讲解见 [INTERVIEW.md](INTERVIEW.md)。
 
+2026-10-10 用户批准进一步覆盖已有T1题目：新增 [T1工具回归准备](t1_regression/README.md)，20候选中19题适合原只读工具，两个条件×三次重复的114条mock观测通过；尚无新API调用或新质量成绩。回归不标成held-out，T3七新来源另行测试。
+
 2026-10-10 按用户最新要求，学习主线改为 [复现官方原始示例，再接入生信](official/README.md)。先运行固定版本、未修改的官方 Task/工具/评分器，再与现有领域 Task 并排对照；旧题审计归档，不继续作为扩展主线。已完成官方12样本真实小规模复现：两工具任务2/2、Theory of Mind官方同模型评分9/10，两轮累计26次请求；失败与预算内恢复保留。见 [真实结果与简历判断](official/REPORT.md)，本轮不继续100题。
 
 ## 从这里开始学
