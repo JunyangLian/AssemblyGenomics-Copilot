@@ -8,7 +8,7 @@
 2. 唯一最终提交：关闭工具，最多 2048 输出 token，发送 `response_format: {"type":"json_object"}`。这是提前安排的提交阶段，所有题都执行；不读取 Scorer 或标准答案决定是否追加请求，不是解析失败后修复或重试。
 3. 共同提示解释 pass/warn/block/rollback、观察与原因区别、有效单点 pointer，以及未知原因的补证要求。提示不含题号、真实数值、成对映射或答案。改动经过第一轮结果启发，明确登记为开发调优。
 
-JSON object 模式只约束 JSON 语法，字段和枚举仍由原 schema 校验；不声称供应商支持 schema 强约束。供应商文档描述该参数，[接口文档](https://docs.siliconflow.cn/docs/api/chat-completions-post)；已安装 Inspect 0.3.277 的兼容 provider 通过 extra_body 传输它。有关原生生成配置见 [Inspect structured output](https://inspect.aisi.org.uk/structured.html)。当前未向真实端点测试此型号的 JSON 模式；离线 fixture 只能验证客户端传输。若供应商拒绝参数，保留错误、停止新增请求，不自动改参数或降级到旧方式。
+JSON object 模式只约束 JSON 语法，字段和枚举仍由原 schema 校验；不声称供应商支持 schema 强约束。供应商文档描述该参数，[接口文档](https://docs.siliconflow.cn/docs/api/chat-completions-post)；已安装 Inspect 0.3.277 的兼容 provider 通过 extra_body 传输它。有关原生生成配置见 [Inspect structured output](https://inspect.aisi.org.uk/structured.html)。批准后的实际试跑中四次最终请求均返回 HTTP 200 和合法 JSON，见 [真实运行报告](REPORT.md)；离线 fixture 本身只能验证客户端传输。若后续供应商拒绝参数，保留错误、停止新增请求，不自动改参数或降级到旧方式。
 
 ## 不变的答案与评分
 
@@ -43,6 +43,8 @@ bench/inspect_adapter/.venv/Scripts/python.exe -m bench.inspect_adapter.tests.st
 ```
 
 用户于 2026-10-10 对“同一模型再跑四题，最多 24 次请求、输入代理 20 万、输出申请 18,432 token，费用参考约 ¥0.77”的确认问题回复“可以”。据此先生成 APPROVAL/FROZEN 并提交，再执行本次一次性试跑。`--api` 会先核验新冻结与一次性领取，再读取本地 SILICONFLOW_API_KEY。密钥不写入文件、日志或服务器。真实结果另记，本段为运行前授权记录。
+
+本次已完成：16 次 HTTP 请求、25 次只读工具，格式和定位各 4/4、决定联合匹配 3/4；75,502 个实际 token，缓存后价格参考约 ¥0.21。四题保留全部原始结果。定位存在不表示内容支持，仍有引用与处置错误；这是开发调试结果。
 
 `bindings()` 在当前进程临时把新 Task、预算器和目录绑定到旧调用入口，并在返回/异常时恢复；不修改旧源文件。工具调用、消息、HTTP、日志仍由 Inspect 与其原生 OpenAI 兼容 provider 执行。新代码负责领域提示、阶段安排、限制及审计，未另写供应商调用框架。
 

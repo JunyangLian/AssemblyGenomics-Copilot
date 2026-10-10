@@ -1,0 +1,136 @@
+{
+  "action_safety": "unadjudicated",
+  "actual_tool_calls": 25,
+  "artifact_sha256": {
+    "work/pilot/20261010T111451Z_deepseek-ai_DeepSeek-V4-Flash_2c90b6d19d15/REQUEST_BUDGET.json": "bc029882518370363c60ac75405bc0296e1d2fa3c8369d2a8f2ef497079d145c",
+    "work/pilot/20261010T111451Z_deepseek-ai_DeepSeek-V4-Flash_2c90b6d19d15/RESULTS.json": "cbfc8d6214f3214d0ddaaced481a6b29780c989df64c820ca70d07bf6bdf9bc0",
+    "work/pilot/20261010T111451Z_deepseek-ai_DeepSeek-V4-Flash_2c90b6d19d15/logs/2026-10-10T11-14-55-00-00_assemblygenomics-development-tool-pilot_2wyg4mRPxYzPKyk9B9FAJw.json": "ed6721a59a96f02f317977b1b12f07087bbde9f06ca31ba42afa20ca9d4f36c8"
+  },
+  "caps": {
+    "calls": 24,
+    "input_proxy": 200000,
+    "output_reserved": 18432
+  },
+  "completed_at": "2026-10-10T11:16:46+00:00",
+  "condition": "guided_readonly_tools_then_json_object",
+  "credential_pattern_findings": 0,
+  "evidence_support": "unadjudicated",
+  "frozen_sha256": "2c90b6d19d157bb67c34d10e1883b733cf304b5828996084dd5217847df1fdb6",
+  "http_requests": 16,
+  "http_status_counts": {
+    "200": 16
+  },
+  "model_id": "deepseek-ai/DeepSeek-V4-Flash",
+  "native_inspect_status": "success",
+  "planned_observations": 4,
+  "price_reference": {
+    "cached_input_peak": 0.3,
+    "checked_date": "2026-10-10",
+    "currency": "CNY",
+    "input_peak": 3.0,
+    "output_peak": 9.0,
+    "per_tokens": 1000000,
+    "policy": "peak uncached reference estimate; not a billing guarantee",
+    "source": "https://www.siliconflow.cn/pricing"
+  },
+  "provider_usage": {
+    "completion_tokens": 4671,
+    "prompt_cache_hit_tokens": 16896,
+    "prompt_cache_miss_tokens": 53935,
+    "prompt_tokens": 70831,
+    "total_tokens": 75502
+  },
+  "pytest": "408 passed in 216.02s before freezing/calls; implementation unchanged",
+  "reference_cost_cny_peak_with_reported_cache": 0.20891279999999998,
+  "reference_cost_cny_peak_without_cache": 0.254532,
+  "request_phase_counts": {
+    "collect": 12,
+    "final": 4
+  },
+  "reservations": {
+    "calls": 16,
+    "input_proxy": 81703,
+    "output_reserved": 14336
+  },
+  "returned_model_ids": [
+    "deepseek-ai/DeepSeek-V4-Flash"
+  ],
+  "run_id": "20261010T111451Z_deepseek-ai_DeepSeek-V4-Flash_2c90b6d19d15",
+  "samples": [
+    {
+      "case_id": "dev_001",
+      "evidence_rounds": 3,
+      "execution_error": false,
+      "final_submission_scheduled": true,
+      "stop_reason": "stop",
+      "tool_calls": 6,
+      "tool_errors": 0,
+      "tool_functions": {
+        "annotation_counts": 1,
+        "file_stats": 2,
+        "read_file": 3
+      }
+    },
+    {
+      "case_id": "dev_002",
+      "evidence_rounds": 2,
+      "execution_error": false,
+      "final_submission_scheduled": true,
+      "stop_reason": "stop",
+      "tool_calls": 3,
+      "tool_errors": 0,
+      "tool_functions": {
+        "file_stats": 1,
+        "read_file": 2
+      }
+    },
+    {
+      "case_id": "dev_003",
+      "evidence_rounds": 4,
+      "execution_error": false,
+      "final_submission_scheduled": true,
+      "stop_reason": "stop",
+      "tool_calls": 8,
+      "tool_errors": 0,
+      "tool_functions": {
+        "file_stats": 2,
+        "interval_counts": 1,
+        "read_file": 5
+      }
+    },
+    {
+      "case_id": "dev_004",
+      "evidence_rounds": 3,
+      "execution_error": false,
+      "final_submission_scheduled": true,
+      "stop_reason": "stop",
+      "tool_calls": 8,
+      "tool_errors": 0,
+      "tool_functions": {
+        "file_stats": 2,
+        "interval_counts": 1,
+        "read_file": 5
+      }
+    }
+  ],
+  "scope": "development demonstration, not held-out validation or H1-H3",
+  "started_at": "2026-10-10T11:14:55+00:00",
+  "statuses": {
+    "ok": 4
+  },
+  "strict_counts": {
+    "decision_joint": {
+      "N": 4,
+      "n": 3
+    },
+    "evidence_locator_valid": {
+      "N": 4,
+      "n": 4
+    },
+    "schema_valid": {
+      "N": 4,
+      "n": 4
+    }
+  },
+  "windows_shutdown_note": "exit 0; after results, asyncio Proactor destructor reported Event loop is closed; not a sample error"
+}

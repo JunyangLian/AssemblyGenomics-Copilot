@@ -52,4 +52,4 @@ Linux 对应使用 `.venv/bin/python`。本轮已实际验证 Windows Python 3.1
 
 后续决策与审核身份规则见 `WORKFLOW.md`；离线回放验证记录见 `VALIDATION.md`，当前试跑准备验证见 `PILOT_VALIDATION.md`。
 
-第一轮真实结果之后的改进方案见 [pilot 2](pilot2/README.md)：共同工具指导、限定证据收集回合、关闭工具后请求 JSON object 最终输出。原答案与严格评分保持一致，独立版本明确登记开发调优。客户端协议已通过离线 MockTransport 核验，供应商实际兼容性尚未验证；当前真实调用为 0，新运行需批准方案与预算。
+第一轮真实结果之后的改进方案见 [pilot 2](pilot2/README.md)：共同工具指导、限定证据收集回合、关闭工具后请求 JSON object 最终输出。原答案与严格评分保持一致，独立版本明确登记开发调优。经批准实际完成 16 次请求和 25 次工具调用，格式 4/4、决定联合匹配 3/4；仍有证据引用错误，证据语义/action 不自动算通过。详见 [第二次真实报告](pilot2/REPORT.md)。这是同四题的开发调试，没有独立 held-out 或新在线 B/C 比较。
