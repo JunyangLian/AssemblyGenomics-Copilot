@@ -51,3 +51,5 @@ Linux 对应使用 `.venv/bin/python`。本轮已实际验证 Windows Python 3.1
 四道开发题已接入不可变公开字节的只读工具，不提供任意 shell，也不是容器沙箱。先用 `TOOL_LESSON.md` 学懂工具循环。后续真实模型小试验需固定答案和条件，以及模型、参数、调用和 token 上限；不立即重跑六个模型或扩大题库。
 
 后续决策与审核身份规则见 `WORKFLOW.md`；离线回放验证记录见 `VALIDATION.md`，当前试跑准备验证见 `PILOT_VALIDATION.md`。
+
+第一轮真实结果之后的改进方案见 [pilot 2](pilot2/README.md)：共同工具指导、限定证据收集回合、关闭工具后请求 JSON object 最终输出。原答案与严格评分保持一致，独立版本明确登记开发调优。客户端协议已通过离线 MockTransport 核验，供应商实际兼容性尚未验证；当前真实调用为 0，新运行需批准方案与预算。

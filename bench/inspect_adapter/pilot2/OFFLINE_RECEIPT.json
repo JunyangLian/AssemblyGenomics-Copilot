@@ -1,0 +1,43 @@
+{
+  "fixtures": [
+    {
+      "actual_tool_calls": 4,
+      "fake_http_requests": 12,
+      "mode": "normal",
+      "model_quality_measured": false,
+      "network_requests": 0,
+      "output_reserved": 12288,
+      "provider_calls": 0,
+      "status": "pass",
+      "synthetic_usage_not_real_tokens": true
+    },
+    {
+      "actual_tool_calls": 20,
+      "fake_http_requests": 24,
+      "mode": "round_cap",
+      "model_quality_measured": false,
+      "network_requests": 0,
+      "output_reserved": 18432,
+      "provider_calls": 0,
+      "status": "pass",
+      "synthetic_usage_not_real_tokens": true
+    },
+    {
+      "actual_tool_calls": 4,
+      "fake_http_requests": 12,
+      "mode": "malformed",
+      "model_quality_measured": false,
+      "network_requests": 0,
+      "output_reserved": 12288,
+      "provider_calls": 0,
+      "status": "pass",
+      "synthetic_usage_not_real_tokens": true
+    }
+  ],
+  "model_quality_measured": false,
+  "network_requests": 0,
+  "provider_calls": 0,
+  "source_receipt_sha256": "a2a5143409da64b79e7a0901f6caf8a2bd7460912909021478f3ef847c852ac1",
+  "status": "pass",
+  "synthetic_usage_not_real_tokens": true
+}
