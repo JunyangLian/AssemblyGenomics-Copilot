@@ -272,3 +272,7 @@ Kimi 300秒超时阻塞串行队列，用户明确选择优先DeepSeek/Qwen C。
 ## 2026-10-11 — GLM thinking compatibility 1 real receipt
 
 冻结后完成4计划观测，8 HTTP200、6工具回复、4非空JSON、3严格通过；tools正常题范围引用违反单行/JSON字段合同，仍按parse_error计0。输出2917/输入29641 token，未缓存参考¥0.031880。累计51请求、264385输入代理、143872含思考输出预留，原上限未增加；思考回传哈希与较早响应一致。旧84条失败、gold、公共提示、schema、评分不修改。不声明质量比较或独立泛化。
+
+## 2026-10-11 — GLM single-line follow-up offline preparation
+
+独立新增glm_followup.py、报告入口和glm_followup1通用引用说明；原14题gold、公共原合同、schema、评分和旧3/4结果不改。84槽位最大轮数native wire mock通过，294模拟请求、1050工具回复、210次原思考回传、0外部调用。长回复压力在45次模拟请求后被保护阻断，84槽位保留。拟新增294请求、1500000输入代理、1720320含思考输出预留；拟累计345/1764385/1864192，需明确扩量批准，当前api_call_authorized=false。属于看到旧结果后的探索性协议调优，不是独立held-out或H1–H3。
