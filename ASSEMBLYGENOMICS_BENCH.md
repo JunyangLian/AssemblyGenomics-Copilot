@@ -5,7 +5,7 @@ AssemblyGenomics Copilot 的评测入口：用真实产物及确定性变体比�
 ## 从这里开始
 
 ```bash
-git clone --branch codex/assemblygenomics-bench https://github.com/JunyangLian/AssemblyGenomics-Copilot.git
+git clone --branch main https://github.com/JunyangLian/AssemblyGenomics-Copilot.git
 ```
 
 进入克隆得到的仓库目录，在 Python 3.9 或更新环境安装基础依赖：
@@ -34,6 +34,21 @@ python bench/v3/validate_development.py
 
 v2 新增主集合并未达到预设的改善门槛，不能用总体或回归题改善替代主比较。后续四模型收尾集合是结果查看后的范围调整，原预注册名单与失败记录都在报告中保留。v3 用于完善可答性、证据约束和来源分组，当前没有正式能力结论。
 
+## Inspect AI 扩展（2026-10-11）
+
+已接入 Inspect AI 0.3.277 的 Dataset、Solver、Scorer、工具与日志，历史 A/B/C 协议保持不变；新的正文/工具条件独立登记，不替代历史 H1–H3。
+
+| 已完成内容 | 阅读入口 |
+|---|---|
+| 官方固定版本任务的真实小规模复现 | [官方报告](bench/inspect_adapter/official/REPORT.md) |
+| 648 条历史观测回放及新旧评分一致性核验 | [适配说明](bench/inspect_adapter/README.md) |
+| T1 19 题正文/工具各三次，共 114 条观测 | [T1 报告](bench/inspect_adapter/t1_regression/live1/REPORT.md) |
+| T3 七来源 14 题、Linux 产物复现及答案冻结；GLM 后续版 84 条观测 | [T3 报告](bench/inspect_adapter/t3_test/glm_followup1/REPORT.md)与[错误分析](bench/inspect_adapter/t3_test/glm_followup1/ERROR_ANALYSIS.md) |
+
+T3 后续版题层联合正确为正文 13/14、工具 12/14，故障检出为正文 6/7、工具 7/7。这是查看先前失败后的开发调优，不能作为独立 held-out 或整体工具增益证据。工具只读取白名单材料，不提供任意 shell。AI 审题不标为真人盲审。
+
+从 [无密钥复现指南](bench/inspect_adapter/REPRODUCE.md)安装锁定依赖，先运行官方 mock，再运行历史回放；默认离线入口不调用模型 API。真实调用需独立预算与授权。
+
 ## 评测约束
 
 - 模型只看题面的 task.md、白名单 artifacts 和统一输出 schema；C 额外看版本固定的公共知识包。
@@ -54,7 +69,7 @@ v2 新增主集合并未达到预设的改善门槛，不能用总体或回归�
 | v3 证据评分 | [EVIDENCE_SCORING.md](bench/v3/EVIDENCE_SCORING.md) |
 | v3 独立人类审题 | [INDEPENDENT_REVIEW_PROTOCOL.md](bench/v3/INDEPENDENT_REVIEW_PROTOCOL.md) |
 
-完整回归命令为 `python -m pytest -q`；作者工作区当前 **347 passed**。部分测试需本地验收来源包，原始来源、incoming 目录、运行缓存和 API key 不随源码发布。独立审核者只接收专门的盲审材料，不接收作者答案和注入记录。
+完整回归命令为 `python -m pytest -q`；作者工作区 2026-10-11 为 **503 passed**。部分测试需本地验收来源包，原始来源、incoming 目录、运行缓存和 API key 不随源码发布。独立审核者只接收专门的盲审材料，不接收作者答案和注入记录。
 
 Bench 分支保留 Skill 的原规则及依赖，确保 A 组能力边界可追溯；不把评测验证器当作新增 A 组规则。需要运行生信辅助工作流，请走 [AssemblyGenomics Skill](ASSEMBLYGENOMICS_SKILL.md)。
 
