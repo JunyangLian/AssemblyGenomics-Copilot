@@ -1,0 +1,346 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "pitfall_exposure": {
+            "const": "seen"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pitfall_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "pressure"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pressure_parent": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "guidance_exposure": {
+            "not": {
+              "const": "unassigned"
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "guidance_version_sha256": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "case_id": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "excerpt_policy": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "guidance_exposure": {
+      "enum": [
+        "explicit_rule",
+        "related_guidance",
+        "not_exposed",
+        "unassigned"
+      ],
+      "type": "string"
+    },
+    "guidance_version_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "injection_script": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mechanism_family": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "pair_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pitfall_exposure": {
+      "enum": [
+        "seen",
+        "held_out"
+      ],
+      "type": "string"
+    },
+    "pitfall_ids": {
+      "items": {
+        "minLength": 1,
+        "pattern": "\\S",
+        "type": "string"
+      },
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "pressure_parent": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "review_status": {
+      "enum": [
+        "draft",
+        "independently_reviewed",
+        "internal_review_only",
+        "approved"
+      ],
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "v3-spec-draft-1"
+    },
+    "seed": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "source_files": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "selection": {
+            "description": "完整记录、特征块、坐标或统计修改及截取方法；记录来源清单。",
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "source_group": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "source_origin": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "source_origin",
+          "sha256",
+          "source_group",
+          "selection"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "source_group": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "split": {
+      "enum": [
+        "development",
+        "regression",
+        "sealed_test"
+      ],
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "repeat_annotation",
+        "structural_annotation",
+        "functional_annotation",
+        "input"
+      ],
+      "type": "string"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "type": {
+      "enum": [
+        "fault",
+        "normal",
+        "hard_negative",
+        "pressure",
+        "uncertainty"
+      ],
+      "type": "string"
+    },
+    "verbatim_tool_exceptions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "reason": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "source_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "source_sha256",
+          "reason"
+        ],
+        "type": "object"
+      },
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "visible_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_id_mapping": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "artifact_roles": {
+          "additionalProperties": false,
+          "properties": {
+            "delivery": {
+              "items": {
+                "minLength": 1,
+                "pattern": "\\S",
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "reference": {
+              "items": {
+                "minLength": 1,
+                "pattern": "\\S",
+                "type": "string"
+              },
+              "minItems": 0,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "delivery",
+            "reference"
+          ],
+          "type": "object"
+        },
+        "consumer_contract": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        "review_target": {
+          "enum": [
+            "input",
+            "completed_delivery"
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "enum": [
+            "declared_subset",
+            "declared_full_delivery"
+          ],
+          "type": "string"
+        },
+        "usable_previous_result": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "review_target",
+        "scope",
+        "consumer_contract",
+        "allowed_id_mapping",
+        "artifact_roles",
+        "usable_previous_result"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "source_group",
+    "split",
+    "stage",
+    "type",
+    "mechanism_family",
+    "pitfall_exposure",
+    "pitfall_ids",
+    "guidance_exposure",
+    "guidance_version_sha256",
+    "source_files",
+    "injection_script",
+    "seed",
+    "synthetic",
+    "pair_id",
+    "pressure_parent",
+    "visible_contract",
+    "verbatim_tool_exceptions",
+    "excerpt_policy",
+    "review_status"
+  ],
+  "title": "AssemblyGenomics bench v3 metadata — private review draft 1",
+  "type": "object"
+}
