@@ -1,0 +1,24 @@
+{
+  "answers_frozen": false,
+  "api_call_authorized": false,
+  "api_calls": 0,
+  "case_count": 12,
+  "case_manifest_sha256": "835fa39b3d72b9674930fc36d5f4bc3476e94b94b2b60a1660a0d5e32cb9006f",
+  "external_ai_material_review": {
+    "blind": false,
+    "human": false,
+    "provenance": "user_reported",
+    "record": "review/EXTERNAL_AI_REVIEW.json",
+    "reported_status": "consistent_12_of_12",
+    "reviewer_model": null
+  },
+  "linux_reproduction_status": "pending",
+  "next_steps": [
+    "Linux reproduction bundle intake",
+    "user confirmation to freeze candidates",
+    "new paid budget and guard review"
+  ],
+  "protocol_lock_sha256": "255c6b3f114132948136ea7e2e7d08251527fc6b61b0d92e7f90d6f687fc72ad",
+  "status": "draft",
+  "user_answer_freeze_approved": false
+}
