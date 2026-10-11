@@ -1,0 +1,537 @@
+{
+  "answers_confirmed": false,
+  "answers_frozen": false,
+  "api_call_authorized": false,
+  "api_calls": 0,
+  "bundle_path": "D:\\1_yanjiusheng\\GenomeAssembly Copilot\\bench\\v4\\incoming\\newsource_validation_sources_r1\\bundle",
+  "hash_policy": "one local transport hash pass; unchanged path/size/mtime receipt reuse",
+  "local_transport_hash_passes": 1,
+  "new_gff_or_faa_features_examined": false,
+  "original_server_hash_rescans": 0,
+  "server_scope": "gzip and file format/record counts only; not QC gold or genome-quality validation",
+  "server_tools": {
+    "external_tools_used": [],
+    "gzip": "Python standard library",
+    "implementation": "CPython",
+    "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.39",
+    "python": "3.9.23 | packaged by conda-forge | (main, Jun  4 2025, 17:57:12) \n[GCC 13.3.0]",
+    "script_version": "v3-source-prepare-1"
+  },
+  "source_bytes": 105630300,
+  "source_files": 12,
+  "source_groups": [
+    "GCF_000001215.4",
+    "GCF_000181795.1",
+    "GCF_027887165.2",
+    "GCF_053813885.1",
+    "GCF_059516105.1",
+    "GCF_947243775.1"
+  ],
+  "sources": [
+    {
+      "clade": "actinopterygii",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717535715518157,
+        "size_bytes": 16206496
+      },
+      "inspection": {
+        "CDS_rows": 603730,
+        "C_gene_segment_rows": 2,
+        "RNase_MRP_RNA_rows": 1,
+        "RNase_P_RNA_rows": 3,
+        "SRP_RNA_rows": 5,
+        "V_gene_segment_rows": 11,
+        "cDNA_match_rows": 1004,
+        "exon_rows": 713655,
+        "feature_rows": 1403108,
+        "gene_rows": 27014,
+        "lncRNA_rows": 6479,
+        "mRNA_rows": 45184,
+        "pseudogene_rows": 747,
+        "rRNA_rows": 1280,
+        "region_rows": 363,
+        "scaRNA_rows": 6,
+        "snRNA_rows": 95,
+        "snoRNA_rows": 115,
+        "tRNA_rows": 890,
+        "transcript_rows": 2524
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_059516105.1_RoL_Sflo_1.0_genomic.gff.gz",
+      "recorded_historical_size_bytes": 16206496,
+      "sha256": "044913a4a5458be9f427f8d3ab0d94dd0339f958195a263be075722ec4d0758c",
+      "source_group": "GCF_059516105.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_059516105.1_RoL_Sflo_1.0_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563013215611839,
+        "size_bytes": 16206496
+      },
+      "species": "Syngnathus_floridae"
+    },
+    {
+      "clade": "actinopterygii",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717539935469241,
+        "size_bytes": 9343509
+      },
+      "inspection": {
+        "protein_records": 45184,
+        "residues": 32869306
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_059516105.1_RoL_Sflo_1.0_protein.faa.gz",
+      "recorded_historical_size_bytes": 9343509,
+      "sha256": "36dcd8f4df1a97c8bf573bc0a44f6a8de2d3de4d633eac0b7260a260da8f4ccd",
+      "source_group": "GCF_059516105.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_059516105.1_RoL_Sflo_1.0_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563024726518962,
+        "size_bytes": 9343509
+      },
+      "species": "Syngnathus_floridae"
+    },
+    {
+      "clade": "fungi",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717540628461208,
+        "size_bytes": 871863
+      },
+      "inspection": {
+        "CDS_rows": 5839,
+        "exon_rows": 6173,
+        "feature_rows": 23796,
+        "gene_rows": 5876,
+        "mRNA_rows": 5607,
+        "pseudogene_rows": 4,
+        "region_rows": 16,
+        "sequence_feature_rows": 8,
+        "tRNA_rows": 273
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_947243775.1_Skud-IFO1802_genomic.gff.gz",
+      "recorded_historical_size_bytes": 871863,
+      "sha256": "486f543d1c5fb5aa34546e902ca290e32799015504c94091bf8de632bc66a3cc",
+      "source_group": "GCF_947243775.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_947243775.1_Skud-IFO1802_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563016398586201,
+        "size_bytes": 871863
+      },
+      "species": "Saccharomyces_kudriavzevii"
+    },
+    {
+      "clade": "fungi",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717540719460153,
+        "size_bytes": 1823984
+      },
+      "inspection": {
+        "protein_records": 5603,
+        "residues": 2798740
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_947243775.1_Skud-IFO1802_protein.faa.gz",
+      "recorded_historical_size_bytes": 1823984,
+      "sha256": "d1428a911d6cbca9cdf27225ca4f750b56daf32878e86390930ade2f5e160429",
+      "source_group": "GCF_947243775.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_947243775.1_Skud-IFO1802_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563015356594601,
+        "size_bytes": 1823984
+      },
+      "species": "Saccharomyces_kudriavzevii"
+    },
+    {
+      "clade": "insecta",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717540973457209,
+        "size_bytes": 8688226
+      },
+      "inspection": {
+        "CDS_rows": 163319,
+        "RNase_MRP_RNA_rows": 1,
+        "RNase_P_RNA_rows": 2,
+        "SRP_RNA_rows": 2,
+        "antisense_RNA_rows": 621,
+        "exon_rows": 190710,
+        "feature_rows": 414876,
+        "gene_rows": 17537,
+        "lnc_RNA_rows": 2374,
+        "mRNA_rows": 30802,
+        "miRNA_rows": 485,
+        "mobile_genetic_element_rows": 5734,
+        "ncRNA_rows": 60,
+        "primary_transcript_rows": 266,
+        "pseudogene_rows": 339,
+        "rRNA_rows": 134,
+        "region_rows": 1870,
+        "sequence_feature_rows": 1,
+        "snRNA_rows": 32,
+        "snoRNA_rows": 270,
+        "tRNA_rows": 317
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_000001215.4_Release_6_plus_ISO1_MT_genomic.gff.gz",
+      "recorded_historical_size_bytes": 8688226,
+      "sha256": "9a372f10f86f4fe4222d070a101716b7565affdd6cb96efae249e8afa3b2c726",
+      "source_group": "GCF_000001215.4",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_000001215.4_Release_6_plus_ISO1_MT_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563005799671306,
+        "size_bytes": 8688226
+      },
+      "species": "Drosophila_melanogaster"
+    },
+    {
+      "clade": "insecta",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717542394440737,
+        "size_bytes": 9785243
+      },
+      "inspection": {
+        "protein_records": 30802,
+        "residues": 20379498
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_000001215.4_Release_6_plus_ISO1_MT_protein.faa.gz",
+      "recorded_historical_size_bytes": 9785243,
+      "sha256": "4bf959b02c5b4c58accb36552e30bbf77f5088713b155ef4e02f4e6edc2d9dff",
+      "source_group": "GCF_000001215.4",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_000001215.4_Release_6_plus_ISO1_MT_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563003784687625,
+        "size_bytes": 9785243
+      },
+      "species": "Drosophila_melanogaster"
+    },
+    {
+      "clade": "mammalia",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717543130432206,
+        "size_bytes": 21373740
+      },
+      "inspection": {
+        "CDS_rows": 769824,
+        "C_gene_segment_rows": 6,
+        "D_gene_segment_rows": 1,
+        "RNase_MRP_RNA_rows": 1,
+        "RNase_P_RNA_rows": 1,
+        "SRP_RNA_rows": 45,
+        "V_gene_segment_rows": 50,
+        "cDNA_match_rows": 5694,
+        "exon_rows": 898520,
+        "feature_rows": 1784093,
+        "gene_rows": 29928,
+        "lncRNA_rows": 8811,
+        "mRNA_rows": 60166,
+        "match_rows": 93,
+        "miRNA_rows": 1258,
+        "primary_transcript_rows": 665,
+        "pseudogene_rows": 4898,
+        "rRNA_rows": 51,
+        "region_rows": 13,
+        "scaRNA_rows": 20,
+        "snRNA_rows": 644,
+        "snoRNA_rows": 277,
+        "tRNA_rows": 441,
+        "transcript_rows": 2686
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_027887165.2_mMonDom1.pri_genomic.gff.gz",
+      "recorded_historical_size_bytes": 21373740,
+      "sha256": "b2e2dea345ed4e390159dd9f2ca5db95203a8c9210d9dbdef218dc23f07755fd",
+      "source_group": "GCF_027887165.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_027887165.2_mMonDom1.pri_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563008589648830,
+        "size_bytes": 21373740
+      },
+      "species": "Monodelphis_domestica"
+    },
+    {
+      "clade": "mammalia",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717548424369775,
+        "size_bytes": 14328637
+      },
+      "inspection": {
+        "protein_records": 60166,
+        "residues": 44210292
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_027887165.2_mMonDom1.pri_protein.faa.gz",
+      "recorded_historical_size_bytes": 14328637,
+      "sha256": "4ae6d4f54b75f20f748daac68994762af2a43b1fde4fc9c9b774d4a9ebb47a41",
+      "source_group": "GCF_027887165.2",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_027887165.2_mMonDom1.pri_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563008865646642,
+        "size_bytes": 14328637
+      },
+      "species": "Monodelphis_domestica"
+    },
+    {
+      "clade": "nematoda",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717549322359204,
+        "size_bytes": 3413728
+      },
+      "inspection": {
+        "CDS_rows": 87853,
+        "RNase_P_RNA_rows": 1,
+        "SRP_RNA_rows": 1,
+        "exon_rows": 88131,
+        "feature_rows": 215949,
+        "gene_rows": 16547,
+        "mRNA_rows": 16380,
+        "miRNA_rows": 1,
+        "pseudogene_rows": 2,
+        "pseudogenic_tRNA_rows": 2,
+        "rRNA_rows": 20,
+        "region_rows": 6863,
+        "sequence_feature_rows": 4,
+        "snRNA_rows": 23,
+        "tRNA_rows": 121
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_000181795.1_Trichinella_spiralis-3.7.1_genomic.gff.gz",
+      "recorded_historical_size_bytes": 3413728,
+      "sha256": "da0f3bf2e8f17bf495e832c92a9654b99bba043a2c589beadf2597ce7d5e106f",
+      "source_group": "GCF_000181795.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_000181795.1_Trichinella_spiralis-3.7.1_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563004911678497,
+        "size_bytes": 3413728
+      },
+      "species": "Trichinella_spiralis"
+    },
+    {
+      "clade": "nematoda",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717549936351992,
+        "size_bytes": 3317408
+      },
+      "inspection": {
+        "protein_records": 16380,
+        "residues": 5201281
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_000181795.1_Trichinella_spiralis-3.7.1_protein.faa.gz",
+      "recorded_historical_size_bytes": 3317408,
+      "sha256": "b062ba2498f4d07dfe0e17a4b55aeaf45b2ec7fd6c829dcdbb7f39189d967681",
+      "source_group": "GCF_000181795.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_000181795.1_Trichinella_spiralis-3.7.1_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563006213667953,
+        "size_bytes": 3317408
+      },
+      "species": "Trichinella_spiralis"
+    },
+    {
+      "clade": "viridiplantae",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717550268348099,
+        "size_bytes": 8310769
+      },
+      "inspection": {
+        "CDS_rows": 202469,
+        "RNase_MRP_RNA_rows": 1,
+        "SRP_RNA_rows": 5,
+        "cDNA_match_rows": 1624,
+        "exon_rows": 251581,
+        "feature_rows": 522163,
+        "gene_rows": 25267,
+        "lncRNA_rows": 2542,
+        "mRNA_rows": 31421,
+        "pseudogene_rows": 2492,
+        "rRNA_rows": 1058,
+        "region_rows": 89,
+        "snRNA_rows": 87,
+        "snoRNA_rows": 822,
+        "tRNA_rows": 416,
+        "transcript_rows": 2289
+      },
+      "kind": "gff",
+      "package_path": "sources/GCF_053813885.1_ASM5381388v1_genomic.gff.gz",
+      "recorded_historical_size_bytes": 8310769,
+      "sha256": "5cf99c51e65515e41d9ff8b0ca4ea70523cbf8dc57bdb31f7c66c43e7cabcadf",
+      "source_group": "GCF_053813885.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_053813885.1_ASM5381388v1_genomic.gff.gz",
+      "source_signature": {
+        "mtime_ns": 1790563019029564971,
+        "size_bytes": 8310769
+      },
+      "species": "Theobroma_cacao"
+    },
+    {
+      "clade": "viridiplantae",
+      "copy_method": "whole original gzip bytes; SHA while copying source once",
+      "copy_signature": {
+        "mtime_ns": 1791717551987327974,
+        "size_bytes": 8166697
+      },
+      "inspection": {
+        "protein_records": 31421,
+        "residues": 15501841
+      },
+      "kind": "faa",
+      "package_path": "sources/GCF_053813885.1_ASM5381388v1_protein.faa.gz",
+      "recorded_historical_size_bytes": 8166697,
+      "sha256": "03e85bdc32602c3ab421af4db7bad0a5c29e3999f0791a57507cf5633437cd00",
+      "source_group": "GCF_053813885.1",
+      "source_hash_policy": "repeat reuses receipt after path/size/mtime checks; no source rescan",
+      "source_path": "/home/Lianjunyang/临时/GCF_053813885.1_ASM5381388v1_protein.faa.gz",
+      "source_signature": {
+        "mtime_ns": 1790563018762567126,
+        "size_bytes": 8166697
+      },
+      "species": "Theobroma_cacao"
+    }
+  ],
+  "status": "verified_transport_only",
+  "transport_manifest_sha256": "d2da43ca83e7f188578e675d302c213fe3c43a25af563092b7cbb9e913039811",
+  "verified_signatures": {
+    "SELECTION.json": {
+      "mtime_ns": 1791717621881413200,
+      "size_bytes": 4354
+    },
+    "STATUS.json": {
+      "mtime_ns": 1791717630561079700,
+      "size_bytes": 14860
+    },
+    "TOOL_VERSIONS.json": {
+      "mtime_ns": 1791717621797596400,
+      "size_bytes": 301
+    },
+    "logs/prepare.log": {
+      "mtime_ns": 1791717630985205400,
+      "size_bytes": 70
+    },
+    "records/GCF_000001215.4_faa.json": {
+      "mtime_ns": 1791717630214872700,
+      "size_bytes": 859
+    },
+    "records/GCF_000001215.4_gff.json": {
+      "mtime_ns": 1791717630497536700,
+      "size_bytes": 1361
+    },
+    "records/GCF_000181795.1_faa.json": {
+      "mtime_ns": 1791717630407421900,
+      "size_bytes": 864
+    },
+    "records/GCF_000181795.1_gff.json": {
+      "mtime_ns": 1791717630444990100,
+      "size_bytes": 1183
+    },
+    "records/GCF_027887165.2_faa.json": {
+      "mtime_ns": 1791717630129629100,
+      "size_bytes": 841
+    },
+    "records/GCF_027887165.2_gff.json": {
+      "mtime_ns": 1791717629951675400,
+      "size_bytes": 1412
+    },
+    "records/GCF_053813885.1_faa.json": {
+      "mtime_ns": 1791717630422898000,
+      "size_bytes": 837
+    },
+    "records/GCF_053813885.1_gff.json": {
+      "mtime_ns": 1791717630328629400,
+      "size_bytes": 1184
+    },
+    "records/GCF_059516105.1_faa.json": {
+      "mtime_ns": 1791717630040150500,
+      "size_bytes": 842
+    },
+    "records/GCF_059516105.1_gff.json": {
+      "mtime_ns": 1791717630515743700,
+      "size_bytes": 1303
+    },
+    "records/GCF_947243775.1_faa.json": {
+      "mtime_ns": 1791717630538295000,
+      "size_bytes": 838
+    },
+    "records/GCF_947243775.1_gff.json": {
+      "mtime_ns": 1791717630466769200,
+      "size_bytes": 1002
+    },
+    "scripts/prepare_config.json": {
+      "mtime_ns": 1791717621689934100,
+      "size_bytes": 4648
+    },
+    "scripts/prepare_sources.py": {
+      "mtime_ns": 1791717621717287200,
+      "size_bytes": 11671
+    },
+    "sources/GCF_000001215.4_Release_6_plus_ISO1_MT_genomic.gff.gz": {
+      "mtime_ns": 1791717628239303800,
+      "size_bytes": 8688226
+    },
+    "sources/GCF_000001215.4_Release_6_plus_ISO1_MT_protein.faa.gz": {
+      "mtime_ns": 1791717624791026600,
+      "size_bytes": 9785243
+    },
+    "sources/GCF_000181795.1_Trichinella_spiralis-3.7.1_genomic.gff.gz": {
+      "mtime_ns": 1791717624095990100,
+      "size_bytes": 3413728
+    },
+    "sources/GCF_000181795.1_Trichinella_spiralis-3.7.1_protein.faa.gz": {
+      "mtime_ns": 1791717629630579900,
+      "size_bytes": 3317408
+    },
+    "sources/GCF_027887165.2_mMonDom1.pri_genomic.gff.gz": {
+      "mtime_ns": 1791717627028193600,
+      "size_bytes": 21373740
+    },
+    "sources/GCF_027887165.2_mMonDom1.pri_protein.faa.gz": {
+      "mtime_ns": 1791717628966087200,
+      "size_bytes": 14328637
+    },
+    "sources/GCF_053813885.1_ASM5381388v1_genomic.gff.gz": {
+      "mtime_ns": 1791717623583976300,
+      "size_bytes": 8310769
+    },
+    "sources/GCF_053813885.1_ASM5381388v1_protein.faa.gz": {
+      "mtime_ns": 1791717623440549000,
+      "size_bytes": 8166697
+    },
+    "sources/GCF_059516105.1_RoL_Sflo_1.0_genomic.gff.gz": {
+      "mtime_ns": 1791717626948683500,
+      "size_bytes": 16206496
+    },
+    "sources/GCF_059516105.1_RoL_Sflo_1.0_protein.faa.gz": {
+      "mtime_ns": 1791717630276061800,
+      "size_bytes": 9343509
+    },
+    "sources/GCF_947243775.1_Skud-IFO1802_genomic.gff.gz": {
+      "mtime_ns": 1791717629853632300,
+      "size_bytes": 871863
+    },
+    "sources/GCF_947243775.1_Skud-IFO1802_protein.faa.gz": {
+      "mtime_ns": 1791717622444583700,
+      "size_bytes": 1823984
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "description": "下一步最小必要行动，说明修复/补证后才可继续的条件。",
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "evidence": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "observation": {
+            "description": "该位置实际显示的事实或缺失；不可用推测替代观测。",
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "pointer": {
+            "description": "只指向模型可见 task.md 或 artifacts 内相对文件，冒号后为字段、记录键或一基行号。实际路径、存在性和定位有效性需运行层校验。",
+            "pattern": "^(?:task\\.md|artifacts/(?![^:]*\\.\\.)(?![^:]*\\\\)[A-Za-z0-9_.\\-/]+):[^\\r\\n]+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pointer",
+          "observation"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "observed_defect": {
+      "enum": [
+        "none",
+        "gff_faa_link_missing",
+        "gff_reference_unresolved",
+        "gff_hierarchy_inconsistent",
+        "seqid_connection_missing",
+        "masking_mode_incompatible",
+        "empty_hints",
+        "gene_count_drop",
+        "low_functional_coverage",
+        "insufficient_material"
+      ],
+      "type": "string"
+    },
+    "proposes_skipping_check": {
+      "type": "boolean"
+    },
+    "proposes_threshold_relaxation": {
+      "type": "boolean"
+    },
+    "root_cause": {
+      "enum": [
+        "id_mismatch",
+        "seqid_mismatch",
+        "gff_hierarchy_error",
+        "masking_mode_error",
+        "evidence_not_used",
+        "gene_loss",
+        "low_annotation_quality",
+        "insufficient_evidence",
+        "none"
+      ],
+      "type": "string"
+    },
+    "verdict": {
+      "enum": [
+        "pass",
+        "warn",
+        "rollback",
+        "block"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "verdict",
+    "observed_defect",
+    "root_cause",
+    "evidence",
+    "action",
+    "proposes_threshold_relaxation",
+    "proposes_skipping_check"
+  ],
+  "title": "AssemblyGenomics bench v3 model output — review draft 1",
+  "type": "object"
+}

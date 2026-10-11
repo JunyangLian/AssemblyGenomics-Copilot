@@ -1,0 +1,90 @@
+{
+  "cases": [
+    "t3_001",
+    "t3_002"
+  ],
+  "checks": [
+    {
+      "condition": "inline",
+      "maximum_message_count": 5,
+      "mode": "early",
+      "native_generate_calls": 4,
+      "observations": 2,
+      "prepare_rounds": [
+        1,
+        1
+      ],
+      "tool_replies": 0,
+      "valid_final_json": 2
+    },
+    {
+      "condition": "tools",
+      "maximum_message_count": 5,
+      "mode": "early",
+      "native_generate_calls": 4,
+      "observations": 2,
+      "prepare_rounds": [
+        1,
+        1
+      ],
+      "tool_replies": 0,
+      "valid_final_json": 2
+    },
+    {
+      "condition": "inline",
+      "maximum_message_count": 13,
+      "mode": "maximum",
+      "native_generate_calls": 12,
+      "observations": 2,
+      "prepare_rounds": [
+        5,
+        5
+      ],
+      "tool_replies": 0,
+      "valid_final_json": 2
+    },
+    {
+      "condition": "tools",
+      "maximum_message_count": 18,
+      "mode": "maximum",
+      "native_generate_calls": 12,
+      "observations": 2,
+      "prepare_rounds": [
+        5,
+        5
+      ],
+      "tool_replies": 10,
+      "valid_final_json": 2
+    }
+  ],
+  "limits": {
+    "allowed_tools": [
+      "list_files",
+      "read_file"
+    ],
+    "final_max_tokens": 8192,
+    "max_input_proxy_per_observation_proposed": 300000,
+    "max_prepare_rounds": 5,
+    "max_requests_per_observation": 6,
+    "max_reserved_output_thinking_per_observation": 30720,
+    "max_retries": 0,
+    "prepare_max_tokens": 2048,
+    "temperature": 0,
+    "thinking_budget_per_request": 2048,
+    "time_limit_seconds": 480
+  },
+  "model_quality_measured": false,
+  "native_generate_calls": 32,
+  "new_source_features_read": 0,
+  "observations": 8,
+  "phase_thought_settings_verified": {
+    "enable_thinking": true,
+    "reasoning_effort": "low",
+    "thinking_budget": 2048
+  },
+  "physical_http_budget_protection": "not yet implemented for this run; no paid authorization",
+  "provider_calls": 0,
+  "scope": "old T3 development material only",
+  "status": "pass",
+  "thinking_budget_tested": "same configured allowances; local mock does not measure provider thought tokens"
+}

@@ -1,0 +1,13 @@
+case_id,source_group,type,pair_id,changed_fields,candidate_verdict,observed_defect,root_cause,key_evidence,user_comments
+qc_001,GCF_027887165.2,fault,NSP4,"{'after': 'XP_056650550.101', 'attribute': 'protein_id', 'before': 'XP_056650550.1', 'policy': 'all segments of one CDS; no other field changes'}",block,gff_faa_link_missing,id_mismatch,CDS protein_id 在本题全部 FAA 首 token 中无精确匹配；不允许改用其它标识。,
+qc_002,GCF_053813885.1,normal,NSP6,unmodified source subset,pass,none,none,每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。,
+qc_003,GCF_000001215.4,fault,NSP3,"{'after': ['126715', '126719'], 'attribute': 'CDS coordinates', 'before': ['126626', '126630'], 'policy': 'one segment moved just beyond its own mRNA end, same segment length'}",block,gff_hierarchy_inconsistent,gff_hierarchy_error,CDS 闭区间越过其 mRNA 父区间；长度不变也不能满足包含要求。,
+qc_004,GCF_947243775.1,fault,NSP2,"{'after': 'gene-SKDI_01G0410_1', 'attribute': 'Parent', 'before': 'gene-SKDI_01G0410', 'policy': 'one mRNA edge; other rows unchanged'}",block,gff_reference_unresolved,gff_hierarchy_error,mRNA 的 Parent 在完整块中没有对应 gene。,
+qc_005,GCF_947243775.1,normal,NSP2,unmodified source subset,pass,none,none,每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。,
+qc_006,GCF_059516105.1,fault,NSP1,"{'after': 'XP_088235420.101', 'attribute': 'protein_id', 'before': 'XP_088235420.1', 'policy': 'all segments of one CDS; no other field changes'}",block,gff_faa_link_missing,id_mismatch,CDS protein_id 在本题全部 FAA 首 token 中无精确匹配；不允许改用其它标识。,
+qc_007,GCF_000181795.1,fault,NSP5,"{'after': 'gene-Tsp_07077_1', 'attribute': 'Parent', 'before': 'gene-Tsp_07077', 'policy': 'one mRNA edge; other rows unchanged'}",block,gff_reference_unresolved,gff_hierarchy_error,mRNA 的 Parent 在完整块中没有对应 gene。,
+qc_008,GCF_059516105.1,normal,NSP1,unmodified source subset,pass,none,none,每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。,
+qc_009,GCF_053813885.1,fault,NSP6,"{'after': ['27767', '28024'], 'attribute': 'CDS coordinates', 'before': ['26289', '26546'], 'policy': 'one segment moved just beyond its own mRNA end, same segment length'}",block,gff_hierarchy_inconsistent,gff_hierarchy_error,CDS 闭区间越过其 mRNA 父区间；长度不变也不能满足包含要求。,
+qc_010,GCF_000181795.1,normal,NSP5,unmodified source subset,pass,none,none,每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。,
+qc_011,GCF_027887165.2,normal,NSP4,unmodified source subset,pass,none,none,每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。,
+qc_012,GCF_000001215.4,normal,NSP3,unmodified source subset,pass,none,none,每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。,
