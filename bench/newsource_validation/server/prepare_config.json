@@ -1,0 +1,118 @@
+{
+  "approved_selection": "2026-10-11 user agreed to 5-6 new sources and 10-12 QC cases; no API approval",
+  "files": [
+    {
+      "clade": "actinopterygii",
+      "filename": "GCF_059516105.1_RoL_Sflo_1.0_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_059516105.1_RoL_Sflo_1.0_genomic.gff.gz",
+      "recorded_size_bytes": 16206496,
+      "source_group": "GCF_059516105.1",
+      "species": "Syngnathus_floridae"
+    },
+    {
+      "clade": "actinopterygii",
+      "filename": "GCF_059516105.1_RoL_Sflo_1.0_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_059516105.1_RoL_Sflo_1.0_protein.faa.gz",
+      "recorded_size_bytes": 9343509,
+      "source_group": "GCF_059516105.1",
+      "species": "Syngnathus_floridae"
+    },
+    {
+      "clade": "fungi",
+      "filename": "GCF_947243775.1_Skud-IFO1802_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_947243775.1_Skud-IFO1802_genomic.gff.gz",
+      "recorded_size_bytes": 871863,
+      "source_group": "GCF_947243775.1",
+      "species": "Saccharomyces_kudriavzevii"
+    },
+    {
+      "clade": "fungi",
+      "filename": "GCF_947243775.1_Skud-IFO1802_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_947243775.1_Skud-IFO1802_protein.faa.gz",
+      "recorded_size_bytes": 1823984,
+      "source_group": "GCF_947243775.1",
+      "species": "Saccharomyces_kudriavzevii"
+    },
+    {
+      "clade": "insecta",
+      "filename": "GCF_000001215.4_Release_6_plus_ISO1_MT_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_000001215.4_Release_6_plus_ISO1_MT_genomic.gff.gz",
+      "recorded_size_bytes": 8688226,
+      "source_group": "GCF_000001215.4",
+      "species": "Drosophila_melanogaster"
+    },
+    {
+      "clade": "insecta",
+      "filename": "GCF_000001215.4_Release_6_plus_ISO1_MT_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_000001215.4_Release_6_plus_ISO1_MT_protein.faa.gz",
+      "recorded_size_bytes": 9785243,
+      "source_group": "GCF_000001215.4",
+      "species": "Drosophila_melanogaster"
+    },
+    {
+      "clade": "mammalia",
+      "filename": "GCF_027887165.2_mMonDom1.pri_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_027887165.2_mMonDom1.pri_genomic.gff.gz",
+      "recorded_size_bytes": 21373740,
+      "source_group": "GCF_027887165.2",
+      "species": "Monodelphis_domestica"
+    },
+    {
+      "clade": "mammalia",
+      "filename": "GCF_027887165.2_mMonDom1.pri_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_027887165.2_mMonDom1.pri_protein.faa.gz",
+      "recorded_size_bytes": 14328637,
+      "source_group": "GCF_027887165.2",
+      "species": "Monodelphis_domestica"
+    },
+    {
+      "clade": "nematoda",
+      "filename": "GCF_000181795.1_Trichinella_spiralis-3.7.1_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_000181795.1_Trichinella_spiralis-3.7.1_genomic.gff.gz",
+      "recorded_size_bytes": 3413728,
+      "source_group": "GCF_000181795.1",
+      "species": "Trichinella_spiralis"
+    },
+    {
+      "clade": "nematoda",
+      "filename": "GCF_000181795.1_Trichinella_spiralis-3.7.1_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_000181795.1_Trichinella_spiralis-3.7.1_protein.faa.gz",
+      "recorded_size_bytes": 3317408,
+      "source_group": "GCF_000181795.1",
+      "species": "Trichinella_spiralis"
+    },
+    {
+      "clade": "viridiplantae",
+      "filename": "GCF_053813885.1_ASM5381388v1_genomic.gff.gz",
+      "kind": "gff",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_053813885.1_ASM5381388v1_genomic.gff.gz",
+      "recorded_size_bytes": 8310769,
+      "source_group": "GCF_053813885.1",
+      "species": "Theobroma_cacao"
+    },
+    {
+      "clade": "viridiplantae",
+      "filename": "GCF_053813885.1_ASM5381388v1_protein.faa.gz",
+      "kind": "faa",
+      "recorded_origin": "/home/Lianjunyang/临时/GCF_053813885.1_ASM5381388v1_protein.faa.gz",
+      "recorded_size_bytes": 8166697,
+      "source_group": "GCF_053813885.1",
+      "species": "Theobroma_cacao"
+    }
+  ],
+  "historical_report_notice": "new to project model/prompt/tool development; not unexposed to historical T3 rule checks",
+  "output_root": "bench_transfer/newsource_validation_sources_r1",
+  "source_root": "/home/Lianjunyang/临时",
+  "source_scope": "T3",
+  "spec_version": "v3-source-prepare-1"
+}

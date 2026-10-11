@@ -1,0 +1,12 @@
+{
+  "api_calls": 0,
+  "api_keys_included": false,
+  "files": {
+    "server/README.md": "d5829b4016c7af4ba90299a17ded1bc5a210ec433825956f6b32c0f1e70ed1ca",
+    "server/prepare_config.json": "f680284340db74d51bd67d294f14b827a93d5abd65eecd1ab4d86ab0c0cec0e9",
+    "server/prepare_sources.py": "edb1fd1f146ddd30ecbf425d8b0d97c63633c647e4cb4f54839925f9990304c4"
+  },
+  "format": "source-request-package-1",
+  "gold_included": false,
+  "upstream_script": "bench/v3/server/prepare_sources.py"
+}

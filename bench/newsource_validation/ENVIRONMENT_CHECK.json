@@ -1,0 +1,11 @@
+{
+  "api_calls": 0,
+  "capsule_downloads": 0,
+  "check_scope": "command availability only; no installation or daemon invocation",
+  "container_pulled": false,
+  "date": "2026-10-11",
+  "docker_daemon_tested": false,
+  "docker_in_path": false,
+  "upstream_installed": false,
+  "uv_found": true
+}

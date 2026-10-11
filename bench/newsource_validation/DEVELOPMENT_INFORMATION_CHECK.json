@@ -1,0 +1,81 @@
+{
+  "all_public_artifact_lines_retrievable": true,
+  "api_calls": 0,
+  "author_metadata_or_gold_visible": false,
+  "cases": [
+    {
+      "artifact_files": 3,
+      "case_id": "t3_001",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_002",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_003",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_004",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_005",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_006",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_007",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_008",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_009",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_010",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_011",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_012",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_013",
+      "public_files": 4
+    },
+    {
+      "artifact_files": 3,
+      "case_id": "t3_014",
+      "public_files": 4
+    }
+  ],
+  "new_source_files_read": 0,
+  "original_source_rescans": 0,
+  "scope": "old T3 public-byte retrieval coverage only; not new fair-budget harness or semantic evidence validation",
+  "status": "pass"
+}

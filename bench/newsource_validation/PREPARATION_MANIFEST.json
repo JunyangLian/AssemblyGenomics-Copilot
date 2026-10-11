@@ -1,0 +1,24 @@
+{
+  "files": {
+    ".gitignore": "0280c7c6a8390e9b22f827abb75f1c8ae57c3a943119173044dbeaaf9c59f410",
+    "BIXBENCH_FEASIBILITY.md": "fe22bb22c49ef9f9cc48a5a3ee767cb6af74b3fa9c813f6134b4aa93d960661e",
+    "DEVELOPMENT_INFORMATION_CHECK.json": "96eaf959800705d045c769cd021314599cf322c13735a1b894ffcdac5af0d346",
+    "ENVIRONMENT_CHECK.json": "cf1d8ca4d2ebfb4b05970035aac9a0dc637dbee846a1b5c2fd6724b712c56631",
+    "ERROR_CATALOG.md": "7827feea369c3cd2de0b646e1963db50aecef20bef2dea80cc1b9c705070c2d7",
+    "PACKAGE_RECEIPT.json": "f99a2940be8b8937d62fa1926af0f3fee76622291ec68e3d06df863ea8810c3d",
+    "PHASE_REPORT.md": "d1c18c13e5ca927888e803861ff04a65989f215da3a4eeec80e5df18c922aa0c",
+    "PLAN.draft.json": "61867935699b800af7d93ae19cc1675ed9393a116bd04a4358e4e4310b7a0e02",
+    "PROTOCOL_DRAFT.md": "0a620d57af35e38e50273d7dea5f01cbc7ec06e55a669e6fbd851008b620f32f",
+    "README.md": "b1618a5e856a6239e5cf0824ec5551d21c5bb6245ffa35f722d95089de3b6cea",
+    "SOURCE_AUDIT.json": "ca0fe447bc84bbe4db2473312e0db18551f0c75e86d712849d7510f6c4da0aeb",
+    "audit_sources.py": "9c8f491901bb5ddb06aa9543d0fd417ac8065b5dac4ed62943b8f372e2978598",
+    "server/README.md": "d5829b4016c7af4ba90299a17ded1bc5a210ec433825956f6b32c0f1e70ed1ca",
+    "server/SOURCE_REQUEST_MANIFEST.json": "854358b22b56569beb335efa69a3291d36aa90e2c2804f539c23f676182a78ac",
+    "server/prepare_config.json": "f680284340db74d51bd67d294f14b827a93d5abd65eecd1ab4d86ab0c0cec0e9",
+    "server/prepare_sources.py": "edb1fd1f146ddd30ecbf425d8b0d97c63633c647e4cb4f54839925f9990304c4",
+    "source_request_package.zip": "8185515b0efafbf706f42fd339aa8a22dd007d0045797c40aaffa0f121b35600",
+    "tests/test_source_selection.py": "156068c9cc93a97b7054ba8e9acb7a60c21884b7ae7448af1c19efa85f39eabb"
+  },
+  "purpose": "preparation identity; not answer/protocol freeze or API authorization",
+  "version": "newsource-preparation-1"
+}
