@@ -62,9 +62,10 @@
     "thinking_budget_per_request": 2048,
     "time_limit_seconds": 480
   },
+  "linux_reproduction": "LINUX_REPRODUCTION.json",
   "model_identity_verified_for_new_run": false,
   "model_proposed": "zai-org/GLM-5.3-Flash",
-  "next_blocker": "Linux generation parity and user candidate-gold confirmation",
+  "next_blocker": "user candidate-gold freeze confirmation",
   "observations_proposed": 72,
   "pretraining_exposure": "unknown",
   "primary_unit": "case",
@@ -84,7 +85,7 @@
   ],
   "source_received": true,
   "source_scope": "T3 only; exclude prior case sources and T1 species",
-  "status": "draft_external_ai_material_review_consistent",
+  "status": "draft_external_review_and_linux_parity_complete",
   "thresholds": {
     "fault_cases_detected": null,
     "joint_cases_correct": null,

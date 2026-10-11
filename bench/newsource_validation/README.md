@@ -2,7 +2,7 @@
 
 2026-10-11。用户同意采用两个分开的范围：主线为 5–6 个未用于模型、提示和工具调优的来源、10–12 道 QC 题；BixBench 仅做小规模外部复现可行性检查。这里是新版本准备，不修改历史答案、分数或冻结实现。
 
-**当前：六个来源已验收；构题前协议已锁定；十二道候选题通过本地校验，原始子集与候选答案外部有答案材料 AI 复核一致（12/12，用户转述）。等待用户答案冻结确认和 Linux 复现，继续为 draft，未调用新测试模型。** 历史 T3 规则统计已看过，因此不能称为对原规则也完全未见的新数据。模型预训练暴露未知。已有机制用于新来源，不能称为未见机制。
+**当前：六个来源已验收；构题前协议已锁定；十二道候选题通过本地校验，外部有答案材料 AI 复核一致（12/12，用户转述）；Linux/Windows复现12题、72文件逐字节一致。等待用户答案冻结确认，继续为 draft，未调用新测试模型。** 历史 T3 规则统计已看过，因此不能称为对原规则也完全未见的新数据。模型预训练暴露未知。已有机制用于新来源，不能称为未见机制。
 
 ## 固定的来源请求
 
@@ -56,6 +56,8 @@ python newsource_validation/server/prepare_sources.py --config newsource_validat
 外部 AI 此前只看到了摘要、没有实际题目，因此不能登记为逐文件审核通过。新增 [review/README.md](review/README.md) 说明附件使用方式，[review/answer_review_package.zip](review/answer_review_package.zip) 包含真实题面、全部 GFF/FAA 子集、候选答案、来源元数据、CSV 和逐记录核算表。不支持 ZIP 时可逐份上传 `review/NSP1.md`–`NSP6.md`，每份包含一对题的完整材料；要求审阅者先确认能读到文件原文。
 
 后续用户转来完整材料评审结果，支持保留全部12题及候选判定；记录见 [review/EXTERNAL_AI_REVIEW.md](review/EXTERNAL_AI_REVIEW.md)，当前机器状态见 [CURRENT_STATUS.json](CURRENT_STATUS.json)。该评审有答案可见，不是盲审或真人审核；模型身份和逐题原稿未提供。完整原始gzip没有提供给外部评审，外部来源SHA未独立验证；Linux复现和用户冻结确认仍待完成。历史核算/审核包中的“外部审核未完成”属于该包生成时的状态，不重写原包或题库字节。
+
+评审之后已收到 Linux 回传并完成本地验收，见 [LINUX_REPRODUCTION.json](LINUX_REPRODUCTION.json)：12题、72个文件完全一致，73个运输载荷与SHA sidecar清单通过；协议、原始子集及复现包输入身份一致，服务器报告Python3.9.23/jsonschema4.25.1。范围是相同真实子集的跨平台生成，不是重新从完整gzip独立提取，也不是远程主机证明。原评审记录中“Linux尚未执行”保留为评审当时的限制；当前仅剩用户冻结确认。题库、标准答案及评审/复现包字节均未改，没有API调用或原始大文件重扫。
 
 若需要新的盲审者，用 [review/blind_cases_package.zip](review/blind_cases_package.zip)：不包含答案、meta、配对映射或核算表。先保存独立原稿，再看有答案的包。已经看过候选答案的 AI 后续可作材料复核，但不能追溯称为盲审。
 

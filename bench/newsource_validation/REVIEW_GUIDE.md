@@ -24,3 +24,5 @@ REVIEW_SHEET.csv 的 user_comments 可填修改意见。每题的 cases/qc_NNN/e
 2026-10-11 外部意见指出其未访问实际文件，本项目记录为“摘要逻辑审查”，不登记为12题审核通过。材料已补齐到 [review/answer_review_package.zip](review/answer_review_package.zip)，也可直接上传六份 `review/NSP1.md`–`NSP6.md`。完整CDS连接与直接Parent关系、每个pointer原文及额外支持位置见 [review/RECORD_AUDIT.md](review/RECORD_AUDIT.md) 和逐题JSON/Markdown。正常题E01列全CDS与FAA header，E02原引用是代表性父记录，须结合全部子行才能证明完整层级；补充材料不修改候选答案。
 
 随后用户提供外部AI完整材料复核的最终意见：支持保留12题及全部候选判定，原始子集与候选答案复核一致12/12。此为有答案的材料审核，不是盲审或真人审核；用户转述的原文及限制见 [review/EXTERNAL_AI_REVIEW.md](review/EXTERNAL_AI_REVIEW.md)。仍待Linux复现与用户冻结确认，继续draft。为保持题目、复现与评审包一致，所有expected/meta字节保持原样；新评审状态通过附加记录表达。
+
+后续Linux回传已验收，12题/72文件与Windows逐字节相同，记录见 [LINUX_REPRODUCTION.json](LINUX_REPRODUCTION.json)。前段的“待Linux”是评审时点的历史状态，当前等待用户冻结确认。外部有答案AI复核不替代用户授权，原候选expected/meta仍保持draft字节。

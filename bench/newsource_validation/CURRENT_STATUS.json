@@ -12,9 +12,9 @@
     "reported_status": "consistent_12_of_12",
     "reviewer_model": null
   },
-  "linux_reproduction_status": "pending",
+  "linux_reproduction_record": "LINUX_REPRODUCTION.json",
+  "linux_reproduction_status": "verified_linux_windows_parity",
   "next_steps": [
-    "Linux reproduction bundle intake",
     "user confirmation to freeze candidates",
     "new paid budget and guard review"
   ],
