@@ -1,0 +1,16 @@
+{
+  "after_markdown_eof_formatting": {
+    "seconds": 1.06,
+    "targeted_tests_passed": 8
+  },
+  "answers_changed": false,
+  "answers_frozen": false,
+  "api_calls": 0,
+  "archive_regeneration_byte_identical": true,
+  "command": "python -m pytest -q",
+  "passed": 527,
+  "protocol_changed": false,
+  "seconds": 319.33,
+  "targeted_review_tests": 8,
+  "warnings": 41
+}

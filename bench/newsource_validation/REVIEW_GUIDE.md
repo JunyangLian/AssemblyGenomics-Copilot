@@ -20,3 +20,5 @@
 REVIEW_SHEET.csv 的 user_comments 可填修改意见。每题的 cases/qc_NNN/expected.json 包含确切定位；meta.json 包含原始路径、SHA 和变更字段。不能把这些私有内容加入模型提示或工具白名单。
 
 程序已核算 schema、字面统计、单一注入机制、引用存在性、泄漏、配对表面一致与再生成一致。作者 AI 起草和程序核算均不算真人盲审；本批也没有完成独立 AI 审核。用户确认与 Linux 复现完成之前保留 draft 状态。
+
+2026-10-11 外部意见指出其未访问实际文件，本项目记录为“摘要逻辑审查”，不登记为12题审核通过。材料已补齐到 [review/answer_review_package.zip](review/answer_review_package.zip)，也可直接上传六份 `review/NSP1.md`–`NSP6.md`。完整CDS连接与直接Parent关系、每个pointer原文及额外支持位置见 [review/RECORD_AUDIT.md](review/RECORD_AUDIT.md) 和逐题JSON/Markdown。正常题E01列全CDS与FAA header，E02原引用是代表性父记录，须结合全部子行才能证明完整层级；补充材料不修改候选答案。

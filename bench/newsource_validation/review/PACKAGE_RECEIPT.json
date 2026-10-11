@@ -1,0 +1,10 @@
+{
+  "answer_review_package.zip": {
+    "bytes": 264298,
+    "sha256": "9a006fafe7a5e53845386661a50b9c73b220e117d6c8a982d887157ab806058f"
+  },
+  "blind_cases_package.zip": {
+    "bytes": 42737,
+    "sha256": "da1124d8569e7d2b3bebb87666ff47e97e3976ed77a0948052c41f17cee39a83"
+  }
+}

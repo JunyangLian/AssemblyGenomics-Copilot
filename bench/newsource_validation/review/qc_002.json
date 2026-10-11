@@ -1,0 +1,2044 @@
+{
+  "all_existing_locations_valid": true,
+  "candidate_combination_supported": {
+    "observed_defect": "none",
+    "root_cause": "none",
+    "verdict": "pass"
+  },
+  "candidate_pointer_review": [
+    {
+      "all_record_support_pointers": [
+        "artifacts/models.gff3:10",
+        "artifacts/models.gff3:11",
+        "artifacts/models.gff3:12",
+        "artifacts/models.gff3:13",
+        "artifacts/models.gff3:14",
+        "artifacts/models.gff3:22",
+        "artifacts/models.gff3:23",
+        "artifacts/models.gff3:24",
+        "artifacts/models.gff3:25",
+        "artifacts/models.gff3:26",
+        "artifacts/models.gff3:33",
+        "artifacts/models.gff3:34",
+        "artifacts/models.gff3:35",
+        "artifacts/models.gff3:36",
+        "artifacts/proteins.faa:1",
+        "artifacts/proteins.faa:6",
+        "artifacts/proteins.faa:10"
+      ],
+      "claim_id": "E01",
+      "existing_pointer_values": [
+        {
+          "pointer": "artifacts/models.gff3:10",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t26289\t26546\t.\t+\t0\tID=cds-XP_007046407.3;Parent=rna-XM_007046345.3;Dbxref=GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953;Name=XP_007046407.3;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X1;protein_id=XP_007046407.3"
+        },
+        {
+          "pointer": "artifacts/models.gff3:11",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t26633\t26714\t.\t+\t0\tID=cds-XP_007046407.3;Parent=rna-XM_007046345.3;Dbxref=GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953;Name=XP_007046407.3;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X1;protein_id=XP_007046407.3"
+        },
+        {
+          "pointer": "artifacts/models.gff3:12",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t27131\t27204\t.\t+\t2\tID=cds-XP_007046407.3;Parent=rna-XM_007046345.3;Dbxref=GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953;Name=XP_007046407.3;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X1;protein_id=XP_007046407.3"
+        },
+        {
+          "pointer": "artifacts/models.gff3:13",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t27292\t27352\t.\t+\t0\tID=cds-XP_007046407.3;Parent=rna-XM_007046345.3;Dbxref=GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953;Name=XP_007046407.3;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X1;protein_id=XP_007046407.3"
+        },
+        {
+          "pointer": "artifacts/models.gff3:14",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t27443\t27585\t.\t+\t2\tID=cds-XP_007046407.3;Parent=rna-XM_007046345.3;Dbxref=GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953;Name=XP_007046407.3;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X1;protein_id=XP_007046407.3"
+        },
+        {
+          "pointer": "artifacts/models.gff3:22",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t26289\t26546\t.\t+\t0\tID=cds-XP_017973981.2;Parent=rna-XM_018118492.2;Dbxref=GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953;Name=XP_017973981.2;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X2;protein_id=XP_017973981.2"
+        },
+        {
+          "pointer": "artifacts/models.gff3:23",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t26633\t26714\t.\t+\t0\tID=cds-XP_017973981.2;Parent=rna-XM_018118492.2;Dbxref=GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953;Name=XP_017973981.2;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X2;protein_id=XP_017973981.2"
+        },
+        {
+          "pointer": "artifacts/models.gff3:24",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t27131\t27204\t.\t+\t2\tID=cds-XP_017973981.2;Parent=rna-XM_018118492.2;Dbxref=GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953;Name=XP_017973981.2;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X2;protein_id=XP_017973981.2"
+        },
+        {
+          "pointer": "artifacts/models.gff3:25",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t27292\t27352\t.\t+\t0\tID=cds-XP_017973981.2;Parent=rna-XM_018118492.2;Dbxref=GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953;Name=XP_017973981.2;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X2;protein_id=XP_017973981.2"
+        },
+        {
+          "pointer": "artifacts/models.gff3:26",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t27432\t27469\t.\t+\t2\tID=cds-XP_017973981.2;Parent=rna-XM_018118492.2;Dbxref=GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953;Name=XP_017973981.2;gbkey=CDS;gene=CBSX3;product=cystathionine beta-synthase (CBS) family protein isoform X2;protein_id=XP_017973981.2"
+        },
+        {
+          "pointer": "artifacts/models.gff3:33",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t66080\t66300\t.\t+\t0\tID=cds-XP_088664204.1;Parent=rna-XM_088808078.1;Dbxref=GeneID:148764400,GenBank:XP_088664204.1;Name=XP_088664204.1;gbkey=CDS;gene=LOC148764400;product=uncharacterized protein LOC148764400;protein_id=XP_088664204.1"
+        },
+        {
+          "pointer": "artifacts/models.gff3:34",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t67098\t67398\t.\t+\t1\tID=cds-XP_088664204.1;Parent=rna-XM_088808078.1;Dbxref=GeneID:148764400,GenBank:XP_088664204.1;Name=XP_088664204.1;gbkey=CDS;gene=LOC148764400;product=uncharacterized protein LOC148764400;protein_id=XP_088664204.1"
+        },
+        {
+          "pointer": "artifacts/models.gff3:35",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t67504\t67937\t.\t+\t0\tID=cds-XP_088664204.1;Parent=rna-XM_088808078.1;Dbxref=GeneID:148764400,GenBank:XP_088664204.1;Name=XP_088664204.1;gbkey=CDS;gene=LOC148764400;product=uncharacterized protein LOC148764400;protein_id=XP_088664204.1"
+        },
+        {
+          "pointer": "artifacts/models.gff3:36",
+          "resolved": "NC_142639.1\tGnomon\tCDS\t68024\t68156\t.\t+\t1\tID=cds-XP_088664204.1;Parent=rna-XM_088808078.1;Dbxref=GeneID:148764400,GenBank:XP_088664204.1;Name=XP_088664204.1;gbkey=CDS;gene=LOC148764400;product=uncharacterized protein LOC148764400;protein_id=XP_088664204.1"
+        },
+        {
+          "pointer": "artifacts/proteins.faa:1",
+          "resolved": ">XP_007046407.3 cystathionine beta-synthase (CBS) family protein isoform X1 [Theobroma cacao]"
+        },
+        {
+          "pointer": "artifacts/proteins.faa:6",
+          "resolved": ">XP_017973981.2 cystathionine beta-synthase (CBS) family protein isoform X2 [Theobroma cacao]"
+        },
+        {
+          "pointer": "artifacts/proteins.faa:10",
+          "resolved": ">XP_088664204.1 uncharacterized protein LOC148764400 [Theobroma cacao]"
+        }
+      ],
+      "scope": "location and full-file facts checked; listed individual lines are not automatic semantic proof",
+      "statement": "每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。",
+      "supplemental_pointers_not_in_candidate": []
+    },
+    {
+      "all_record_support_pointers": [
+        "artifacts/models.gff3:3",
+        "artifacts/models.gff3:2",
+        "artifacts/models.gff3:4",
+        "artifacts/models.gff3:5",
+        "artifacts/models.gff3:6",
+        "artifacts/models.gff3:7",
+        "artifacts/models.gff3:8",
+        "artifacts/models.gff3:9",
+        "artifacts/models.gff3:10",
+        "artifacts/models.gff3:11",
+        "artifacts/models.gff3:12",
+        "artifacts/models.gff3:13",
+        "artifacts/models.gff3:14",
+        "artifacts/models.gff3:15",
+        "artifacts/models.gff3:16",
+        "artifacts/models.gff3:17",
+        "artifacts/models.gff3:18",
+        "artifacts/models.gff3:19",
+        "artifacts/models.gff3:20",
+        "artifacts/models.gff3:21",
+        "artifacts/models.gff3:22",
+        "artifacts/models.gff3:23",
+        "artifacts/models.gff3:24",
+        "artifacts/models.gff3:25",
+        "artifacts/models.gff3:26",
+        "artifacts/models.gff3:28",
+        "artifacts/models.gff3:27",
+        "artifacts/models.gff3:29",
+        "artifacts/models.gff3:30",
+        "artifacts/models.gff3:31",
+        "artifacts/models.gff3:32",
+        "artifacts/models.gff3:33",
+        "artifacts/models.gff3:34",
+        "artifacts/models.gff3:35",
+        "artifacts/models.gff3:36"
+      ],
+      "claim_id": "E02",
+      "existing_pointer_values": [
+        {
+          "pointer": "artifacts/models.gff3:2",
+          "resolved": "NC_142639.1\tGnomon\tgene\t25281\t27766\t.\t+\t.\tID=gene-CBSX3;Dbxref=GeneID:18610617,NCBIOrtholog:830953;Name=CBSX3;description=Cystathionine beta-synthase (CBS) family protein;gbkey=Gene;gene=CBSX3;gene_biotype=protein_coding"
+        },
+        {
+          "pointer": "artifacts/models.gff3:3",
+          "resolved": "NC_142639.1\tGnomon\tmRNA\t25281\t27766\t.\t+\t.\tID=rna-XM_007046345.3;Parent=gene-CBSX3;Dbxref=GeneID:18610617,GenBank:XM_007046345.3,NCBIOrtholog:830953;Name=XM_007046345.3;experiment=COORDINATES: polyA evidence [ECO:0006239];gbkey=mRNA;gene=CBSX3;model_evidence=Supporting evidence includes similarity to: 15 ESTs%2C 28 Proteins%2C and 100%25 coverage of the annotated genomic feature by RNAseq alignments%2C including 136 samples with support for all annotated introns;product=Cystathionine beta-synthase (CBS) family protein%2C transcript variant X1;transcript_id=XM_007046345.3"
+        },
+        {
+          "pointer": "artifacts/models.gff3:15",
+          "resolved": "NC_142639.1\tGnomon\tmRNA\t25290\t27708\t.\t+\t.\tID=rna-XM_018118492.2;Parent=gene-CBSX3;Dbxref=GeneID:18610617,GenBank:XM_018118492.2,NCBIOrtholog:830953;Name=XM_018118492.2;experiment=COORDINATES: polyA evidence [ECO:0006239];gbkey=mRNA;gene=CBSX3;model_evidence=Supporting evidence includes similarity to: 2 Proteins%2C and 91%25 coverage of the annotated genomic feature by RNAseq alignments%2C including 135 samples with support for all annotated introns;product=Cystathionine beta-synthase (CBS) family protein%2C transcript variant X2;transcript_id=XM_018118492.2"
+        },
+        {
+          "pointer": "artifacts/models.gff3:27",
+          "resolved": "NC_142639.1\tGnomon\tgene\t66080\t68156\t.\t+\t.\tID=gene-LOC148764400;Dbxref=GeneID:148764400;Name=LOC148764400;description=uncharacterized LOC148764400;gbkey=Gene;gene=LOC148764400;gene_biotype=protein_coding"
+        },
+        {
+          "pointer": "artifacts/models.gff3:28",
+          "resolved": "NC_142639.1\tGnomon\tmRNA\t66080\t68156\t.\t+\t.\tID=rna-XM_088808078.1;Parent=gene-LOC148764400;Dbxref=GeneID:148764400,GenBank:XM_088808078.1;Name=XM_088808078.1;gbkey=mRNA;gene=LOC148764400;model_evidence=Supporting evidence includes similarity to: 4 Proteins;product=uncharacterized LOC148764400;transcript_id=XM_088808078.1"
+        }
+      ],
+      "scope": "location and full-file facts checked; listed individual lines are not automatic semantic proof",
+      "statement": "所有 Parent 接续且类型、序列/链与父子闭区间符合题面必要合同。",
+      "supplemental_pointers_not_in_candidate": [
+        "artifacts/models.gff3:4",
+        "artifacts/models.gff3:5",
+        "artifacts/models.gff3:6",
+        "artifacts/models.gff3:7",
+        "artifacts/models.gff3:8",
+        "artifacts/models.gff3:9",
+        "artifacts/models.gff3:10",
+        "artifacts/models.gff3:11",
+        "artifacts/models.gff3:12",
+        "artifacts/models.gff3:13",
+        "artifacts/models.gff3:14",
+        "artifacts/models.gff3:16",
+        "artifacts/models.gff3:17",
+        "artifacts/models.gff3:18",
+        "artifacts/models.gff3:19",
+        "artifacts/models.gff3:20",
+        "artifacts/models.gff3:21",
+        "artifacts/models.gff3:22",
+        "artifacts/models.gff3:23",
+        "artifacts/models.gff3:24",
+        "artifacts/models.gff3:25",
+        "artifacts/models.gff3:26",
+        "artifacts/models.gff3:29",
+        "artifacts/models.gff3:30",
+        "artifacts/models.gff3:31",
+        "artifacts/models.gff3:32",
+        "artifacts/models.gff3:33",
+        "artifacts/models.gff3:34",
+        "artifacts/models.gff3:35",
+        "artifacts/models.gff3:36"
+      ]
+    }
+  ],
+  "case_id": "qc_002",
+  "external_review_completed": false,
+  "file_facts": {
+    "cds_connections": [
+      {
+        "cds_id": "cds-XP_007046407.3",
+        "exact_match": true,
+        "faa_header": ">XP_007046407.3 cystathionine beta-synthase (CBS) family protein isoform X1 [Theobroma cacao]",
+        "faa_header_line": 1,
+        "gff_line": 10,
+        "protein_id": "XP_007046407.3"
+      },
+      {
+        "cds_id": "cds-XP_007046407.3",
+        "exact_match": true,
+        "faa_header": ">XP_007046407.3 cystathionine beta-synthase (CBS) family protein isoform X1 [Theobroma cacao]",
+        "faa_header_line": 1,
+        "gff_line": 11,
+        "protein_id": "XP_007046407.3"
+      },
+      {
+        "cds_id": "cds-XP_007046407.3",
+        "exact_match": true,
+        "faa_header": ">XP_007046407.3 cystathionine beta-synthase (CBS) family protein isoform X1 [Theobroma cacao]",
+        "faa_header_line": 1,
+        "gff_line": 12,
+        "protein_id": "XP_007046407.3"
+      },
+      {
+        "cds_id": "cds-XP_007046407.3",
+        "exact_match": true,
+        "faa_header": ">XP_007046407.3 cystathionine beta-synthase (CBS) family protein isoform X1 [Theobroma cacao]",
+        "faa_header_line": 1,
+        "gff_line": 13,
+        "protein_id": "XP_007046407.3"
+      },
+      {
+        "cds_id": "cds-XP_007046407.3",
+        "exact_match": true,
+        "faa_header": ">XP_007046407.3 cystathionine beta-synthase (CBS) family protein isoform X1 [Theobroma cacao]",
+        "faa_header_line": 1,
+        "gff_line": 14,
+        "protein_id": "XP_007046407.3"
+      },
+      {
+        "cds_id": "cds-XP_017973981.2",
+        "exact_match": true,
+        "faa_header": ">XP_017973981.2 cystathionine beta-synthase (CBS) family protein isoform X2 [Theobroma cacao]",
+        "faa_header_line": 6,
+        "gff_line": 22,
+        "protein_id": "XP_017973981.2"
+      },
+      {
+        "cds_id": "cds-XP_017973981.2",
+        "exact_match": true,
+        "faa_header": ">XP_017973981.2 cystathionine beta-synthase (CBS) family protein isoform X2 [Theobroma cacao]",
+        "faa_header_line": 6,
+        "gff_line": 23,
+        "protein_id": "XP_017973981.2"
+      },
+      {
+        "cds_id": "cds-XP_017973981.2",
+        "exact_match": true,
+        "faa_header": ">XP_017973981.2 cystathionine beta-synthase (CBS) family protein isoform X2 [Theobroma cacao]",
+        "faa_header_line": 6,
+        "gff_line": 24,
+        "protein_id": "XP_017973981.2"
+      },
+      {
+        "cds_id": "cds-XP_017973981.2",
+        "exact_match": true,
+        "faa_header": ">XP_017973981.2 cystathionine beta-synthase (CBS) family protein isoform X2 [Theobroma cacao]",
+        "faa_header_line": 6,
+        "gff_line": 25,
+        "protein_id": "XP_017973981.2"
+      },
+      {
+        "cds_id": "cds-XP_017973981.2",
+        "exact_match": true,
+        "faa_header": ">XP_017973981.2 cystathionine beta-synthase (CBS) family protein isoform X2 [Theobroma cacao]",
+        "faa_header_line": 6,
+        "gff_line": 26,
+        "protein_id": "XP_017973981.2"
+      },
+      {
+        "cds_id": "cds-XP_088664204.1",
+        "exact_match": true,
+        "faa_header": ">XP_088664204.1 uncharacterized protein LOC148764400 [Theobroma cacao]",
+        "faa_header_line": 10,
+        "gff_line": 33,
+        "protein_id": "XP_088664204.1"
+      },
+      {
+        "cds_id": "cds-XP_088664204.1",
+        "exact_match": true,
+        "faa_header": ">XP_088664204.1 uncharacterized protein LOC148764400 [Theobroma cacao]",
+        "faa_header_line": 10,
+        "gff_line": 34,
+        "protein_id": "XP_088664204.1"
+      },
+      {
+        "cds_id": "cds-XP_088664204.1",
+        "exact_match": true,
+        "faa_header": ">XP_088664204.1 uncharacterized protein LOC148764400 [Theobroma cacao]",
+        "faa_header_line": 10,
+        "gff_line": 35,
+        "protein_id": "XP_088664204.1"
+      },
+      {
+        "cds_id": "cds-XP_088664204.1",
+        "exact_match": true,
+        "faa_header": ">XP_088664204.1 uncharacterized protein LOC148764400 [Theobroma cacao]",
+        "faa_header_line": 10,
+        "gff_line": 36,
+        "protein_id": "XP_088664204.1"
+      }
+    ],
+    "contract_satisfied": true,
+    "faa_headers": [
+      {
+        "header": ">XP_007046407.3 cystathionine beta-synthase (CBS) family protein isoform X1 [Theobroma cacao]",
+        "id": "XP_007046407.3",
+        "line": 1,
+        "residues": 205
+      },
+      {
+        "header": ">XP_017973981.2 cystathionine beta-synthase (CBS) family protein isoform X2 [Theobroma cacao]",
+        "id": "XP_017973981.2",
+        "line": 6,
+        "residues": 170
+      },
+      {
+        "header": ">XP_088664204.1 uncharacterized protein LOC148764400 [Theobroma cacao]",
+        "id": "XP_088664204.1",
+        "line": 10,
+        "residues": 362
+      }
+    ],
+    "issues": {
+      "duplicate_feature_issues": [],
+      "extra_protein_ids": [],
+      "gene_parent_issues": [],
+      "incompatible_parent_lines": [],
+      "missing_sequence_lines": [],
+      "unresolved_parent_lines": []
+    },
+    "parent_connections": [
+      {
+        "child_id": "rna-XM_007046345.3",
+        "child_interval": [
+          25281,
+          27766
+        ],
+        "child_line": 3,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "mRNA",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "gene-CBSX3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 2,
+        "parent_lines": [
+          2
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "gene",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_007046345.3-1",
+        "child_interval": [
+          25281,
+          25430
+        ],
+        "child_line": 4,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_007046345.3-2",
+        "child_interval": [
+          26284,
+          26546
+        ],
+        "child_line": 5,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_007046345.3-3",
+        "child_interval": [
+          26633,
+          26714
+        ],
+        "child_line": 6,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_007046345.3-4",
+        "child_interval": [
+          27131,
+          27204
+        ],
+        "child_line": 7,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_007046345.3-5",
+        "child_interval": [
+          27292,
+          27352
+        ],
+        "child_line": 8,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_007046345.3-6",
+        "child_interval": [
+          27443,
+          27766
+        ],
+        "child_line": 9,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_007046407.3",
+        "child_interval": [
+          26289,
+          26546
+        ],
+        "child_line": 10,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_007046407.3",
+        "child_interval": [
+          26633,
+          26714
+        ],
+        "child_line": 11,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_007046407.3",
+        "child_interval": [
+          27131,
+          27204
+        ],
+        "child_line": 12,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_007046407.3",
+        "child_interval": [
+          27292,
+          27352
+        ],
+        "child_line": 13,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_007046407.3",
+        "child_interval": [
+          27443,
+          27585
+        ],
+        "child_line": 14,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_007046345.3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "rna-XM_018118492.2",
+        "child_interval": [
+          25290,
+          27708
+        ],
+        "child_line": 15,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "mRNA",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "gene-CBSX3",
+        "parent_interval": [
+          25281,
+          27766
+        ],
+        "parent_line": 2,
+        "parent_lines": [
+          2
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "gene",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_018118492.2-1",
+        "child_interval": [
+          25290,
+          25430
+        ],
+        "child_line": 16,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_018118492.2-2",
+        "child_interval": [
+          26284,
+          26546
+        ],
+        "child_line": 17,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_018118492.2-3",
+        "child_interval": [
+          26633,
+          26714
+        ],
+        "child_line": 18,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_018118492.2-4",
+        "child_interval": [
+          27131,
+          27204
+        ],
+        "child_line": 19,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_018118492.2-5",
+        "child_interval": [
+          27292,
+          27352
+        ],
+        "child_line": 20,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_018118492.2-6",
+        "child_interval": [
+          27432,
+          27708
+        ],
+        "child_line": 21,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_017973981.2",
+        "child_interval": [
+          26289,
+          26546
+        ],
+        "child_line": 22,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_017973981.2",
+        "child_interval": [
+          26633,
+          26714
+        ],
+        "child_line": 23,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_017973981.2",
+        "child_interval": [
+          27131,
+          27204
+        ],
+        "child_line": 24,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_017973981.2",
+        "child_interval": [
+          27292,
+          27352
+        ],
+        "child_line": 25,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_017973981.2",
+        "child_interval": [
+          27432,
+          27469
+        ],
+        "child_line": 26,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_018118492.2",
+        "parent_interval": [
+          25290,
+          27708
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "rna-XM_088808078.1",
+        "child_interval": [
+          66080,
+          68156
+        ],
+        "child_line": 28,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "mRNA",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "gene-LOC148764400",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 27,
+        "parent_lines": [
+          27
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "gene",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088808078.1-1",
+        "child_interval": [
+          66080,
+          66300
+        ],
+        "child_line": 29,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088808078.1",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 28,
+        "parent_lines": [
+          28
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088808078.1-2",
+        "child_interval": [
+          67098,
+          67398
+        ],
+        "child_line": 30,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088808078.1",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 28,
+        "parent_lines": [
+          28
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088808078.1-3",
+        "child_interval": [
+          67504,
+          67937
+        ],
+        "child_line": 31,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088808078.1",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 28,
+        "parent_lines": [
+          28
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088808078.1-4",
+        "child_interval": [
+          68024,
+          68156
+        ],
+        "child_line": 32,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088808078.1",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 28,
+        "parent_lines": [
+          28
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088664204.1",
+        "child_interval": [
+          66080,
+          66300
+        ],
+        "child_line": 33,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088808078.1",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 28,
+        "parent_lines": [
+          28
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088664204.1",
+        "child_interval": [
+          67098,
+          67398
+        ],
+        "child_line": 34,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088808078.1",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 28,
+        "parent_lines": [
+          28
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088664204.1",
+        "child_interval": [
+          67504,
+          67937
+        ],
+        "child_line": 35,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088808078.1",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 28,
+        "parent_lines": [
+          28
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088664204.1",
+        "child_interval": [
+          68024,
+          68156
+        ],
+        "child_line": 36,
+        "child_seqid": "NC_142639.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088808078.1",
+        "parent_interval": [
+          66080,
+          68156
+        ],
+        "parent_line": 28,
+        "parent_lines": [
+          28
+        ],
+        "parent_seqid": "NC_142639.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      }
+    ],
+    "rows": [
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,NCBIOrtholog:830953",
+          "ID": "gene-CBSX3",
+          "Name": "CBSX3",
+          "description": "Cystathionine beta-synthase (CBS) family protein",
+          "gbkey": "Gene",
+          "gene": "CBSX3",
+          "gene_biotype": "protein_coding"
+        },
+        "id": "gene-CBSX3",
+        "interval": [
+          25281,
+          27766
+        ],
+        "line": 2,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "gene"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_007046345.3,NCBIOrtholog:830953",
+          "ID": "rna-XM_007046345.3",
+          "Name": "XM_007046345.3",
+          "Parent": "gene-CBSX3",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "model_evidence": "Supporting evidence includes similarity to: 15 ESTs, 28 Proteins, and 100% coverage of the annotated genomic feature by RNAseq alignments, including 136 samples with support for all annotated introns",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X1",
+          "transcript_id": "XM_007046345.3"
+        },
+        "id": "rna-XM_007046345.3",
+        "interval": [
+          25281,
+          27766
+        ],
+        "line": 3,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "mRNA"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_007046345.3,NCBIOrtholog:830953",
+          "ID": "exon-XM_007046345.3-1",
+          "Parent": "rna-XM_007046345.3",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X1",
+          "transcript_id": "XM_007046345.3"
+        },
+        "id": "exon-XM_007046345.3-1",
+        "interval": [
+          25281,
+          25430
+        ],
+        "line": 4,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_007046345.3,NCBIOrtholog:830953",
+          "ID": "exon-XM_007046345.3-2",
+          "Parent": "rna-XM_007046345.3",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X1",
+          "transcript_id": "XM_007046345.3"
+        },
+        "id": "exon-XM_007046345.3-2",
+        "interval": [
+          26284,
+          26546
+        ],
+        "line": 5,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_007046345.3,NCBIOrtholog:830953",
+          "ID": "exon-XM_007046345.3-3",
+          "Parent": "rna-XM_007046345.3",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X1",
+          "transcript_id": "XM_007046345.3"
+        },
+        "id": "exon-XM_007046345.3-3",
+        "interval": [
+          26633,
+          26714
+        ],
+        "line": 6,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_007046345.3,NCBIOrtholog:830953",
+          "ID": "exon-XM_007046345.3-4",
+          "Parent": "rna-XM_007046345.3",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X1",
+          "transcript_id": "XM_007046345.3"
+        },
+        "id": "exon-XM_007046345.3-4",
+        "interval": [
+          27131,
+          27204
+        ],
+        "line": 7,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_007046345.3,NCBIOrtholog:830953",
+          "ID": "exon-XM_007046345.3-5",
+          "Parent": "rna-XM_007046345.3",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X1",
+          "transcript_id": "XM_007046345.3"
+        },
+        "id": "exon-XM_007046345.3-5",
+        "interval": [
+          27292,
+          27352
+        ],
+        "line": 8,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_007046345.3,NCBIOrtholog:830953",
+          "ID": "exon-XM_007046345.3-6",
+          "Parent": "rna-XM_007046345.3",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X1",
+          "transcript_id": "XM_007046345.3"
+        },
+        "id": "exon-XM_007046345.3-6",
+        "interval": [
+          27443,
+          27766
+        ],
+        "line": 9,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953",
+          "ID": "cds-XP_007046407.3",
+          "Name": "XP_007046407.3",
+          "Parent": "rna-XM_007046345.3",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X1",
+          "protein_id": "XP_007046407.3"
+        },
+        "id": "cds-XP_007046407.3",
+        "interval": [
+          26289,
+          26546
+        ],
+        "line": 10,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953",
+          "ID": "cds-XP_007046407.3",
+          "Name": "XP_007046407.3",
+          "Parent": "rna-XM_007046345.3",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X1",
+          "protein_id": "XP_007046407.3"
+        },
+        "id": "cds-XP_007046407.3",
+        "interval": [
+          26633,
+          26714
+        ],
+        "line": 11,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953",
+          "ID": "cds-XP_007046407.3",
+          "Name": "XP_007046407.3",
+          "Parent": "rna-XM_007046345.3",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X1",
+          "protein_id": "XP_007046407.3"
+        },
+        "id": "cds-XP_007046407.3",
+        "interval": [
+          27131,
+          27204
+        ],
+        "line": 12,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953",
+          "ID": "cds-XP_007046407.3",
+          "Name": "XP_007046407.3",
+          "Parent": "rna-XM_007046345.3",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X1",
+          "protein_id": "XP_007046407.3"
+        },
+        "id": "cds-XP_007046407.3",
+        "interval": [
+          27292,
+          27352
+        ],
+        "line": 13,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_007046407.3,NCBIOrtholog:830953",
+          "ID": "cds-XP_007046407.3",
+          "Name": "XP_007046407.3",
+          "Parent": "rna-XM_007046345.3",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X1",
+          "protein_id": "XP_007046407.3"
+        },
+        "id": "cds-XP_007046407.3",
+        "interval": [
+          27443,
+          27585
+        ],
+        "line": 14,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_018118492.2,NCBIOrtholog:830953",
+          "ID": "rna-XM_018118492.2",
+          "Name": "XM_018118492.2",
+          "Parent": "gene-CBSX3",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "model_evidence": "Supporting evidence includes similarity to: 2 Proteins, and 91% coverage of the annotated genomic feature by RNAseq alignments, including 135 samples with support for all annotated introns",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X2",
+          "transcript_id": "XM_018118492.2"
+        },
+        "id": "rna-XM_018118492.2",
+        "interval": [
+          25290,
+          27708
+        ],
+        "line": 15,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "mRNA"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_018118492.2,NCBIOrtholog:830953",
+          "ID": "exon-XM_018118492.2-1",
+          "Parent": "rna-XM_018118492.2",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X2",
+          "transcript_id": "XM_018118492.2"
+        },
+        "id": "exon-XM_018118492.2-1",
+        "interval": [
+          25290,
+          25430
+        ],
+        "line": 16,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_018118492.2,NCBIOrtholog:830953",
+          "ID": "exon-XM_018118492.2-2",
+          "Parent": "rna-XM_018118492.2",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X2",
+          "transcript_id": "XM_018118492.2"
+        },
+        "id": "exon-XM_018118492.2-2",
+        "interval": [
+          26284,
+          26546
+        ],
+        "line": 17,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_018118492.2,NCBIOrtholog:830953",
+          "ID": "exon-XM_018118492.2-3",
+          "Parent": "rna-XM_018118492.2",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X2",
+          "transcript_id": "XM_018118492.2"
+        },
+        "id": "exon-XM_018118492.2-3",
+        "interval": [
+          26633,
+          26714
+        ],
+        "line": 18,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_018118492.2,NCBIOrtholog:830953",
+          "ID": "exon-XM_018118492.2-4",
+          "Parent": "rna-XM_018118492.2",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X2",
+          "transcript_id": "XM_018118492.2"
+        },
+        "id": "exon-XM_018118492.2-4",
+        "interval": [
+          27131,
+          27204
+        ],
+        "line": 19,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_018118492.2,NCBIOrtholog:830953",
+          "ID": "exon-XM_018118492.2-5",
+          "Parent": "rna-XM_018118492.2",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X2",
+          "transcript_id": "XM_018118492.2"
+        },
+        "id": "exon-XM_018118492.2-5",
+        "interval": [
+          27292,
+          27352
+        ],
+        "line": 20,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XM_018118492.2,NCBIOrtholog:830953",
+          "ID": "exon-XM_018118492.2-6",
+          "Parent": "rna-XM_018118492.2",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "CBSX3",
+          "product": "Cystathionine beta-synthase (CBS) family protein, transcript variant X2",
+          "transcript_id": "XM_018118492.2"
+        },
+        "id": "exon-XM_018118492.2-6",
+        "interval": [
+          27432,
+          27708
+        ],
+        "line": 21,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953",
+          "ID": "cds-XP_017973981.2",
+          "Name": "XP_017973981.2",
+          "Parent": "rna-XM_018118492.2",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X2",
+          "protein_id": "XP_017973981.2"
+        },
+        "id": "cds-XP_017973981.2",
+        "interval": [
+          26289,
+          26546
+        ],
+        "line": 22,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953",
+          "ID": "cds-XP_017973981.2",
+          "Name": "XP_017973981.2",
+          "Parent": "rna-XM_018118492.2",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X2",
+          "protein_id": "XP_017973981.2"
+        },
+        "id": "cds-XP_017973981.2",
+        "interval": [
+          26633,
+          26714
+        ],
+        "line": 23,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953",
+          "ID": "cds-XP_017973981.2",
+          "Name": "XP_017973981.2",
+          "Parent": "rna-XM_018118492.2",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X2",
+          "protein_id": "XP_017973981.2"
+        },
+        "id": "cds-XP_017973981.2",
+        "interval": [
+          27131,
+          27204
+        ],
+        "line": 24,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953",
+          "ID": "cds-XP_017973981.2",
+          "Name": "XP_017973981.2",
+          "Parent": "rna-XM_018118492.2",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X2",
+          "protein_id": "XP_017973981.2"
+        },
+        "id": "cds-XP_017973981.2",
+        "interval": [
+          27292,
+          27352
+        ],
+        "line": 25,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:18610617,GenBank:XP_017973981.2,NCBIOrtholog:830953",
+          "ID": "cds-XP_017973981.2",
+          "Name": "XP_017973981.2",
+          "Parent": "rna-XM_018118492.2",
+          "gbkey": "CDS",
+          "gene": "CBSX3",
+          "product": "cystathionine beta-synthase (CBS) family protein isoform X2",
+          "protein_id": "XP_017973981.2"
+        },
+        "id": "cds-XP_017973981.2",
+        "interval": [
+          27432,
+          27469
+        ],
+        "line": 26,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400",
+          "ID": "gene-LOC148764400",
+          "Name": "LOC148764400",
+          "description": "uncharacterized LOC148764400",
+          "gbkey": "Gene",
+          "gene": "LOC148764400",
+          "gene_biotype": "protein_coding"
+        },
+        "id": "gene-LOC148764400",
+        "interval": [
+          66080,
+          68156
+        ],
+        "line": 27,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "gene"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XM_088808078.1",
+          "ID": "rna-XM_088808078.1",
+          "Name": "XM_088808078.1",
+          "Parent": "gene-LOC148764400",
+          "gbkey": "mRNA",
+          "gene": "LOC148764400",
+          "model_evidence": "Supporting evidence includes similarity to: 4 Proteins",
+          "product": "uncharacterized LOC148764400",
+          "transcript_id": "XM_088808078.1"
+        },
+        "id": "rna-XM_088808078.1",
+        "interval": [
+          66080,
+          68156
+        ],
+        "line": 28,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "mRNA"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XM_088808078.1",
+          "ID": "exon-XM_088808078.1-1",
+          "Parent": "rna-XM_088808078.1",
+          "gbkey": "mRNA",
+          "gene": "LOC148764400",
+          "product": "uncharacterized LOC148764400",
+          "transcript_id": "XM_088808078.1"
+        },
+        "id": "exon-XM_088808078.1-1",
+        "interval": [
+          66080,
+          66300
+        ],
+        "line": 29,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XM_088808078.1",
+          "ID": "exon-XM_088808078.1-2",
+          "Parent": "rna-XM_088808078.1",
+          "gbkey": "mRNA",
+          "gene": "LOC148764400",
+          "product": "uncharacterized LOC148764400",
+          "transcript_id": "XM_088808078.1"
+        },
+        "id": "exon-XM_088808078.1-2",
+        "interval": [
+          67098,
+          67398
+        ],
+        "line": 30,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XM_088808078.1",
+          "ID": "exon-XM_088808078.1-3",
+          "Parent": "rna-XM_088808078.1",
+          "gbkey": "mRNA",
+          "gene": "LOC148764400",
+          "product": "uncharacterized LOC148764400",
+          "transcript_id": "XM_088808078.1"
+        },
+        "id": "exon-XM_088808078.1-3",
+        "interval": [
+          67504,
+          67937
+        ],
+        "line": 31,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XM_088808078.1",
+          "ID": "exon-XM_088808078.1-4",
+          "Parent": "rna-XM_088808078.1",
+          "gbkey": "mRNA",
+          "gene": "LOC148764400",
+          "product": "uncharacterized LOC148764400",
+          "transcript_id": "XM_088808078.1"
+        },
+        "id": "exon-XM_088808078.1-4",
+        "interval": [
+          68024,
+          68156
+        ],
+        "line": 32,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XP_088664204.1",
+          "ID": "cds-XP_088664204.1",
+          "Name": "XP_088664204.1",
+          "Parent": "rna-XM_088808078.1",
+          "gbkey": "CDS",
+          "gene": "LOC148764400",
+          "product": "uncharacterized protein LOC148764400",
+          "protein_id": "XP_088664204.1"
+        },
+        "id": "cds-XP_088664204.1",
+        "interval": [
+          66080,
+          66300
+        ],
+        "line": 33,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XP_088664204.1",
+          "ID": "cds-XP_088664204.1",
+          "Name": "XP_088664204.1",
+          "Parent": "rna-XM_088808078.1",
+          "gbkey": "CDS",
+          "gene": "LOC148764400",
+          "product": "uncharacterized protein LOC148764400",
+          "protein_id": "XP_088664204.1"
+        },
+        "id": "cds-XP_088664204.1",
+        "interval": [
+          67098,
+          67398
+        ],
+        "line": 34,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XP_088664204.1",
+          "ID": "cds-XP_088664204.1",
+          "Name": "XP_088664204.1",
+          "Parent": "rna-XM_088808078.1",
+          "gbkey": "CDS",
+          "gene": "LOC148764400",
+          "product": "uncharacterized protein LOC148764400",
+          "protein_id": "XP_088664204.1"
+        },
+        "id": "cds-XP_088664204.1",
+        "interval": [
+          67504,
+          67937
+        ],
+        "line": 35,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148764400,GenBank:XP_088664204.1",
+          "ID": "cds-XP_088664204.1",
+          "Name": "XP_088664204.1",
+          "Parent": "rna-XM_088808078.1",
+          "gbkey": "CDS",
+          "gene": "LOC148764400",
+          "product": "uncharacterized protein LOC148764400",
+          "protein_id": "XP_088664204.1"
+        },
+        "id": "cds-XP_088664204.1",
+        "interval": [
+          68024,
+          68156
+        ],
+        "line": 36,
+        "seqid": "NC_142639.1",
+        "strand": "+",
+        "type": "CDS"
+      }
+    ]
+  },
+  "human_blind_review_completed": false
+}

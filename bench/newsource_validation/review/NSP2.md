@@ -1,0 +1,294 @@
+# NSP2 完整配对审核材料
+
+有答案的材料复核；不能作为盲审。两题均需独立读取原文。
+
+# qc_004 逐记录材料复核
+
+私有审核补充；不是盲审、真人专家审核或模型成绩。候选答案未改、未冻结。
+
+## 每条 CDS → FAA 精确连接
+
+| GFF 行 | protein_id | FAA header 行 | 精确连接 |
+|---|---|---|---|
+| 6 | XP_056085845.1 | 1 | True |
+| 7 | XP_056085845.1 | 1 | True |
+| 12 | XP_056085872.1 | 4 | True |
+| 13 | XP_056085872.1 | 4 | True |
+
+## 全部直接 Parent 关系
+
+| 子行/类型 | Parent | 父行/类型 | 子区间 | 父区间 | 序列相同 | 链相同 | 合同成立 |
+|---|---|---|---|---|---|---|---|
+| 3/mRNA | gene-SKDI_01G0410_1 | []/None | [78732, 79201] | None | False | False | False |
+| 4/exon | rna-XM_056229825.1 | [3]/mRNA | [78732, 78833] | [78732, 79201] | True | True | True |
+| 5/exon | rna-XM_056229825.1 | [3]/mRNA | [78950, 79201] | [78732, 79201] | True | True | True |
+| 6/CDS | rna-XM_056229825.1 | [3]/mRNA | [78732, 78833] | [78732, 79201] | True | True | True |
+| 7/CDS | rna-XM_056229825.1 | [3]/mRNA | [78950, 79201] | [78732, 79201] | True | True | True |
+| 9/mRNA | gene-SKDI_01G0700 | [8]/gene | [144620, 145595] | [144620, 145595] | True | True | True |
+| 10/exon | rna-XM_056232129.1 | [9]/mRNA | [144620, 144699] | [144620, 145595] | True | True | True |
+| 11/exon | rna-XM_056232129.1 | [9]/mRNA | [145052, 145595] | [144620, 145595] | True | True | True |
+| 12/CDS | rna-XM_056232129.1 | [9]/mRNA | [144620, 144699] | [144620, 145595] | True | True | True |
+| 13/CDS | rna-XM_056232129.1 | [9]/mRNA | [145052, 145595] | [144620, 145595] | True | True | True |
+
+## 候选引用逐项定位
+
+### E01
+
+mRNA 的 Parent 在完整块中没有对应 gene。
+
+- artifacts/models.gff3:3
+
+```text
+NC_079272.1	RefSeq	mRNA	78732	79201	.	+	.	ID=rna-XM_056229825.1;Parent=gene-SKDI_01G0410_1;Dbxref=GeneID:80922145,GenBank:XM_056229825.1;Name=XM_056229825.1;end_range=79201,.;gbkey=mRNA;gene=SNC1;locus_tag=SKDI_01G0410;partial=true;product=SNAP receptor SNC1;start_range=.,78732;transcript_id=XM_056229825.1
+```
+
+- artifacts/models.gff3:2
+
+```text
+NC_079272.1	RefSeq	gene	78732	79201	.	+	.	ID=gene-SKDI_01G0410;Dbxref=GeneID:80922145;Name=SNC1;end_range=79201,.;gbkey=Gene;gene=SNC1;gene_biotype=protein_coding;locus_tag=SKDI_01G0410;partial=true;start_range=.,78732
+```
+
+原候选是代表性定位；完成全记录核对还需要以下行。此处补充材料，不修改 expected.json：
+
+artifacts/models.gff3:8
+
+## 完整公开题目与候选答案
+
+以下逐文件原文供复核。代码框行号与文件自身的行号不同，请以原始附件或上面的 pointer 为准。
+
+### task.md
+
+````text
+# 下游输入审核
+
+请审核Saccharomyces kudriavzevii的一组结构注释记录是否可以交给下游文件连接程序。输出统一规定的JSON。
+
+本题审核输入文件，不是已完成的分析交付；没有提供可回退的旧版本。审核范围仅为给出的两套完整编码gene特征块及对应蛋白，不能外推全基因组注释质量。models.gff3是本次输入，proteins.faa是按ID查找序列的输入；record_counts.json仅列字面计数。
+
+消费者读取GFF的Parent建立gene→mRNA→exon/CDS关系，并按每行CDS的protein_id精确查找FAA header第一个token。每个Parent必须在本题完整记录中存在且类型符合上述层级；子记录必须与父记录同seqid、同链，闭区间完全位于父记录内。FAA记录与不同protein_id对应的一组CDS一一相接。没有声明去版本号、改大小写、以Name或CDS ID代替protein_id等映射。
+
+同一CDS的多片段可以重复ID，不能把CDS行数当蛋白条数。允许异构体和partial=true，不检查模型全长、翻译正确性或生物学功能；这些属性不豁免上述文件连接要求。除必要输入合同外，本题没有其它继续条件，也没有提供运行日志来解释上游过程。
+
+请根据公开记录检查必要合同，并建议最小修复或补证。满足所有必要输入要求时可继续；必要连接或层级要求不能满足时，应先停止下游启动并修复。不要仅凭字面计数接近就认为可以继续。
+````
+
+### artifacts/models.gff3
+
+````text
+##gff-version 3
+NC_079272.1	RefSeq	gene	78732	79201	.	+	.	ID=gene-SKDI_01G0410;Dbxref=GeneID:80922145;Name=SNC1;end_range=79201,.;gbkey=Gene;gene=SNC1;gene_biotype=protein_coding;locus_tag=SKDI_01G0410;partial=true;start_range=.,78732
+NC_079272.1	RefSeq	mRNA	78732	79201	.	+	.	ID=rna-XM_056229825.1;Parent=gene-SKDI_01G0410_1;Dbxref=GeneID:80922145,GenBank:XM_056229825.1;Name=XM_056229825.1;end_range=79201,.;gbkey=mRNA;gene=SNC1;locus_tag=SKDI_01G0410;partial=true;product=SNAP receptor SNC1;start_range=.,78732;transcript_id=XM_056229825.1
+NC_079272.1	RefSeq	exon	78732	78833	.	+	.	ID=exon-XM_056229825.1-1;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XM_056229825.1;gbkey=mRNA;gene=SNC1;locus_tag=SKDI_01G0410;partial=true;product=SNAP receptor SNC1;start_range=.,78732;transcript_id=XM_056229825.1
+NC_079272.1	RefSeq	exon	78950	79201	.	+	.	ID=exon-XM_056229825.1-2;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XM_056229825.1;end_range=79201,.;gbkey=mRNA;gene=SNC1;locus_tag=SKDI_01G0410;partial=true;product=SNAP receptor SNC1;transcript_id=XM_056229825.1
+NC_079272.1	RefSeq	CDS	78732	78833	.	+	0	ID=cds-XP_056085845.1;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XP_056085845.1;Name=XP_056085845.1;Note=similar to Saccharomyces cerevisiae SNC1 (YAL030W) and SNC2 (YOR327C)%3B ancestral locus Anc_7.67;gbkey=CDS;gene=SNC1;inference=similar to DNA sequence:INSDC:YAL030W%2CYOR327C;locus_tag=SKDI_01G0410;product=SNAP receptor SNC1;protein_id=XP_056085845.1
+NC_079272.1	RefSeq	CDS	78950	79201	.	+	0	ID=cds-XP_056085845.1;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XP_056085845.1;Name=XP_056085845.1;Note=similar to Saccharomyces cerevisiae SNC1 (YAL030W) and SNC2 (YOR327C)%3B ancestral locus Anc_7.67;gbkey=CDS;gene=SNC1;inference=similar to DNA sequence:INSDC:YAL030W%2CYOR327C;locus_tag=SKDI_01G0410;product=SNAP receptor SNC1;protein_id=XP_056085845.1
+NC_079272.1	RefSeq	gene	144620	145595	.	+	.	ID=gene-SKDI_01G0700;Dbxref=GeneID:80922172;Name=EFB1;end_range=145595,.;gbkey=Gene;gene=EFB1;gene_biotype=protein_coding;locus_tag=SKDI_01G0700;partial=true;start_range=.,144620
+NC_079272.1	RefSeq	mRNA	144620	145595	.	+	.	ID=rna-XM_056232129.1;Parent=gene-SKDI_01G0700;Dbxref=GeneID:80922172,GenBank:XM_056232129.1;Name=XM_056232129.1;end_range=145595,.;gbkey=mRNA;gene=EFB1;locus_tag=SKDI_01G0700;partial=true;product=translation elongation factor 1 subunit beta;start_range=.,144620;transcript_id=XM_056232129.1
+NC_079272.1	RefSeq	exon	144620	144699	.	+	.	ID=exon-XM_056232129.1-1;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XM_056232129.1;gbkey=mRNA;gene=EFB1;locus_tag=SKDI_01G0700;partial=true;product=translation elongation factor 1 subunit beta;start_range=.,144620;transcript_id=XM_056232129.1
+NC_079272.1	RefSeq	exon	145052	145595	.	+	.	ID=exon-XM_056232129.1-2;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XM_056232129.1;end_range=145595,.;gbkey=mRNA;gene=EFB1;locus_tag=SKDI_01G0700;partial=true;product=translation elongation factor 1 subunit beta;transcript_id=XM_056232129.1
+NC_079272.1	RefSeq	CDS	144620	144699	.	+	0	ID=cds-XP_056085872.1;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XP_056085872.1;Name=XP_056085872.1;Note=similar to Saccharomyces cerevisiae EFB1 (YAL003W)%3B ancestral locus Anc_4.130;gbkey=CDS;gene=EFB1;inference=similar to DNA sequence:INSDC:YAL003W;locus_tag=SKDI_01G0700;product=translation elongation factor 1 subunit beta;protein_id=XP_056085872.1
+NC_079272.1	RefSeq	CDS	145052	145595	.	+	1	ID=cds-XP_056085872.1;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XP_056085872.1;Name=XP_056085872.1;Note=similar to Saccharomyces cerevisiae EFB1 (YAL003W)%3B ancestral locus Anc_4.130;gbkey=CDS;gene=EFB1;inference=similar to DNA sequence:INSDC:YAL003W;locus_tag=SKDI_01G0700;product=translation elongation factor 1 subunit beta;protein_id=XP_056085872.1
+````
+
+### artifacts/proteins.faa
+
+````text
+>XP_056085845.1 SNAP receptor SNC1 SKDI_01G0410 [Saccharomyces kudriavzevii IFO 1802]
+MSSSTPFDPYTLSEQDEERPQNVQSKSKTAELQAEIDNTVGIMRDNINKVAERGERLTSI
+EDKADNLAVSAQGFKRGANKVRKAMWYKDLKMKLCLALVIIILLVVIIVPIAIHFSR
+>XP_056085872.1 translation elongation factor 1 subunit beta SKDI_01G0700 [Saccharomyces kudriavzevii IFO 1802]
+MASTDFSKIETLKQLNASLADKSYIEGTAVSQADVAVFKAFQSAYPEFSRWFNHIASKAD
+EFESFPAASKAAAEEEDDDDEVDLFGSDDEEADAEAEKLKAERIAAYNAKKAEKPAKPAA
+KSIVTLDVKPWDDETDLEEMVANVKAISMEGLTWGAHQFIPIGFGIKKLQINCVVEDDKV
+SLDDLQQSIEDDEDRVQSTDIAAMQKL
+````
+
+### artifacts/record_counts.json
+
+````text
+{"cds_rows":4,"exon_rows":4,"gene_rows":2,"mrna_rows":2,"protein_records":2,"protein_residues":324,"unique_cds_ids":2}
+````
+
+### expected.json
+
+````text
+{"acceptable_decisions":[{"observed_defect":"gff_reference_unresolved","root_cause":"gff_hierarchy_error","verdict":"block"}],"case_id":"qc_004","independent_review_status":"pending","key_evidence":[{"acceptable_pointers":["artifacts/models.gff3:3","artifacts/models.gff3:2"],"claim_id":"E01","required_for_joint":true,"review_note":"Author AI draft; not independent human review; pending user approval.","statement":"mRNA 的 Parent 在完整块中没有对应 gene。","verification_method":"record_connection"}],"pair_id":"NSP2","rationale":"仅审核本题声明的文件连接与层级；不推断上游运行原因或生物学质量。","root_identifiability":"confirmed","schema_version":"newsource-case-1","user_approved":false}
+````
+
+### meta.json
+
+````text
+{"case_id":"qc_004","excerpt_policy":"固定规则选两个原始完整编码gene块和所有关联完整蛋白；仅格式重排LF/FAA60列，不代表完整基因组；确定性变体逐字段记录。","historical_rule_report_seen":true,"injection_script":"bench/newsource_validation/cases.py","mechanism_exposure":"seen_in_project_development","mechanism_family":"parent_reference_closure","pair_id":"NSP2","pressure_parent":null,"review_status":"draft","schema_version":"newsource-case-1","seed":20261011,"source_exposure":"new_to_model_prompt_tool_development","source_files":[{"path":"sources/GCF_947243775.1_Skud-IFO1802_genomic.gff.gz","selection":"{\"gene_ids\": [\"gene-SKDI_01G0410\", \"gene-SKDI_01G0700\"], \"policy\": {\"answer_status\": \"draft\", \"api_calls\": 0, \"artifact_read_pages_maximum\": 4, \"candidate_limit\": 50, \"candidate_limit_definition\": \"first 50 eligible blocks, not first 50 raw genes\", \"case_order\": \"sort SHA256(seed|accession|variant) then assign qc_NNN\", \"genes_selected\": 2, \"max_feature_rows_per_gene\": 40, \"max_visible_bytes\": 30000, \"normal_scope\": \"only declared closed connected coding subset\", \"page_bytes\": 16000, \"page_lines\": 200, \"require_multisegment_cds\": true, \"same_source_pairs\": true, \"seed\": 20261011, \"selection_order\": \"source GFF order; first two individually closed, connected eligible coding blocks within byte limit\"}, \"transform\": {\"after\": \"gene-SKDI_01G0410_1\", \"attribute\": \"Parent\", \"before\": \"gene-SKDI_01G0410\", \"policy\": \"one mRNA edge; other rows unchanged\"}}","sha256":"486f543d1c5fb5aa34546e902ca290e32799015504c94091bf8de632bc66a3cc","source_group":"GCF_947243775.1","source_origin":"/home/Lianjunyang/临时/GCF_947243775.1_Skud-IFO1802_genomic.gff.gz"},{"path":"sources/GCF_947243775.1_Skud-IFO1802_protein.faa.gz","selection":"{\"gene_ids\": [\"gene-SKDI_01G0410\", \"gene-SKDI_01G0700\"], \"policy\": {\"answer_status\": \"draft\", \"api_calls\": 0, \"artifact_read_pages_maximum\": 4, \"candidate_limit\": 50, \"candidate_limit_definition\": \"first 50 eligible blocks, not first 50 raw genes\", \"case_order\": \"sort SHA256(seed|accession|variant) then assign qc_NNN\", \"genes_selected\": 2, \"max_feature_rows_per_gene\": 40, \"max_visible_bytes\": 30000, \"normal_scope\": \"only declared closed connected coding subset\", \"page_bytes\": 16000, \"page_lines\": 200, \"require_multisegment_cds\": true, \"same_source_pairs\": true, \"seed\": 20261011, \"selection_order\": \"source GFF order; first two individually closed, connected eligible coding blocks within byte limit\"}, \"transform\": {\"after\": \"gene-SKDI_01G0410_1\", \"attribute\": \"Parent\", \"before\": \"gene-SKDI_01G0410\", \"policy\": \"one mRNA edge; other rows unchanged\"}}","sha256":"d1428a911d6cbca9cdf27225ca4f750b56daf32878e86390930ade2f5e160429","source_group":"GCF_947243775.1","source_origin":"/home/Lianjunyang/临时/GCF_947243775.1_Skud-IFO1802_protein.faa.gz"}],"source_group":"GCF_947243775.1","split":"sealed_test","stage":"structural_annotation","synthetic":true,"type":"fault","verbatim_tool_exceptions":[],"visible_contract":{"allowed_id_mapping":"exact only","artifact_roles":{"delivery":["artifacts/models.gff3","artifacts/proteins.faa","artifacts/record_counts.json"],"reference":[]},"consumer_contract":"完整Parent层级、同序列/链、闭区间包含、protein_id精确连接FAA首token","review_target":"input","scope":"declared_subset","usable_previous_result":false}}
+````
+
+
+# qc_005 逐记录材料复核
+
+私有审核补充；不是盲审、真人专家审核或模型成绩。候选答案未改、未冻结。
+
+## 每条 CDS → FAA 精确连接
+
+| GFF 行 | protein_id | FAA header 行 | 精确连接 |
+|---|---|---|---|
+| 6 | XP_056085845.1 | 1 | True |
+| 7 | XP_056085845.1 | 1 | True |
+| 12 | XP_056085872.1 | 4 | True |
+| 13 | XP_056085872.1 | 4 | True |
+
+## 全部直接 Parent 关系
+
+| 子行/类型 | Parent | 父行/类型 | 子区间 | 父区间 | 序列相同 | 链相同 | 合同成立 |
+|---|---|---|---|---|---|---|---|
+| 3/mRNA | gene-SKDI_01G0410 | [2]/gene | [78732, 79201] | [78732, 79201] | True | True | True |
+| 4/exon | rna-XM_056229825.1 | [3]/mRNA | [78732, 78833] | [78732, 79201] | True | True | True |
+| 5/exon | rna-XM_056229825.1 | [3]/mRNA | [78950, 79201] | [78732, 79201] | True | True | True |
+| 6/CDS | rna-XM_056229825.1 | [3]/mRNA | [78732, 78833] | [78732, 79201] | True | True | True |
+| 7/CDS | rna-XM_056229825.1 | [3]/mRNA | [78950, 79201] | [78732, 79201] | True | True | True |
+| 9/mRNA | gene-SKDI_01G0700 | [8]/gene | [144620, 145595] | [144620, 145595] | True | True | True |
+| 10/exon | rna-XM_056232129.1 | [9]/mRNA | [144620, 144699] | [144620, 145595] | True | True | True |
+| 11/exon | rna-XM_056232129.1 | [9]/mRNA | [145052, 145595] | [144620, 145595] | True | True | True |
+| 12/CDS | rna-XM_056232129.1 | [9]/mRNA | [144620, 144699] | [144620, 145595] | True | True | True |
+| 13/CDS | rna-XM_056232129.1 | [9]/mRNA | [145052, 145595] | [144620, 145595] | True | True | True |
+
+## 候选引用逐项定位
+
+### E01
+
+每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。
+
+- artifacts/models.gff3:6
+
+```text
+NC_079272.1	RefSeq	CDS	78732	78833	.	+	0	ID=cds-XP_056085845.1;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XP_056085845.1;Name=XP_056085845.1;Note=similar to Saccharomyces cerevisiae SNC1 (YAL030W) and SNC2 (YOR327C)%3B ancestral locus Anc_7.67;gbkey=CDS;gene=SNC1;inference=similar to DNA sequence:INSDC:YAL030W%2CYOR327C;locus_tag=SKDI_01G0410;product=SNAP receptor SNC1;protein_id=XP_056085845.1
+```
+
+- artifacts/models.gff3:7
+
+```text
+NC_079272.1	RefSeq	CDS	78950	79201	.	+	0	ID=cds-XP_056085845.1;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XP_056085845.1;Name=XP_056085845.1;Note=similar to Saccharomyces cerevisiae SNC1 (YAL030W) and SNC2 (YOR327C)%3B ancestral locus Anc_7.67;gbkey=CDS;gene=SNC1;inference=similar to DNA sequence:INSDC:YAL030W%2CYOR327C;locus_tag=SKDI_01G0410;product=SNAP receptor SNC1;protein_id=XP_056085845.1
+```
+
+- artifacts/models.gff3:12
+
+```text
+NC_079272.1	RefSeq	CDS	144620	144699	.	+	0	ID=cds-XP_056085872.1;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XP_056085872.1;Name=XP_056085872.1;Note=similar to Saccharomyces cerevisiae EFB1 (YAL003W)%3B ancestral locus Anc_4.130;gbkey=CDS;gene=EFB1;inference=similar to DNA sequence:INSDC:YAL003W;locus_tag=SKDI_01G0700;product=translation elongation factor 1 subunit beta;protein_id=XP_056085872.1
+```
+
+- artifacts/models.gff3:13
+
+```text
+NC_079272.1	RefSeq	CDS	145052	145595	.	+	1	ID=cds-XP_056085872.1;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XP_056085872.1;Name=XP_056085872.1;Note=similar to Saccharomyces cerevisiae EFB1 (YAL003W)%3B ancestral locus Anc_4.130;gbkey=CDS;gene=EFB1;inference=similar to DNA sequence:INSDC:YAL003W;locus_tag=SKDI_01G0700;product=translation elongation factor 1 subunit beta;protein_id=XP_056085872.1
+```
+
+- artifacts/proteins.faa:1
+
+```text
+>XP_056085845.1 SNAP receptor SNC1 SKDI_01G0410 [Saccharomyces kudriavzevii IFO 1802]
+```
+
+- artifacts/proteins.faa:4
+
+```text
+>XP_056085872.1 translation elongation factor 1 subunit beta SKDI_01G0700 [Saccharomyces kudriavzevii IFO 1802]
+```
+
+### E02
+
+所有 Parent 接续且类型、序列/链与父子闭区间符合题面必要合同。
+
+- artifacts/models.gff3:2
+
+```text
+NC_079272.1	RefSeq	gene	78732	79201	.	+	.	ID=gene-SKDI_01G0410;Dbxref=GeneID:80922145;Name=SNC1;end_range=79201,.;gbkey=Gene;gene=SNC1;gene_biotype=protein_coding;locus_tag=SKDI_01G0410;partial=true;start_range=.,78732
+```
+
+- artifacts/models.gff3:3
+
+```text
+NC_079272.1	RefSeq	mRNA	78732	79201	.	+	.	ID=rna-XM_056229825.1;Parent=gene-SKDI_01G0410;Dbxref=GeneID:80922145,GenBank:XM_056229825.1;Name=XM_056229825.1;end_range=79201,.;gbkey=mRNA;gene=SNC1;locus_tag=SKDI_01G0410;partial=true;product=SNAP receptor SNC1;start_range=.,78732;transcript_id=XM_056229825.1
+```
+
+- artifacts/models.gff3:8
+
+```text
+NC_079272.1	RefSeq	gene	144620	145595	.	+	.	ID=gene-SKDI_01G0700;Dbxref=GeneID:80922172;Name=EFB1;end_range=145595,.;gbkey=Gene;gene=EFB1;gene_biotype=protein_coding;locus_tag=SKDI_01G0700;partial=true;start_range=.,144620
+```
+
+- artifacts/models.gff3:9
+
+```text
+NC_079272.1	RefSeq	mRNA	144620	145595	.	+	.	ID=rna-XM_056232129.1;Parent=gene-SKDI_01G0700;Dbxref=GeneID:80922172,GenBank:XM_056232129.1;Name=XM_056232129.1;end_range=145595,.;gbkey=mRNA;gene=EFB1;locus_tag=SKDI_01G0700;partial=true;product=translation elongation factor 1 subunit beta;start_range=.,144620;transcript_id=XM_056232129.1
+```
+
+原候选是代表性定位；完成全记录核对还需要以下行。此处补充材料，不修改 expected.json：
+
+artifacts/models.gff3:4, artifacts/models.gff3:5, artifacts/models.gff3:6, artifacts/models.gff3:7, artifacts/models.gff3:10, artifacts/models.gff3:11, artifacts/models.gff3:12, artifacts/models.gff3:13
+
+## 完整公开题目与候选答案
+
+以下逐文件原文供复核。代码框行号与文件自身的行号不同，请以原始附件或上面的 pointer 为准。
+
+### task.md
+
+````text
+# 下游输入审核
+
+请审核Saccharomyces kudriavzevii的一组结构注释记录是否可以交给下游文件连接程序。输出统一规定的JSON。
+
+本题审核输入文件，不是已完成的分析交付；没有提供可回退的旧版本。审核范围仅为给出的两套完整编码gene特征块及对应蛋白，不能外推全基因组注释质量。models.gff3是本次输入，proteins.faa是按ID查找序列的输入；record_counts.json仅列字面计数。
+
+消费者读取GFF的Parent建立gene→mRNA→exon/CDS关系，并按每行CDS的protein_id精确查找FAA header第一个token。每个Parent必须在本题完整记录中存在且类型符合上述层级；子记录必须与父记录同seqid、同链，闭区间完全位于父记录内。FAA记录与不同protein_id对应的一组CDS一一相接。没有声明去版本号、改大小写、以Name或CDS ID代替protein_id等映射。
+
+同一CDS的多片段可以重复ID，不能把CDS行数当蛋白条数。允许异构体和partial=true，不检查模型全长、翻译正确性或生物学功能；这些属性不豁免上述文件连接要求。除必要输入合同外，本题没有其它继续条件，也没有提供运行日志来解释上游过程。
+
+请根据公开记录检查必要合同，并建议最小修复或补证。满足所有必要输入要求时可继续；必要连接或层级要求不能满足时，应先停止下游启动并修复。不要仅凭字面计数接近就认为可以继续。
+````
+
+### artifacts/models.gff3
+
+````text
+##gff-version 3
+NC_079272.1	RefSeq	gene	78732	79201	.	+	.	ID=gene-SKDI_01G0410;Dbxref=GeneID:80922145;Name=SNC1;end_range=79201,.;gbkey=Gene;gene=SNC1;gene_biotype=protein_coding;locus_tag=SKDI_01G0410;partial=true;start_range=.,78732
+NC_079272.1	RefSeq	mRNA	78732	79201	.	+	.	ID=rna-XM_056229825.1;Parent=gene-SKDI_01G0410;Dbxref=GeneID:80922145,GenBank:XM_056229825.1;Name=XM_056229825.1;end_range=79201,.;gbkey=mRNA;gene=SNC1;locus_tag=SKDI_01G0410;partial=true;product=SNAP receptor SNC1;start_range=.,78732;transcript_id=XM_056229825.1
+NC_079272.1	RefSeq	exon	78732	78833	.	+	.	ID=exon-XM_056229825.1-1;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XM_056229825.1;gbkey=mRNA;gene=SNC1;locus_tag=SKDI_01G0410;partial=true;product=SNAP receptor SNC1;start_range=.,78732;transcript_id=XM_056229825.1
+NC_079272.1	RefSeq	exon	78950	79201	.	+	.	ID=exon-XM_056229825.1-2;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XM_056229825.1;end_range=79201,.;gbkey=mRNA;gene=SNC1;locus_tag=SKDI_01G0410;partial=true;product=SNAP receptor SNC1;transcript_id=XM_056229825.1
+NC_079272.1	RefSeq	CDS	78732	78833	.	+	0	ID=cds-XP_056085845.1;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XP_056085845.1;Name=XP_056085845.1;Note=similar to Saccharomyces cerevisiae SNC1 (YAL030W) and SNC2 (YOR327C)%3B ancestral locus Anc_7.67;gbkey=CDS;gene=SNC1;inference=similar to DNA sequence:INSDC:YAL030W%2CYOR327C;locus_tag=SKDI_01G0410;product=SNAP receptor SNC1;protein_id=XP_056085845.1
+NC_079272.1	RefSeq	CDS	78950	79201	.	+	0	ID=cds-XP_056085845.1;Parent=rna-XM_056229825.1;Dbxref=GeneID:80922145,GenBank:XP_056085845.1;Name=XP_056085845.1;Note=similar to Saccharomyces cerevisiae SNC1 (YAL030W) and SNC2 (YOR327C)%3B ancestral locus Anc_7.67;gbkey=CDS;gene=SNC1;inference=similar to DNA sequence:INSDC:YAL030W%2CYOR327C;locus_tag=SKDI_01G0410;product=SNAP receptor SNC1;protein_id=XP_056085845.1
+NC_079272.1	RefSeq	gene	144620	145595	.	+	.	ID=gene-SKDI_01G0700;Dbxref=GeneID:80922172;Name=EFB1;end_range=145595,.;gbkey=Gene;gene=EFB1;gene_biotype=protein_coding;locus_tag=SKDI_01G0700;partial=true;start_range=.,144620
+NC_079272.1	RefSeq	mRNA	144620	145595	.	+	.	ID=rna-XM_056232129.1;Parent=gene-SKDI_01G0700;Dbxref=GeneID:80922172,GenBank:XM_056232129.1;Name=XM_056232129.1;end_range=145595,.;gbkey=mRNA;gene=EFB1;locus_tag=SKDI_01G0700;partial=true;product=translation elongation factor 1 subunit beta;start_range=.,144620;transcript_id=XM_056232129.1
+NC_079272.1	RefSeq	exon	144620	144699	.	+	.	ID=exon-XM_056232129.1-1;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XM_056232129.1;gbkey=mRNA;gene=EFB1;locus_tag=SKDI_01G0700;partial=true;product=translation elongation factor 1 subunit beta;start_range=.,144620;transcript_id=XM_056232129.1
+NC_079272.1	RefSeq	exon	145052	145595	.	+	.	ID=exon-XM_056232129.1-2;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XM_056232129.1;end_range=145595,.;gbkey=mRNA;gene=EFB1;locus_tag=SKDI_01G0700;partial=true;product=translation elongation factor 1 subunit beta;transcript_id=XM_056232129.1
+NC_079272.1	RefSeq	CDS	144620	144699	.	+	0	ID=cds-XP_056085872.1;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XP_056085872.1;Name=XP_056085872.1;Note=similar to Saccharomyces cerevisiae EFB1 (YAL003W)%3B ancestral locus Anc_4.130;gbkey=CDS;gene=EFB1;inference=similar to DNA sequence:INSDC:YAL003W;locus_tag=SKDI_01G0700;product=translation elongation factor 1 subunit beta;protein_id=XP_056085872.1
+NC_079272.1	RefSeq	CDS	145052	145595	.	+	1	ID=cds-XP_056085872.1;Parent=rna-XM_056232129.1;Dbxref=GeneID:80922172,GenBank:XP_056085872.1;Name=XP_056085872.1;Note=similar to Saccharomyces cerevisiae EFB1 (YAL003W)%3B ancestral locus Anc_4.130;gbkey=CDS;gene=EFB1;inference=similar to DNA sequence:INSDC:YAL003W;locus_tag=SKDI_01G0700;product=translation elongation factor 1 subunit beta;protein_id=XP_056085872.1
+````
+
+### artifacts/proteins.faa
+
+````text
+>XP_056085845.1 SNAP receptor SNC1 SKDI_01G0410 [Saccharomyces kudriavzevii IFO 1802]
+MSSSTPFDPYTLSEQDEERPQNVQSKSKTAELQAEIDNTVGIMRDNINKVAERGERLTSI
+EDKADNLAVSAQGFKRGANKVRKAMWYKDLKMKLCLALVIIILLVVIIVPIAIHFSR
+>XP_056085872.1 translation elongation factor 1 subunit beta SKDI_01G0700 [Saccharomyces kudriavzevii IFO 1802]
+MASTDFSKIETLKQLNASLADKSYIEGTAVSQADVAVFKAFQSAYPEFSRWFNHIASKAD
+EFESFPAASKAAAEEEDDDDEVDLFGSDDEEADAEAEKLKAERIAAYNAKKAEKPAKPAA
+KSIVTLDVKPWDDETDLEEMVANVKAISMEGLTWGAHQFIPIGFGIKKLQINCVVEDDKV
+SLDDLQQSIEDDEDRVQSTDIAAMQKL
+````
+
+### artifacts/record_counts.json
+
+````text
+{"cds_rows":4,"exon_rows":4,"gene_rows":2,"mrna_rows":2,"protein_records":2,"protein_residues":324,"unique_cds_ids":2}
+````
+
+### expected.json
+
+````text
+{"acceptable_decisions":[{"observed_defect":"none","root_cause":"none","verdict":"pass"}],"case_id":"qc_005","independent_review_status":"pending","key_evidence":[{"acceptable_pointers":["artifacts/models.gff3:6","artifacts/models.gff3:7","artifacts/models.gff3:12","artifacts/models.gff3:13","artifacts/proteins.faa:1","artifacts/proteins.faa:4"],"claim_id":"E01","required_for_joint":true,"review_note":"Author AI draft; not independent human review; pending user approval.","statement":"每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。","verification_method":"record_connection"},{"acceptable_pointers":["artifacts/models.gff3:2","artifacts/models.gff3:3","artifacts/models.gff3:8","artifacts/models.gff3:9"],"claim_id":"E02","required_for_joint":true,"review_note":"Author AI draft; not independent human review; pending user approval.","statement":"所有 Parent 接续且类型、序列/链与父子闭区间符合题面必要合同。","verification_method":"record_connection"}],"pair_id":"NSP2","rationale":"仅审核本题声明的文件连接与层级；不推断上游运行原因或生物学质量。","root_identifiability":"no_defect","schema_version":"newsource-case-1","user_approved":false}
+````
+
+### meta.json
+
+````text
+{"case_id":"qc_005","excerpt_policy":"固定规则选两个原始完整编码gene块和所有关联完整蛋白；仅格式重排LF/FAA60列，不代表完整基因组；确定性变体逐字段记录。","historical_rule_report_seen":true,"injection_script":"bench/newsource_validation/cases.py","mechanism_exposure":"seen_in_project_development","mechanism_family":"parent_reference_closure","pair_id":"NSP2","pressure_parent":null,"review_status":"draft","schema_version":"newsource-case-1","seed":20261011,"source_exposure":"new_to_model_prompt_tool_development","source_files":[{"path":"sources/GCF_947243775.1_Skud-IFO1802_genomic.gff.gz","selection":"{\"gene_ids\": [\"gene-SKDI_01G0410\", \"gene-SKDI_01G0700\"], \"policy\": {\"answer_status\": \"draft\", \"api_calls\": 0, \"artifact_read_pages_maximum\": 4, \"candidate_limit\": 50, \"candidate_limit_definition\": \"first 50 eligible blocks, not first 50 raw genes\", \"case_order\": \"sort SHA256(seed|accession|variant) then assign qc_NNN\", \"genes_selected\": 2, \"max_feature_rows_per_gene\": 40, \"max_visible_bytes\": 30000, \"normal_scope\": \"only declared closed connected coding subset\", \"page_bytes\": 16000, \"page_lines\": 200, \"require_multisegment_cds\": true, \"same_source_pairs\": true, \"seed\": 20261011, \"selection_order\": \"source GFF order; first two individually closed, connected eligible coding blocks within byte limit\"}, \"transform\": \"unmodified source subset\"}","sha256":"486f543d1c5fb5aa34546e902ca290e32799015504c94091bf8de632bc66a3cc","source_group":"GCF_947243775.1","source_origin":"/home/Lianjunyang/临时/GCF_947243775.1_Skud-IFO1802_genomic.gff.gz"},{"path":"sources/GCF_947243775.1_Skud-IFO1802_protein.faa.gz","selection":"{\"gene_ids\": [\"gene-SKDI_01G0410\", \"gene-SKDI_01G0700\"], \"policy\": {\"answer_status\": \"draft\", \"api_calls\": 0, \"artifact_read_pages_maximum\": 4, \"candidate_limit\": 50, \"candidate_limit_definition\": \"first 50 eligible blocks, not first 50 raw genes\", \"case_order\": \"sort SHA256(seed|accession|variant) then assign qc_NNN\", \"genes_selected\": 2, \"max_feature_rows_per_gene\": 40, \"max_visible_bytes\": 30000, \"normal_scope\": \"only declared closed connected coding subset\", \"page_bytes\": 16000, \"page_lines\": 200, \"require_multisegment_cds\": true, \"same_source_pairs\": true, \"seed\": 20261011, \"selection_order\": \"source GFF order; first two individually closed, connected eligible coding blocks within byte limit\"}, \"transform\": \"unmodified source subset\"}","sha256":"d1428a911d6cbca9cdf27225ca4f750b56daf32878e86390930ade2f5e160429","source_group":"GCF_947243775.1","source_origin":"/home/Lianjunyang/临时/GCF_947243775.1_Skud-IFO1802_protein.faa.gz"}],"source_group":"GCF_947243775.1","split":"sealed_test","stage":"structural_annotation","synthetic":true,"type":"normal","verbatim_tool_exceptions":[],"visible_contract":{"allowed_id_mapping":"exact only","artifact_roles":{"delivery":["artifacts/models.gff3","artifacts/proteins.faa","artifacts/record_counts.json"],"reference":[]},"consumer_contract":"完整Parent层级、同序列/链、闭区间包含、protein_id精确连接FAA首token","review_target":"input","scope":"declared_subset","usable_previous_result":false}}
+````

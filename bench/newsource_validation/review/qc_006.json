@@ -1,0 +1,2390 @@
+{
+  "all_existing_locations_valid": true,
+  "candidate_combination_supported": {
+    "observed_defect": "gff_faa_link_missing",
+    "root_cause": "id_mismatch",
+    "verdict": "block"
+  },
+  "candidate_pointer_review": [
+    {
+      "all_record_support_pointers": [
+        "artifacts/models.gff3:9",
+        "artifacts/models.gff3:10",
+        "artifacts/models.gff3:11",
+        "artifacts/models.gff3:12",
+        "artifacts/models.gff3:13",
+        "artifacts/proteins.faa:1",
+        "artifacts/proteins.faa:15"
+      ],
+      "claim_id": "E01",
+      "existing_pointer_values": [
+        {
+          "pointer": "artifacts/models.gff3:9",
+          "resolved": "NC_142413.1\tGnomon\tCDS\t20519\t20555\t.\t-\t0\tID=cds-XP_088235420.1;Parent=rna-XM_088379294.1;Dbxref=GeneID:148403033,GenBank:XP_088235420.1,NCBIOrtholog:335357;Name=XP_088235420.1;gbkey=CDS;gene=syt4;product=synaptotagmin-4;protein_id=XP_088235420.101"
+        },
+        {
+          "pointer": "artifacts/proteins.faa:1",
+          "resolved": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]"
+        },
+        {
+          "pointer": "artifacts/proteins.faa:15",
+          "resolved": ">XP_088235420.1 synaptotagmin-4 [Syngnathus floridae]"
+        }
+      ],
+      "scope": "location and full-file facts checked; listed individual lines are not automatic semantic proof",
+      "statement": "CDS protein_id 在本题全部 FAA 首 token 中无精确匹配；不允许改用其它标识。",
+      "supplemental_pointers_not_in_candidate": [
+        "artifacts/models.gff3:10",
+        "artifacts/models.gff3:11",
+        "artifacts/models.gff3:12",
+        "artifacts/models.gff3:13"
+      ]
+    }
+  ],
+  "case_id": "qc_006",
+  "external_review_completed": false,
+  "file_facts": {
+    "cds_connections": [
+      {
+        "cds_id": "cds-XP_088235420.1",
+        "exact_match": false,
+        "faa_header": null,
+        "faa_header_line": null,
+        "gff_line": 9,
+        "protein_id": "XP_088235420.101"
+      },
+      {
+        "cds_id": "cds-XP_088235420.1",
+        "exact_match": false,
+        "faa_header": null,
+        "faa_header_line": null,
+        "gff_line": 10,
+        "protein_id": "XP_088235420.101"
+      },
+      {
+        "cds_id": "cds-XP_088235420.1",
+        "exact_match": false,
+        "faa_header": null,
+        "faa_header_line": null,
+        "gff_line": 11,
+        "protein_id": "XP_088235420.101"
+      },
+      {
+        "cds_id": "cds-XP_088235420.1",
+        "exact_match": false,
+        "faa_header": null,
+        "faa_header_line": null,
+        "gff_line": 12,
+        "protein_id": "XP_088235420.101"
+      },
+      {
+        "cds_id": "cds-XP_088235420.1",
+        "exact_match": false,
+        "faa_header": null,
+        "faa_header_line": null,
+        "gff_line": 13,
+        "protein_id": "XP_088235420.101"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 31,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 32,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 33,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 34,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 35,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 36,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 37,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 38,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 39,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 40,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 41,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 42,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 43,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 44,
+        "protein_id": "XP_088235409.1"
+      },
+      {
+        "cds_id": "cds-XP_088235409.1",
+        "exact_match": true,
+        "faa_header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "faa_header_line": 1,
+        "gff_line": 45,
+        "protein_id": "XP_088235409.1"
+      }
+    ],
+    "contract_satisfied": false,
+    "faa_headers": [
+      {
+        "header": ">XP_088235409.1 semaphorin-4F [Syngnathus floridae]",
+        "id": "XP_088235409.1",
+        "line": 1,
+        "residues": 765
+      },
+      {
+        "header": ">XP_088235420.1 synaptotagmin-4 [Syngnathus floridae]",
+        "id": "XP_088235420.1",
+        "line": 15,
+        "residues": 452
+      }
+    ],
+    "issues": {
+      "duplicate_feature_issues": [],
+      "extra_protein_ids": [
+        "XP_088235420.1"
+      ],
+      "gene_parent_issues": [],
+      "incompatible_parent_lines": [],
+      "missing_sequence_lines": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "unresolved_parent_lines": []
+    },
+    "parent_connections": [
+      {
+        "child_id": "rna-XM_088379294.1",
+        "child_interval": [
+          16146,
+          21098
+        ],
+        "child_line": 3,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "mRNA",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "gene-syt4",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 2,
+        "parent_lines": [
+          2
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "gene",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379294.1-1",
+        "child_interval": [
+          20519,
+          21098
+        ],
+        "child_line": 4,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379294.1-2",
+        "child_interval": [
+          18421,
+          18977
+        ],
+        "child_line": 5,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379294.1-3",
+        "child_interval": [
+          17523,
+          17846
+        ],
+        "child_line": 6,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379294.1-4",
+        "child_interval": [
+          17334,
+          17454
+        ],
+        "child_line": 7,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379294.1-5",
+        "child_interval": [
+          16146,
+          17251
+        ],
+        "child_line": 8,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235420.1",
+        "child_interval": [
+          20519,
+          20555
+        ],
+        "child_line": 9,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235420.1",
+        "child_interval": [
+          18421,
+          18977
+        ],
+        "child_line": 10,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235420.1",
+        "child_interval": [
+          17523,
+          17846
+        ],
+        "child_line": 11,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235420.1",
+        "child_interval": [
+          17334,
+          17454
+        ],
+        "child_line": 12,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235420.1",
+        "child_interval": [
+          16932,
+          17251
+        ],
+        "child_line": 13,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379294.1",
+        "parent_interval": [
+          16146,
+          21098
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "rna-XM_088379283.1",
+        "child_interval": [
+          21247,
+          31380
+        ],
+        "child_line": 15,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "mRNA",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "gene-sema4f",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 14,
+        "parent_lines": [
+          14
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "gene",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-1",
+        "child_interval": [
+          30790,
+          31380
+        ],
+        "child_line": 16,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-2",
+        "child_interval": [
+          26714,
+          26859
+        ],
+        "child_line": 17,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-3",
+        "child_interval": [
+          26587,
+          26646
+        ],
+        "child_line": 18,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-4",
+        "child_interval": [
+          26061,
+          26162
+        ],
+        "child_line": 19,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-5",
+        "child_interval": [
+          25864,
+          25975
+        ],
+        "child_line": 20,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-6",
+        "child_interval": [
+          25677,
+          25796
+        ],
+        "child_line": 21,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-7",
+        "child_interval": [
+          25437,
+          25591
+        ],
+        "child_line": 22,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-8",
+        "child_interval": [
+          25125,
+          25306
+        ],
+        "child_line": 23,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-9",
+        "child_interval": [
+          24901,
+          25030
+        ],
+        "child_line": 24,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-10",
+        "child_interval": [
+          24019,
+          24235
+        ],
+        "child_line": 25,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-11",
+        "child_interval": [
+          23844,
+          23953
+        ],
+        "child_line": 26,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-12",
+        "child_interval": [
+          23618,
+          23769
+        ],
+        "child_line": 27,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-13",
+        "child_interval": [
+          23393,
+          23448
+        ],
+        "child_line": 28,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-14",
+        "child_interval": [
+          22838,
+          23031
+        ],
+        "child_line": 29,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_088379283.1-15",
+        "child_interval": [
+          21247,
+          22402
+        ],
+        "child_line": 30,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          30790,
+          30880
+        ],
+        "child_line": 31,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          26714,
+          26859
+        ],
+        "child_line": 32,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          26587,
+          26646
+        ],
+        "child_line": 33,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          26061,
+          26162
+        ],
+        "child_line": 34,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          25864,
+          25975
+        ],
+        "child_line": 35,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          25677,
+          25796
+        ],
+        "child_line": 36,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          25437,
+          25591
+        ],
+        "child_line": 37,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          25125,
+          25306
+        ],
+        "child_line": 38,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          24901,
+          25030
+        ],
+        "child_line": 39,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          24019,
+          24235
+        ],
+        "child_line": 40,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          23844,
+          23953
+        ],
+        "child_line": 41,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          23618,
+          23769
+        ],
+        "child_line": 42,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          23393,
+          23448
+        ],
+        "child_line": 43,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          22838,
+          23031
+        ],
+        "child_line": 44,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_088235409.1",
+        "child_interval": [
+          21932,
+          22402
+        ],
+        "child_line": 45,
+        "child_seqid": "NC_142413.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_088379283.1",
+        "parent_interval": [
+          21247,
+          31380
+        ],
+        "parent_line": 15,
+        "parent_lines": [
+          15
+        ],
+        "parent_seqid": "NC_142413.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      }
+    ],
+    "rows": [
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,NCBIOrtholog:335357",
+          "ID": "gene-syt4",
+          "Name": "syt4",
+          "description": "synaptotagmin IV",
+          "gbkey": "Gene",
+          "gene": "syt4",
+          "gene_biotype": "protein_coding"
+        },
+        "id": "gene-syt4",
+        "interval": [
+          16146,
+          21098
+        ],
+        "line": 2,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "gene"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XM_088379294.1,NCBIOrtholog:335357",
+          "ID": "rna-XM_088379294.1",
+          "Name": "XM_088379294.1",
+          "Parent": "gene-syt4",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "syt4",
+          "model_evidence": "Supporting evidence includes similarity to: 7 Proteins, and 100% coverage of the annotated genomic feature by RNAseq alignments, including 10 samples with support for all annotated introns",
+          "product": "synaptotagmin IV",
+          "transcript_id": "XM_088379294.1"
+        },
+        "id": "rna-XM_088379294.1",
+        "interval": [
+          16146,
+          21098
+        ],
+        "line": 3,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "mRNA"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XM_088379294.1,NCBIOrtholog:335357",
+          "ID": "exon-XM_088379294.1-1",
+          "Parent": "rna-XM_088379294.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "syt4",
+          "product": "synaptotagmin IV",
+          "transcript_id": "XM_088379294.1"
+        },
+        "id": "exon-XM_088379294.1-1",
+        "interval": [
+          20519,
+          21098
+        ],
+        "line": 4,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XM_088379294.1,NCBIOrtholog:335357",
+          "ID": "exon-XM_088379294.1-2",
+          "Parent": "rna-XM_088379294.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "syt4",
+          "product": "synaptotagmin IV",
+          "transcript_id": "XM_088379294.1"
+        },
+        "id": "exon-XM_088379294.1-2",
+        "interval": [
+          18421,
+          18977
+        ],
+        "line": 5,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XM_088379294.1,NCBIOrtholog:335357",
+          "ID": "exon-XM_088379294.1-3",
+          "Parent": "rna-XM_088379294.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "syt4",
+          "product": "synaptotagmin IV",
+          "transcript_id": "XM_088379294.1"
+        },
+        "id": "exon-XM_088379294.1-3",
+        "interval": [
+          17523,
+          17846
+        ],
+        "line": 6,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XM_088379294.1,NCBIOrtholog:335357",
+          "ID": "exon-XM_088379294.1-4",
+          "Parent": "rna-XM_088379294.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "syt4",
+          "product": "synaptotagmin IV",
+          "transcript_id": "XM_088379294.1"
+        },
+        "id": "exon-XM_088379294.1-4",
+        "interval": [
+          17334,
+          17454
+        ],
+        "line": 7,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XM_088379294.1,NCBIOrtholog:335357",
+          "ID": "exon-XM_088379294.1-5",
+          "Parent": "rna-XM_088379294.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "syt4",
+          "product": "synaptotagmin IV",
+          "transcript_id": "XM_088379294.1"
+        },
+        "id": "exon-XM_088379294.1-5",
+        "interval": [
+          16146,
+          17251
+        ],
+        "line": 8,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XP_088235420.1,NCBIOrtholog:335357",
+          "ID": "cds-XP_088235420.1",
+          "Name": "XP_088235420.1",
+          "Parent": "rna-XM_088379294.1",
+          "gbkey": "CDS",
+          "gene": "syt4",
+          "product": "synaptotagmin-4",
+          "protein_id": "XP_088235420.101"
+        },
+        "id": "cds-XP_088235420.1",
+        "interval": [
+          20519,
+          20555
+        ],
+        "line": 9,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XP_088235420.1,NCBIOrtholog:335357",
+          "ID": "cds-XP_088235420.1",
+          "Name": "XP_088235420.1",
+          "Parent": "rna-XM_088379294.1",
+          "gbkey": "CDS",
+          "gene": "syt4",
+          "product": "synaptotagmin-4",
+          "protein_id": "XP_088235420.101"
+        },
+        "id": "cds-XP_088235420.1",
+        "interval": [
+          18421,
+          18977
+        ],
+        "line": 10,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XP_088235420.1,NCBIOrtholog:335357",
+          "ID": "cds-XP_088235420.1",
+          "Name": "XP_088235420.1",
+          "Parent": "rna-XM_088379294.1",
+          "gbkey": "CDS",
+          "gene": "syt4",
+          "product": "synaptotagmin-4",
+          "protein_id": "XP_088235420.101"
+        },
+        "id": "cds-XP_088235420.1",
+        "interval": [
+          17523,
+          17846
+        ],
+        "line": 11,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XP_088235420.1,NCBIOrtholog:335357",
+          "ID": "cds-XP_088235420.1",
+          "Name": "XP_088235420.1",
+          "Parent": "rna-XM_088379294.1",
+          "gbkey": "CDS",
+          "gene": "syt4",
+          "product": "synaptotagmin-4",
+          "protein_id": "XP_088235420.101"
+        },
+        "id": "cds-XP_088235420.1",
+        "interval": [
+          17334,
+          17454
+        ],
+        "line": 12,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403033,GenBank:XP_088235420.1,NCBIOrtholog:335357",
+          "ID": "cds-XP_088235420.1",
+          "Name": "XP_088235420.1",
+          "Parent": "rna-XM_088379294.1",
+          "gbkey": "CDS",
+          "gene": "syt4",
+          "product": "synaptotagmin-4",
+          "protein_id": "XP_088235420.101"
+        },
+        "id": "cds-XP_088235420.1",
+        "interval": [
+          16932,
+          17251
+        ],
+        "line": 13,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,NCBIOrtholog:556003",
+          "ID": "gene-sema4f",
+          "Name": "sema4f",
+          "description": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "gbkey": "Gene",
+          "gene": "sema4f",
+          "gene_biotype": "protein_coding"
+        },
+        "id": "gene-sema4f",
+        "interval": [
+          21247,
+          31380
+        ],
+        "line": 14,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "gene"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "rna-XM_088379283.1",
+          "Name": "XM_088379283.1",
+          "Parent": "gene-sema4f",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "model_evidence": "Supporting evidence includes similarity to: 3 Proteins, and 100% coverage of the annotated genomic feature by RNAseq alignments, including 29 samples with support for all annotated introns",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "rna-XM_088379283.1",
+        "interval": [
+          21247,
+          31380
+        ],
+        "line": 15,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "mRNA"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-1",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-1",
+        "interval": [
+          30790,
+          31380
+        ],
+        "line": 16,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-2",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-2",
+        "interval": [
+          26714,
+          26859
+        ],
+        "line": 17,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-3",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-3",
+        "interval": [
+          26587,
+          26646
+        ],
+        "line": 18,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-4",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-4",
+        "interval": [
+          26061,
+          26162
+        ],
+        "line": 19,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-5",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-5",
+        "interval": [
+          25864,
+          25975
+        ],
+        "line": 20,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-6",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-6",
+        "interval": [
+          25677,
+          25796
+        ],
+        "line": 21,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-7",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-7",
+        "interval": [
+          25437,
+          25591
+        ],
+        "line": 22,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-8",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-8",
+        "interval": [
+          25125,
+          25306
+        ],
+        "line": 23,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-9",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-9",
+        "interval": [
+          24901,
+          25030
+        ],
+        "line": 24,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-10",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-10",
+        "interval": [
+          24019,
+          24235
+        ],
+        "line": 25,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-11",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-11",
+        "interval": [
+          23844,
+          23953
+        ],
+        "line": 26,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-12",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-12",
+        "interval": [
+          23618,
+          23769
+        ],
+        "line": 27,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-13",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-13",
+        "interval": [
+          23393,
+          23448
+        ],
+        "line": 28,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-14",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-14",
+        "interval": [
+          22838,
+          23031
+        ],
+        "line": 29,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XM_088379283.1,NCBIOrtholog:556003",
+          "ID": "exon-XM_088379283.1-15",
+          "Parent": "rna-XM_088379283.1",
+          "experiment": "COORDINATES: polyA evidence [ECO:0006239]",
+          "gbkey": "mRNA",
+          "gene": "sema4f",
+          "product": "sema domain, immunoglobulin domain (Ig), transmembrane domain (TM) and short cytoplasmic domain, (semaphorin) 4F",
+          "transcript_id": "XM_088379283.1"
+        },
+        "id": "exon-XM_088379283.1-15",
+        "interval": [
+          21247,
+          22402
+        ],
+        "line": 30,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          30790,
+          30880
+        ],
+        "line": 31,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          26714,
+          26859
+        ],
+        "line": 32,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          26587,
+          26646
+        ],
+        "line": 33,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          26061,
+          26162
+        ],
+        "line": 34,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          25864,
+          25975
+        ],
+        "line": 35,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          25677,
+          25796
+        ],
+        "line": 36,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          25437,
+          25591
+        ],
+        "line": 37,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          25125,
+          25306
+        ],
+        "line": 38,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          24901,
+          25030
+        ],
+        "line": 39,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          24019,
+          24235
+        ],
+        "line": 40,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          23844,
+          23953
+        ],
+        "line": 41,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          23618,
+          23769
+        ],
+        "line": 42,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          23393,
+          23448
+        ],
+        "line": 43,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          22838,
+          23031
+        ],
+        "line": 44,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:148403034,GenBank:XP_088235409.1,NCBIOrtholog:556003",
+          "ID": "cds-XP_088235409.1",
+          "Name": "XP_088235409.1",
+          "Parent": "rna-XM_088379283.1",
+          "gbkey": "CDS",
+          "gene": "sema4f",
+          "product": "semaphorin-4F",
+          "protein_id": "XP_088235409.1"
+        },
+        "id": "cds-XP_088235409.1",
+        "interval": [
+          21932,
+          22402
+        ],
+        "line": 45,
+        "seqid": "NC_142413.1",
+        "strand": "-",
+        "type": "CDS"
+      }
+    ]
+  },
+  "human_blind_review_completed": false
+}

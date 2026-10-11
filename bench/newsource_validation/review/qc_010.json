@@ -1,0 +1,813 @@
+{
+  "all_existing_locations_valid": true,
+  "candidate_combination_supported": {
+    "observed_defect": "none",
+    "root_cause": "none",
+    "verdict": "pass"
+  },
+  "candidate_pointer_review": [
+    {
+      "all_record_support_pointers": [
+        "artifacts/models.gff3:6",
+        "artifacts/models.gff3:7",
+        "artifacts/models.gff3:13",
+        "artifacts/models.gff3:14",
+        "artifacts/models.gff3:15",
+        "artifacts/proteins.faa:1",
+        "artifacts/proteins.faa:5"
+      ],
+      "claim_id": "E01",
+      "existing_pointer_values": [
+        {
+          "pointer": "artifacts/models.gff3:6",
+          "resolved": "NW_003526940.1\tRefSeq\tCDS\t1631\t1931\t.\t+\t0\tID=cds-XP_003381385.1;Parent=rna-XM_003381337.1;Dbxref=GenBank:XP_003381385.1,GeneID:10903084;Name=XP_003381385.1;gbkey=CDS;locus_tag=Tsp_07077;product=hypothetical protein;protein_id=XP_003381385.1"
+        },
+        {
+          "pointer": "artifacts/models.gff3:7",
+          "resolved": "NW_003526940.1\tRefSeq\tCDS\t2313\t2479\t.\t+\t2\tID=cds-XP_003381385.1;Parent=rna-XM_003381337.1;Dbxref=GenBank:XP_003381385.1,GeneID:10903084;Name=XP_003381385.1;gbkey=CDS;locus_tag=Tsp_07077;product=hypothetical protein;protein_id=XP_003381385.1"
+        },
+        {
+          "pointer": "artifacts/models.gff3:13",
+          "resolved": "NW_003526940.1\tRefSeq\tCDS\t5092\t5232\t.\t-\t0\tID=cds-XP_003381386.1;Parent=rna-XM_003381338.1;Dbxref=GenBank:XP_003381386.1,GeneID:10897948;Name=XP_003381386.1;gbkey=CDS;locus_tag=Tsp_07078;product=hypothetical protein;protein_id=XP_003381386.1"
+        },
+        {
+          "pointer": "artifacts/models.gff3:14",
+          "resolved": "NW_003526940.1\tRefSeq\tCDS\t4129\t5039\t.\t-\t0\tID=cds-XP_003381386.1;Parent=rna-XM_003381338.1;Dbxref=GenBank:XP_003381386.1,GeneID:10897948;Name=XP_003381386.1;gbkey=CDS;locus_tag=Tsp_07078;product=hypothetical protein;protein_id=XP_003381386.1"
+        },
+        {
+          "pointer": "artifacts/models.gff3:15",
+          "resolved": "NW_003526940.1\tRefSeq\tCDS\t3838\t4075\t.\t-\t1\tID=cds-XP_003381386.1;Parent=rna-XM_003381338.1;Dbxref=GenBank:XP_003381386.1,GeneID:10897948;Name=XP_003381386.1;gbkey=CDS;locus_tag=Tsp_07078;product=hypothetical protein;protein_id=XP_003381386.1"
+        },
+        {
+          "pointer": "artifacts/proteins.faa:1",
+          "resolved": ">XP_003381385.1 conserved hypothetical protein [Trichinella spiralis]"
+        },
+        {
+          "pointer": "artifacts/proteins.faa:5",
+          "resolved": ">XP_003381386.1 hypothetical protein Tsp_07078 [Trichinella spiralis]"
+        }
+      ],
+      "scope": "location and full-file facts checked; listed individual lines are not automatic semantic proof",
+      "statement": "每个不同 CDS protein_id 与完整 FAA 的首 token 精确接续；逐个 ID 验证，不以行数代替。",
+      "supplemental_pointers_not_in_candidate": []
+    },
+    {
+      "all_record_support_pointers": [
+        "artifacts/models.gff3:3",
+        "artifacts/models.gff3:2",
+        "artifacts/models.gff3:4",
+        "artifacts/models.gff3:5",
+        "artifacts/models.gff3:6",
+        "artifacts/models.gff3:7",
+        "artifacts/models.gff3:9",
+        "artifacts/models.gff3:8",
+        "artifacts/models.gff3:10",
+        "artifacts/models.gff3:11",
+        "artifacts/models.gff3:12",
+        "artifacts/models.gff3:13",
+        "artifacts/models.gff3:14",
+        "artifacts/models.gff3:15"
+      ],
+      "claim_id": "E02",
+      "existing_pointer_values": [
+        {
+          "pointer": "artifacts/models.gff3:2",
+          "resolved": "NW_003526940.1\tRefSeq\tgene\t1631\t2479\t.\t+\t.\tID=gene-Tsp_07077;Dbxref=GeneID:10903084;Name=Tsp_07077;gbkey=Gene;gene_biotype=protein_coding;locus_tag=Tsp_07077"
+        },
+        {
+          "pointer": "artifacts/models.gff3:3",
+          "resolved": "NW_003526940.1\tRefSeq\tmRNA\t1631\t2479\t.\t+\t.\tID=rna-XM_003381337.1;Parent=gene-Tsp_07077;Dbxref=GenBank:XM_003381337.1,GeneID:10903084;Name=XM_003381337.1;gbkey=mRNA;locus_tag=Tsp_07077;product=conserved hypothetical protein;transcript_id=XM_003381337.1"
+        },
+        {
+          "pointer": "artifacts/models.gff3:8",
+          "resolved": "NW_003526940.1\tRefSeq\tgene\t3838\t5232\t.\t-\t.\tID=gene-Tsp_07078;Dbxref=GeneID:10897948;Name=Tsp_07078;gbkey=Gene;gene_biotype=protein_coding;locus_tag=Tsp_07078"
+        },
+        {
+          "pointer": "artifacts/models.gff3:9",
+          "resolved": "NW_003526940.1\tRefSeq\tmRNA\t3838\t5232\t.\t-\t.\tID=rna-XM_003381338.1;Parent=gene-Tsp_07078;Dbxref=GenBank:XM_003381338.1,GeneID:10897948;Name=XM_003381338.1;gbkey=mRNA;locus_tag=Tsp_07078;product=hypothetical protein;transcript_id=XM_003381338.1"
+        }
+      ],
+      "scope": "location and full-file facts checked; listed individual lines are not automatic semantic proof",
+      "statement": "所有 Parent 接续且类型、序列/链与父子闭区间符合题面必要合同。",
+      "supplemental_pointers_not_in_candidate": [
+        "artifacts/models.gff3:4",
+        "artifacts/models.gff3:5",
+        "artifacts/models.gff3:6",
+        "artifacts/models.gff3:7",
+        "artifacts/models.gff3:10",
+        "artifacts/models.gff3:11",
+        "artifacts/models.gff3:12",
+        "artifacts/models.gff3:13",
+        "artifacts/models.gff3:14",
+        "artifacts/models.gff3:15"
+      ]
+    }
+  ],
+  "case_id": "qc_010",
+  "external_review_completed": false,
+  "file_facts": {
+    "cds_connections": [
+      {
+        "cds_id": "cds-XP_003381385.1",
+        "exact_match": true,
+        "faa_header": ">XP_003381385.1 conserved hypothetical protein [Trichinella spiralis]",
+        "faa_header_line": 1,
+        "gff_line": 6,
+        "protein_id": "XP_003381385.1"
+      },
+      {
+        "cds_id": "cds-XP_003381385.1",
+        "exact_match": true,
+        "faa_header": ">XP_003381385.1 conserved hypothetical protein [Trichinella spiralis]",
+        "faa_header_line": 1,
+        "gff_line": 7,
+        "protein_id": "XP_003381385.1"
+      },
+      {
+        "cds_id": "cds-XP_003381386.1",
+        "exact_match": true,
+        "faa_header": ">XP_003381386.1 hypothetical protein Tsp_07078 [Trichinella spiralis]",
+        "faa_header_line": 5,
+        "gff_line": 13,
+        "protein_id": "XP_003381386.1"
+      },
+      {
+        "cds_id": "cds-XP_003381386.1",
+        "exact_match": true,
+        "faa_header": ">XP_003381386.1 hypothetical protein Tsp_07078 [Trichinella spiralis]",
+        "faa_header_line": 5,
+        "gff_line": 14,
+        "protein_id": "XP_003381386.1"
+      },
+      {
+        "cds_id": "cds-XP_003381386.1",
+        "exact_match": true,
+        "faa_header": ">XP_003381386.1 hypothetical protein Tsp_07078 [Trichinella spiralis]",
+        "faa_header_line": 5,
+        "gff_line": 15,
+        "protein_id": "XP_003381386.1"
+      }
+    ],
+    "contract_satisfied": true,
+    "faa_headers": [
+      {
+        "header": ">XP_003381385.1 conserved hypothetical protein [Trichinella spiralis]",
+        "id": "XP_003381385.1",
+        "line": 1,
+        "residues": 155
+      },
+      {
+        "header": ">XP_003381386.1 hypothetical protein Tsp_07078 [Trichinella spiralis]",
+        "id": "XP_003381386.1",
+        "line": 5,
+        "residues": 429
+      }
+    ],
+    "issues": {
+      "duplicate_feature_issues": [],
+      "extra_protein_ids": [],
+      "gene_parent_issues": [],
+      "incompatible_parent_lines": [],
+      "missing_sequence_lines": [],
+      "unresolved_parent_lines": []
+    },
+    "parent_connections": [
+      {
+        "child_id": "rna-XM_003381337.1",
+        "child_interval": [
+          1631,
+          2479
+        ],
+        "child_line": 3,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "+",
+        "child_type": "mRNA",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "gene-Tsp_07077",
+        "parent_interval": [
+          1631,
+          2479
+        ],
+        "parent_line": 2,
+        "parent_lines": [
+          2
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "+",
+        "parent_type": "gene",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_003381337.1-1",
+        "child_interval": [
+          1631,
+          1931
+        ],
+        "child_line": 4,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381337.1",
+        "parent_interval": [
+          1631,
+          2479
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_003381337.1-2",
+        "child_interval": [
+          2313,
+          2479
+        ],
+        "child_line": 5,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "+",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381337.1",
+        "parent_interval": [
+          1631,
+          2479
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_003381385.1",
+        "child_interval": [
+          1631,
+          1931
+        ],
+        "child_line": 6,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381337.1",
+        "parent_interval": [
+          1631,
+          2479
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_003381385.1",
+        "child_interval": [
+          2313,
+          2479
+        ],
+        "child_line": 7,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "+",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381337.1",
+        "parent_interval": [
+          1631,
+          2479
+        ],
+        "parent_line": 3,
+        "parent_lines": [
+          3
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "+",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "rna-XM_003381338.1",
+        "child_interval": [
+          3838,
+          5232
+        ],
+        "child_line": 9,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "-",
+        "child_type": "mRNA",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "gene-Tsp_07078",
+        "parent_interval": [
+          3838,
+          5232
+        ],
+        "parent_line": 8,
+        "parent_lines": [
+          8
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "-",
+        "parent_type": "gene",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_003381338.1-1",
+        "child_interval": [
+          5092,
+          5232
+        ],
+        "child_line": 10,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381338.1",
+        "parent_interval": [
+          3838,
+          5232
+        ],
+        "parent_line": 9,
+        "parent_lines": [
+          9
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_003381338.1-2",
+        "child_interval": [
+          4129,
+          5039
+        ],
+        "child_line": 11,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381338.1",
+        "parent_interval": [
+          3838,
+          5232
+        ],
+        "parent_line": 9,
+        "parent_lines": [
+          9
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "exon-XM_003381338.1-3",
+        "child_interval": [
+          3838,
+          4075
+        ],
+        "child_line": 12,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "-",
+        "child_type": "exon",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381338.1",
+        "parent_interval": [
+          3838,
+          5232
+        ],
+        "parent_line": 9,
+        "parent_lines": [
+          9
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_003381386.1",
+        "child_interval": [
+          5092,
+          5232
+        ],
+        "child_line": 13,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381338.1",
+        "parent_interval": [
+          3838,
+          5232
+        ],
+        "parent_line": 9,
+        "parent_lines": [
+          9
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_003381386.1",
+        "child_interval": [
+          4129,
+          5039
+        ],
+        "child_line": 14,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381338.1",
+        "parent_interval": [
+          3838,
+          5232
+        ],
+        "parent_line": 9,
+        "parent_lines": [
+          9
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      },
+      {
+        "child_id": "cds-XP_003381386.1",
+        "child_interval": [
+          3838,
+          4075
+        ],
+        "child_line": 15,
+        "child_seqid": "NW_003526940.1",
+        "child_strand": "-",
+        "child_type": "CDS",
+        "contained": true,
+        "contract_ok": true,
+        "parent_id": "rna-XM_003381338.1",
+        "parent_interval": [
+          3838,
+          5232
+        ],
+        "parent_line": 9,
+        "parent_lines": [
+          9
+        ],
+        "parent_seqid": "NW_003526940.1",
+        "parent_strand": "-",
+        "parent_type": "mRNA",
+        "resolved_unique": true,
+        "seqid_ok": true,
+        "strand_ok": true,
+        "type_ok": true
+      }
+    ],
+    "rows": [
+      {
+        "attributes": {
+          "Dbxref": "GeneID:10903084",
+          "ID": "gene-Tsp_07077",
+          "Name": "Tsp_07077",
+          "gbkey": "Gene",
+          "gene_biotype": "protein_coding",
+          "locus_tag": "Tsp_07077"
+        },
+        "id": "gene-Tsp_07077",
+        "interval": [
+          1631,
+          2479
+        ],
+        "line": 2,
+        "seqid": "NW_003526940.1",
+        "strand": "+",
+        "type": "gene"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XM_003381337.1,GeneID:10903084",
+          "ID": "rna-XM_003381337.1",
+          "Name": "XM_003381337.1",
+          "Parent": "gene-Tsp_07077",
+          "gbkey": "mRNA",
+          "locus_tag": "Tsp_07077",
+          "product": "conserved hypothetical protein",
+          "transcript_id": "XM_003381337.1"
+        },
+        "id": "rna-XM_003381337.1",
+        "interval": [
+          1631,
+          2479
+        ],
+        "line": 3,
+        "seqid": "NW_003526940.1",
+        "strand": "+",
+        "type": "mRNA"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XM_003381337.1,GeneID:10903084",
+          "ID": "exon-XM_003381337.1-1",
+          "Parent": "rna-XM_003381337.1",
+          "gbkey": "mRNA",
+          "locus_tag": "Tsp_07077",
+          "product": "conserved hypothetical protein",
+          "transcript_id": "XM_003381337.1"
+        },
+        "id": "exon-XM_003381337.1-1",
+        "interval": [
+          1631,
+          1931
+        ],
+        "line": 4,
+        "seqid": "NW_003526940.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XM_003381337.1,GeneID:10903084",
+          "ID": "exon-XM_003381337.1-2",
+          "Parent": "rna-XM_003381337.1",
+          "gbkey": "mRNA",
+          "locus_tag": "Tsp_07077",
+          "product": "conserved hypothetical protein",
+          "transcript_id": "XM_003381337.1"
+        },
+        "id": "exon-XM_003381337.1-2",
+        "interval": [
+          2313,
+          2479
+        ],
+        "line": 5,
+        "seqid": "NW_003526940.1",
+        "strand": "+",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XP_003381385.1,GeneID:10903084",
+          "ID": "cds-XP_003381385.1",
+          "Name": "XP_003381385.1",
+          "Parent": "rna-XM_003381337.1",
+          "gbkey": "CDS",
+          "locus_tag": "Tsp_07077",
+          "product": "hypothetical protein",
+          "protein_id": "XP_003381385.1"
+        },
+        "id": "cds-XP_003381385.1",
+        "interval": [
+          1631,
+          1931
+        ],
+        "line": 6,
+        "seqid": "NW_003526940.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XP_003381385.1,GeneID:10903084",
+          "ID": "cds-XP_003381385.1",
+          "Name": "XP_003381385.1",
+          "Parent": "rna-XM_003381337.1",
+          "gbkey": "CDS",
+          "locus_tag": "Tsp_07077",
+          "product": "hypothetical protein",
+          "protein_id": "XP_003381385.1"
+        },
+        "id": "cds-XP_003381385.1",
+        "interval": [
+          2313,
+          2479
+        ],
+        "line": 7,
+        "seqid": "NW_003526940.1",
+        "strand": "+",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GeneID:10897948",
+          "ID": "gene-Tsp_07078",
+          "Name": "Tsp_07078",
+          "gbkey": "Gene",
+          "gene_biotype": "protein_coding",
+          "locus_tag": "Tsp_07078"
+        },
+        "id": "gene-Tsp_07078",
+        "interval": [
+          3838,
+          5232
+        ],
+        "line": 8,
+        "seqid": "NW_003526940.1",
+        "strand": "-",
+        "type": "gene"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XM_003381338.1,GeneID:10897948",
+          "ID": "rna-XM_003381338.1",
+          "Name": "XM_003381338.1",
+          "Parent": "gene-Tsp_07078",
+          "gbkey": "mRNA",
+          "locus_tag": "Tsp_07078",
+          "product": "hypothetical protein",
+          "transcript_id": "XM_003381338.1"
+        },
+        "id": "rna-XM_003381338.1",
+        "interval": [
+          3838,
+          5232
+        ],
+        "line": 9,
+        "seqid": "NW_003526940.1",
+        "strand": "-",
+        "type": "mRNA"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XM_003381338.1,GeneID:10897948",
+          "ID": "exon-XM_003381338.1-1",
+          "Parent": "rna-XM_003381338.1",
+          "gbkey": "mRNA",
+          "locus_tag": "Tsp_07078",
+          "product": "hypothetical protein",
+          "transcript_id": "XM_003381338.1"
+        },
+        "id": "exon-XM_003381338.1-1",
+        "interval": [
+          5092,
+          5232
+        ],
+        "line": 10,
+        "seqid": "NW_003526940.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XM_003381338.1,GeneID:10897948",
+          "ID": "exon-XM_003381338.1-2",
+          "Parent": "rna-XM_003381338.1",
+          "gbkey": "mRNA",
+          "locus_tag": "Tsp_07078",
+          "product": "hypothetical protein",
+          "transcript_id": "XM_003381338.1"
+        },
+        "id": "exon-XM_003381338.1-2",
+        "interval": [
+          4129,
+          5039
+        ],
+        "line": 11,
+        "seqid": "NW_003526940.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XM_003381338.1,GeneID:10897948",
+          "ID": "exon-XM_003381338.1-3",
+          "Parent": "rna-XM_003381338.1",
+          "gbkey": "mRNA",
+          "locus_tag": "Tsp_07078",
+          "product": "hypothetical protein",
+          "transcript_id": "XM_003381338.1"
+        },
+        "id": "exon-XM_003381338.1-3",
+        "interval": [
+          3838,
+          4075
+        ],
+        "line": 12,
+        "seqid": "NW_003526940.1",
+        "strand": "-",
+        "type": "exon"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XP_003381386.1,GeneID:10897948",
+          "ID": "cds-XP_003381386.1",
+          "Name": "XP_003381386.1",
+          "Parent": "rna-XM_003381338.1",
+          "gbkey": "CDS",
+          "locus_tag": "Tsp_07078",
+          "product": "hypothetical protein",
+          "protein_id": "XP_003381386.1"
+        },
+        "id": "cds-XP_003381386.1",
+        "interval": [
+          5092,
+          5232
+        ],
+        "line": 13,
+        "seqid": "NW_003526940.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XP_003381386.1,GeneID:10897948",
+          "ID": "cds-XP_003381386.1",
+          "Name": "XP_003381386.1",
+          "Parent": "rna-XM_003381338.1",
+          "gbkey": "CDS",
+          "locus_tag": "Tsp_07078",
+          "product": "hypothetical protein",
+          "protein_id": "XP_003381386.1"
+        },
+        "id": "cds-XP_003381386.1",
+        "interval": [
+          4129,
+          5039
+        ],
+        "line": 14,
+        "seqid": "NW_003526940.1",
+        "strand": "-",
+        "type": "CDS"
+      },
+      {
+        "attributes": {
+          "Dbxref": "GenBank:XP_003381386.1,GeneID:10897948",
+          "ID": "cds-XP_003381386.1",
+          "Name": "XP_003381386.1",
+          "Parent": "rna-XM_003381338.1",
+          "gbkey": "CDS",
+          "locus_tag": "Tsp_07078",
+          "product": "hypothetical protein",
+          "protein_id": "XP_003381386.1"
+        },
+        "id": "cds-XP_003381386.1",
+        "interval": [
+          3838,
+          4075
+        ],
+        "line": 15,
+        "seqid": "NW_003526940.1",
+        "strand": "-",
+        "type": "CDS"
+      }
+    ]
+  },
+  "human_blind_review_completed": false
+}

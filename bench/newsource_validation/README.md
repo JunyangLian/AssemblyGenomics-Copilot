@@ -53,6 +53,12 @@ python newsource_validation/server/prepare_sources.py --config newsource_validat
 
 候选答案与逐字段变更见 [REVIEW_SHEET.csv](REVIEW_SHEET.csv) 和 [REVIEW_GUIDE.md](REVIEW_GUIDE.md)。所有 `expected.json` 的 `user_approved` 仍为 false；未创建答案冻结文件。作者 AI 起草与程序核算不算真人盲审，也未宣称完成独立 AI 盲审。
 
+外部 AI 此前只看到了摘要、没有实际题目，因此不能登记为逐文件审核通过。新增 [review/README.md](review/README.md) 说明附件使用方式，[review/answer_review_package.zip](review/answer_review_package.zip) 包含真实题面、全部 GFF/FAA 子集、候选答案、来源元数据、CSV 和逐记录核算表。不支持 ZIP 时可逐份上传 `review/NSP1.md`–`NSP6.md`，每份包含一对题的完整材料；要求审阅者先确认能读到文件原文。
+
+若需要新的盲审者，用 [review/blind_cases_package.zip](review/blind_cases_package.zip)：不包含答案、meta、配对映射或核算表。先保存独立原稿，再看有答案的包。已经看过候选答案的 AI 后续可作材料复核，但不能追溯称为盲审。
+
+[review/RECORD_AUDIT.md](review/RECORD_AUDIT.md) 是作者程序的额外逐记录核算：148条CDS、352条直接Parent引用、140个原候选pointer定位，支持12份候选组合。10题的代表性定位需要与更多行结合才能证明全量或否定命题；补充表列出所有关系和额外支持位置，不把单行引用的存在当作语义充分。答案、题目、评分器与锁定协议没有改变，Linux复现包继续使用上一版。
+
 [PROTOCOL_LOCK.json](PROTOCOL_LOCK.json) 记录提取前的提示、schema、评分函数、构题实现和固定来源分配哈希。[PROTOCOL_FIXTURE.json](PROTOCOL_FIXTURE.json) 只使用旧开发题，8 条原生 Inspect mock 观测、32 次本地生成、零供应商调用。构题之后没有更改锁定文件。
 
 本轮工具条件仅启用既有 list_files/read_file，正文条件直接给相同产物。最多五轮准备与一轮最终提交；输出/思考额度、提前结束规则、超时和重试策略相同。实际输入长度、工具格式和证据取得仍有差异，报告必须说明。本次不沿用历史五工具成绩或 Skill 效果结论。
